@@ -11,10 +11,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
         crossorigin="anonymous"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet">
+    <link type="text/css" href="{{url_for("static", filename="css/styles.css")}}" rel="stylesheet">
     <!-- Fonts CSS-->
-    <link rel="stylesheet" href="css/heading.css">
-    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for("static", filename="css/heading.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for("static", filename="css/body.css")}}">
 </head>
 
 <body id="page-top">
@@ -48,7 +48,7 @@
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
-                        </div><img class="img-fluid" src="assets/img/portfolio/cabin.png" alt="Log Cabin" />
+                        </div><img class="img-fluid" src="static/assets/img/portfolio/cabin.png" alt="Log Cabin" />
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-5">
@@ -57,7 +57,7 @@
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
-                        </div><img class="img-fluid" src="assets/img/portfolio/cake.png" alt="Tasty Cake" />
+                        </div><img class="img-fluid" src="static/assets/img/portfolio/cake.png" alt="Tasty Cake" />
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-5">
@@ -66,7 +66,7 @@
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
-                        </div><img class="img-fluid" src="assets/img/portfolio/circus.png" alt="Circus Tent" />
+                        </div><img class="img-fluid" src="static/assets/img/portfolio/circus.png" alt="Circus Tent" />
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-5">
@@ -75,7 +75,7 @@
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
-                        </div><img class="img-fluid" src="assets/img/portfolio/game.png" alt="Controller" />
+                        </div><img class="img-fluid" src="static/assets/img/portfolio/game.png" alt="Controller" />
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-5">
@@ -84,7 +84,7 @@
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
-                        </div><img class="img-fluid" src="assets/img/portfolio/safe.png" alt="Locked Safe" />
+                        </div><img class="img-fluid" src="static/assets/img/portfolio/safe.png" alt="Locked Safe" />
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-4 mb-5">
@@ -93,7 +93,7 @@
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fas fa-plus fa-3x"></i></div>
-                        </div><img class="img-fluid" src="assets/img/portfolio/submarine.png" alt="Submarine" />
+                        </div><img class="img-fluid" src="static/assets/img/portfolio/submarine.png" alt="Submarine" />
                     </div>
                 </div>
             </div>
@@ -119,7 +119,7 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5"
-                                    src="assets/img/portfolio/cabin.png" alt="Log Cabin" />
+                                    src="static/assets/img/portfolio/cabin.png" alt="Log Cabin" />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque
                                     assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
@@ -153,7 +153,7 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5"
-                                    src="assets/img/portfolio/cake.png" alt="Tasty Cake" />
+                                    src="static/assets/img/portfolio/cake.png" alt="Tasty Cake" />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque
                                     assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
@@ -187,7 +187,7 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5"
-                                    src="assets/img/portfolio/circus.png" alt="Circus Tent" />
+                                    src="static/assets/img/portfolio/circus.png" alt="Circus Tent" />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque
                                     assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
@@ -221,7 +221,7 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5"
-                                    src="assets/img/portfolio/game.png" alt="Controller" />
+                                    src="static/assets/img/portfolio/game.png" alt="Controller" />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque
                                     assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
@@ -255,7 +255,7 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5"
-                                    src="assets/img/portfolio/safe.png" alt="Locked Safe" />
+                                    src="static/assets/img/portfolio/safe.png" alt="Locked Safe" />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque
                                     assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
@@ -289,7 +289,7 @@
                                     <div class="divider-custom-line"></div>
                                 </div>
                                 <!-- Portfolio Modal - Image--><img class="img-fluid rounded mb-5"
-                                    src="assets/img/portfolio/submarine.png" alt="Submarine" />
+                                    src="static/assets/img/portfolio/submarine.png" alt="Submarine" />
                                 <!-- Portfolio Modal - Text-->
                                 <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit.Mollitia neque
                                     assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
@@ -323,7 +323,7 @@
     <script src="assets/mail/jqBootstrapValidation.js"></script>
     <script src="assets/mail/contact_me.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="{{url_for("static", filename="js/scripts.js")}}"></script>
 </body>
 
 </html>

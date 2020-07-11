@@ -11,10 +11,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
         crossorigin="anonymous"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet">
+    <link type="text/css" href="{{url_for("static", filename="css/styles.css")}}" rel="stylesheet">
     <!-- Fonts CSS-->
-    <link rel="stylesheet" href="css/heading.css">
-    <link rel="stylesheet" href="css/body.css">
+    <link rel="stylesheet" type="text/css" href="{{url_for("static", filename="css/heading.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for("static", filename="css/body.css")}}">
 </head>
 
 <body id="page-top">
@@ -40,7 +40,7 @@
     </nav>
     <header class="masthead bg-primary text-white text-center">
         <div class="container d-flex align-items-center flex-column">
-            <!-- Masthead Avatar Image--><img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="">
+            <!-- Masthead Avatar Image--><img class="masthead-avatar mb-5" src="static/assets/img/avataaars.svg" alt="">
             <!-- Masthead Heading-->
             <h1 class="masthead-heading mb-0">FISHING-2020</h1>
             <!-- Icon Divider-->
@@ -156,7 +156,7 @@
     <script src="assets/mail/jqBootstrapValidation.js"></script>
     <script src="assets/mail/contact_me.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="{{url_for("static", filename="js/scripts.js")}}"></script>
 </body>
 
 </html>

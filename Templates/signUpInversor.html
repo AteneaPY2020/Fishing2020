@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" href="{{url_for("static",
+    filename="css/styles.css")}}" rel="stylesheet">
+    <!-- Fonts CSS-->
+    <link rel="stylesheet" type="text/css" href="{{url_for("static",
+    filename="css/singUp.css")}}">
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+	<h1>Regístrate</h1>
+    </header>
+
+    <div id="form">
+
+    <div class="fish" id="fish"></div>
+    <div class="fish" id="fish2"></div>
+
+    <form id="waterform" method="post">
+
+    <div class="formgroup" id="name-form">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" />
+    </div>
+
+    <div class="formgroup" id="email-form">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" />
+    </div>
+    <div class="formgroup" id="passsword-form">
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" />
+    </div>
+    <div class="formgroup" id="pais-form">
+        <label for="pais">País</label>
+        <input type="text" id="pais" name="pais" />
+    </div>
+    <div class="formgroup" id="ciudad-form">
+        <label for="ciudad">Ciudad</label>
+        <input type="text" id="ciudad" name="ciudad" />
+    </div>
+    <div class="formgroup" id="interes-form">
+        <label for="interes">Interes</label>
+        <select name="interes" id="interes" form="interes">
+          <option value="tecnologia">Tecnología</option>
+          <option value="comida">Comida</option>
+        </select>
+    </div>
+    <div class="formgroup" id="tipo-form">
+        <label for="tipo">Tipo</label>
+        <select name="tipo" id="tipo" form="tipo">
+          <option value="grupo">Grupo de inversión</option>
+          <option value="individual">Inversión individual</option>
+        </select>
+    </div>
+    <div class="formgroup" id="biography-form">
+        <label for="biography">Biografía</label>
+        <textarea id="biography" name="biography"></textarea>
+    </div>
+
+        <input type="submit" value="Send your message!" />
+    </form>
+    </div>
+  </body>
+</html>

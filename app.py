@@ -49,10 +49,14 @@ def signUpInversor():
     elif request.method == "POST":  # "POST"
         name = request.form["nombre"]
         user = request.form["user"]
+        # Estas son las categorias
+        alimento = request.form.get("Alimento")
+        moda = request.form.get("Moda")
+        cYTec = request.form.get("CyTec")
+        # Fin de las categorias
         password = str(request.form["password"])
         email = str(request.form["email"])
         country = request.form["country"]
-        interes = int(request.form["interes"])
         tipo = int(request.form["tipo"])
         bio = request.form["bio"]
         city = request.form["city"]
@@ -64,7 +68,13 @@ def signUpInversor():
                 name, bio, email, tipo, user, password, country, city
             ).getId()
         )
-        logic.insertNewInteres(interes, idInversor)
+        if alimento:
+            logic.insertNewInteres(1, idInversor)
+        if moda:
+            logic.insertNewInteres(2, idInversor)
+        if cYTec:
+            logic.insertNewInteres(3, idInversor)
+
         return render_template("index.html", message="Usuario creado con éxito")
 
 

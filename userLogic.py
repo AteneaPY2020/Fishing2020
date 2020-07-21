@@ -5,7 +5,7 @@ from userObj import UserObj
 class UserLogic(Logic):
     def __init__(self):
         super().__init__()
-        self.keys = ["id", "user", "password", "role"]
+        self.keys = ["id", "user", "password"]
 
     def getUser(self, user, password):
         dataBase = self.get_databaseXObj()
@@ -17,9 +17,7 @@ class UserLogic(Logic):
         data = self.tupleToDictionaryList(data, self.keys)
         if len(data) > 0:
             data_dic = data[0]
-            userObj = UserObj(
-                data_dic["id"], data_dic["user"], data_dic["password"], data_dic["role"]
-            )
+            userObj = UserObj(data_dic["id"], data_dic["user"], data_dic["password"])
             return userObj
         else:
             return None

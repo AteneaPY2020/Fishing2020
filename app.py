@@ -50,9 +50,18 @@ def signUpInversor():
         name = request.form["nombre"]
         user = request.form["user"]
         # Estas son las categorias
+        i = 0
         alimento = request.form.get("Alimento")
         moda = request.form.get("Moda")
         cYTec = request.form.get("CyTec")
+        ecologia = request.form.get("Ecologia")
+        academico = request.form.get("Academico")
+        social = request.form.get("Social")
+        salud = request.form.get("Salud")
+        belleza = request.form.get("Belleza")
+        entretenimiento = request.form.get("Entretenimiento")
+        infantil = request.form.get("Infantil")
+        otra = request.form.get("Otra")
         # Fin de las categorias
         password = str(request.form["password"])
         email = str(request.form["email"])
@@ -68,12 +77,24 @@ def signUpInversor():
                 name, bio, email, tipo, user, password, country, city
             ).getId()
         )
-        if alimento:
-            logic.insertNewInteres(1, idInversor)
-        if moda:
-            logic.insertNewInteres(2, idInversor)
-        if cYTec:
-            logic.insertNewInteres(3, idInversor)
+
+        for checkbox in (
+            alimento,
+            moda,
+            ecologia,
+            cYTec,
+            social,
+            salud,
+            academico,
+            entretenimiento,
+            infantil,
+            belleza,
+            otra,
+        ):
+            value = request.form.get(checkbox)
+            i += 1
+            if value:
+                logic.insertNewInteres(i, idInversor)
 
         return render_template("index.html", message="Usuario creado con éxito")
 

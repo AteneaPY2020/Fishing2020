@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>registroInv</title>
+  </head>
+  <body>
+    <form action="/signUpInversor" method="POST">
+      Usuario: <br />
+      <input type="text" name="user" id="user" />
+      <br /><br />
+      Nombre: <br />
+      <input type="text" name="nombre" id="nombre" />
+      <br /><br />
+      Contraseña: <br />
+      <input type="password" name="password" id="password" />
+      <br /><br />
+      E-mail: <br />
+      <input type="email" name="email" id="email" />
+      <br /><br />
+      Pais: <br />
+      <input type="text" name="country" id="country" />
+      <br /><br />
+      Ciudad: <br />
+      <input type="text" name="city" id="city" />
+      <br /><br />
+      Interes: <br />
+      <select name="interes" id="interes" form="interes">
+        <option value="tecnologia">Tecnología</option>
+        <option value="comida">Comida</option>
+      </select>
+      Tipo de inversión: <br />
+      <select name="tipo" id="tipo" form="tipo">
+        <option value="grupo">Grupo de inversión</option>
+        <option value="individual">Inversión individual</option>
+      </select>
+      Biografía: <br />
+      <input type="text" name="bio" id="bio" />
+      <br /><br />
+      <input type="submit" value="Create Acount" />
+    </form>
+  </body>
+</html>

@@ -42,7 +42,7 @@ def logIn():
 
 @app.route("/signUpInversor")
 def signUpInversor():
-    return render_template("signUpInversor.html")
+    return render_template("registroInv.html")
 
 
 if __name__ == "__main__":

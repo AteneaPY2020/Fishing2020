@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, jsonify
 from userLogic import UserLogic
 from userObj import UserObj
 from inversorLogic import inversorLogic
@@ -24,10 +24,10 @@ def logIn():
         userDataInv = logic.getUserFromInversionista(user, password)
         userDataEmp = logic.getUserFromEmprendimiento(user, password)
         if userDataEmp is not None:
-            session["user"] = userDataEmp
+            session["user"] = userDataEmp.user
             return render_template("informacionEmprendedores.html")
         elif userDataInv is not None:
-            session["user"] = userDataInv
+            session["user"] = userDataInv.user
             return render_template("PlataformaProductos.html")
         else:
             return render_template(

@@ -6,6 +6,9 @@
     <title>registroInv</title>
   </head>
   <body>
+    <h1>Registrate como Inversionista</h1>
+    <a href="#RegistroEmprendedor">¿No buscas invertir? Registra tu idea de negocios aquí</a>
+    <br><br>
     <form action="/signUpInversor" method="POST">
       Usuario: <br />
       <input type="text" name="user" id="user" />
@@ -26,15 +29,15 @@
       <input type="text" name="city" id="city" />
       <br /><br />
       Interes: <br />
-      <select name="interes" id="interes" form="interes">
-        <option value="tecnologia">Tecnología</option>
-        <option value="comida">Comida</option>
+      <select name="interes" id="interes">
+        <option value="1">Tecnología</option>
+        <option value="2">Comida</option>
       </select>
       <br /><br />
       Tipo de inversión: <br />
-      <select name="tipo" id="tipo" form="tipo">
-        <option value="grupo">Grupo de inversión</option>
-        <option value="individual">Inversión individual</option>
+      <select name="tipo" id="tipo">
+        <option value="1">Grupo de inversión</option>
+        <option value="2">Inversión individual</option>
       </select>
       <br /><br />
       Biografía: <br />
@@ -42,5 +45,6 @@
       <br /><br />
       <input type="submit" value="Create Acount" />
     </form>
+    
   </body>
 </html>

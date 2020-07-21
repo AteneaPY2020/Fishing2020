@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, jsonify
+from flask import Flask, render_template, request, redirect, session
 from userLogic import UserLogic
 from userObj import UserObj
 from inversorLogic import inversorLogic

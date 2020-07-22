@@ -5,6 +5,7 @@ from inversorLogic import inversorLogic
 from inversorObj import inversorObj
 
 app = Flask(__name__)
+app.secret_key = "ILoveFishing"
 
 
 @app.route("/")
@@ -20,25 +21,17 @@ def logIn():
         user = request.form["user"]
         password = request.form["password"]
         logic = UserLogic()
-        userdata = logic.getUser(user, password)
-        session["user"] = userdata
-        if userdata is not None:
-            if userdata.password == password and userdata.user == user:
-                if userdata.role == 0:
-                    return render_template(
-                        "PlataformaProductos.html", userdata=userdata
-                    )
-                else:
-                    return render_template(
-                        "informacionEmprendedores.html", userdata=userdata
-                    )
-            else:
-                return render_template(
-                    "loginform.html", message="Error. Usuario o contraseña están mal"
-                )
+        userDataInv = logic.getUserFromInversionista(user, password)
+        userDataEmp = logic.getUserFromEmprendimiento(user, password)
+        if userDataEmp is not None:
+            session["user"] = userDataEmp.user
+            return render_template("informacionEmprendedores.html")
+        elif userDataInv is not None:
+            session["user"] = userDataInv.user
+            return render_template("PlataformaProductos.html")
         else:
             return render_template(
-                "loginform.html", message="Error. Usuario o contraseña están mal"
+                "loginform.html", message="Error. Usuario o contraseña incorrecta"
             )
 
 

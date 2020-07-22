@@ -25,10 +25,12 @@ def logIn():
         userDataInv = logic.getUserFromInversionista(user, password)
         userDataEmp = logic.getUserFromEmprendimiento(user, password)
         if userDataEmp is not None:
-            session["user"] = userDataEmp.user
+            dataDic = logic.createDictionary(userDataEmp)
+            session["user"] = dataDic
             return render_template("informacionEmprendedores.html")
         elif userDataInv is not None:
-            session["user"] = userDataInv.user
+            dataDic = logic.createDictionary(userDataInv)
+            session["user"] = dataDic
             return render_template("PlataformaProductos.html")
         else:
             return render_template(

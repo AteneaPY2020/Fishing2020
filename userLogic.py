@@ -38,3 +38,11 @@ class UserLogic(Logic):
             return userObj
         else:
             return None
+
+    def createDictionary(self, userObj):
+        dictionary = {
+            "id": userObj.id,
+            "user": userObj.user,
+            "password": userObj.password,
+        }
+        return dictionary

@@ -3,6 +3,7 @@ from userLogic import UserLogic
 from userObj import UserObj
 from inversorLogic import inversorLogic
 from inversorObj import inversorObj
+from emprendedorLogic import emprendedorLogic
 
 app = Flask(__name__)
 app.secret_key = "ILoveFishing"
@@ -94,7 +95,38 @@ def signUpInversor():
 
 @app.route("/signUpEmprendedor", methods=["GET", "POST"])
 def signUpEmprendedor():
-    return render_template("registroEmp.html")
+    if request.method == "GET":
+        return render_template("registroEmp.html", message="")
+    elif request.method == "POST":  # "POST"
+        # Recuperando datos
+        name = request.form["nombre"]
+        user = request.form["user"]
+        password = str(request.form["password"])
+        email = str(request.form["email"])
+        country = request.form["country"]
+        phone = request.form["phone"]
+        eslogan = request.form["eslogan"]
+        city = request.form["city"]
+        funDate = request.form["fundationDate"]
+        desc = request.form["description"]
+        status = request.form["estado"]
+        ####
+        logic = emprendedorLogic()
+        logic.insertNewEmprendedor(
+            name,
+            eslogan,
+            email,
+            phone,
+            user,
+            password,
+            country,
+            city,
+            funDate,
+            desc,
+            status,
+        )
+
+    return render_template("index.html", message="")
 
 
 if __name__ == "__main__":

@@ -46,7 +46,7 @@ def signUpInversor():
         name = request.form["nombre"]
         user = request.form["user"]
         # Estas son las categorias
-        i = 0
+        i = 1
         alimento = request.form.get("Alimento")
         moda = request.form.get("Moda")
         cYTec = request.form.get("CyTec")
@@ -88,9 +88,9 @@ def signUpInversor():
             otra,
         ):
             value = request.form.get(checkbox)
-            i += 1
             if value:
                 logic.insertNewInteres(i, idInversor)
+            i += 1
 
         return render_template("index.html", message="Usuario creado con éxito")
 

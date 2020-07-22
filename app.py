@@ -99,5 +99,10 @@ def signUpInversor():
         return render_template("index.html", message="Usuario creado con éxito")
 
 
+@app.route("/signUpEmprendedor", methods=["GET", "POST"])
+def signUpEmprendedor():
+    return render_template("registroEmp.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)

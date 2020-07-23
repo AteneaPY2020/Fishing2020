@@ -41,7 +41,7 @@ def logIn():
 @app.route("/signUpInversor", methods=["GET", "POST"])
 def signUpInversor():
     if request.method == "GET":
-        return render_template("rregistroInv.html", message="")
+        return render_template("registroInv.html", message="")
     elif request.method == "POST":  # "POST"
         name = request.form["nombre"]
         user = request.form["user"]

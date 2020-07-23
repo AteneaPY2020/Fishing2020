@@ -72,6 +72,23 @@ class UserLogic(Logic):
         else:
             return None
 
+    def checkUserInUsuario(self, user, rol):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "SELECT usuario.usuario FROM fishingdb.usuario "
+            + f"where usuario.rol = {rol} and usuario.usuario = '{user}';"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        counter = 0
+        for item in data:
+            counter += 1
+
+        if counter > 0:
+            return True
+        else:
+            return False
+
     def createDictionary(self, userObj):
         dictionary = {
             "id": userObj.id,

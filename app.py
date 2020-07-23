@@ -68,40 +68,54 @@ def signUpInversor():
         city = request.form["city"]
         # Creando nuevo usuario
         logicUsuario = UserLogic()
-        logicUsuario.insertNewUser(user, password, rol)
-        logicUsuario.getNewUser(user, password, rol)
-        idUsuario = int(logicUsuario.getNewUser(user, password, rol).getId())
-        # Creando nuevo Inversor
-        logicInversor = inversorLogic()
-        logicInversor.insertNewInversor(
-            name, bio, email, tipo, idUsuario, country, city
-        )
-        logicInversor.getNewInversor(name, bio, email, tipo, idUsuario, country, city)
-        idInversor = int(
+        existeUsuario = logicUsuario.checkUserInUsuario(user, rol)
+        if existeUsuario:
+            return render_template(
+                "registroInv.html",
+                errorMessage="Este usuario ya existe, inténtelo nuevamente",
+                namex=name,
+                emailx=email,
+                countryx=country,
+                biox=bio,
+                cityx=city,
+            )
+        else:
+            logicUsuario.insertNewUser(user, password, rol)
+            logicUsuario.getNewUser(user, password, rol)
+            idUsuario = int(logicUsuario.getNewUser(user, password, rol).getId())
+            # Creando nuevo Inversor
+            logicInversor = inversorLogic()
+            logicInversor.insertNewInversor(
+                name, bio, email, tipo, idUsuario, country, city
+            )
             logicInversor.getNewInversor(
                 name, bio, email, tipo, idUsuario, country, city
-            ).getId()
-        )
-        # Insertando nuevos intereses
-        for checkbox in (
-            alimento,
-            moda,
-            ecologia,
-            cYTec,
-            social,
-            salud,
-            academico,
-            entretenimiento,
-            infantil,
-            belleza,
-            otra,
-        ):
-            value = request.form.get(checkbox)
-            if value:
-                logicInversor.insertNewInteres(i, idInversor)
-            i += 1
+            )
+            idInversor = int(
+                logicInversor.getNewInversor(
+                    name, bio, email, tipo, idUsuario, country, city
+                ).getId()
+            )
+            # Insertando nuevos intereses
+            for checkbox in (
+                alimento,
+                moda,
+                ecologia,
+                cYTec,
+                social,
+                salud,
+                academico,
+                entretenimiento,
+                infantil,
+                belleza,
+                otra,
+            ):
+                value = request.form.get(checkbox)
+                if value:
+                    logicInversor.insertNewInteres(i, idInversor)
+                i += 1
 
-        return render_template("index.html", message="Usuario creado con éxito")
+            return render_template("index.html", message="Usuario creado con éxito")
 
 
 @app.route("/signUpEmprendedor", methods=["GET", "POST"])
@@ -125,16 +139,40 @@ def signUpEmprendedor():
         ####
         # Creando nuevo usuario
         logicUsuario = UserLogic()
-        logicUsuario.insertNewUser(user, password, rol)
-        logicUsuario.getNewUser(user, password, rol)
-        id_user = int(logicUsuario.getNewUser(user, password, rol).getId())
-        # Creando nuevo emprendedor
-        logic = emprendedorLogic()
-        logic.insertNewEmprendedor(
-            name, eslogan, email, phone, id_user, country, city, funDate, desc, status,
-        )
+        # Comprobando Existencia
+        existeUsuario = logicUsuario.checkUserInUsuario(user, rol)
+        if existeUsuario:
+            return render_template(
+                "registroEmp.html",
+                errorMessage="Este usuario ya existe, inténtelo nuevamente",
+                namex=name,
+                emailx=email,
+                countryx=country,
+                descx=desc,
+                cityx=city,
+                esloganx=eslogan,
+                phonex=phone,
+            )
+        else:
+            logicUsuario.insertNewUser(user, password, rol)
+            logicUsuario.getNewUser(user, password, rol)
+            id_user = int(logicUsuario.getNewUser(user, password, rol).getId())
+            # Creando nuevo emprendedor
+            logic = emprendedorLogic()
+            logic.insertNewEmprendedor(
+                name,
+                eslogan,
+                email,
+                phone,
+                id_user,
+                country,
+                city,
+                funDate,
+                desc,
+                status,
+            )
 
-    return render_template("index.html", message="")
+        return render_template("index.html", message="")
 
 
 if __name__ == "__main__":

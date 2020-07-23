@@ -76,7 +76,7 @@ class UserLogic(Logic):
         dataBase = self.get_databaseXObj()
         sql = (
             "SELECT usuario.usuario FROM fishingdb.usuario "
-            + f"where usuario.rol = {rol} and usuario.usuario = '{user}';"
+            + f"where usuario.usuario = '{user}';"
         )
         print(sql)
         data = dataBase.executeQuery(sql)

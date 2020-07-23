@@ -45,6 +45,7 @@ def signUpInversor():
     elif request.method == "POST":  # "POST"
         name = request.form["nombre"]
         user = request.form["user"]
+        rol = 2
         # Estas son las categorias
         i = 1
         alimento = request.form.get("Alimento")
@@ -65,15 +66,23 @@ def signUpInversor():
         tipo = int(request.form["tipo"])
         bio = request.form["bio"]
         city = request.form["city"]
-        logic = inversorLogic()
-        logic.insertNewInversor(name, bio, email, tipo, user, password, country, city)
-        logic.getNewInversor(name, bio, email, tipo, user, password, country, city)
+        # Creando nuevo usuario
+        logicUsuario = UserLogic()
+        logicUsuario.insertNewUser(user, password, rol)
+        logicUsuario.getNewUser(user, password, rol)
+        idUsuario = int(logicUsuario.getNewUser(user, password, rol).getId())
+        # Creando nuevo Inversor
+        logicInversor = inversorLogic()
+        logicInversor.insertNewInversor(
+            name, bio, email, tipo, idUsuario, country, city
+        )
+        logicInversor.getNewInversor(name, bio, email, tipo, idUsuario, country, city)
         idInversor = int(
-            logic.getNewInversor(
-                name, bio, email, tipo, user, password, country, city
+            logicInversor.getNewInversor(
+                name, bio, email, tipo, idUsuario, country, city
             ).getId()
         )
-
+        # Insertando nuevos intereses
         for checkbox in (
             alimento,
             moda,
@@ -89,7 +98,7 @@ def signUpInversor():
         ):
             value = request.form.get(checkbox)
             if value:
-                logic.insertNewInteres(i, idInversor)
+                logicInversor.insertNewInteres(i, idInversor)
             i += 1
 
         return render_template("index.html", message="Usuario creado con éxito")
@@ -98,11 +107,12 @@ def signUpInversor():
 @app.route("/signUpEmprendedor", methods=["GET", "POST"])
 def signUpEmprendedor():
     if request.method == "GET":
-        return render_template("registroEmp.html", message="")
+        return render_template("signUpSartUp.html", message="")
     elif request.method == "POST":  # "POST"
         # Recuperando datos
         name = request.form["nombre"]
         user = request.form["user"]
+        rol = 3
         password = str(request.form["password"])
         email = str(request.form["email"])
         country = request.form["country"]
@@ -113,14 +123,19 @@ def signUpEmprendedor():
         desc = request.form["description"]
         status = request.form["estado"]
         ####
+        # Creando nuevo usuario
+        logicUsuario = UserLogic()
+        logicUsuario.insertNewUser(user, password, rol)
+        logicUsuario.getNewUser(user, password, rol)
+        idUsuario = int(logicUsuario.getNewUser(user, password, rol).getId())
+        # Creando nuevo emprendedor
         logic = emprendedorLogic()
         logic.insertNewEmprendedor(
             name,
             eslogan,
             email,
             phone,
-            user,
-            password,
+            idUsuario,
             country,
             city,
             funDate,

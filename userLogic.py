@@ -5,7 +5,7 @@ from userObj import UserObj
 class UserLogic(Logic):
     def __init__(self):
         super().__init__()
-        self.keys = ["id", "user", "password"]
+        self.keys = ["id", "usuario", "password", "rol"]
 
     def getUserFromInversionista(self, user, password):
         dataBase = self.get_databaseXObj()
@@ -18,7 +18,9 @@ class UserLogic(Logic):
         data = self.tupleToDictionaryList(data, self.keys)
         if len(data) > 0:
             data_dic = data[0]
-            userObj = UserObj(data_dic["id"], data_dic["user"], data_dic["password"])
+            userObj = UserObj(
+                data_dic["id"], data_dic["user"], data_dic["password"], data_dic["rol"]
+            )
             return userObj
         else:
             return None
@@ -34,8 +36,39 @@ class UserLogic(Logic):
         data = self.tupleToDictionaryList(data, self.keys)
         if len(data) > 0:
             data_dic = data[0]
-            userObj = UserObj(data_dic["id"], data_dic["user"], data_dic["password"])
+            userObj = UserObj(
+                data_dic["id"], data_dic["user"], data_dic["password"], data_dic["rol"]
+            )
             return userObj
+        else:
+            return None
+
+    def insertNewUser(self, user, password, rol):
+        database = self.get_databaseXObj()
+        sql = (
+            "insert into fishingdb.usuario (id, usuario, password, rol) "
+            + f"values (0, '{user}', '{password}', {rol});"
+        )
+        rows = database.executeNonQueryRows(sql)
+        return rows
+
+    def getNewUser(self, user, password, rol):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "select * from fishingdb.usuario "
+            + f"where usuario = '{user}' and password = '{password}';"
+        )
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        if len(data) > 0:
+            data_dic = data[0]
+            usuarioObj = UserObj(
+                data_dic["id"],
+                data_dic["usuario"],
+                data_dic["password"],
+                data_dic["rol"],
+            )
+            return usuarioObj
         else:
             return None
 

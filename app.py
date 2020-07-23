@@ -41,7 +41,7 @@ def logIn():
 @app.route("/signUpInversor", methods=["GET", "POST"])
 def signUpInversor():
     if request.method == "GET":
-        return render_template("rregistroInv.html", message="")
+        return render_template("registroInv.html", message="")
     elif request.method == "POST":  # "POST"
         name = request.form["nombre"]
         user = request.form["user"]
@@ -107,7 +107,7 @@ def signUpInversor():
 @app.route("/signUpEmprendedor", methods=["GET", "POST"])
 def signUpEmprendedor():
     if request.method == "GET":
-        return render_template("signUpSartUp.html", message="")
+        return render_template("registroEmp.html", message="")
     elif request.method == "POST":  # "POST"
         # Recuperando datos
         name = request.form["nombre"]
@@ -127,20 +127,11 @@ def signUpEmprendedor():
         logicUsuario = UserLogic()
         logicUsuario.insertNewUser(user, password, rol)
         logicUsuario.getNewUser(user, password, rol)
-        idUsuario = int(logicUsuario.getNewUser(user, password, rol).getId())
+        id_user = int(logicUsuario.getNewUser(user, password, rol).getId())
         # Creando nuevo emprendedor
         logic = emprendedorLogic()
         logic.insertNewEmprendedor(
-            name,
-            eslogan,
-            email,
-            phone,
-            idUsuario,
-            country,
-            city,
-            funDate,
-            desc,
-            status,
+            name, eslogan, email, phone, id_user, country, city, funDate, desc, status,
         )
 
     return render_template("index.html", message="")

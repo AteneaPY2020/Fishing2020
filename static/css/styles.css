@@ -7474,3 +7474,110 @@ h1 {
     transform:translateX(25%);
   }
 }
+
+
+.challenge2 {
+  width: 541px;
+  height: 22px;
+  position: absolute;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  top: 569.5px;
+  left: 755px;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+}
+.challenge2 .number {
+  float: right;
+}
+.challenge2 .daily {
+  float: left;
+}
+
+.body2 {
+  height: 100vh;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  font-family: Roboto, sans-serif;
+  color: #fff;
+  font-size: 18px;
+ 
+}
+
+.content2 {
+  width: 1300px;
+  height: 800px;
+  background: #FF7472;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+  position: relative;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+.content2 .shareButton.main .share, .content2 .shareButton.main .close, .content2 .shareButton.main .check {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  -webkit-transition: all 150ms;
+  transition: all 150ms;
+}
+.content2 .shareButton.main .share, .content2 .shareButton.main.open .close, .content2 .shareButton.main.sent .check {
+  -webkit-transform: rotate(0) scale(1);
+          transform: rotate(0) scale(1);
+  opacity: 1;
+}
+.content2 .shareButton.main .close, .content2 .shareButton.main.open .share, .content2 .shareButton.main .check, .content2 .shareButton.main.sent .share {
+  opacity: 0;
+  -webkit-transform: rotate(90deg) scale(0);
+          transform: rotate(90deg) scale(0);
+}
+
+.shareButton, .shareButton.open {
+  border: none;
+  border-radius: 50%;
+  background: #3B83BD;
+  padding: 1rem;
+  overflow: hidden;
+  outline: none;
+  margin: 0.3rem;
+  width: 95px;
+  height: 95px;
+  box-sizing: content-box;
+  -webkit-transition: all 600ms;
+  transition: all 600ms;
+  position: relative;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  
+}
+.shareButton:hover, .shareButton.open:hover {
+  -webkit-transform: scale(1.1) translateY(-3px);
+          transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.fb, .shareButton.open.ig {
+  -webkit-transition-delay: 100ms;
+          transition-delay: 100ms;
+}
+
+.fb {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}

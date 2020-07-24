@@ -25,13 +25,16 @@ def logIn():
         userData = logic.getUser(user, password)
         if userData is not None:
             if userData.rol == 1:
-                session["user"] = userData.user
+                dataDic = logic.createDictionary(userData)
+                session["user"] = dataDic
                 return render_template("contacto.html")
             if userData.rol == 2:
-                session["user"] = userData.user
+                dataDic = logic.createDictionary(userData)
+                session["user"] = dataDic
                 return render_template("PlataformaProductos.html")
             elif userData.rol == 3:
-                session["user"] = userData.user
+                dataDic = logic.createDictionary(userData)
+                session["user"] = dataDic
                 return render_template("informacionEmprendedores.html")
         else:
             return render_template(

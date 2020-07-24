@@ -77,7 +77,8 @@ class UserLogic(Logic):
     def createDictionary(self, userObj):
         dictionary = {
             "id": userObj.id,
-            "user": userObj.user,
+            "usuario": userObj.user,
             "password": userObj.password,
+            "rol": userObj.rol,
         }
         return dictionary

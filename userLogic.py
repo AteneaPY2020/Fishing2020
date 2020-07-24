@@ -7,11 +7,11 @@ class UserLogic(Logic):
         super().__init__()
         self.keys = ["id", "usuario", "password", "rol"]
 
-    def getUserFromInversionista(self, user, password):
+    def getUser(self, user, password):
         dataBase = self.get_databaseXObj()
         sql = (
-            "SELECT inversionista.id, inversionista.usuario, inversionista.password FROM fishingdb.inversionista "
-            + f"where inversionista.usuario = '{user}' and inversionista.password = '{password}';"
+            "SELECT * FROM fishingdb.usuario "
+            + f"where usuario.usuario = '{user}' and usuario.password = '{password}';"
         )
         print(sql)
         data = dataBase.executeQuery(sql)
@@ -19,25 +19,10 @@ class UserLogic(Logic):
         if len(data) > 0:
             data_dic = data[0]
             userObj = UserObj(
-                data_dic["id"], data_dic["user"], data_dic["password"], data_dic["rol"]
-            )
-            return userObj
-        else:
-            return None
-
-    def getUserFromEmprendimiento(self, user, password):
-        dataBase = self.get_databaseXObj()
-        sql = (
-            "SELECT emprendimiento.id, emprendimiento.usuario, emprendimiento.password FROM fishingdb.emprendimiento "
-            + f"where emprendimiento.usuario = '{user}' and emprendimiento.password = '{password}';"
-        )
-        print(sql)
-        data = dataBase.executeQuery(sql)
-        data = self.tupleToDictionaryList(data, self.keys)
-        if len(data) > 0:
-            data_dic = data[0]
-            userObj = UserObj(
-                data_dic["id"], data_dic["user"], data_dic["password"], data_dic["rol"]
+                data_dic["id"],
+                data_dic["usuario"],
+                data_dic["password"],
+                data_dic["rol"],
             )
             return userObj
         else:

@@ -82,6 +82,7 @@
                     	<form role="form" action="" method="post" class="f1">
 
                     		<h3>Registrate a fishing</h3>
+                            <p style="color: red">{{ errorMessage }}</p>
                                 <div class="f1-steps">
                                     <div class="f1-progress">
                                         <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="3" style="width: 16.66%;"></div>
@@ -104,19 +105,19 @@
                     		    <h4>Dinos quién eres:</h4>
                     			<div class="form-group">
                     			    <label class="sr-only" for="f1-first-name">Nombre</label>
-                                    <input type="text" name="nombre" placeholder="Nombre y Apellido" class="f1-first-name form-control" id="nombre">
+                                    <input type="text" name="nombre" placeholder="Nombre y Apellido" class="f1-first-name form-control" id="nombre" value={{namex}}>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-last-name">Pais</label>
-                                    <input type="text" name="country" placeholder="Pais" class="f1-last-name form-control" id="country">
+                                    <input type="text" name="country" placeholder="Pais" class="f1-last-name form-control" id="country" value={{countryx}}>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-last-name">Ciudad</label>
-                                    <input type="text" name="city" placeholder="Ciudad" class="f1-last-name form-control" id="city">
+                                    <input type="text" name="city" placeholder="Ciudad" class="f1-last-name form-control" id="city" value={{cityx}}>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-about-yourself">Biografia</label>
-                                    <textarea name="bio" placeholder="Biografia" class="f1-about-yourself form-control" id="bio"></textarea>
+                                    <textarea name="bio" placeholder="Biografia" class="f1-about-yourself form-control" id="bio" value={{biox}}></textarea>
                                 </div>
                                 <h5>Tipo:</h5>
                                 <select name="tipo" id="tipo">
@@ -136,7 +137,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-email">Email</label>
-                                    <input type="email" name="email" placeholder="Email" class="f1-email form-control" id="email">
+                                    <input type="email" name="email" placeholder="Email" class="f1-email form-control" id="email" value={{emailx}}>
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-password">Contrasenia</label>

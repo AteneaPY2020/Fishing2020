@@ -90,6 +90,7 @@ CREATE TABLE `emprendimiento` (
   `oferta_porcentaje` double NOT NULL,
   `id_emprendedor` int NOT NULL,
   `nombre` varchar(100) NOT NULL,
+  `logo` longblob,
   PRIMARY KEY (`id`),
   KEY `id_emprendedor_idx` (`id_emprendedor`),
   CONSTRAINT `id_emprendedor` FOREIGN KEY (`id_emprendedor`) REFERENCES `emprendedor` (`id`)
@@ -102,7 +103,7 @@ CREATE TABLE `emprendimiento` (
 
 LOCK TABLES `emprendimiento` WRITE;
 /*!40000 ALTER TABLE `emprendimiento` DISABLE KEYS */;
-INSERT INTO `emprendimiento` VALUES (1,'tiburon','Canción','Mientras me bañaba tuve una iluminación','No tengo dinero ni nada que dar',0,'1971-07-28',1.234578912345679e16,0.3,6,'Alma Jóven'),(2,'Huevo','Somos four','Cuando se salió Zayn','Four',5218.22,'2020-07-28',500,0.56,8,'Four');
+INSERT INTO `emprendimiento` VALUES (1,'tiburon','Canción','Mientras me bañaba tuve una iluminación','No tengo dinero ni nada que dar',0,'1971-07-28',1.234578912345679e16,0.3,6,'Alma Jóven',NULL),(2,'Huevo','Somos four','Cuando se salió Zayn','Four',5218.22,'2020-07-28',500,0.56,8,'Four',NULL);
 /*!40000 ALTER TABLE `emprendimiento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +122,7 @@ CREATE TABLE `especialidad` (
   KEY `fk_especialidad_emprendimiento1_idx` (`id_emprendimiento`),
   KEY `fk_especialidad_categoria1_idx` (`id_categoria`),
   CONSTRAINT `fk_especialidad_categoria1` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`),
-  CONSTRAINT `fk_especialidad_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendedor` (`id`)
+  CONSTRAINT `fk_especialidad_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendimiento` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -133,33 +134,6 @@ LOCK TABLES `especialidad` WRITE;
 /*!40000 ALTER TABLE `especialidad` DISABLE KEYS */;
 INSERT INTO `especialidad` VALUES (1,1,1),(2,2,2),(3,2,10);
 /*!40000 ALTER TABLE `especialidad` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `fundadores`
---
-
-DROP TABLE IF EXISTS `fundadores`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `fundadores` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(75) NOT NULL,
-  `curriculum` varchar(500) NOT NULL,
-  `id_emprendimiento` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_fundadores_emprendimiento1_idx` (`id_emprendimiento`),
-  CONSTRAINT `fk_fundadores_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendedor` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `fundadores`
---
-
-LOCK TABLES `fundadores` WRITE;
-/*!40000 ALTER TABLE `fundadores` DISABLE KEYS */;
-/*!40000 ALTER TABLE `fundadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -209,7 +183,7 @@ CREATE TABLE `historial` (
   PRIMARY KEY (`id`),
   KEY `fk_historial_emprendimiento1_idx` (`id_emprendimiento`),
   KEY `fk_historial_inversionista1_idx` (`id_inversionista`),
-  CONSTRAINT `fk_historial_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendedor` (`id`),
+  CONSTRAINT `fk_historial_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendimiento` (`id`),
   CONSTRAINT `fk_historial_inversionista1` FOREIGN KEY (`id_inversionista`) REFERENCES `inversionista` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -297,7 +271,7 @@ CREATE TABLE `medios_venta` (
   `id_emprendimiento` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_medios_venta_emprendimiento1_idx` (`id_emprendimiento`),
-  CONSTRAINT `fk_medios_venta_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendedor` (`id`)
+  CONSTRAINT `fk_medios_venta_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendimiento` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -324,7 +298,7 @@ CREATE TABLE `perfil_cliente` (
   `id_emprendimiento` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_cliente_emprendimiento1_idx` (`id_emprendimiento`),
-  CONSTRAINT `fk_cliente_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendedor` (`id`)
+  CONSTRAINT `fk_cliente_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendimiento` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -355,7 +329,7 @@ CREATE TABLE `productos` (
   `id_emprendimiento` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_productost_emprendimiento1_idx` (`id_emprendimiento`),
-  CONSTRAINT `fk_productost_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendedor` (`id`)
+  CONSTRAINT `fk_productost_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendimiento` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -383,7 +357,7 @@ CREATE TABLE `publicacion` (
   `id_emprendimiento` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_publicacion_emprendimiento1_idx` (`id_emprendimiento`),
-  CONSTRAINT `fk_publicacion_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendedor` (`id`)
+  CONSTRAINT `fk_publicacion_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendimiento` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -459,4 +433,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-28 13:11:17
+-- Dump completed on 2020-07-28 14:12:24

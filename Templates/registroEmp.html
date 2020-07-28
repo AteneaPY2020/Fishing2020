@@ -1,5 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>BootZard - Bootstrap Wizard Template</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="static/t2/assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="static/t2/assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="static/t2/assets/css/form-elements.css">
+        <link rel="stylesheet" href="static/t2/assets/css/style.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+        <!-- Favicon and touch icons -->
+        <link rel="shortcut icon" href="static/t2/assets/ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="static/t2/assets/ico/apple-touch-icon-57-precomposed.png">
+
+    </head>
+
+    <body>
+
+		<!-- Top menu -->
+		<nav class="navbar navbar-inverse navbar-no-bg" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="index.html">BootZard - Bootstrap Wizard Template</a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="top-navbar-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<span class="li-text" style="color: witw">
+								¿No buscas emprender? Registra tu tu perfil como inversor 
+							</span> 
+							<a href="/signUpInversor" style="color: #f35b3f"><strong>aquí</strong></a> 
+							<span class="li-text">
+								
+							
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+        <!-- Top content -->
+        <div class="top-content">
+            <div class="container">
+                
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2 text">
+                        <h1>Únete a <strong style="color:#f35b3f">Fishing</strong> hoy</h1>
+                        <div class="description">
+                       	    <p>
+                               An ocean full of great ideas
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
+                    	<form role="form" action="" method="post" class="f1">
+
+                    		<h3>Registra tu idea de negocios</h3>
+                            <p style="color: red">{{ errorMessage }}</p>
+                                <div class="f1-steps">
+                                    <div class="f1-progress">
+                                        <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="2" style="width: 16.66%;"></div>
+                                    </div>
+                                    <div class="f1-step active">
+                                        <div class="f1-step-icon"><i class="fa fa-user"></i></div>
+                                        <p>Emprendimiento</p>
+                                    </div>
+                                    <div class="f1-step">
+                                        <div class="f1-step-icon"><i class="fa fa-key"></i></div>
+                                        <p>Cuenta</p>
+                                    </div>
+                                </div>
+                    		
+                    		<fieldset>
+                    		    <h4>Dinos de qué se trata:</h4>
+                    			
+                                <div class="form-group">
+                                  <label class="sr-only" for="f1-last-name">Usuario</label>
+                                  <input type="text" class="f1-last-name form-control" name="user" id="user" placeholder="Usuario"/>
+                                  <p style="color: red">{{ errorMessage }}</p>
+                                </div>
+                            
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-first-name">Nombre</label>
+                                    Nombre:<br>
+                                    <input type="text" class="f1-last-name form-control" name="nombre" id="nombre" value={{namex}} />
+                                </div>
+                                <div class="form-group">
+                                <div class="form-group">
+                                Agregar foto de perfil:
+                                    <input class="btn btn-next" type="file" name="fileToUpload" id="fileToUpload">
+                                    <br>
+                                    <input type="submit" class="btn btn-next" value="Agregar imagen" name="submit">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-last-name">Password</label>
+                                    Contraseña:<br>
+                                    <input type="password" class="f1-last-name form-control" name="password" id="password" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-first-name">Email</label>
+                                    Email:<br>
+                                    <input type="email" class="f1-last-name form-control"   name="email" id="email" value={{emailx}} />
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-last-name">Pais</label>
+                                    País:<br>
+                                    <input type="text" class="f1-last-name form-control" name="country" id="country" value={{countryx}} />
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-last-name">Ciudad</label>
+                                    Ciudad:<br>
+                                    <input type="text" class="f1-last-name form-control" name="city" id="city" value={{cityx}} />
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-about-yourself">Fecha de fundación</label>
+                                    Fecha de fundación:<br>
+                                    <input type="date" class="f1-last-name form-control" name="fundationDate" id="fundationDate" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-about-yourself">Teléfono</label>
+                                    Teléfono:<br>
+                                    <input type="text" class="f1-last-name form-control" name="phone" id="phone" value={{phonex}} />
+                                </div>
+                                <div class="f1-buttons">
+                                    <button type="button" class="btn btn-next">Siguiente</button>
+                                </div>
+                            </fieldset>
+
+                            <fieldset>
+                                <h4>Cuentanos más sobre tu emprendimiento:</h4>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-last-name">Descripción</label>
+                                    Estado: <br />
+                                    <select name="estado" class="f1-last-name form-control" id="estado">
+                                    <option value="Huevo">Huevo </option>
+                                    <option value="Pez Dorado">Pez dorado</option>
+                                    <option value="tiburon">Tiburón</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-email">Descripción</label>
+                                    Descripción:<br>
+                                    <input type="text" class="f1-last-name form-control" name="description" id="description" value={{descx}} />
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-email">Eslogan</label>
+                                    Eslogan:<br>
+                                    <input type="text" class="f1-last-name form-control" name="eslogan" id="eslogan" value={{esloganx}} />
+                                </div>
+                                <div class="f1-buttons">
+                                    <button type="button" class="btn btn-previous">Anterior</button>
+                                    <input type="submit" class="btn btn-previous" value="Crear cuenta" />
+                                </div>
+                            </fieldset>
+                    	</form>
+                    </div>
+                </div>
+                    
+            </div>
+        </div>
+
+
+        <!-- Javascript -->
+        <script src="static/t2/assets/js/jquery-1.11.1.min.js"></script>
+        <script src="static/t2/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="static/t2/assets/js/jquery.backstretch.min.js"></script>
+        <script src="static/t2/assets/js/retina-1.1.0.min.js"></script>
+        <script src="static/t2/assets/js/script.js"></script>
+        
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+
+</html>
+<!--
+    <!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,7 +218,7 @@
       <input type="text" name="user" id="user" />
       <p style="color: red">{{ errorMessage }}</p>
       
-      Nombre: <br />
+        Nombre: <br />
       <input type="text" name="nombre" id="nombre" value={{namex}} />
       <br /><br />
       Contraseña: <br />
@@ -22,10 +227,10 @@
       E-mail: <br />
       <input type="email" name="email" id="email" value={{emailx}} />
       <br /><br />
-      Pais: <br />
+        Pais: <br />
       <input type="text" name="country" id="country" value={{countryx}} />
       <br /><br />
-      Ciudad: <br />
+        Ciudad: <br />
       <input type="text" name="city" id="city" value={{cityx}} />
       <br /><br />
       Fecha de fundación: <br />
@@ -51,3 +256,4 @@
     </form>
   </body>
 </html>
+-->

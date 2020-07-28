@@ -1,9 +1,8 @@
-class inversorObj:
-    def __init__(self, id, nombre, biografia, email, usuario, pais, ciudad):
+class emprendedorObj:
+    def __init__(self, id, nombre, email, telefono, usuario, pais, ciudad):
         self.id = id
-
         self.nombre = nombre
-        self.biografia = biografia
+        self.telefono = telefono
         self.email = email
         self.pais = pais
         self.ciudad = ciudad

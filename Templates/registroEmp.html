@@ -52,7 +52,7 @@
 							<span class="li-text" style="color: witw">
 								¿No buscas invertir? Registra tu idea de negocios 
 							</span> 
-							<a href="#" style="color: orange"><strong>aquí</strong></a> 
+							<a href="#" style="color: #f35b3f"><strong>aquí</strong></a> 
 							<span class="li-text">
 								
 							
@@ -68,7 +68,7 @@
                 
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2 text">
-                        <h1>Únete a <strong style="color:orange">Fishing</strong> hoy</h1>
+                        <h1>Únete a <strong style="color:#f35b3f">Fishing</strong> hoy</h1>
                         <div class="description">
                        	    <p>
                                An ocean full of great ideas
@@ -110,6 +110,13 @@
                                     <label class="sr-only" for="f1-first-name">Nombre</label>
                                     Nombre:<br>
                                     <input type="text" class="f1-last-name form-control" name="nombre" id="nombre" value={{namex}} />
+                                </div>
+                                <div class="form-group">
+                                <div class="form-group">
+                                Agregar foto de perfil:
+                                    <input class="btn btn-next" type="file" name="fileToUpload" id="fileToUpload">
+                                    <br>
+                                    <input type="submit" class="btn btn-next" value="Agregar imagen" name="submit">
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-last-name">Password</label>
@@ -168,11 +175,9 @@
                                     Eslogan:<br>
                                     <input type="text" class="f1-last-name form-control" name="eslogan" id="eslogan" value={{esloganx}} />
                                 </div>
-                               
-                                
                                 <div class="f1-buttons">
-                               
-                                    <input type="submit" class="btn btn-previous" value="Create Acount" />
+                                    <button type="button" class="btn btn-previous">Anterior</button>
+                                    <input type="submit" class="btn btn-previous" value="Crear cuenta" />
                                 </div>
                             </fieldset>
                     	</form>

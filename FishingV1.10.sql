@@ -285,33 +285,6 @@ LOCK TABLES `medios_venta` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `perfil_cliente`
---
-
-DROP TABLE IF EXISTS `perfil_cliente`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `perfil_cliente` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
-  `descripcion` varchar(500) NOT NULL,
-  `id_emprendimiento` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_cliente_emprendimiento1_idx` (`id_emprendimiento`),
-  CONSTRAINT `fk_cliente_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendimiento` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `perfil_cliente`
---
-
-LOCK TABLES `perfil_cliente` WRITE;
-/*!40000 ALTER TABLE `perfil_cliente` DISABLE KEYS */;
-/*!40000 ALTER TABLE `perfil_cliente` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `productos`
 --
 
@@ -433,4 +406,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-07-28 14:12:24
+-- Dump completed on 2020-07-28 14:20:59

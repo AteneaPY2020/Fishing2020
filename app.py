@@ -126,6 +126,8 @@ def signUpInversor():
 def signUpEmprendedor():
     if request.method == "GET":
         return render_template("registroEmp.html", message="")
+        # return render_template("ejem.html", message="")
+
     elif request.method == "POST":  # "POST"
         # Recuperando datos
         name = request.form["nombre"]
@@ -143,7 +145,7 @@ def signUpEmprendedor():
         ####
         # Creando nuevo usuario
         logicUsuario = UserLogic()
-        # Comprobando Existencia
+        # Comprobando rrrrff5
         existeUsuario = logicUsuario.checkUserInUsuario(user, rol)
         if existeUsuario:
             return render_template(

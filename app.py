@@ -4,6 +4,8 @@ from userObj import UserObj
 from inversorLogic import inversorLogic
 from inversorObj import inversorObj
 from emprendedorLogic import emprendedorLogic
+from emprendedorObj import emprendedorObj
+from emprendimientoLogic import emprendimientoLogic
 
 app = Flask(__name__)
 app.secret_key = "ILoveFishing"
@@ -67,7 +69,6 @@ def signUpInversor():
         password = str(request.form["password"])
         email = str(request.form["email"])
         country = request.form["country"]
-        tipo = int(request.form["tipo"])
         bio = request.form["bio"]
         city = request.form["city"]
         # Creando nuevo usuario
@@ -89,15 +90,11 @@ def signUpInversor():
             idUsuario = int(logicUsuario.getNewUser(user, password, rol).getId())
             # Creando nuevo Inversor
             logicInversor = inversorLogic()
-            logicInversor.insertNewInversor(
-                name, bio, email, tipo, idUsuario, country, city
-            )
-            logicInversor.getNewInversor(
-                name, bio, email, tipo, idUsuario, country, city
-            )
+            logicInversor.insertNewInversor(name, bio, email, idUsuario, country, city)
+            logicInversor.getNewInversor(name, bio, email, idUsuario, country, city)
             idInversor = int(
                 logicInversor.getNewInversor(
-                    name, bio, email, tipo, idUsuario, country, city
+                    name, bio, email, idUsuario, country, city
                 ).getId()
             )
             # Insertando nuevos intereses
@@ -142,6 +139,11 @@ def signUpEmprendedor():
         funDate = request.form["fundationDate"]
         desc = request.form["description"]
         status = request.form["estado"]
+        empName = request.form["emprendimientoName"]
+        hist = request.form["hist"]
+        invInicial = float(request.form["invInicial"])
+        sales_prevYear = float(request.form["ventas"])
+        offer = float(request.form["propuesta"])
         ####
         # Creando nuevo usuario
         logicUsuario = UserLogic()
@@ -158,26 +160,39 @@ def signUpEmprendedor():
                 cityx=city,
                 esloganx=eslogan,
                 phonex=phone,
+                emprendimientoNamex=empName,
+                histx=hist,
+                invInicialx=invInicial,
+                ventasx=sales_prevYear,
+                propuestax=offer,
             )
         else:
             logicUsuario.insertNewUser(user, password, rol)
             logicUsuario.getNewUser(user, password, rol)
             id_user = int(logicUsuario.getNewUser(user, password, rol).getId())
             # Creando nuevo emprendedor
-            logic = emprendedorLogic()
-            logic.insertNewEmprendedor(
-                name,
+            logicEmprendedor = emprendedorLogic()
+            logicEmprendedor.insertNewEmprendedor(
+                name, email, phone, id_user, country, city
+            )
+            Emprendedor = logicEmprendedor.getNewEmprendedor(
+                name, email, phone, id_user, country, city
+            )
+            # Insertando nuevo Emprendimiento
+            idEmprendedor = int(Emprendedor.getId())
+            logicEmprendimiento = emprendimientoLogic()
+            logicEmprendimiento.insertNewEmprendimiento(
+                empName,
                 eslogan,
-                email,
-                phone,
-                id_user,
-                country,
-                city,
+                hist,
+                invInicial,
+                sales_prevYear,
+                offer,
+                idEmprendedor,
                 funDate,
                 desc,
                 status,
             )
-
         return render_template("index.html", message="")
 
 

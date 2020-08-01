@@ -10,22 +10,21 @@ class inversorLogic(Logic):
             "nombre",
             "biografia",
             "email",
-            "tipo",
             "id_usuario",
             "pais",
             "ciudad",
         ]
 
-    def insertNewInversor(self, name, bio, email, tipo, id_user, country, city):
+    def insertNewInversor(self, name, bio, email, id_user, country, city):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.inversionista (id, nombre, biografia, email, tipo, id_usuario, pais, ciudad) "
-            + f"values (0, '{name}', '{bio}', '{email}', {tipo}, {id_user},'{country}','{city}');"
+            "insert into fishingdb.inversionista (id, nombre, biografia, email, id_usuario, pais, ciudad) "
+            + f"values (0, '{name}', '{bio}', '{email}', {id_user},'{country}','{city}');"
         )
         rows = database.executeNonQueryRows(sql)
         return rows
 
-    def getNewInversor(self, name, bio, email, tipo, id_user, country, city):
+    def getNewInversor(self, name, bio, email, id_user, country, city):
         dataBase = self.get_databaseXObj()
         sql = (
             "select * from fishingdb.inversionista " + f"where id_usuario = {id_user};"
@@ -39,7 +38,6 @@ class inversorLogic(Logic):
                 data_dic["nombre"],
                 data_dic["biografia"],
                 data_dic["email"],
-                data_dic["tipo"],
                 data_dic["id_usuario"],
                 data_dic["pais"],
                 data_dic["ciudad"],

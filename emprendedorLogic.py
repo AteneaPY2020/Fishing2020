@@ -13,15 +13,16 @@ class emprendedorLogic(Logic):
             "id_usuario",
             "pais",
             "ciudad",
+            "biografia",
         ]
 
     def insertNewEmprendedor(
-        self, name, email, phone, id_user, country, city,
+        self, name, email, phone, id_user, country, city, biografia
     ):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.emprendedor (id, nombre, email, telefono, id_usuario, pais, ciudad) "
-            + f"values (0, '{name}', '{email}', '{phone}', {id_user},'{country}','{city}');"
+            "insert into fishingdb.emprendedor (id, nombre, email, telefono, id_usuario, pais, ciudad, biografia) "
+            + f"values (0, '{name}', '{email}', '{phone}', {id_user},'{country}','{city}', '{biografia}');"
         )
         rows = database.executeNonQueryRows(sql)
         return rows
@@ -43,6 +44,7 @@ class emprendedorLogic(Logic):
                 data_dic["id_usuario"],
                 data_dic["pais"],
                 data_dic["ciudad"],
+                data_dic["biografia"],
             )
             return empObj
         else:

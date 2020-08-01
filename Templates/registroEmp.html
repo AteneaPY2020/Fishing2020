@@ -131,9 +131,8 @@
 
                                 <div class="form-group">
                                 Agregar foto de perfil:
-                                    <input class="btn btn-next" type="file" name="fileToUpload" id="fileToUpload">
-                                    <br>
-                                    <input type="submit" class="btn btn-next" value="Agregar imagen" name="imageEmp" id="imageEmp">
+                                    <input type="file" name="fileToUpload" id="fileToUpload">
+                                    <button type="submit" class="btn btn-next" value="Upload Image" name="imageInv" id="imageInv">Subir</button>
                                 </div>
                                 
                                 <div class="form-group">
@@ -157,6 +156,10 @@
                                     <label class="sr-only" for="f1-about-yourself">Teléfono</label>
                                     Teléfono:<br>
                                     <input type="text" class="f1-last-name form-control" name="phone" id="phone" value={{phonex}} >
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="f1-about-yourself">Biografia</label>
+                                    <textarea name="bio" placeholder="Biografia" class="f1-about-yourself form-control" id="bio" value={{biox}}></textarea>
                                 </div>
                                 <div class="f1-buttons">
                                     <button type="button" class="btn btn-previous">Anterior</button>
@@ -213,7 +216,7 @@
                                 
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-email">Propuesta de negocios</label>
-                                    Propuesta de negocios:<br>
+                                    Qué porventaje deceas ofrecer:<br>
                                     <input type="text" class="f1-last-name form-control" name="propuesta" id="propuesta" value={{propuestax}} >
                                 </div>
                                  

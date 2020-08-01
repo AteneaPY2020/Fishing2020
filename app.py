@@ -144,6 +144,7 @@ def signUpEmprendedor():
         invInicial = float(request.form["invInicial"])
         sales_prevYear = float(request.form["ventas"])
         offer = float(request.form["propuesta"])
+        bio = request.form["bio"]
         ####
         # Creando nuevo usuario
         logicUsuario = UserLogic()
@@ -173,7 +174,7 @@ def signUpEmprendedor():
             # Creando nuevo emprendedor
             logicEmprendedor = emprendedorLogic()
             logicEmprendedor.insertNewEmprendedor(
-                name, email, phone, id_user, country, city
+                name, email, phone, id_user, country, city, bio
             )
             Emprendedor = logicEmprendedor.getNewEmprendedor(
                 name, email, phone, id_user, country, city

@@ -1,4 +1,4 @@
-import mysql.connector
+import pymysql.cursors
 
 
 class DatabaseX:
@@ -29,18 +29,18 @@ class DatabaseX:
         return self.__cursor
 
     def createConnection(self):
-        con = mysql.connector.connect(
+        con = pymysql.connect(
             host=self.get_host(),
             user=self.get_user(),
             passwd=self.get_password(),
-            database=self.get_database(),
+            db=self.get_database(),
         )
         return con
 
     def createCursor(self):
         con = self.get_connection()
         cursor = None
-        if con is not None and con.is_connected():
+        if con is not None:
             cursor = con.cursor()
         else:
             print("app is disconnected from database")
@@ -50,7 +50,7 @@ class DatabaseX:
         cursor = self.get_cursor()
         con = self.get_connection()
         result = None
-        if cursor is not None and con.is_connected():
+        if cursor is not None:
             cursor.execute(sql)
             result = cursor.fetchall()
         return result
@@ -59,7 +59,7 @@ class DatabaseX:
         cursor = self.get_cursor()
         con = self.get_connection()
         hasAffected = False
-        if cursor is not None and con.is_connected():
+        if cursor is not None:
             cursor.execute(sql)
             con.commit()
             rows = cursor.rowcount
@@ -71,7 +71,7 @@ class DatabaseX:
         cursor = self.get_cursor()
         con = self.get_connection()
         rows = 0
-        if cursor is not None and con.is_connected():
+        if cursor is not None:
             cursor.execute(sql)
             con.commit()
             rows = cursor.rowcount

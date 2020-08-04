@@ -101,3 +101,73 @@ class emprendimientoLogic(Logic):
         print(sql)
         rows = database.executeNonQueryRows(sql)
         return rows
+
+    # INFORMACION
+    def getContactos(self, idEmprendimiento):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "select emprendimiento.email, emprendimiento.telefono, emprendimiento.facebook, emprendimiento.instagram, emprendimiento.youtube "
+            + "from fishingdb.emprendimiento "
+            + f"where fishingdb.emprendimiento.id = {idEmprendimiento};"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(
+            data, ["email", "telefono", "facebook", "instagram", "youtube"]
+        )
+        return data
+
+    def updateContactos(
+        self, idEmprendimiento, email, telefono, facebook, instagram, youtube
+    ):
+        database = self.get_databaseXObj()
+        sql = (
+            f"UPDATE fishingdb.emprendimiento SET email = '{email}', telefono = '{telefono}', facebook = '{facebook}', instagram = '{instagram}', "
+            + f"youtube = '{youtube}' WHERE id = {idEmprendimiento};"
+        )
+        print(sql)
+        rows = database.executeNonQueryRows(sql)
+        return rows
+
+    # def deleteContacto(self, id):
+    #     database = self.get_databaseXObj()
+    #     sql = f"delete from fishingdb.fundador where fundador.id = '{idFundador}';"
+    #     rows = database.executeNonQueryRows(sql)
+    #     return rows
+
+    def getInfoFinanciera(self, idEmprendimiento):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "select emprendimiento.inversion_inicial, emprendimiento.fecha_fundacion, emprendimiento.venta_año_anterior, emprendimiento.oferta_porcentaje "
+            + "from fishingdb.emprendimiento "
+            + f"where fishingdb.emprendimiento.id = {idEmprendimiento};"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(
+            data,
+            [
+                "inversion_inicial",
+                "fecha_fundacion",
+                "venta_año_anterior",
+                "oferta_porcentaje",
+            ],
+        )
+        return data
+
+    def updateInfoFinanciera(
+        self,
+        idEmprendimiento,
+        inversion_inicial,
+        fecha_fundacion,
+        venta_año_anterior,
+        oferta_porcentaje,
+    ):
+        database = self.get_databaseXObj()
+        sql = (
+            f"UPDATE fishingdb.emprendimiento SET inversion_inicial = '{inversion_inicial}', fecha_fundacion = '{fecha_fundacion}', venta_año_anterior = '{venta_año_anterior}', "
+            + f"oferta_porcentaje = '{oferta_porcentaje}' WHERE id = {idEmprendimiento};"
+        )
+        print(sql)
+        rows = database.executeNonQueryRows(sql)
+        return rows

@@ -339,7 +339,7 @@ CREATE TABLE `productos` (
   `descripcion` varchar(300) NOT NULL,
   `costo_unitario` double NOT NULL,
   `precio_venta` double NOT NULL,
-  `patente` tinyint NOT NULL,
+  `patente` varchar(20) DEFAULT NULL,
   `id_emprendimiento` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_productost_emprendimiento1_idx` (`id_emprendimiento`),
@@ -417,4 +417,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-04  0:31:24
+-- Dump completed on 2020-08-04 11:45:24

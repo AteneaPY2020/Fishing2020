@@ -39,3 +39,14 @@ class emprendimientoLogic(Logic):
         )
         rows = database.executeNonQueryRows(sql)
         return rows
+
+    def insertNewEmprendimiento(self, nombre, historia):
+        database = self.get_databaseXObj()
+        sql = (
+            "insert into fishingdb.emprendimiento (id, nombre, eslogan, historia, inversion_inicial, venta_año_anterior, oferta_porcentaje, id_emprendedor, fecha_fundacion,"
+            + "descripcion, estado) "
+            + f"values (0, '{name}', '{slogan}', '{history}', {inv_inic}, {sales_prevYear},{offer},{id_emp},'{fundationDate}','{desc}','{status}');"
+        )
+        rows = database.executeNonQueryRows(sql)
+        return rows
+

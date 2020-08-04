@@ -1,4 +1,4 @@
-from emprendimientoLogic import emprendimientoLogic
+from emprendimientoInicioLogic import emprendimientoInicioLogic
 from flask import Blueprint, render_template
 
 emprendimientoInicio = Blueprint(
@@ -13,8 +13,8 @@ emprendimientoInicio = Blueprint(
 @emprendimientoInicio.route("/")
 def emprendimientoInicio():
     def infoGeneralEmp():
-        logic = emprendimientoLogic()
+        logic = emprendimientoInicioLogic()
         massage = ""
         verdadero = False
-        data = logic.selectInfoGeneralEmp()
-        return render_template("empInicio.html", data=data, massage=massage)
+        data = logic.selectTexto
+        return render_template("emprendimientoInicio.html", data=data, massage=massage)

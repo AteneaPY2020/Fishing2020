@@ -10,6 +10,8 @@ class emprendedorLogic(Logic):
             "nombre",
             "email",
             "telefono",
+            "nombre_foto",
+            "foto",
             "id_usuario",
             "pais",
             "ciudad",
@@ -17,14 +19,46 @@ class emprendedorLogic(Logic):
         ]
 
     def insertNewEmprendedor(
-        self, name, email, phone, id_user, country, city, biografia
+        self, name, email, phone, id_user, country, city, biografia, nombre_foto, foto
     ):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.emprendedor (id, nombre, email, telefono, id_usuario, pais, ciudad, biografia) "
-            + f"values (0, '{name}', '{email}', '{phone}', {id_user},'{country}','{city}', '{biografia}');"
+            "insert into fishingdb.emprendedor (id, nombre, email, telefono, id_usuario, pais, ciudad, biografia, nombre_foto, foto) "
+            + "values (0, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
         )
-        rows = database.executeNonQueryRows(sql)
+        data = (
+            name,
+            email,
+            phone,
+            id_user,
+            country,
+            city,
+            biografia,
+            nombre_foto,
+            foto,
+        )
+        rows = database.executeNonQueryRowsTuple(sql, data)
+        return rows
+
+    def insertNewEmprendedorWithoutPhoto(
+        self, name, email, phone, id_user, country, city, biografia, nombre_foto
+    ):
+        database = self.get_databaseXObj()
+        sql = (
+            "insert into fishingdb.emprendedor (id, nombre, email, telefono, id_usuario, pais, ciudad, biografia, nombre_foto) "
+            + "values (0, %s, %s, %s, %s, %s, %s, %s, %s);"
+        )
+        data = (
+            name,
+            email,
+            phone,
+            id_user,
+            country,
+            city,
+            biografia,
+            nombre_foto,
+        )
+        rows = database.executeNonQueryRowsTuple(sql, data)
         return rows
 
     def getNewEmprendedor(
@@ -45,6 +79,8 @@ class emprendedorLogic(Logic):
                 data_dic["pais"],
                 data_dic["ciudad"],
                 data_dic["biografia"],
+                data_dic["foto"],
+                data_dic["nombre_foto"],
             )
             return empObj
         else:

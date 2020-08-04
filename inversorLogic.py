@@ -13,15 +13,32 @@ class inversorLogic(Logic):
             "id_usuario",
             "pais",
             "ciudad",
+            "foto",
+            "nombre_foto",
         ]
 
-    def insertNewInversor(self, name, bio, email, id_user, country, city):
+    def insertNewInversor(
+        self, name, bio, email, id_user, country, city, nombre_foto, foto
+    ):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.inversionista (id, nombre, biografia, email, id_usuario, pais, ciudad) "
-            + f"values (0, '{name}', '{bio}', '{email}', {id_user},'{country}','{city}');"
+            "insert into fishingdb.inversionista (id, nombre, biografia, email, id_usuario, pais, ciudad, nombre_foto, foto) "
+            + "values (0, %s, %s, %s, %s, %s, %s, %s, %s);"
         )
-        rows = database.executeNonQueryRows(sql)
+        data = (name, bio, email, id_user, country, city, nombre_foto, foto)
+        rows = database.executeNonQueryRowsTuple(sql, data)
+        return rows
+
+    def insertNewInversorWithoutPhoto(
+        self, name, bio, email, id_user, country, city, nombre_foto
+    ):
+        database = self.get_databaseXObj()
+        sql = (
+            "insert into fishingdb.inversionista (id, nombre, biografia, email, id_usuario, pais, ciudad, nombre_foto) "
+            + "values (0, %s, %s, %s, %s, %s, %s, %s);"
+        )
+        data = (name, bio, email, id_user, country, city, nombre_foto)
+        rows = database.executeNonQueryRowsTuple(sql, data)
         return rows
 
     def getNewInversor(self, name, bio, email, id_user, country, city):
@@ -41,6 +58,8 @@ class inversorLogic(Logic):
                 data_dic["id_usuario"],
                 data_dic["pais"],
                 data_dic["ciudad"],
+                data_dic["foto"],
+                data_dic["nombre_foto"],
             )
             return invObj
         else:

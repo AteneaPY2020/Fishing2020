@@ -6,6 +6,7 @@ from inversorObj import inversorObj
 from emprendedorLogic import emprendedorLogic
 from emprendedorObj import emprendedorObj
 from emprendimientoLogic import emprendimientoLogic
+import os
 
 login_registro = Blueprint(
     "module1_bp", __name__, template_folder="Templates", static_folder="static"
@@ -67,6 +68,12 @@ def signUpInversor():
         country = request.form["country"]
         bio = request.form["bio"]
         city = request.form["city"]
+        foto = request.files["fileToUpload"]
+        nombre_foto = foto.filename
+        binary_foto = foto.read()
+
+        if foto.filename == "":
+            nombre_foto = "default.png"
         # Creando nuevo usuario
         logicUsuario = UserLogic()
         existeUsuario = logicUsuario.checkUserInUsuario(user, rol)
@@ -86,7 +93,14 @@ def signUpInversor():
             idUsuario = int(logicUsuario.getNewUser(user, password, rol).getId())
             # Creando nuevo Inversor
             logicInversor = inversorLogic()
-            logicInversor.insertNewInversor(name, bio, email, idUsuario, country, city)
+            if nombre_foto == "default.png":
+                logicInversor.insertNewInversorWithoutPhoto(
+                    name, bio, email, idUsuario, country, city, nombre_foto
+                )
+            else:
+                logicInversor.insertNewInversor(
+                    name, bio, email, idUsuario, country, city, nombre_foto, binary_foto
+                )
             logicInversor.getNewInversor(name, bio, email, idUsuario, country, city)
             idInversor = int(
                 logicInversor.getNewInversor(
@@ -141,6 +155,12 @@ def signUpEmprendedor():
         sales_prevYear = float(request.form["ventas"])
         offer = float(request.form["propuesta"])
         bio = request.form["bio"]
+        foto = request.files["fileToUpload"]
+        nombre_foto = foto.filename
+        binary_foto = foto.read()
+
+        if foto.filename == "":
+            nombre_foto = "default.png"
         ####
         # Creando nuevo usuario
         logicUsuario = UserLogic()
@@ -165,13 +185,28 @@ def signUpEmprendedor():
             )
         else:
             logicUsuario.insertNewUser(user, password, rol)
-            logicUsuario.getNewUser(user, password, rol)
-            id_user = int(logicUsuario.getNewUser(user, password, rol).getId())
+            current_user = logicUsuario.getNewUser(user, password, rol)
+            id_user = int(current_user.getId())
             # Creando nuevo emprendedor
             logicEmprendedor = emprendedorLogic()
-            logicEmprendedor.insertNewEmprendedor(
-                name, email, phone, id_user, country, city, bio
-            )
+
+            if nombre_foto == "default.png":
+                logicEmprendedor.insertNewEmprendedorWithoutPhoto(
+                    name, email, phone, id_user, country, city, bio, nombre_foto,
+                )
+            else:
+                logicEmprendedor.insertNewEmprendedor(
+                    name,
+                    email,
+                    phone,
+                    id_user,
+                    country,
+                    city,
+                    bio,
+                    nombre_foto,
+                    binary_foto,
+                )
+
             Emprendedor = logicEmprendedor.getNewEmprendedor(
                 name, email, phone, id_user, country, city
             )

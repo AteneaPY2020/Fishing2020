@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect, session
 from login_registro import login_registro
-
+from emprendedorProfile import emprendedorProfile
 
 app = Flask(__name__)
 app.register_blueprint(login_registro, url_prefix="")
+app.register_blueprint(emprendedorProfile, url_prefix="")
 app.secret_key = "ILoveFishing"
 
 

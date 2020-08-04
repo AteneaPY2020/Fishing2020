@@ -79,7 +79,7 @@
                 
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3 form-box">
-                    	<form role="form" action="" method="post" class="f1" enctype="multipart/form-data">
+                    	<form role="form" action="" method="post" class="f1" enctype="multipart/form-data" >
 
                     		<h3>Emprendedor</h3>
                             <p style="color: red">{{ errorMessage }}</p>
@@ -223,6 +223,7 @@
                                 <div class="f1-buttons">
                                     <button type="button" class="btn btn-previous">Anterior</button>
                                     <button type="submit" class="btn btn-submit">Crear cuenta</button>
+                                    <input type="hidden" name="formId" id="formId" value="1">
                                 </div>
                             </fieldset>
                     	</form>

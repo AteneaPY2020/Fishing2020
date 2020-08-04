@@ -61,7 +61,7 @@ class emprendedorLogic(Logic):
         rows = database.executeNonQueryRowsTuple(sql, data)
         return rows
 
-    def getNewEmprendedor(
+    def getEmprendedor(
         self, name, email, phone, id_user, country, city,
     ):
         dataBase = self.get_databaseXObj()

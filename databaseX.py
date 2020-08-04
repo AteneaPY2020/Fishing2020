@@ -76,3 +76,13 @@ class DatabaseX:
             con.commit()
             rows = cursor.rowcount
         return rows
+
+    def executeNonQueryRowsTuple(self, sql, current_tuple):
+        cursor = self.get_cursor()
+        con = self.get_connection()
+        rows = 0
+        if cursor is not None:
+            cursor.execute(sql, current_tuple)
+            con.commit()
+            rows = cursor.rowcount
+        return rows

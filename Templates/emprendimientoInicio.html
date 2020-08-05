@@ -8,13 +8,14 @@
 
 {% block body %}
     <h1>Inicio Emprendimiento</h1>
-    <table border="1">
+
     {% for registro in data %}
-    <tr>
-        <td>{{registro["eslogan"]}}</td>
-        <td>{{registro["nombre"]}}</td>
-    </tr>
+        nombre:
+        {{registro["nombre"]}}
+        <br>eslogan:
+        {{registro["eslogan"]}}
+        <br>historia:
+        {{registro["historia"]}}
    {% endfor %}
-   </table>
 {% endblock body %}
 </html>

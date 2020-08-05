@@ -16,6 +16,12 @@ class emprendimientoLogic(Logic):
             "oferta_porcentaje",
             "id_emprendedor",
             "nombre",
+            "email",
+            "telefono",
+            "video",
+            "facebook",
+            "instagram",
+            "youtube",
         ]
 
     def insertNewEmprendimiento(
@@ -30,12 +36,20 @@ class emprendimientoLogic(Logic):
         oferta_porcentaje,
         id_emprendedor,
         nombre,
+        email,
+        telefono,
+        video,
+        facebook,
+        instagram,
+        youtube,
     ):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_año_anterior, "
-            + f"oferta_porcentaje, id_emprendedor, nombre) "
-            + f"values (0, '{estado}', '{descripcion}', '{historia}', '{eslogan}', '{inversion_inicial}','{fecha_fundacion}','{venta_año_anterior}','{oferta_porcentaje}','{id_emprendedor}','{nombre}');"
+            "INSERT INTO fishingdb.emprendimiento(id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, "
+            + f"venta_año_anterior, oferta_porcentaje, id_emprendedor, nombre, email, telefono, video, facebook, instagram, youtube) "
+            + f"VALUES (0, '{estado}', '{descripcion}', '{historia}', '{eslogan}', '{inversion_inicial}', "
+            + f"'{fecha_fundacion}', '{venta_año_anterior}', '{oferta_porcentaje}', '{id_emprendedor}', '{nombre}', '{email}', "
+            + f"'{telefono}', '{video}', '{facebook}', '{instagram}', '{youtube}');"
         )
         rows = database.executeNonQueryRows(sql)
         return rows

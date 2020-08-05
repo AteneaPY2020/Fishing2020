@@ -17,8 +17,8 @@ def ProfileEmp():
     if request.method == "GET":
         # Recoger datos a partir de form de registro emprendedor
         idUsuario = 44
-        data = logic.getDatosGeneralesById(idUsuario)
         idEmprendedor = 25
+        data = logic.getDatosGeneralesById(idUsuario)
         dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
             idEmprendedor
         )
@@ -99,6 +99,12 @@ def ProfileEmp():
             venta_año_anterior = request.form["venta_año_anterior"]
             oferta_porcentaje = request.form["oferta_porcentaje"]
             nombre = request.form["nombre"]
+            email = request.form["email"]
+            telefono = request.form["telefono"]
+            video = request.form["video"]
+            facebook = request.form["facebook"]
+            instagram = request.form["instagram"]
+            youtube = request.form["youtube"]
 
             verdaderoEmprendimiento = True
 
@@ -121,6 +127,12 @@ def ProfileEmp():
                 venta_año_anterior=venta_año_anterior,
                 oferta_porcentaje=oferta_porcentaje,
                 nombre=nombre,
+                email=email,
+                telefono=telefono,
+                video=video,
+                facebook=facebook,
+                instagram=instagram,
+                youtube=youtube,
             )
 
         # Insertar nuevo emprendimiento
@@ -135,6 +147,12 @@ def ProfileEmp():
             venta_año_anterior = request.form["venta_año_anterior"]
             oferta_porcentaje = request.form["oferta_porcentaje"]
             nombre = request.form["nombre"]
+            email = request.form["email"]
+            telefono = request.form["telefono"]
+            video = request.form["video"]
+            facebook = request.form["facebook"]
+            instagram = request.form["instagram"]
+            youtube = request.form["youtube"]
 
             logicEmprendimiento.insertNewEmprendimiento(
                 estado,
@@ -147,6 +165,12 @@ def ProfileEmp():
                 oferta_porcentaje,
                 id_emprendedor,
                 nombre,
+                email,
+                telefono,
+                video,
+                facebook,
+                instagram,
+                youtube,
             )
             data = logic.getDatosGeneralesById(idUsuario)
             dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(

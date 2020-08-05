@@ -89,29 +89,51 @@ def ProfileEmp():
 
         # Crear nuevo emprendimiento
         elif formId == 3:
-            data = logic.getDatosGeneralesById(idUsuario)
-            dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
-                idEmprendedor
-            )
-            verdaderoEmprendimiento = True
-            return render_template(
-                "emprendedorProfile.html",
-                data=data,
-                dataEmprendimiento=dataEmprendimiento,
-                verdaderoEmprendimiento=verdaderoEmprendimiento,
-            )
-
-        # Insertar nuevo emprendimiento
-        elif formId == 4:
-            estado = str(request.form["estado"])
+            id = idEmprendedor
+            estado = request.form["estado"]
             descripcion = request.form["descripcion"]
-            historia = str(request.form["historia"])
+            historia = request.form["historia"]
             eslogan = request.form["eslogan"]
             inversion_inicial = request.form["inversion_inicial"]
             fecha_fundacion = request.form["fecha_fundacion"]
             venta_año_anterior = request.form["venta_año_anterior"]
             oferta_porcentaje = request.form["oferta_porcentaje"]
-            id_emprendedor = request.form["id_emprendedor"]
+            nombre = request.form["nombre"]
+
+            verdaderoEmprendimiento = True
+
+            dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
+                id
+            )
+            data = logic.getDatosGeneralesById(idUsuario)
+            return render_template(
+                "emprendedorProfile.html",
+                id=id,
+                data=data,
+                dataEmprendimiento=dataEmprendimiento,
+                verdaderoEmprendimiento=verdaderoEmprendimiento,
+                estado=estado,
+                descripcion=descripcion,
+                historia=historia,
+                eslogan=eslogan,
+                inversion_inicial=inversion_inicial,
+                fecha_fundacion=fecha_fundacion,
+                venta_año_anterior=venta_año_anterior,
+                oferta_porcentaje=oferta_porcentaje,
+                nombre=nombre,
+            )
+
+        # Insertar nuevo emprendimiento
+        elif formId == 4:
+            id_emprendedor = idEmprendedor
+            estado = request.form["estado"]
+            descripcion = request.form["descripcion"]
+            historia = request.form["historia"]
+            eslogan = request.form["eslogan"]
+            inversion_inicial = request.form["inversion_inicial"]
+            fecha_fundacion = request.form["fecha_fundacion"]
+            venta_año_anterior = request.form["venta_año_anterior"]
+            oferta_porcentaje = request.form["oferta_porcentaje"]
             nombre = request.form["nombre"]
 
             logicEmprendimiento.insertNewEmprendimiento(
@@ -128,7 +150,7 @@ def ProfileEmp():
             )
             data = logic.getDatosGeneralesById(idUsuario)
             dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
-                idEmprendedor
+                id_emprendedor
             )
 
             return render_template(

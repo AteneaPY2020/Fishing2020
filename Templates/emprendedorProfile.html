@@ -8,7 +8,6 @@
     <h1>Emprendedor</h1>
 
     <!--Informacion general-->
-
     Nombre:
     {{data[0]["nombre"]}}
     <br>
@@ -32,6 +31,7 @@
     <!--Boton Modificar la informacion general-->
     <form action="/emprendedorProfile" method="POST">
         <button type="submit" value="update">Modificar Informacion Personal</button>
+        
         <input type="hidden" name="formId" id="formId" value="1">
         <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
         <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
@@ -43,7 +43,6 @@
         
     </form>
     
-
     <!--Form Modificar la informacion general-->
     {% if verdadero %}
         <p>Modificar datos personales</p>
@@ -60,7 +59,6 @@
             <input type="hidden" name="formId" id="formId" value="2">
             <input type="hidden" name="id" id="id" value="{{id}}">
         </form>
-    
     {% endif %}
 
     <!--Emprendimientos-->
@@ -101,8 +99,20 @@
 
     <!--Boton crear nuevo emprendimiento-->
     <form action="/emprendedorProfile" method="POST">
-        <button type="submit" value="delete">Crear nuevo emprendimiento</button>
+        <button type="submit" value="insert">Crear nuevo emprendimiento</button>
         <input type="hidden" name="formId" id="formId" value="3">
+        <input type="hidden" name="id" id="id" value="{{id}}">
+
+        <input type="hidden" name="estado" id="estado" value="{{data[0]["estado"]}}">
+        <input type="hidden" name="descripcion" id="descripcion" value="{{data[0]["descripcion"]}}">
+        <input type="hidden" name="historia" id="historia" value="{{data[0]["historia"]}}"> 
+        <input type="hidden" name="eslogan" id="eslogan" value="{{data[0]["eslogan"]}}">
+        <input type="hidden" name="inversion_inicial" id="inversion_inicial" value="{{data[0]["inversion_inicial"]}}">              
+        <input type="hidden" name="fecha_fundacion" id="fecha_fundacion" value="{{data[0]["fecha_fundacion"]}}">
+        <input type="hidden" name="venta_año_anterior" id="venta_año_anterior" value="{{data[0]["venta_año_anterior"]}}">
+        <input type="hidden" name="oferta_porcentaje" id="oferta_porcentaje" value="{{data[0]["oferta_porcentaje"]}}">              
+        <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
+  
     </form>
 
     <br>
@@ -110,7 +120,7 @@
 
     {% if verdaderoEmprendimiento %}
     
-    <form action="/Emprendimiento" method="POST">
+    <form action="/emprendedorProfile" method="POST">
         Estado: 
         <select name="estado" id="estado">
             <option value="Huevo">Huevo </option>
@@ -121,10 +131,11 @@
         Historia: <input type="text" name="historia" id="historia" value="{{historia}}"><br>
         Eslogan: <input type="text" name="eslogan" id="eslogan" value="{{eslogan}}"><br>
         Inversion inicial: <input type="text" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"><br>
-        Fecha fundacion: <input type="text" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}"><br>
+        Fecha fundacion: <input type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}"><br>
         Venta de año anterior: <input type="text" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"><br>
         Porcentaje a ofertar: <input type="text" name="oferta_porcentaje" id="oferta_porcentaje" value="{{oferta_porcentaje}}"><br>
-        Nombre del emprendimiento: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
+        Nombre del emprendimiento: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
+        <!--Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>-->
         
         <!--Insertar emprendimiento-->
         <button type="submit" value="update">Crear emprendimiento</button>

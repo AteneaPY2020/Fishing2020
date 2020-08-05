@@ -5,7 +5,7 @@
 {% endblock head %}
 
 {% block body %}
-    <h1>Inicio Emprendimiento</h1>
+    <h1>Emprendedor</h1>
 
     {% for registro in data %}
         Nombre:
@@ -24,6 +24,7 @@
         {{registro["ciudad"]}}
         <br>
         Biografia:
+        <br>
         {{registro["biografia"]}}
         <br><br>
    {% endfor %}

@@ -35,7 +35,6 @@ class emprendimientoInicioLogic(Logic):
         data = self.tupleToDictionaryList(data, self.keys)
         return data
 
-<<<<<<< HEAD
     def saveImagesEmprendimiento(self, idEmprendimiento):
         data = self.getDatosGeneralesById(idEmprendimiento)
         for registro in data:
@@ -49,15 +48,11 @@ class emprendimientoInicioLogic(Logic):
                 )
                 with open(path, "wb") as file:
                     file.write(foto)
-=======
 
-#    def saveImagesEmprendimiento(self, idEmprendimiento):
-#        data = self.getDatosGeneralesById(idEmprendimiento)
-#        for registro in data:
-#            foto = registro["foto"]
-#            nombre_foto = registro["nombre_foto"]
-#            if nombre_foto != "default.png":
-#                path = os.getcwd() + "\\static\\images\\emprendimiento\\" + nombre_foto
-#                with open(path, "wb") as file:
-#                    file.write(foto)
->>>>>>> a5fde4d5e74a10aaa54ab4b953a5a59aa02a46e6
+    def updateDatosGenerales(
+        self, idEmprendimiento, nombre, eslogan, descripcion, video,
+    ):
+        database = self.get_databaseXObj()
+        sql = f"update fishingdb.emprendimiento set emprendimiento.nombre= '{nombre}',emprendimiento.eslogan= '{eslogan}',emprendimiento.descripcion= '{descripcion}', emprendimiento.video= '{video}' where emprendimiento.id = '{idEmprendimento}';"
+        rows = database.executeNonQueryRows(sql)
+        return rows

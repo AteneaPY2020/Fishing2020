@@ -85,3 +85,26 @@ class emprendedorLogic(Logic):
             return empObj
         else:
             return None
+
+    def getEmprendedorByUser(self, id_user):
+        dataBase = self.get_databaseXObj()
+        sql = "select * from fishingdb.emprendedor " + f"where id_usuario = {id_user};"
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        if len(data) > 0:
+            data_dic = data[0]
+            empObj = emprendedorObj(
+                data_dic["id"],
+                data_dic["nombre"],
+                data_dic["email"],
+                data_dic["telefono"],
+                data_dic["id_usuario"],
+                data_dic["pais"],
+                data_dic["ciudad"],
+                data_dic["biografia"],
+                data_dic["foto"],
+                data_dic["nombre_foto"],
+            )
+            return empObj
+        else:
+            return None

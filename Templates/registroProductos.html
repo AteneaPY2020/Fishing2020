@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Productos</title>
+{% endblock head %}
+{% block body %}
+<h1>Productos</h1>
+<br><br>
+<form action="/registroProductos" method="POST" enctype="multipart/form-data">
+    Nombre: <input type="text" id="nombre" name="nombre"><br>
+    Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
+    Descripción: <br><textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
+    Costo unitatio: $<input type="number" name="costoUnitario" id="costoUnitario"><br>
+    Precio de venta: $<input type="number" name="precioVenta" id="precioVenta"><br>
+    No. Patente: <input type="number" name="patente" id="patente"><br>
+    <input type="submit" value="Registrar">
+</form>
+<br><br>
+<h2>Lista de productos</h2>
+
+{% for registro in data %}
+    <br><br>
+    <h3>{{registro["nombre"]}}</h3>
+    <br>
+    <img src="/static/images/productos/{{registro["nombre_foto"]}}" width="400" height="341">
+    <p> {{registro["descripcion"]}} </p>
+    <br>
+    <p> Costo unitario: ${{registro["costo_unitario"]}} </p> 
+    <p> Precio de venta: ${{registro["precio_venta"]}} </p>
+    <p> Patente: {{registro["patente"]}} </p>
+{% endfor %}
+{% endblock body %}
+
+</html>

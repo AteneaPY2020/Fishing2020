@@ -16,8 +16,8 @@ emprendimientoInicio = Blueprint(
 def getInformacionGeneral():
     logic = emprendimientoInicioLogic()
     message = ""
-    idEmprendimiento = 3
-    data = logic.getDatosGeneralesById(idEmprendimiento)
-    logic.saveImagesEmprendimiento(idEmprendimiento)
     if request.method == "GET":
+        idEmprendimiento = 2
+        data = logic.getDatosGeneralesById(idEmprendimiento)
+        logic.saveImagesEmprendimiento(idEmprendimiento)
         return render_template("emprendimientoInicio.html", data=data, message=message)

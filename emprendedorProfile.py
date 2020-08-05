@@ -13,7 +13,7 @@ emprendedorProfile = Blueprint(
 def ProfileEmp():
     logic = emprendedorProfileLogic()
     if request.method == "GET":
-        idEmprendedor = 22
+        idEmprendedor = 18
         data = logic.getDatosGeneralesById(idEmprendedor)
         return render_template("emprendedorProfile.html", data=data)
     else:

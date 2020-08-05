@@ -1,4 +1,5 @@
 from logic import Logic
+import os
 
 
 class emprendimientoInicioLogic(Logic):
@@ -33,3 +34,13 @@ class emprendimientoInicioLogic(Logic):
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
         return data
+
+    def saveImagesEmprendimiento(self, id_emprendimiento):
+        data = self.getDatosGeneralesById(idEmprendimiento)
+        for registro in data:
+            foto = registro["foto"]
+            nombre_foto = registro["nombre_foto"]
+            if nombre_foto != "products.jpg":
+                path = os.getcwd() + "\\static\\images\\emprendimiento\\" + nombre_foto
+                with open(path, "wb") as file:
+                    file.write(foto)

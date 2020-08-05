@@ -1,5 +1,5 @@
 class emprendimientoInicioObj:
-    def _init_(
+    def init(
         self,
         id,
         estado,
@@ -42,8 +42,9 @@ class emprendimientoInicioObj:
         self.youtube = youtube
 
     def getId(self):
-        return self.idclass emprendimientoInicioObj:
-    def _init_(
+        return self.idclassemprendimientoInicioObj
+
+    def init(
         self,
         id,
         estado,

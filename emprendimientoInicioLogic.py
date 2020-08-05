@@ -7,16 +7,16 @@ class emprendimientoInicioLogic(Logic):
         super().__init__()
         self.keys = [
             "id",
-            "nombre",
-            "eslogan",
+            "estado",
+            "descripcion",
             "historia",
+            "eslogan",
             "inversion_inicial",
-            "venta_año_anterior",
+            "fecha_fundacion",
+            "venta_anio_anterior",
             "oferta_porcentaje",
             "id_emprendedor",
-            "fecha_fundacion",
-            "descripcion",
-            "estado",
+            "nombre",
             "nombre_foto",
             "foto",
             "video",
@@ -35,12 +35,16 @@ class emprendimientoInicioLogic(Logic):
         data = self.tupleToDictionaryList(data, self.keys)
         return data
 
-    def saveImagesEmprendimiento(self, id_emprendimiento):
+    def saveImagesEmprendimiento(self, idEmprendimiento):
         data = self.getDatosGeneralesById(idEmprendimiento)
         for registro in data:
             foto = registro["foto"]
             nombre_foto = registro["nombre_foto"]
-            if nombre_foto != "products.jpg":
-                path = os.getcwd() + "\\static\\images\\emprendimiento\\" + nombre_foto
+            if nombre_foto != "emprendimiento.jpg":
+                path = (
+                    os.getcwd()
+                    + "\\static\\images\\emprendimiento\\"
+                    + str(nombre_foto)
+                )
                 with open(path, "wb") as file:
                     file.write(foto)

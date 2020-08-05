@@ -3,7 +3,6 @@ from flask import Blueprint, Flask, render_template, request, redirect, session
 import mysql.connector
 from mysql.connector import Error
 
-
 emprendimientoInicio = Blueprint(
     "emprendimientoInicio",
     __name__,
@@ -19,5 +18,5 @@ def getInformacionGeneral():
     if request.method == "GET":
         idEmprendimiento = 3
         data = logic.getDatosGeneralesById(idEmprendimiento)
-        logic.saveImagesEmprendimiento(id_emprendimiento)
+        logic.saveImagesEmprendimiento(idEmprendimiento)
         return render_template("emprendimientoInicio.html", data=data, message=message)

@@ -35,7 +35,6 @@ class emprendimientoInicioLogic(Logic):
         data = self.tupleToDictionaryList(data, self.keys)
         return data
 
-<<<<<<< HEAD
     def saveImagesEmprendimiento(self, idEmprendimiento):
         data = self.getDatosGeneralesById(idEmprendimiento)
         for registro in data:
@@ -49,7 +48,7 @@ class emprendimientoInicioLogic(Logic):
                 )
                 with open(path, "wb") as file:
                     file.write(foto)
-=======
+
 
 #    def saveImagesEmprendimiento(self, idEmprendimiento):
 #        data = self.getDatosGeneralesById(idEmprendimiento)
@@ -60,4 +59,3 @@ class emprendimientoInicioLogic(Logic):
 #                path = os.getcwd() + "\\static\\images\\emprendimiento\\" + nombre_foto
 #                with open(path, "wb") as file:
 #                    file.write(foto)
->>>>>>> a5fde4d5e74a10aaa54ab4b953a5a59aa02a46e6

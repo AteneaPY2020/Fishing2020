@@ -21,6 +21,8 @@ def logIn():
         user = request.form["user"]
         password = request.form["password"]
         logic = UserLogic()
+        emprendedorLogic = emprendedorLogic()
+        emprendimientoLogic = emprendimientoLogic()
         userData = logic.getUser(user, password)
         if userData is not None:
             if userData.rol == 1:
@@ -34,7 +36,19 @@ def logIn():
             elif userData.rol == 3:
                 dataDic = logic.createDictionary(userData)
                 session["user"] = dataDic
-                return render_template("informacionEmprendedores.html")
+                # Obtener id usuario e informacion del emprendedor
+                id_usuario = dataDic["id"]
+                data = emprendedorLogic.getDatosGeneralesById(id_usuario)
+                # Obtener id emprendimiento y los emprendimeitnos del emprendedor
+                id_emprendedor = data["id"]
+                dataEmprendimiento = emprendimientoLogic.getAllEmprendimientosByIdEmprendendor(
+                    id_emprendedor
+                )
+                return render_template(
+                    "emprendedorProfile.html",
+                    data=data,
+                    dataEmprendimiento=dataEmprendimiento,
+                )
         else:
             return render_template(
                 "loginform.html", message="Error. Usuario o contraseña incorrecta"

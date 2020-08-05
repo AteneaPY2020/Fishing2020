@@ -29,6 +29,60 @@
         <br><br>
    {% endfor %}
 
+   <form action="/emprendedorProfile" method="POST">
+        <button type="submit" value="delete">Modificar Informacion Personal</button>
+        <input type="hidden" name="formId" id="formId" value="1">
+    </form>
+
+    {% if verdadero %}
+    <p>Modificar datos personales</p>
+    <form action="/emprendedorProfile" method="POST">
+        Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
+        Email: <input type="text" name="email" id="email" value="{{email}}"> <br><br>
+        Telefono: <input type="text" name="pais" id="pais" value="{{telefono}}"><br><br>
+        Pais: <input type="text" name="pais" id="pais" value="{{pais}}"><br><br>
+        Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br><br>
+        Biografia: <br><textarea name="biografia" cols="30" rows="10" id="biografia" value="{{biografia}}"></textarea><br>
+        
+
+        <button type="submit" value="update">Modificar</button>
+        <input type="hidden" name="formId" id="formId" value="4">
+        <input type="hidden" name="id" id="id" value="{{id}}">
+    </form>
+    <br><br>
+    {% endif %}
+
+    <h3>Mis emprendimientos <h3/>  
+        <table border="1">
+   
+            <tr>
+                <th>Emprendimiento</th>
+                <th>Ir</th>
+                <th>Eliminar</th>
+            </tr>
+            
+            {% for registro in dataEmprendimiento %}
+            <tr>
+            <td>{{registro["nombre"]}}</td>
+            <td>
+                <form action="/emprendedorProfile" method="POST">
+                    <button type="submit" value="delete">Ir</button>
+                    <input type="hidden" name="formId" id="formId" value="2">
+                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                </form>
+            </td>
+            <td>
+                <form action="/emprendedorProfile" method="POST">
+                    <button type="submit" value="delete">Borrar</button>
+                    <input type="hidden" name="formId" id="formId" value="3">
+                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                </form>
+            </td>
+            {% endfor %}
+        </table>
+
+    
+
 {% endblock body %}
 
 </html>

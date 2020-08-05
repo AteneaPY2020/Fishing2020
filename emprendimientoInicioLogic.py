@@ -35,7 +35,7 @@ class emprendimientoInicioLogic(Logic):
         data = self.tupleToDictionaryList(data, self.keys)
         return data
 
-    def saveImagesEmprendimiento(self, id_emprendimiento):
+    def saveImagesEmprendimiento(self, idEmprendimiento):
         data = self.getDatosGeneralesById(idEmprendimiento)
         for registro in data:
             foto = registro["foto"]

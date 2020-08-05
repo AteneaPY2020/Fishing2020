@@ -17,7 +17,7 @@ def getInformacionGeneral():
     logic = emprendimientoInicioLogic()
     message = ""
     if request.method == "GET":
-        idEmprendimiento = 2
+        idEmprendimiento = 3
         data = logic.getDatosGeneralesById(idEmprendimiento)
-        logic.saveImagesEmprendimiento(idEmprendimiento)
+        #        logic.saveImagesEmprendimiento(idEmprendimiento)
         return render_template("emprendimientoInicio.html", data=data, message=message)

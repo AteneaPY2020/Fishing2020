@@ -26,18 +26,10 @@ class emprendimientoInicioLogic(Logic):
             "youtube",
         ]
 
-    def selectlogo(
-        self, foto,
-    ):
-        database = self.get_databaseXObj()
-        sql = "select from fishingdb.emprendimiento (foto) where id='1'"
-        rows = database.executeNonQueryRows(sql)
-        return rows
-
-    def selectTexto(self, nombre, eslogan, historia):
-        database = self.get_databaseXObj()
-        sql = "select from fishingdb.emprendimiento (historia,eslogan,nombre) where id='1'"
-        rows = database.executeNonQueryRows(sql)
-        nombre = sql
-        return rows
-
+    def getDatosGeneralesById(self, idEmprendimiento):
+        dataBase = self.get_databaseXObj()
+        sql = f"SELECT emprendimiento.nombre, emprendimiento.eslogan FROM fishingdb.emprendimiento WHERE id= {idEmprendimiento};"
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, ["nombre", "eslogan"])
+        return data

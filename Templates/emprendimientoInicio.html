@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+{% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio Emprendimiento</title>
-</head>
+{% endblock head %}
 
-<body>
+{% block body %}
     <h1>Inicio Emprendimiento</h1>
+    <table border="1">
     {% for registro in data %}
-    <!--<img src={{registro["foto"]}}> ¡-->
-    {registro["nombre"]}
-    <p></p>
-    {% endfor %}
-
-    <h5></h5>
-
-
-</body>
-
+    <tr>
+        <td>{{registro["eslogan"]}}</td>
+        <td>{{registro["nombre"]}}</td>
+    </tr>
+   {% endfor %}
+   </table>
+{% endblock body %}
 </html>

@@ -1,5 +1,7 @@
 from emprendimientoInicioLogic import emprendimientoInicioLogic
-from flask import Blueprint, render_template
+from flask import Blueprint, Flask, render_template, request, redirect, session
+import mysql.connector
+from mysql.connector import Error
 
 emprendimientoInicio = Blueprint(
     "emprendimientoInicio",
@@ -10,11 +12,10 @@ emprendimientoInicio = Blueprint(
 
 
 @emprendimientoInicio.route("/EmprendimientoInicio", methods=["GET", "POST"])
-@emprendimientoInicio.route("/")
-def emprendimientoInicio():
-    def infoGeneralEmp():
-        logic = emprendimientoInicioLogic()
-        massage = ""
-        verdadero = False
-        data = logic.selectTexto
-        return render_template("emprendimientoInicio.html", data=data, massage=massage)
+def getInformacionGeneral():
+    logic = emprendimientoInicioLogic()
+    message = ""
+    if request.method == "GET":
+        idEmprendimiento = 1
+        data = logic.getDatosGeneralesById(idEmprendimiento)
+        return render_template("emprendimientoInicio.html", data=data, message=message)

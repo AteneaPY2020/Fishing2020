@@ -14,7 +14,7 @@ def index():
 
 
 @app.route("/emprendimientoInicio")
-def emprendimientoInicio():
+def emprendimientoinicio():
     return render_template("emprendimientoInicio.html")
 
 

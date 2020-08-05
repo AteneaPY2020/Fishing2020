@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <form action="/busqueda">
+          <th><input type="text" id="busqueda" name="busqueda" /></th>
+          <th><input type="submit" value="buscar" /></th>
+        </form>
+        <th><a href="/InicioInv">Inicio</a></th>
+        <th><a href="/perfilInversionista">Perfil</a></th>
+        <th><a href="/guardadosInv">Guardados</a></th>
+        <th>Cerrar sesión</th>
+      </tr>
+    </table>
+    <h1>Publicaciones Guardadas</h1>
+    <table>
+    {%for registro in data%}
+      <tr>
+        <td><img src="/static/images/productos/{{registro["nombre_foto"]}}" width="100" height="100"></td>
+        <td>Nombre: {{registro["nombre"]}} <br><br> Descripción: {{registro["descripcion"]}}</td>
+        <form action="/guardadosInv" method="POST">
+        <td><button type="submit" value= "Delete">Borrar</button></td>
+        <input type="hidden" name="formId" id="formId" value="2">
+        <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+        </form>
+      </tr>
+    {%endfor%}
+    
+    </table>
+  </body>
+</html>

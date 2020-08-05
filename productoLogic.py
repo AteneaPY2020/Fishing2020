@@ -1,4 +1,5 @@
 from logic import Logic
+from productoObj import productoObj
 import os
 
 
@@ -137,3 +138,26 @@ class productoLogic(Logic):
         )
         rows = database.executeNonQueryRowsTuple(sql, data)
         return rows
+
+    def getProductoById(self, id):
+        dataBase = self.get_databaseXObj()
+        sql = "SELECT * FROM fishingdb.productos " + f"where productos.id = {id};"
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        if len(data) > 0:
+            data_dic = data[0]
+            prodObj = productoObj(
+                data_dic["id"],
+                data_dic["nombre"],
+                data_dic["nombre_foto"],
+                data_dic["foto"],
+                data_dic["descripcion"],
+                data_dic["costo_unitario"],
+                data_dic["precio_venta"],
+                data_dic["patente"],
+                data_dic["id_emprendimiento"],
+            )
+            return prodObj
+        else:
+            return None

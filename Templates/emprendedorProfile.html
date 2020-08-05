@@ -8,33 +8,41 @@
     <h1>Emprendedor</h1>
 
     <!--Informacion general-->
-    {% for registro in data %}
-        Nombre:
-        {{registro["nombre"]}}
-        <br>
-        Email:
-        {{registro["email"]}}
-        <br>
-        Telefono:
-        {{registro["telefono"]}}
-        <br>
-        Pais:
-        {{registro["pais"]}}
-        <br>
-        Ciudad:
-        {{registro["ciudad"]}}
-        <br>
-        Biografia:
-        <br>
-        {{registro["biografia"]}}
-        <br><br>
-   {% endfor %}
+
+    Nombre:
+    {{data[0]["nombre"]}}
+    <br>
+    Email:
+    {{data[0]["email"]}}
+    <br>
+    Telefono:
+    {{data[0]["telefono"]}}
+    <br>
+    Pais:
+    {{data[0]["pais"]}}
+    <br>
+    Ciudad:
+    {{data[0]["ciudad"]}}
+    <br>
+    Biografia:
+    <br>
+    {{data[0]["biografia"]}}
+    <br><br>
 
     <!--Boton Modificar la informacion general-->
     <form action="/emprendedorProfile" method="POST">
-        <button type="submit" value="delete">Modificar Informacion Personal</button>
+        <button type="submit" value="update">Modificar Informacion Personal</button>
         <input type="hidden" name="formId" id="formId" value="1">
+        <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
+        <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
+        <input type="hidden" name="email" id="email" value="{{data[0]["email"]}}"> 
+        <input type="hidden" name="telefono" id="telefono" value="{{data[0]["telefono"]}}">
+        <input type="hidden" name="pais" id="pais" value="{{data[0]["pais"]}}">              
+        <input type="hidden" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}">
+        <input type="hidden" name="biografia" id="biografia" value="{{data[0]["biografia"]}}">
+        
     </form>
+    
 
     <!--Form Modificar la informacion general-->
     {% if verdadero %}
@@ -42,7 +50,7 @@
         <form action="/emprendedorProfile" method="POST">
             Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
             Email: <input type="text" name="email" id="email" value="{{email}}"> <br>
-            Telefono: <input type="text" name="pais" id="pais" value="{{telefono}}"><br>
+            Telefono: <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
             Pais: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
             Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
             Biografia: <br><textarea name="biografia" cols="30" rows="10" id="biografia" value="{{biografia}}"></textarea><br><br>

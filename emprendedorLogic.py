@@ -89,7 +89,7 @@ class emprendedorLogic(Logic):
             return None
 
     # Update
-    def updateEmprendedorbyId(
+    def updateEmprendedorbyIdUsuario(
         self, id, nombre, email, telefono, pais, ciudad, biografia
     ):
         database = self.get_databaseXObj()
@@ -97,7 +97,7 @@ class emprendedorLogic(Logic):
             "update fishingdb.emprendedor "
             + f"set emprendedor.nombre = '{nombre}', emprendedor.email = '{email}', emprendedor.telefono = '{telefono}',  "
             + f"emprendedor.pais = '{pais}', emprendedor.ciudad = '{ciudad}', emprendedor.biografia = '{biografia}' "
-            + f"where emprendedor.id = '{id}';"
+            + f"where emprendedor.id_usuario = '{id}';"
         )
         rows = database.executeNonQueryRows(sql)
         return rows

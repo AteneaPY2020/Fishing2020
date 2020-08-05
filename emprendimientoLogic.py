@@ -2,6 +2,7 @@ from logic import Logic
 from userLogic import UserLogic
 from emprendedorLogic import emprendedorLogic
 from emprendedorObj import emprendedorObj
+import os
 
 
 class emprendimientoLogic(Logic):
@@ -47,7 +48,7 @@ class emprendimientoLogic(Logic):
     def getAllFundadores(self, idEmprendimiento):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select fishingdb.fundador.id, fishingdb.emprendedor.nombre, fishingdb.emprendedor.biografia "
+            "select fishingdb.fundador.id, fishingdb.emprendedor.nombre_foto, fishingdb.emprendedor.foto, fishingdb.emprendedor.nombre, fishingdb.emprendedor.biografia "
             + "from fishingdb.fundador "
             + "inner join fishingdb.emprendedor  on fishingdb.fundador.id_emprendedor = fishingdb.emprendedor.id "
             + "inner join fishingdb.emprendimiento on fishingdb.fundador.id_emprendimiento = fishingdb.emprendimiento.id "
@@ -55,8 +56,20 @@ class emprendimientoLogic(Logic):
         )
         print(sql)
         data = dataBase.executeQuery(sql)
-        data = self.tupleToDictionaryList(data, ["id", "nombre", "biografia"])
+        data = self.tupleToDictionaryList(
+            data, ["id", "nombre_foto", "foto", "nombre", "biografia"]
+        )
         return data
+
+    def saveImagesFundadores(self, idEmprendimiento):
+        data = self.getAllFundadores(idEmprendimiento)
+        for registro in data:
+            foto = registro["foto"]
+            nombre_foto = registro["nombre_foto"]
+            if nombre_foto != "default.png":
+                path = os.getcwd() + "\\static\\images\\emprendedor\\" + nombre_foto
+                with open(path, "wb") as file:
+                    file.write(foto)
 
     def insertNewFundador(self, user, idEmprendimiento):
 

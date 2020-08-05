@@ -21,6 +21,7 @@ def quienesSomos():
         idEmprendimiento = 2
         data = logic.getAllFundadores(idEmprendimiento)
         data2 = logic.getHistoria(idEmprendimiento)
+        logic.saveImagesFundadores(idEmprendimiento)
         return render_template(
             "quienes_somos.html", data=data, data2=data2, message=message
         )

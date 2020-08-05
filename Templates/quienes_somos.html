@@ -38,7 +38,7 @@
                     <table>
                             {% for registro in data %}
                             <tr>
-                                <td>Aqui va la foto</td>
+                                <td><img src="/static/images/emprendedor/{{registro["nombre_foto"]}}" width="200" height="150"></td>
                                 <td>{{registro["nombre"]}} 
                                     <br>
                                     {{registro["biografia"]}}

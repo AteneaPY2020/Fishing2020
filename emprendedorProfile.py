@@ -16,9 +16,9 @@ def ProfileEmp():
     logicEmprendimiento = emprendimientoLogic()
     if request.method == "GET":
         # Recoger datos a partir de form de registro emprendedor
-        idUsuario = 33
+        idUsuario = 44
         data = logic.getDatosGeneralesById(idUsuario)
-        idEmprendedor = 22
+        idEmprendedor = 25
         dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
             idEmprendedor
         )
@@ -30,8 +30,8 @@ def ProfileEmp():
         verdadero = False
         verdaderoEmprendimiento = False
         formId = int(request.form["formId"])
-        idUsuario = 33
-        idEmprendedor = 22
+        idUsuario = 44
+        idEmprendedor = 25
 
         # Modificar informacion personal
         if formId == 1:

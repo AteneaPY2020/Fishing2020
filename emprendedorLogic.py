@@ -19,6 +19,7 @@ class emprendedorLogic(Logic):
             "biografia",
         ]
 
+    # Insertar emprendimiento
     def insertNewEmprendedor(
         self, name, email, phone, id_user, country, city, biografia, nombre_foto, foto
     ):
@@ -87,17 +88,21 @@ class emprendedorLogic(Logic):
         else:
             return None
 
-    def updateEmprendedor(self, id, name, email, phone, country, city, biografia):
+    # Update
+    def updateEmprendedorbyId(
+        self, id, nombre, email, telefono, pais, ciudad, biografia
+    ):
         database = self.get_databaseXObj()
         sql = (
             "update fishingdb.emprendedor "
-            + f"set emprendedor.nombre = '{name}', emprendedor.email = '{email}', emprendedor.telefono = '{phone}',  "
-            + f"emprendedor.pais = '{country}', emprendedor.ciudad = '{city}', emprendedor.biografia = '{biografia}' "
+            + f"set emprendedor.nombre = '{nombre}', emprendedor.email = '{email}', emprendedor.telefono = '{telefono}',  "
+            + f"emprendedor.pais = '{pais}', emprendedor.ciudad = '{ciudad}', emprendedor.biografia = '{biografia}' "
             + f"where emprendedor.id = '{id}';"
         )
         rows = database.executeNonQueryRows(sql)
         return rows
 
+    # Obtener datos byId
     def getDatosGeneralesById(self, idUsuario):
         dataBase = self.get_databaseXObj()
 
@@ -107,6 +112,7 @@ class emprendedorLogic(Logic):
         data = self.tupleToDictionaryList(data, self.keys)
         return data
 
+    # Imagen
     def saveImagesEmprendedor(self, idUsuario):
         data = self.getDatosGeneralesById(idUsuario)
         for registro in data:

@@ -28,44 +28,40 @@ def ProfileEmp():
 
     elif request.method == "POST":
         verdadero = False
+        verdaderoEmprendimiento = False
         formId = int(request.form["formId"])
         idUsuario = 33
         idEmprendedor = 22
 
-        # Update informacion emprendedor
+        # Modificar informacion personal
         if formId == 1:
-            name = request.form["nombre"]
-            email = request.form["email"]
-            phone = request.form["telefono"]
-            country = request.form["pais"]
-            city = request.form["ciudad"]
-            biografia = request.form["biografia"]
 
             verdadero = True
+
+            dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
+                idEmprendedor
+            )
             data = logic.getDatosGeneralesById(idUsuario)
             return render_template(
                 "emprendedorProfile.html",
                 data=data,
                 dataEmprendimiento=dataEmprendimiento,
                 verdadero=verdadero,
-                id=idUsuario,
-                name=name,
-                biografia=biografia,
-                email=email,
-                city=city,
-                country=country,
-                phone=phone,
             )
 
-        # Modificar inversionista
-        elif formId == 4:
-            name = request.form["nombre"]
-            email = request.form["biografia"]
-            phone = request.form["phone"]
-            country = request.form["pais"]
-            city = request.form["ciudad"]
+        # Aplicar cambios en informacion general
+        elif formId == 2:
+            id = idUsuario
+            nombre = request.form["nombre"]
+            email = request.form["email"]
+            telefono = request.form["telefono"]
+            pais = request.form["pais"]
+            ciudad = request.form["ciudad"]
             biografia = request.form["biografia"]
 
+            logic.updateEmprendedorbyId(
+                id, nombre, email, telefono, pais, ciudad, biografia
+            )
             data = logic.getDatosGeneralesById(idUsuario)
             dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
                 idEmprendedor
@@ -77,8 +73,26 @@ def ProfileEmp():
                 dataEmprendimiento=dataEmprendimiento,
             )
 
-        # Delete emprendimiento by IdEmprendimiento
+        # Crear nuevo emprendimiento
         elif formId == 3:
+            data = logic.getDatosGeneralesById(idUsuario)
+            dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
+                idEmprendedor
+            )
+            verdaderoEmprendimiento = True
+            return render_template(
+                "emprendedorProfile.html",
+                data=data,
+                dataEmprendimiento=dataEmprendimiento,
+                verdaderoEmprendimiento=verdaderoEmprendimiento,
+            )
+
+        # Insertar nuevo emprendimiento
+        elif formId == 4:
+            return render_template("emprendedorProfile.html",)
+
+        # Delete emprendimiento by IdEmprendimiento
+        elif formId == 5:
             id = int(request.form["id"])
             logicEmprendimiento.deleteEmprendimientoByIdEmprendimiento(id)
             data = logic.getDatosGeneralesById(idUsuario)

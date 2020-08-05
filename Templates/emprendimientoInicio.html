@@ -22,7 +22,31 @@
         allowfullscreen></iframe>
         <br>
         <img src="/static/images/emprendimiento/{{registro["nombre_foto"]}}" width="400" height="341">
-        
+        <form action="/emprendimientoInicio" method="POST">
+                <button type="submit" value="update">Modificar</button>
+                <input type="hidden" name="formId" id="formId" value="1">
+                <input type="hidden" name="nombrex" id="nombrex" value = "{{registro["nombre"]}}">
+                <input type="hidden" name="esloganx" id="esloganx" value = "{{registro["eslogan"]}}">
+                <input type="hidden" name="descripcionx" id="descripcionx" value = "{{registro["descripcion"]}}">
+                <input type="hidden" name="videox" id="videox" value = "{{registro["video"]}}">
+        </form>
+    <br><br>    <br><br>
    {% endfor %}
+
+     {% if verdadero %}
+        <p>Modifica el emprendimiento</p>
+        <form action = "/emprendimientoInicio" method = "POST">
+            nombre: <input type="text" name="nombreUP" id="nombreUP" value="{{nombreUpx}}"><br><br>
+            eslogan: <input type="text" name="esloganUP" id="esloganUP" value="{{esloganUpx}}"><br><br>    
+            descripcion: <input type="text" name="descripcionUP" id="descripcionUP" value="{{descripcionUPx}}"><br><br>    
+            video: <input type="text" name="videoUP" id="videoUP" value="{{videoUpx}}"><br><br>
+            <button type="submit" value="update">Modificar cambios</button>
+            <input type="hidden" name="formId" id="formId" value="2">
+            <input type="hidden" name="idEmprendimiento" id="Emprendimiento" value="{{idEmprendimiento}}">             
+        </form>
+    <br><br>
+
+    {% endif %}
+    
 {% endblock body %}
 </html>

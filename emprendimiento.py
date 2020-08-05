@@ -8,7 +8,7 @@ from emprendedorObj import emprendedorObj
 from emprendimientoLogic import emprendimientoLogic
 
 emprendimiento = Blueprint(
-    "module2_bp", __name__, template_folder="Templates", static_folder="static"
+    "emprendimiento", __name__, template_folder="Templates", static_folder="static"
 )
 
 

@@ -1,67 +1,32 @@
 {% block head %}
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EmprendedorProfile</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmprendedorProfile</title>
 {% endblock head %}
 
 {% block body %}
-<h1>Emprendedor</h1>
+    <h1>Inicio Emprendimiento</h1>
 
-    <br>
-    <!--Profile pic-->
-    <img src="static/images/emprendedor/tc.jpg" width="250" height="300">
-    <br>
-
-    <!--Datos generales-->
-    <br>
-    Nombre:
-    <br>
-    Email:
-    <br>
-    Telefono:
-    <br>
-    Pais:
-    <br>
-    Ciudad:
-    <br>
-    Biografia:
-    <br>
-    <br>
-    
-
-
-    <!--Crear nuevo emprendimiento-->
-    <button type="button" name="formId" id="formId" value="2">Crear startup</button>
-  
-    <p>Inserte por favor un emprendimiento</p>
-    <form action="/Emprendimiento" method="POST">
-
-        Estado: <input type="text" name="estado" id="estado"><br>
-        Descripcion: <input type="text" name="descripcion" id="descripcion"><br>
-        Historia: <input type="text" name="historia" id="historia"><br>
-        Eslogan: <input type="text" name="eslogan" id="eslogan"><br>
-        Inversion inicial: <input type="text" name="inversion_inicial" id="inversion_inicial"><br>
-        Fecha de fundacion: <input type="date" name="fecha_fundacion" id="fecha_fundacion"><br>
-        Venta del año anterior: <input type="text" name="venta_año_anterior" id="venta_año_anterior"><br>
-        Porcentaje que ofrece: <input type="text" name="oferta_porcentaje" id="oferta_porcentaje"><br>
-        id emprendedor: <input type="text" name="id_emprendedor" id="id_emprendedor"><br>
-        Nombre: <input type="text" name="nombre" id="nombre"><br><br>
-        <button type="submit" value="insert">Insertar</button>
-        <input type="hidden" name="formId" id="formId" value="1">
-    </form>
-
-    <br><br><br>
-
-    <!--Mostrar tabla de emprendimientos-->
-    <h3>Mis emprendimientos <h3/>
-    <table border="1">
-        <tr>
-            <!--Encabezados-->
-            <th>Emprendimiento</th>
-            <th>Ir</th>
-            <th>Eliminar</th>
-        </tr>
-    </table>
+    {% for registro in data %}
+        Nombre:
+        {{registro["nombre"]}}
+        <br>
+        Email:
+        {{registro["email"]}}
+        <br>
+        Telefono:
+        {{registro["telefono"]}}
+        <br>
+        Pais:
+        {{registro["pais"]}}
+        <br>
+        Ciudad:
+        {{registro["ciudad"]}}
+        <br>
+        Biografia:
+        {{registro["biografia"]}}
+        <br><br>
+   {% endfor %}
 
 {% endblock body %}
 

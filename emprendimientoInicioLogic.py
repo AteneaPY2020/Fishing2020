@@ -28,8 +28,8 @@ class emprendimientoInicioLogic(Logic):
 
     def getDatosGeneralesById(self, idEmprendimiento):
         dataBase = self.get_databaseXObj()
-        sql = f"SELECT emprendimiento.nombre, emprendimiento.eslogan FROM fishingdb.emprendimiento WHERE id= {idEmprendimiento};"
+        sql = f"select * from fishingdb.emprendimiento where id={idEmprendimiento};"
         print(sql)
         data = dataBase.executeQuery(sql)
-        data = self.tupleToDictionaryList(data, ["nombre", "eslogan"])
+        data = self.tupleToDictionaryList(data, self.keys)
         return data

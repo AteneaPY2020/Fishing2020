@@ -11,11 +11,11 @@ emprendimientoInicio = Blueprint(
 )
 
 
-@emprendimientoInicio.route("/EmprendimientoInicio", methods=["GET", "POST"])
+@emprendimientoInicio.route("/emprendimientoInicio", methods=["GET", "POST"])
 def getInformacionGeneral():
     logic = emprendimientoInicioLogic()
     message = ""
     if request.method == "GET":
-        idEmprendimiento = 1
+        idEmprendimiento = 3
         data = logic.getDatosGeneralesById(idEmprendimiento)
         return render_template("emprendimientoInicio.html", data=data, message=message)

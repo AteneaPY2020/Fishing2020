@@ -5,17 +5,13 @@ from emprendimientoInicio import emprendimientoInicio
 
 app = Flask(__name__)
 app.register_blueprint(login_registro, url_prefix="")
+app.register_blueprint(emprendimientoInicio, url_prefix="")
 app.secret_key = "ILoveFishing"
 
 
 @app.route("/")
 def index():
     return render_template("index.html")
-
-
-@app.route("/emprendimientoInicio")
-def emprendimientoinicio():
-    return render_template("emprendimientoInicio.html")
 
 
 if __name__ == "__main__":

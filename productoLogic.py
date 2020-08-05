@@ -89,3 +89,51 @@ class productoLogic(Logic):
                 path = os.getcwd() + "\\static\\images\\productos\\" + nombre_foto
                 with open(path, "wb") as file:
                     file.write(foto)
+
+    def deleteProducto(self, id_producto):
+        database = self.get_databaseXObj()
+        sql = "delete from fishingdb.productos " + f"where id = {id_producto};"
+        rows = database.executeNonQueryRows(sql)
+        return rows
+
+    def updateProductoWithoutPhoto(
+        self, id_producto, name, descripcion, costo_unitario, precio_venta, patente,
+    ):
+        database = self.get_databaseXObj()
+        sql = (
+            "update fishingdb.productos"
+            + f" set nombre ='{name}', descripcion='{descripcion}', costo_unitario={costo_unitario}, precio_venta={precio_venta}, patente={patente}"
+            + f" where id = {id_producto};"
+        )
+        rows = database.executeNonQueryRows(sql)
+        return rows
+
+    def updateProducto(
+        self,
+        id_producto,
+        name,
+        nombre_foto,
+        foto,
+        descripcion,
+        costo_unitario,
+        precio_venta,
+        patente,
+    ):
+        database = self.get_databaseXObj()
+        sql = (
+            "update fishingdb.productos"
+            + " set nombre = %s, nombre_foto = %s, foto = %s, descripcion = %s, costo_unitario = %s, precio_venta = %s, patente = %s"
+            + " where id = %s;"
+        )
+        data = (
+            name,
+            nombre_foto,
+            foto,
+            descripcion,
+            costo_unitario,
+            precio_venta,
+            patente,
+            id_producto,
+        )
+        rows = database.executeNonQueryRowsTuple(sql, data)
+        return rows

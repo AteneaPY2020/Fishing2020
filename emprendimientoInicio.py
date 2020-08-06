@@ -48,8 +48,8 @@ def getInformacionGeneral():
             eslogan = request.form["eslogan"]
             nombre = request.form["nombre"]
             foto = request.files["fileToUpload"]
-            video = request.form["video"]
             nombre_foto = foto.filename
+            video = request.form["video"]
 
             if foto.filename == "":
                 logic.updateDatosGeneralesWithoutFoto(

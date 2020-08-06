@@ -54,6 +54,7 @@ class emprendimientoInicioLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = f"update fishingdb.emprendimiento set emprendimiento.nombre= '{nombre}',emprendimiento.eslogan= '{eslogan}',emprendimiento.descripcion= '{descripcion}', emprendimiento.video= '{video}' where emprendimiento.id = '{idEmprendimiento}';"
+        print(sql)
         rows = database.executeNonQueryRows(sql)
         return rows
 
@@ -66,14 +67,15 @@ class emprendimientoInicioLogic(Logic):
             + " set descripcion = %s, eslogan = %s, nombre = %s, nombre_foto = %s, foto = %s, video = %s"
             + " where id = %s;"
         )
+        print(sql)
         data = (
-            idEmprendimiento,
             descripcion,
             eslogan,
             nombre,
             nombre_foto,
             foto,
             video,
+            idEmprendimiento,
         )
         rows = database.executeNonQueryRowsTuple(sql, data)
         return rows

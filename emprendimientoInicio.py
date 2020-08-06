@@ -15,15 +15,15 @@ emprendimientoInicio = Blueprint(
 def getInformacionGeneral():
     logic = emprendimientoInicioLogic()
     message = ""
+    data2 = None
+    idEmprendimiento = 3
+    data = logic.getDatosGeneralesById(idEmprendimiento)
+    logic.saveImagesEmprendimiento(idEmprendimiento)
     if request.method == "GET":
-        idEmprendimiento = 3
-        data = logic.getDatosGeneralesById(idEmprendimiento)
-        logic.saveImagesEmprendimiento(idEmprendimiento)
         return render_template("emprendimientoInicio.html", data=data, message=message)
 
-    if request.method == "POST":
+    elif request.method == "POST":
         formId = int(request.form["formId"])
-        idEmprendimiento = 3
 
         if formId == 1:
             idEmprendimiento = 3
@@ -64,8 +64,8 @@ def getInformacionGeneral():
                     binary_foto,
                     video,
                 )
-                data = logic.getDatosGeneralesById(idEmprendimiento)
-                logic.saveImagesEmprendimiento(idEmprendimiento)
+            data = logic.getDatosGeneralesById(idEmprendimiento)
+            logic.saveImagesEmprendimiento(idEmprendimiento)
 
         return render_template(
             "emprendimientoInicio.html", data=data, verdadero=verdadero, data2=data2

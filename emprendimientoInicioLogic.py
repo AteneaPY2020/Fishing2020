@@ -48,6 +48,7 @@ class emprendimientoInicioLogic(Logic):
                 )
                 with open(path, "wb") as file:
                     file.write(foto)
+<<<<<<< HEAD
 
     #    def saveImagesEmprendimiento(self, idEmprendimiento):
     #        data = self.getDatosGeneralesById(idEmprendimiento)
@@ -58,11 +59,13 @@ class emprendimientoInicioLogic(Logic):
     #                path = os.getcwd() + "\\static\\images\\emprendimiento\\" + nombre_foto
     #                with open(path, "wb") as file:
     #                    file.write(foto)
+=======
+>>>>>>> Contenido3
 
     def updateDatosGenerales(
-        self, idEmprendimiento, nombre, eslogan, descripcion, video,
+        self, idEmprendimiento, descripcion, eslogan, nombre, video,
     ):
         database = self.get_databaseXObj()
-        sql = f"update fishingdb.emprendimiento set emprendimiento.nombre= '{nombre}',emprendimiento.eslogan= '{eslogan}',emprendimiento.descripcion= '{descripcion}', emprendimiento.video= '{video}' where emprendimiento.id = '{idEmprendimento}';"
+        sql = f"update fishingdb.emprendimiento set emprendimiento.nombre= '{nombre}',emprendimiento.eslogan= '{eslogan}',emprendimiento.descripcion= '{descripcion}', emprendimiento.video= '{video}' where emprendimiento.id = '{idEmprendimiento}';"
         rows = database.executeNonQueryRows(sql)
         return rows

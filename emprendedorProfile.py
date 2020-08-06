@@ -17,7 +17,7 @@ def ProfileEmp():
     if request.method == "GET":
         # Recoger datos a partir de form de registro emprendedor
         idUsuario = 46
-        idEmprendedor = 26
+        idEmprendedor = 25
         # Fotillo
         logic.saveImagesEmprendedor(idUsuario)
         # Datillos
@@ -34,7 +34,7 @@ def ProfileEmp():
         verdaderoEmprendimiento = False
         formId = int(request.form["formId"])
         idUsuario = 46
-        idEmprendedor = 26
+        idEmprendedor = 25
 
         # Modificar informacion personal
         if formId == 1:
@@ -102,9 +102,10 @@ def ProfileEmp():
             venta_año_anterior = request.form["venta_año_anterior"]
             oferta_porcentaje = request.form["oferta_porcentaje"]
             nombre = request.form["nombre"]
+            nombre_foto = request.form["nombre_foto"]
+            video = request.form["video"]
             email = request.form["email"]
             telefono = request.form["telefono"]
-            video = request.form["video"]
             facebook = request.form["facebook"]
             instagram = request.form["instagram"]
             youtube = request.form["youtube"]
@@ -130,9 +131,10 @@ def ProfileEmp():
                 venta_año_anterior=venta_año_anterior,
                 oferta_porcentaje=oferta_porcentaje,
                 nombre=nombre,
+                nombre_foto=nombre_foto,
+                video=video,
                 email=email,
                 telefono=telefono,
-                video=video,
                 facebook=facebook,
                 instagram=instagram,
                 youtube=youtube,
@@ -150,31 +152,60 @@ def ProfileEmp():
             venta_año_anterior = request.form["venta_año_anterior"]
             oferta_porcentaje = request.form["oferta_porcentaje"]
             nombre = request.form["nombre"]
+            foto = request.files["fileToUpload"]
+            nombre_foto = foto.filename
+            video = request.form["video"]
             email = request.form["email"]
             telefono = request.form["telefono"]
-            video = request.form["video"]
             facebook = request.form["facebook"]
             instagram = request.form["instagram"]
             youtube = request.form["youtube"]
 
-            logicEmprendimiento.insertNewEmprendimiento(
-                estado,
-                descripcion,
-                historia,
-                eslogan,
-                inversion_inicial,
-                fecha_fundacion,
-                venta_año_anterior,
-                oferta_porcentaje,
-                id_emprendedor,
-                nombre,
-                email,
-                telefono,
-                video,
-                facebook,
-                instagram,
-                youtube,
-            )
+            if foto.filename == "":
+                nombre_foto = "default.png"
+
+                logicEmprendimiento.insertNewEmprendimientoWithoutPhoto(
+                    estado,
+                    descripcion,
+                    historia,
+                    eslogan,
+                    inversion_inicial,
+                    fecha_fundacion,
+                    venta_año_anterior,
+                    oferta_porcentaje,
+                    id_emprendedor,
+                    nombre,
+                    nombre_foto,
+                    video,
+                    email,
+                    telefono,
+                    facebook,
+                    instagram,
+                    youtube,
+                )
+            else:
+                binary_foto = foto.read()
+                logicEmprendimiento.insertNewEmprendimiento(
+                    estado,
+                    descripcion,
+                    historia,
+                    eslogan,
+                    inversion_inicial,
+                    fecha_fundacion,
+                    venta_año_anterior,
+                    oferta_porcentaje,
+                    id_emprendedor,
+                    nombre,
+                    nombre_foto,
+                    binary_foto,
+                    video,
+                    email,
+                    telefono,
+                    facebook,
+                    instagram,
+                    youtube,
+                )
+
             data = logic.getDatosGeneralesById(idUsuario)
             dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
                 id_emprendedor

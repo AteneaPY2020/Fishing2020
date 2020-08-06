@@ -23,14 +23,15 @@ class emprendimientoLogic(Logic):
             "nombre",
             "nombre_foto",
             "foto",
+            "video",
             "email",
             "telefono",
-            "video",
             "facebook",
             "instagram",
             "youtube",
         ]
 
+    # Insert
     def insertNewEmprendimiento(
         self,
         estado,
@@ -43,22 +44,94 @@ class emprendimientoLogic(Logic):
         oferta_porcentaje,
         id_emprendedor,
         nombre,
+        nombre_foto,
+        foto,
+        video,
         email,
         telefono,
-        video,
         facebook,
         instagram,
         youtube,
     ):
         database = self.get_databaseXObj()
         sql = (
-            "INSERT INTO fishingdb.emprendimiento(id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, "
-            + f"venta_año_anterior, oferta_porcentaje, id_emprendedor, nombre, email, telefono, video, facebook, instagram, youtube) "
-            + f"VALUES (0, '{estado}', '{descripcion}', '{historia}', '{eslogan}', '{inversion_inicial}', "
-            + f"'{fecha_fundacion}', '{venta_año_anterior}', '{oferta_porcentaje}', '{id_emprendedor}', '{nombre}', '{email}', "
-            + f"'{telefono}', '{video}', '{facebook}', '{instagram}', '{youtube}');"
+            "INSERT INTO fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_año_anterior, oferta_porcentaje, "
+            + "id_emprendedor, nombre, nombre_foto, foto, video, email, telefono, facebook, instagram, youtube) "
+            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
         )
-        rows = database.executeNonQueryRows(sql)
+
+        data = (
+            estado,
+            descripcion,
+            historia,
+            eslogan,
+            inversion_inicial,
+            fecha_fundacion,
+            venta_año_anterior,
+            oferta_porcentaje,
+            id_emprendedor,
+            nombre,
+            nombre_foto,
+            foto,
+            video,
+            email,
+            telefono,
+            facebook,
+            instagram,
+            youtube,
+        )
+        rows = database.executeNonQueryRowsTuple(sql, data)
+        return rows
+
+    # Intert with out foto
+    def insertNewEmprendimientoWithoutPhoto(
+        self,
+        estado,
+        descripcion,
+        historia,
+        eslogan,
+        inversion_inicial,
+        fecha_fundacion,
+        venta_año_anterior,
+        oferta_porcentaje,
+        id_emprendedor,
+        nombre,
+        nombre_foto,
+        video,
+        email,
+        telefono,
+        facebook,
+        instagram,
+        youtube,
+    ):
+        database = self.get_databaseXObj()
+        sql = (
+            "INSERT INTO fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_año_anterior, oferta_porcentaje, "
+            + "id_emprendedor, nombre, nombre_foto, video, email, telefono, facebook, instagram, youtube) "
+            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+        )
+
+        print(sql)
+        data = (
+            estado,
+            descripcion,
+            historia,
+            eslogan,
+            inversion_inicial,
+            fecha_fundacion,
+            venta_año_anterior,
+            oferta_porcentaje,
+            id_emprendedor,
+            nombre,
+            nombre_foto,
+            video,
+            email,
+            telefono,
+            facebook,
+            instagram,
+            youtube,
+        )
+        rows = database.executeNonQueryRowsTuple(sql, data)
         return rows
 
     def getAllEmprendimientoLen(self):
@@ -239,6 +312,9 @@ class emprendimientoLogic(Logic):
         rows = database.executeNonQueryRows(sql)
         return rows
 
+    # =================================================================================================================
+
+    # Get All
     def getAllEmprendimientosByIdEmprendendor(self, idEmprendedor):
         dataBase = self.get_databaseXObj()
 
@@ -248,8 +324,20 @@ class emprendimientoLogic(Logic):
         data = self.tupleToDictionaryList(data, self.keys)
         return data
 
+    # Delete
     def deleteEmprendimientoByIdEmprendimiento(self, id):
         database = self.get_databaseXObj()
         sql = f"delete from fishingdb.emprendimiento where id = '{id}';"
         row = database.executeNonQueryRows(sql)
         return row
+
+    # Imagen
+    def saveImagesEmprendimiento(self, idEmprendedor):
+        data = self.getAllEmprendimientosByIdEmprendendor(idEmprendedor)
+        for registro in data:
+            foto = registro["foto"]
+            nombre_foto = registro["nombre_foto"]
+            if nombre_foto != "default.png":
+                path = os.getcwd() + "\\static\\images\\emprendimiento\\" + nombre_foto
+                with open(path, "wb") as file:
+                    file.write(foto)

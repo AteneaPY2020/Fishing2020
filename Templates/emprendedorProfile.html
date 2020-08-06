@@ -102,7 +102,7 @@
 
 
     <!--Boton crear nuevo emprendimiento-->
-    <form action="/emprendedorProfile" method="POST">
+    <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
         <button type="submit" value="insert">Crear nuevo emprendimiento</button>
         <input type="hidden" name="formId" id="formId" value="3">
         <input type="hidden" name="id" id="id" value="{{id}}">
@@ -122,6 +122,8 @@
         <input type="hidden" name="facebook" id="facebook" value="{{data[0]["facebook"]}}">
         <input type="hidden" name="instagram" id="instagram" value="{{data[0]["instagram"]}}">
         <input type="hidden" name="youtube" id="youtube" value="{{data[0]["youtube"]}}">
+        <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{data[0]["nombre_foto"]}}">
+
     </form>
 
     <br>
@@ -129,7 +131,7 @@
 
     {% if verdaderoEmprendimiento %}
     
-    <form action="/emprendedorProfile" method="POST">
+    <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
         Estado: 
         <select name="estado" id="estado">
             <option value="Huevo">Huevo </option>
@@ -150,8 +152,7 @@
         Facebook: <input type="text" name="facebook" id="facebook" value="{{facebook}}"><br>
         Instagram: <input type="text" name="instagram" id="instagram" value="{{instagram}}"><br>
         Youtube: <input type="text" name="youtube" id="youtube" value="{{youtube}}"><br>
-        
-        <!--Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>-->
+        Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
         
         <!--Insertar emprendimiento-->
         <button type="submit" value="update">Crear emprendimiento</button>

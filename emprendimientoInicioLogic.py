@@ -13,7 +13,7 @@ class emprendimientoInicioLogic(Logic):
             "eslogan",
             "inversion_inicial",
             "fecha_fundacion",
-            "venta_anio_anterior",
+            "venta_año_anterior",
             "oferta_porcentaje",
             "id_emprendedor",
             "nombre",

@@ -17,6 +17,7 @@ def getInformacionGeneral():
     message = ""
     data2 = None
     idEmprendimiento = 3
+    verdadero = False
     data = logic.getDatosGeneralesById(idEmprendimiento)
     logic.saveImagesEmprendimiento(idEmprendimiento)
     if request.method == "GET":
@@ -26,6 +27,7 @@ def getInformacionGeneral():
         formId = int(request.form["formId"])
 
         if formId == 1:
+            verdadero = True
             idEmprendimiento = 3
             descripcion = request.form["descripcion"]
             eslogan = request.form["eslogan"]
@@ -45,9 +47,9 @@ def getInformacionGeneral():
             descripcion = request.form["descripcion"]
             eslogan = request.form["eslogan"]
             nombre = request.form["nombre"]
-            nombre_foto = foto.filename
             foto = request.files["fileToUpload"]
             video = request.form["video"]
+            nombre_foto = foto.filename
 
             if foto.filename == "":
                 logic.updateDatosGeneralesWithoutFoto(

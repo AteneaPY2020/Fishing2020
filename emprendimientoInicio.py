@@ -48,17 +48,24 @@ def getInformacionGeneral():
             nombre_foto = foto.filename
             foto = request.files["fileToUpload"]
             video = request.form["video"]
-            
+
             if foto.filename == "":
                 logic.updateDatosGeneralesWithoutFoto(
                     idEmprendimiento, descripcion, eslogan, nombre, video,
                 )
             else:
-            binary_foto = foto.read()
-            logic.updateDatosGeneralesWithFoto(idEmprendimiento, descripcion, eslogan, nombre, nombre_foto, binary_foto, video,)
-
-            data = logic.getDatosGeneralesById(idEmprendimiento)
-            logic.saveImagesEmprendimiento(idEmprendimiento)
+                binary_foto = foto.read()
+                logic.updateDatosGeneralesWithFoto(
+                    idEmprendimiento,
+                    descripcion,
+                    eslogan,
+                    nombre,
+                    nombre_foto,
+                    binary_foto,
+                    video,
+                )
+                data = logic.getDatosGeneralesById(idEmprendimiento)
+                logic.saveImagesEmprendimiento(idEmprendimiento)
 
         return render_template(
             "emprendimientoInicio.html", data=data, verdadero=verdadero, data2=data2

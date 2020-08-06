@@ -48,19 +48,6 @@ class emprendimientoInicioLogic(Logic):
                 )
                 with open(path, "wb") as file:
                     file.write(foto)
-<<<<<<< HEAD
-
-    #    def saveImagesEmprendimiento(self, idEmprendimiento):
-    #        data = self.getDatosGeneralesById(idEmprendimiento)
-    #        for registro in data:
-    #            foto = registro["foto"]
-    #            nombre_foto = registro["nombre_foto"]
-    #            if nombre_foto != "default.png":
-    #                path = os.getcwd() + "\\static\\images\\emprendimiento\\" + nombre_foto
-    #                with open(path, "wb") as file:
-    #                    file.write(foto)
-=======
->>>>>>> Contenido3
 
     def updateDatosGenerales(
         self, idEmprendimiento, descripcion, eslogan, nombre, video,

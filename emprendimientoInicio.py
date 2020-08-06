@@ -37,19 +37,19 @@ def getInformacionGeneral():
                 "emprendimientoInicio.html",
                 data=data,
                 verdadero=verdadero,
-                nombreUpx=nombreOld,
-                esloganUpx=esloganOld,
                 descripcionUpx=descripcionOld,
+                esloganUpx=esloganOld,
+                nombreUpx=nombreOld,
                 videoUpx=videoOld,
             )
         else:
             idEmprendimiento = 3
-            nombre = request.form["nombreUP"]
-            eslogan = request.form["esloganUP"]
             descripcion = request.form["descripcionUP"]
+            eslogan = request.form["esloganUP"]
+            nombre = request.form["nombreUP"]
             video = request.form["videoUP"]
             logic.updateDatosGenerales(
-                idEmprendimiento, nombre, eslogan, descripcion, video
+                idEmprendimiento, descripcion, eslogan, nombre, video
             )
             data = logic.getDatosGeneralesById(idEmprendimiento)
             message = "Se ha modificado el emprendimiento"

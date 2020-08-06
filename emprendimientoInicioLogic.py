@@ -50,9 +50,9 @@ class emprendimientoInicioLogic(Logic):
                     file.write(foto)
 
     def updateDatosGenerales(
-        self, idEmprendimiento, nombre, eslogan, descripcion, video,
+        self, idEmprendimiento, descripcion, eslogan, nombre, video,
     ):
         database = self.get_databaseXObj()
-        sql = f"update fishingdb.emprendimiento set emprendimiento.nombre= '{nombre}',emprendimiento.eslogan= '{eslogan}',emprendimiento.descripcion= '{descripcion}', emprendimiento.video= '{video}' where emprendimiento.id = '{idEmprendimento}';"
+        sql = f"update fishingdb.emprendimiento set emprendimiento.nombre= '{nombre}',emprendimiento.eslogan= '{eslogan}',emprendimiento.descripcion= '{descripcion}', emprendimiento.video= '{video}' where emprendimiento.id = '{idEmprendimiento}';"
         rows = database.executeNonQueryRows(sql)
         return rows

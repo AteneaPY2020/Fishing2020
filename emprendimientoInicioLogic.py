@@ -13,7 +13,7 @@ class emprendimientoInicioLogic(Logic):
             "eslogan",
             "inversion_inicial",
             "fecha_fundacion",
-            "venta_anio_anterior",
+            "venta_año_anterior",
             "oferta_porcentaje",
             "id_emprendedor",
             "nombre",
@@ -49,11 +49,33 @@ class emprendimientoInicioLogic(Logic):
                 with open(path, "wb") as file:
                     file.write(foto)
 
-    def updateDatosGenerales(
+    def updateDatosGeneralesWithoutFoto(
         self, idEmprendimiento, descripcion, eslogan, nombre, video,
     ):
         database = self.get_databaseXObj()
         sql = f"update fishingdb.emprendimiento set emprendimiento.nombre= '{nombre}',emprendimiento.eslogan= '{eslogan}', "
         +f"emprendimiento.descripcion= '{descripcion}', emprendimiento.video= '{video}' where emprendimiento.id = '{idEmprendimiento}';"
         rows = database.executeNonQueryRows(sql)
+        return rows
+
+    def updateDatosGeneralesWithFoto(
+        self, idEmprendimiento, descripcion, eslogan, nombre, nombre_foto, foto, video,
+    ):
+        database = self.get_databaseXObj()
+        sql = (
+            "update fishingdb.emprendimiento"
+            + " set descripcion = %s, eslogan = %s, nombre = %s, nombre_foto = %s, foto = %s, video = %s"
+            + " where id = %s;"
+        )
+        print(sql)
+        data = (
+            descripcion,
+            eslogan,
+            nombre,
+            nombre_foto,
+            foto,
+            video,
+            idEmprendimiento,
+        )
+        rows = database.executeNonQueryRowsTuple(sql, data)
         return rows

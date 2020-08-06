@@ -40,7 +40,7 @@ class emprendimientoInicioLogic(Logic):
         for registro in data:
             foto = registro["foto"]
             nombre_foto = registro["nombre_foto"]
-            if nombre_foto != "emprendimiento.jpg":
+            if nombre_foto != "default.png":
                 path = (
                     os.getcwd()
                     + "\\static\\images\\emprendimiento\\"

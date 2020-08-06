@@ -22,31 +22,36 @@
         allowfullscreen></iframe>
         <br>
         <img src="/static/images/emprendimiento/{{registro["nombre_foto"]}}" width="400" height="341">
-        <form action="/emprendimientoInicio" method="POST">
+        <form action="/emprendimientoInicio" method="POST" enctype="multipart/form-data">
                 <button type="submit" value="update">Modificar</button>
                 <input type="hidden" name="formId" id="formId" value="1">
-                <input type="hidden" name="nombrex" id="nombrex" value = "{{registro["nombre"]}}">
-                <input type="hidden" name="esloganx" id="esloganx" value = "{{registro["eslogan"]}}">
-                <input type="hidden" name="descripcionx" id="descripcionx" value = "{{registro["descripcion"]}}">
-                <input type="hidden" name="videox" id="videox" value = "{{registro["video"]}}">
+                <input type="hidden" name="descripcion" id="descripcion" value = "{{registro["descripcion"]}}">
+                <input type="hidden" name="eslogan" id="eslogan" value = "{{registro["eslogan"]}}">
+                <input type="hidden" name="nombre" id="nombre" value = "{{registro["nombre"]}}">
+                <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{registro["nombre_foto"]}}">
+                <input type="hidden" name="video" id="video" value = "{{registro["video"]}}">
         </form>
     <br><br>    <br><br>
    {% endfor %}
 
      {% if verdadero %}
         <p>Modifica el emprendimiento</p>
-        <form action = "/emprendimientoInicio" method = "POST">
-            nombre: <input type="text" name="nombreUP" id="nombreUP" value="{{nombreUpx}}"><br><br>
-            eslogan: <input type="text" name="esloganUP" id="esloganUP" value="{{esloganUpx}}"><br><br>    
-            descripcion: <input type="text" name="descripcionUP" id="descripcionUP" value="{{descripcionUPx}}"><br><br>    
-            video: <input type="text" name="videoUP" id="videoUP" value="{{videoUpx}}"><br><br>
+        <form action = "/emprendimientoInicio" method = "POST" enctype="multipart/form-data">
+            nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
+            eslogan: <input type="text" name="eslogan" id="eslogan" value="{{eslogan}}"><br><br>    
+            descripcion: <input type="text" name="descripcion" id="descripcion" value="{{descripcion}}"><br><br>
+            Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>    
+            video: <input type="text" name="video" id="video" value="{{video}}"><br><br>
             <button type="submit" value="update">Modificar cambios</button>
             <input type="hidden" name="formId" id="formId" value="2">
             <input type="hidden" name="idEmprendimiento" id="idEmprendimiento" value="{{idEmprendimiento}}">             
         </form>
     <br><br>
-
+    <form action="/registroProductos" method="GET">
+    <button type="submit" value="Cancelar"></button>
+    </form>
     {% endif %}
 
 {% endblock body %}
+
 </html>

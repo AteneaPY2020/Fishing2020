@@ -1,5 +1,6 @@
 from logic import Logic
 from emprendedorObj import emprendedorObj
+import os
 
 
 class emprendedorLogic(Logic):
@@ -18,6 +19,7 @@ class emprendedorLogic(Logic):
             "biografia",
         ]
 
+    # Insertar emprendimiento
     def insertNewEmprendedor(
         self, name, email, phone, id_user, country, city, biografia, nombre_foto, foto
     ):
@@ -108,3 +110,38 @@ class emprendedorLogic(Logic):
             return empObj
         else:
             return None
+
+    # Update
+    def updateEmprendedorbyIdUsuario(
+        self, id, nombre, email, telefono, pais, ciudad, biografia
+    ):
+        database = self.get_databaseXObj()
+        sql = (
+            "update fishingdb.emprendedor "
+            + f"set emprendedor.nombre = '{nombre}', emprendedor.email = '{email}', emprendedor.telefono = '{telefono}',  "
+            + f"emprendedor.pais = '{pais}', emprendedor.ciudad = '{ciudad}', emprendedor.biografia = '{biografia}' "
+            + f"where emprendedor.id_usuario = '{id}';"
+        )
+        rows = database.executeNonQueryRows(sql)
+        return rows
+
+    # Obtener datos byId
+    def getDatosGeneralesById(self, idUsuario):
+        dataBase = self.get_databaseXObj()
+
+        sql = f"select * from fishingdb.emprendedor where id_usuario={idUsuario};"
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        return data
+
+    # Imagen
+    def saveImagesEmprendedor(self, idUsuario):
+        data = self.getDatosGeneralesById(idUsuario)
+        for registro in data:
+            foto = registro["foto"]
+            nombre_foto = registro["nombre_foto"]
+            if nombre_foto != "default.png":
+                path = os.getcwd() + "\\static\\images\\emprendedor\\" + nombre_foto
+                with open(path, "wb") as file:
+                    file.write(foto)

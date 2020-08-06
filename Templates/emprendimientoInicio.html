@@ -37,14 +37,14 @@
      {% if verdadero %}
         <p>Modifica el emprendimiento</p>
         <form action = "/emprendimientoInicio" method = "POST" enctype="multipart/form-data">
-            nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
-            eslogan: <input type="text" name="eslogan" id="eslogan" value="{{eslogan}}"><br><br>    
-            descripcion: <input type="text" name="descripcion" id="descripcion" value="{{descripcion}}"><br><br>
+            nombre: <input type="text" name="nombre" id="nombre" value="{{data2["nombre"]}}"><br><br>
+            eslogan: <input type="text" name="eslogan" id="eslogan" value="{{data2["eslogan"]}}"><br><br>    
+            descripcion: <input type="text" name="descripcion" id="descripcion" value="{{data2["descripcion"]}}"><br><br>
             Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>    
-            video: <input type="text" name="video" id="video" value="{{video}}"><br><br>
+            video: <input type="text" name="video" id="video" value="{{data2["video"]}}"><br><br>
             <button type="submit" value="update">Modificar cambios</button>
             <input type="hidden" name="formId" id="formId" value="2">
-            <input type="hidden" name="idEmprendimiento" id="idEmprendimiento" value="{{idEmprendimiento}}">             
+            <input type="hidden" name="idEmprendimiento" id="idEmprendimiento" value="{{data2["idEmprendimiento"]}}">             
         </form>
     <br><br>
     <form action="/registroProductos" method="GET">

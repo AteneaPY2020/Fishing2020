@@ -49,26 +49,28 @@ def InicioInv():
 
 @inicio_inversionista.route("/busqueda", methods=["GET", "POST"])
 def busqueda():
+    busqueda = request.form["busqueda"]
+    bLogic = busquedaLogic()
 
     if request.method == "GET":
-        busqueda = request.form["busqueda"]
-        bLogic = busquedaLogic()
         return render_template("busquedas.html", message="")
     elif request.method == "POST":
         logicProd = productoLogic()
         logicEmp = emprendimientoLogic()
         prodData = []
         empData = []
+        prodEmpData = []
         Emprendimientos = bLogic.buscarEmprendimiento(busqueda)
         Productos = bLogic.buscarProducto(busqueda)
         for id_producto in Productos:
             Producto = logicProd.getProductoById(id_producto)
             prodData.append(Producto)
+
         for id_emprendimiento in Emprendimientos:
             Emprendimiento = logicEmp.getEmprendimientoById(id_emprendimiento)
             empData.append(Emprendimiento)
         return render_template(
-            "busquedas.html", prodData=prodData, empData=empData, message=""
+            "busquedas.html", prodData=prodData, empData=empData, busqueda=busqueda,
         )
 
 

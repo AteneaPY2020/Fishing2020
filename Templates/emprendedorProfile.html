@@ -121,10 +121,9 @@
                                                 Ir
                                             </div>
                                             <div class="cell">
-                                                Salir
+                                                Eliminar
                                             </div>
                                         </div>
-
                                         {% for registro in dataEmprendimiento %}
                                             <div class="row">
                                                 <div class="cell" data-title="Full Name">
@@ -132,7 +131,6 @@
                                                     <td>{{registro["nombre"]}}</td>
                                                     <td>
                                                 </div>
-
                                                 <div class="cell" data-title="Age">
                                                     <tr>
                                                     <form action="/emprendedorProfile" method="POST">
@@ -146,7 +144,7 @@
                                                 <div class="cell" data-title="Job Title">
                                                     <tr>
                                                     <form action="/emprendedorProfile" method="POST">
-                                                    <button type="submit" value="delete">Salir</button>
+                                                    <button type="submit" value="delete">Eliminar</button>
                                                     <input type="hidden" name="formId" id="formId" value="5">
                                                     <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                                 </form>
@@ -161,10 +159,10 @@
                         </div>
                     </div>
 
-                                <div class="featured-image">
+                            <div class="featured-image">
                                 <!--<a class="btn btn-cta-secondary" href="https://wrapbootstrap.com/theme/delta-promote-mobile-app-effectively-WB09R23P8?ref=3wm" target="_blank"><i class="fa fa-thumbs-o-up"></i> Crear nuevo emprendimiento</a> -->
                                 <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-                                    <button class="btn btn-cta-secondary" type="submit" value="insert"><i class="fa fa-thumbs-o-up">Crear nuevo emprendimiento</button>
+                                    <button class="btn btn-cta-secondary" type="submit" value="insert">Crear nuevo emprendimiento</button>
                                     <input type="hidden" name="formId" id="formId" value="3">
                                     <input type="hidden" name="id" id="id" value="{{id}}">
 
@@ -184,19 +182,13 @@
                                     <input type="hidden" name="instagram" id="instagram" value="{{data[0]["instagram"]}}">
                                     <input type="hidden" name="youtube" id="youtube" value="{{data[0]["youtube"]}}">
                                     <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{data[0]["nombre_foto"]}}">
-
-    </form>                 
+                                </form>                 
                             </div><!--//item-->
 
                             <!---->
 
                             <hr class="divider" />
-                            
-                            
-                            
-                            
-                            
-                            
+ 
                         </div><!--//content-->  
                     </div><!--//section-inner-->                 
                 </section><!--//section-->
@@ -299,44 +291,10 @@
     {% endif %}
 
     <!--Emprendimientos-->
-    <h3>Mis emprendimientos </h3>
-
-    <!--Tabla de emprendimientos-->
-    <table border="1">
-
-        <tr>
-            <th>Emprendimiento</th>
-            <th>Ir</th>
-            <th>Salir</th>
-        </tr>
-        
-        {% for registro in dataEmprendimiento %}
-        <tr>
-        <td>{{registro["nombre"]}}</td>
-        <td>
-            <!--Boton "Ir"-->
-            <form action="/emprendedorProfile" method="POST">
-                <button type="submit" value="ir">Ir</button>
-                <input type="hidden" name="formId" id="formId" value="6">
-                <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-            </form>
-        </td>
-        <td>
-            <!--Boton "delete"-->
-            <form action="/emprendedorProfile" method="POST">
-                <button type="submit" value="delete">Salir</button>
-                <input type="hidden" name="formId" id="formId" value="5">
-                <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-            </form>
-        </td>
-        {% endfor %}
-    </table>
-    <br>
-
+    
 
     <!--Boton crear nuevo emprendimiento-->
     <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-        <button type="submit" value="insert">Crear nuevo emprendimiento</button>
         <input type="hidden" name="formId" id="formId" value="3">
         <input type="hidden" name="id" id="id" value="{{id}}">
 

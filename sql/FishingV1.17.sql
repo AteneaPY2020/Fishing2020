@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `fishingdb` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `fishingdb`;
--- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
--- Host: localhost    Database: fishingdb
+-- Host: 127.0.0.1    Database: fishingdb
 -- ------------------------------------------------------
--- Server version	8.0.20
+-- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -160,7 +158,7 @@ CREATE TABLE `fundador` (
   KEY `fk_fundador_emprendimiento1_idx` (`id_emprendimiento`),
   CONSTRAINT `fk_fundador_emprendedor1` FOREIGN KEY (`id_emprendedor`) REFERENCES `emprendedor` (`id`),
   CONSTRAINT `fk_fundador_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendimiento` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,7 +167,7 @@ CREATE TABLE `fundador` (
 
 LOCK TABLES `fundador` WRITE;
 /*!40000 ALTER TABLE `fundador` DISABLE KEYS */;
-INSERT INTO `fundador` VALUES (2,24,9),(5,17,9),(6,22,9);
+INSERT INTO `fundador` VALUES (5,17,9),(17,22,9),(24,1,9),(33,24,9);
 /*!40000 ALTER TABLE `fundador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,10 +304,12 @@ CREATE TABLE `notificaciones` (
   `idnotificaciones` int NOT NULL AUTO_INCREMENT,
   `mensaje` varchar(200) NOT NULL,
   `id_emprendedor` int NOT NULL,
+  `fecha` date NOT NULL,
+  `hora` time NOT NULL,
   PRIMARY KEY (`idnotificaciones`),
   KEY `fk_notificaciones_emprendedor1_idx` (`id_emprendedor`),
   CONSTRAINT `fk_notificaciones_emprendedor1` FOREIGN KEY (`id_emprendedor`) REFERENCES `emprendedor` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -318,6 +318,7 @@ CREATE TABLE `notificaciones` (
 
 LOCK TABLES `notificaciones` WRITE;
 /*!40000 ALTER TABLE `notificaciones` DISABLE KEYS */;
+INSERT INTO `notificaciones` VALUES (1,'te han añadido a un nuevo emprendimiento',26,'0000-00-00','00:00:00'),(2,'te han añadido al emprendimiento Proyect runway',1,'0000-00-00','00:00:00'),(3,'te han añadido al emprendimiento Proyect runway',1,'2020-08-08','00:00:00'),(4,'te han añadido al emprendimiento Proyect runway',24,'2020-08-08','00:00:00'),(5,'te han añadido al emprendimiento Proyect runway',24,'2020-08-08','00:00:00'),(6,'te han añadido al emprendimiento chepitillo',5,'2020-08-08','17:09:43'),(7,'te han añadido al emprendimiento Proyect runway',24,'2020-08-08','17:34:48');
 /*!40000 ALTER TABLE `notificaciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -415,4 +416,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-07 22:43:44
+-- Dump completed on 2020-08-08 17:44:32

@@ -50,9 +50,11 @@
     
     <!-- ******HEADER****** --> 
     <header class="header">
-        <div class="container">    
-            <!--Fotillo-->                   
-            <img class="profile-image img-responsive pull-left"  src="/static/images/emprendedor/{{data[0]["nombre_foto"]}}" alt="FotoPerfil" />
+        <div class="container">
+                <!--Fotillo-->                   
+            <div  class="circular--portrait pull-left" >
+            <img align="center" src="/static/images/emprendedor/{{data[0]["nombre_foto"]}}" />
+            </div>
             <div class="profile-content pull-left">
                 <h1 class="name">{{data[0]["nombre"]}}</h1>
                 <h2 class="desc">Emprendedor</h2>   

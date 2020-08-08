@@ -181,11 +181,13 @@
             <tr>
                 <th>Notificación</th>
                 <th>Fecha</th>
+                <th>Hora</th>
             </tr>     
             {% for registro in data2 %}
             <tr>
             <td>{{registro["mensaje"]}}</td>
             <td>{{registro["fecha"]}}</td>
+            <td>{{registro["hora"]}}</td>
             {% endfor %}
         </table>
         <br>

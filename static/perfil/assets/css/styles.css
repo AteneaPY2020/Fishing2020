@@ -11,7 +11,7 @@
 body {
   font-family: 'Lato', arial, sans-serif;
   color: #434343;
-  background: #ffffff;
+  background: #130447;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,7 +27,7 @@ h6 {
   color: #778492;
 }
 a {
-  color: #ce3f22;
+  color: #3aaa64;
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;

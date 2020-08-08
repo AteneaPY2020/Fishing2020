@@ -21,8 +21,8 @@ def logIn():
         user = request.form["user"]
         password = request.form["password"]
         logic = UserLogic()
-        emprendedorLogic = emprendedorLogic()
-        emprendimientoLogic = emprendimientoLogic()
+        # emprendedorLogic = emprendedorLogic()
+        # emprendimientoLogic = emprendimientoLogic()
         userData = logic.getUser(user, password)
         if userData is not None:
             if userData.rol == 1:
@@ -36,19 +36,7 @@ def logIn():
             elif userData.rol == 3:
                 dataDic = logic.createDictionary(userData)
                 session["user"] = dataDic
-                # Obtener id usuario e informacion del emprendedor
-                id_usuario = dataDic["id"]
-                data = emprendedorLogic.getDatosGeneralesById(id_usuario)
-                # Obtener id emprendimiento y los emprendimeitnos del emprendedor
-                id_emprendedor = data["id"]
-                dataEmprendimiento = emprendimientoLogic.getAllEmprendimientosByIdEmprendendor(
-                    id_emprendedor
-                )
-                return render_template(
-                    "emprendedorProfile.html",
-                    data=data,
-                    dataEmprendimiento=dataEmprendimiento,
-                )
+                return redirect("/emprendedorProfile")
         else:
             return render_template(
                 "loginform.html", message="Error. Usuario o contraseña incorrecta"
@@ -102,6 +90,7 @@ def signUpInversor():
                 cityx=city,
             )
         else:
+            userData = logicUsuario.getUser(user, password)
             logicUsuario.insertNewUser(user, password, rol)
             logicUsuario.getNewUser(user, password, rol)
             idUsuario = int(logicUsuario.getNewUser(user, password, rol).getId())
@@ -139,8 +128,10 @@ def signUpInversor():
                 if value:
                     logicInversor.insertNewInteres(i, idInversor)
                 i += 1
+            dataDic = logicUsuario.createDictionary(userData)
+            session["user"] = dataDic
 
-            return render_template("index.html", message="Usuario creado con éxito")
+            return redirect("/InicioInv")
 
 
 @login_registro.route("/signUpEmprendedor", methods=["GET", "POST"])
@@ -158,16 +149,7 @@ def signUpEmprendedor():
         email = str(request.form["email"])
         country = request.form["country"]
         phone = request.form["phone"]
-        eslogan = request.form["eslogan"]
         city = request.form["city"]
-        funDate = request.form["fundationDate"]
-        desc = request.form["description"]
-        status = request.form["estado"]
-        empName = request.form["emprendimientoName"]
-        hist = request.form["hist"]
-        invInicial = float(request.form["invInicial"])
-        sales_prevYear = float(request.form["ventas"])
-        offer = float(request.form["propuesta"])
         bio = request.form["bio"]
         foto = request.files["fileToUpload"]
         nombre_foto = foto.filename
@@ -187,17 +169,11 @@ def signUpEmprendedor():
                 namex=name,
                 emailx=email,
                 countryx=country,
-                descx=desc,
                 cityx=city,
-                esloganx=eslogan,
                 phonex=phone,
-                emprendimientoNamex=empName,
-                histx=hist,
-                invInicialx=invInicial,
-                ventasx=sales_prevYear,
-                propuestax=offer,
             )
         else:
+            userData = logicUsuario.getUser(user, password)
             logicUsuario.insertNewUser(user, password, rol)
             current_user = logicUsuario.getNewUser(user, password, rol)
             id_user = int(current_user.getId())
@@ -220,23 +196,6 @@ def signUpEmprendedor():
                     nombre_foto,
                     binary_foto,
                 )
-
-            Emprendedor = logicEmprendedor.getNewEmprendedor(
-                name, email, phone, id_user, country, city
-            )
-            # Insertando nuevo Emprendimiento
-            idEmprendedor = int(Emprendedor.getId())
-            logicEmprendimiento = emprendimientoLogic()
-            logicEmprendimiento.insertNewEmprendimiento(
-                empName,
-                eslogan,
-                hist,
-                invInicial,
-                sales_prevYear,
-                offer,
-                idEmprendedor,
-                funDate,
-                desc,
-                status,
-            )
-        return render_template("index.html", message="")
+            dataDic = logicUsuario.createDictionary(userData)
+            session["user"] = dataDic
+            return redirect("/emprendedorProfile")

@@ -1,4 +1,4 @@
-from emprendimientoInicioLogic import emprendimientoInicioLogic
+from emprendimientoLogic import emprendimientoLogic
 from flask import Blueprint, Flask, render_template, request, redirect, session
 import mysql.connector
 from mysql.connector import Error
@@ -13,10 +13,10 @@ emprendimientoInicio = Blueprint(
 
 @emprendimientoInicio.route("/emprendimientoInicio", methods=["GET", "POST"])
 def getInformacionGeneral():
-    logic = emprendimientoInicioLogic()
+    logic = emprendimientoLogic()
     message = ""
     data2 = None
-    idEmprendimiento = 3
+    idEmprendimiento = session["emprendimiento"]
     verdadero = False
     data = logic.getDatosGeneralesById(idEmprendimiento)
     logic.saveImagesEmprendimiento(idEmprendimiento)
@@ -28,7 +28,6 @@ def getInformacionGeneral():
 
         if formId == 1:
             verdadero = True
-            idEmprendimiento = 3
             descripcion = request.form["descripcion"]
             eslogan = request.form["eslogan"]
             nombre = request.form["nombre"]
@@ -43,7 +42,6 @@ def getInformacionGeneral():
                 "video": video,
             }
         elif formId == 2:
-            idEmprendimiento = 3
             descripcion = request.form["descripcion"]
             eslogan = request.form["eslogan"]
             nombre = request.form["nombre"]

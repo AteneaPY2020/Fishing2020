@@ -17,8 +17,8 @@ def quienesSomos():
     logic = emprendimientoLogic()
     message = ""
     verdadero = False
+    idEmprendimiento = session["emprendimiento"]
     if request.method == "GET":
-        idEmprendimiento = 2
         data = logic.getAllFundadores(idEmprendimiento)
         data2 = logic.getHistoria(idEmprendimiento)
         logic.saveImagesFundadores(idEmprendimiento)
@@ -27,7 +27,6 @@ def quienesSomos():
         )
     elif request.method == "POST":
         formId = int(request.form["formId"])
-        idEmprendimiento = 2
         # INSERTAR
         if formId == 1:
             user = request.form["user"]
@@ -40,6 +39,7 @@ def quienesSomos():
                 data = logic.getAllFundadores(idEmprendimiento)
                 data2 = logic.getHistoria(idEmprendimiento)
                 message = "Se ha agregado al fundador"
+                logic.saveImagesFundadores(idEmprendimiento)
                 return render_template(
                     "quienes_somos.html", data=data, data2=data2, message=message
                 )
@@ -76,22 +76,19 @@ def informacion():
     logic = emprendimientoLogic()
     message = ""
     mostrar = False
+    idEmprendimiento = session["emprendimiento"]
     if request.method == "GET":
-        idEmprendimiento = 2
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
         return render_template(
             "informacion.html", data=data, data2=data2, message=message
         )
     elif request.method == "POST":
-        idEmprendimiento = 2
         formId = int(request.form["formId"])
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
-        idEmprendimiento = 2
         # UPDATE INFO FINANCIERA
         if formId == 1:
-            idEmprendimiento = 2
             fecha_fundacionOld = request.form["fecha_fundacionx"]
             inversion_inicialOld = request.form["inversion_inicialx"]
             venta_año_anteriorOld = request.form["venta_año_anteriorx"]
@@ -107,7 +104,6 @@ def informacion():
                 data2=data2,
             )
         if formId == 2:
-            idEmprendimiento = 2
             fecha_fundacion = request.form["fecha_fundacionUP"]
             inversion_inicial = request.form["inversion_inicialUP"]
             venta_año_anterior = request.form["venta_año_anteriorUP"]
@@ -126,7 +122,6 @@ def informacion():
             )
         # UPDATE CONTACTOS
         if formId == 3:
-            idEmprendimiento = 2
             emailOld = request.form["emailx"]
             telefonoOld = request.form["telefonox"]
             facebookOld = request.form["facebookx"]
@@ -146,7 +141,6 @@ def informacion():
                 data2=data2,
             )
         if formId == 4:
-            idEmprendimiento = 2
             email = request.form["emailUP"]
             telefono = request.form["telefonoUP"]
             facebook = request.form["facebookUP"]

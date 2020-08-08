@@ -14,14 +14,14 @@ emprendedorProfile = Blueprint(
 def ProfileEmp():
     logic = emprendedorLogic()
     logicEmprendimiento = emprendimientoLogic()
+    user = session["user"]
+    idUsuario = int(user["id"])
+    data = logic.getDatosGeneralesById(idUsuario)
+    idEmprendedor = data[0]["id"]
     if request.method == "GET":
-        # Recoger datos a partir de form de registro emprendedor
-        idUsuario = 46
-        idEmprendedor = 25
         # Fotillo
         logic.saveImagesEmprendedor(idUsuario)
         # Datillos
-        data = logic.getDatosGeneralesById(idUsuario)
         dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
             idEmprendedor
         )
@@ -33,8 +33,6 @@ def ProfileEmp():
         verdadero = False
         verdaderoEmprendimiento = False
         formId = int(request.form["formId"])
-        idUsuario = 46
-        idEmprendedor = 25
 
         # Modificar informacion personal
         if formId == 1:
@@ -68,21 +66,37 @@ def ProfileEmp():
 
         # Aplicar cambios en informacion general
         elif formId == 2:
-            id = idUsuario
             nombre = request.form["nombre"]
             email = request.form["email"]
             telefono = request.form["telefono"]
             pais = request.form["pais"]
             ciudad = request.form["ciudad"]
             biografia = request.form["biografia"]
+            foto = request.files["fileToUpload"]
+            nombre_foto = foto.filename
 
-            logic.updateEmprendedorbyIdUsuario(
-                id, nombre, email, telefono, pais, ciudad, biografia
-            )
-            data = logic.getDatosGeneralesById(id)
+            if foto.filename == "":
+                logic.updateEmprendedorbyIdUsuario(
+                    idUsuario, nombre, email, telefono, pais, ciudad, biografia
+                )
+            else:
+                binary_foto = foto.read()
+                logic.updateEmprendedorbyIdUsuarioWithPhoto(
+                    idUsuario,
+                    nombre,
+                    email,
+                    telefono,
+                    pais,
+                    ciudad,
+                    biografia,
+                    nombre_foto,
+                    binary_foto,
+                )
+            data = logic.getDatosGeneralesById(idUsuario)
             dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
                 idEmprendedor
             )
+            logic.saveImagesEmprendedor(idUsuario)
 
             return render_template(
                 "emprendedorProfile.html",
@@ -217,15 +231,23 @@ def ProfileEmp():
                 dataEmprendimiento=dataEmprendimiento,
             )
 
-        # Delete emprendimiento by IdEmprendimiento
+        # Sale del emprendimiento by IdEmprendimiento
         elif formId == 5:
-            id = int(request.form["id"])
-            logicEmprendimiento.deleteEmprendimientoByIdEmprendimiento(id)
+            id_emprendimiento = int(request.form["id"])
+            logicEmprendimiento.salirEmprendimiento(idEmprendedor, id_emprendimiento)
             data = logic.getDatosGeneralesById(idUsuario)
             dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
                 idEmprendedor
             )
+            return render_template(
+                "emprendedorProfile.html",
+                data=data,
+                dataEmprendimiento=dataEmprendimiento,
+            )
 
-        return render_template(
-            "emprendedorProfile.html", data=data, dataEmprendimiento=dataEmprendimiento
-        )
+        # Va hacia el emprendimiento que se selecciona
+        elif formId == 6:
+            id = int(request.form["id"])
+            emprendimiento = logicEmprendimiento.getEmprendimientoById(id)
+            session["emprendimiento"] = emprendimiento.id
+            return redirect("/emprendimientoInicio")

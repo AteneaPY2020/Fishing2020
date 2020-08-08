@@ -125,6 +125,21 @@ class emprendedorLogic(Logic):
         rows = database.executeNonQueryRows(sql)
         return rows
 
+    def updateEmprendedorbyIdUsuarioWithPhoto(
+        self, id, nombre, email, telefono, pais, ciudad, biografia, nombre_foto, foto
+    ):
+        database = self.get_databaseXObj()
+        sql = (
+            "update fishingdb.emprendedor "
+            + "set emprendedor.nombre = %s, emprendedor.email = %s, emprendedor.telefono = %s, "
+            + "emprendedor.pais = %s, emprendedor.ciudad = %s, emprendedor.biografia = %s, "
+            + "emprendedor.nombre_foto = %s, emprendedor.foto = %s "
+            + "where emprendedor.id_usuario = %s;"
+        )
+        data = (nombre, email, telefono, pais, ciudad, biografia, nombre_foto, foto, id)
+        rows = database.executeNonQueryRowsTuple(sql, data)
+        return rows
+
     # Obtener datos byId
     def getDatosGeneralesById(self, idUsuario):
         dataBase = self.get_databaseXObj()

@@ -50,13 +50,14 @@
     <!--Form Modificar la informacion general-->
     {% if verdadero %}
         <p>Modificar datos personales</p>
-        <form action="/emprendedorProfile" method="POST">
+        <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
             Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
             Email: <input type="text" name="email" id="email" value="{{email}}"> <br>
             Telefono: <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
             Pais: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
             Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
-            Biografia: <br><textarea name="biografia" cols="30" rows="10" id="biografia" value="{{biografia}}"></textarea><br><br>
+            Biografia: <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{biografia}}</textarea><br><br>
+            Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
             
             <!--Aplicar cambios-->
             <button type="submit" value="update">Aplicar cambios</button>
@@ -74,7 +75,7 @@
         <tr>
             <th>Emprendimiento</th>
             <th>Ir</th>
-            <th>Eliminar</th>
+            <th>Salir</th>
         </tr>
         
         {% for registro in dataEmprendimiento %}
@@ -91,7 +92,7 @@
         <td>
             <!--Boton "delete"-->
             <form action="/emprendedorProfile" method="POST">
-                <button type="submit" value="delete">Borrar</button>
+                <button type="submit" value="delete">Salir</button>
                 <input type="hidden" name="formId" id="formId" value="5">
                 <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
             </form>

@@ -9,7 +9,7 @@ registro_productos = Blueprint(
 @registro_productos.route("/registroProductos", methods=["GET", "POST"])
 def registroProducto():
     logicProducto = productoLogic()
-    id_emprendimiento = 1
+    id_emprendimiento = session["emprendimiento"]
     mostrar = False
     data2 = None
     data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
@@ -53,12 +53,14 @@ def registroProducto():
             data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
             logicProducto.saveImagesProductos(id_emprendimiento)
 
+        # Elimina emprendimiento
         elif formId == 2:
             id_producto = request.form["id_producto"]
             logicProducto.deleteProducto(id_producto)
             data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
             logicProducto.saveImagesProductos(id_emprendimiento)
 
+        # Direcciona hacia el form de update
         elif formId == 3:
             mostrar = True
             nombre = request.form["nombre"]
@@ -78,6 +80,7 @@ def registroProducto():
                 "patente": patente,
             }
 
+        # Modifica el producto
         elif formId == 4:
             nombre = request.form["nombre"]
             foto = request.files["fileToUpload"]

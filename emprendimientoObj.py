@@ -13,6 +13,12 @@ class emprendimientoObj:
         nombre,
         nombre_foto,
         foto,
+        video,
+        email,
+        telefono,
+        facebook,
+        instagram,
+        youtube,
     ):
         self.id = id
         self.estado = estado
@@ -26,6 +32,12 @@ class emprendimientoObj:
         self.nombre = nombre
         self.nombre_foto = nombre_foto
         self.foto = foto
+        self.video = video
+        self.email = email
+        self.telefono = telefono
+        self.facebook = facebook
+        self.instagram = instagram
+        self.youtube = youtube
 
     def getId(self):
         return self.id

@@ -12,6 +12,7 @@ from guardadosLogic import guardadosLogic
 from guardadosObj import guardadosObj
 from productoLogic import productoLogic
 from productoObj import productoObj
+from busquedaLogic import busquedaLogic
 
 inicio_inversionista = Blueprint(
     "module2_bp", __name__, template_folder="Templates", static_folder="static"
@@ -50,9 +51,25 @@ def InicioInv():
 def busqueda():
 
     if request.method == "GET":
-        return render_template("inicioInversionista.html", message="")
+        busqueda = request.form["busqueda"]
+        bLogic = busquedaLogic()
+        return render_template("busquedas.html", message="")
     elif request.method == "POST":
-        return render_template("inicioInversionista.html", message="")
+        logicProd = productoLogic()
+        logicEmp = emprendimientoLogic()
+        prodData = []
+        empData = []
+        Emprendimientos = bLogic.buscarEmprendimiento(busqueda)
+        Productos = bLogic.buscarProducto(busqueda)
+        for id_producto in Productos:
+            Producto = logicProd.getProductoById(id_producto)
+            prodData.append(Producto)
+        for id_emprendimiento in Emprendimientos:
+            Emprendimiento = logicEmp.getEmprendimientoById(id_emprendimiento)
+            empData.append(Emprendimiento)
+        return render_template(
+            "busquedas.html", prodData=prodData, empData=empData, message=""
+        )
 
 
 @inicio_inversionista.route("/perfilInversionista", methods=["GET", "POST"])

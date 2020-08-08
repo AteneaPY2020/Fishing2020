@@ -178,6 +178,12 @@ class emprendimientoLogic(Logic):
                 data_dic["nombre"],
                 data_dic["nombre_foto"],
                 data_dic["foto"],
+                data_dic["video"],
+                data_dic["email"],
+                data_dic["telefono"],
+                data_dic["facebook"],
+                data_dic["instagram"],
+                data_dic["youtube"],
             )
             return emprendimientObj
         else:

@@ -19,6 +19,7 @@ def ProfileEmp():
     data = logic.getDatosGeneralesById(idUsuario)
     idEmprendedor = data[0]["id"]
     if request.method == "GET":
+        data2 = logic.getNotification(idEmprendedor)
         # Fotillo
         logic.saveImagesEmprendedor(idUsuario)
         # Datillos
@@ -26,14 +27,17 @@ def ProfileEmp():
             idEmprendedor
         )
         return render_template(
-            "emprendedorProfile.html", data=data, dataEmprendimiento=dataEmprendimiento
+            "emprendedorProfile.html",
+            data=data,
+            dataEmprendimiento=dataEmprendimiento,
+            data2=data2,
         )
 
     elif request.method == "POST":
         verdadero = False
         verdaderoEmprendimiento = False
         formId = int(request.form["formId"])
-
+        data2 = logic.getNotification(idEmprendedor)
         # Modificar informacion personal
         if formId == 1:
             id = idUsuario
@@ -54,6 +58,7 @@ def ProfileEmp():
                 "emprendedorProfile.html",
                 id=id,
                 data=data,
+                data2=data2,
                 dataEmprendimiento=dataEmprendimiento,
                 verdadero=verdadero,
                 nombre=nombre,
@@ -66,6 +71,7 @@ def ProfileEmp():
 
         # Aplicar cambios en informacion general
         elif formId == 2:
+            data2 = logic.getNotification(idEmprendedor)
             nombre = request.form["nombre"]
             email = request.form["email"]
             telefono = request.form["telefono"]
@@ -101,11 +107,13 @@ def ProfileEmp():
             return render_template(
                 "emprendedorProfile.html",
                 data=data,
+                data2=data2,
                 dataEmprendimiento=dataEmprendimiento,
             )
 
         # Crear nuevo emprendimiento
         elif formId == 3:
+            data2 = logic.getNotification(idEmprendedor)
             id = idEmprendedor
             estado = request.form["estado"]
             descripcion = request.form["descripcion"]
@@ -134,6 +142,7 @@ def ProfileEmp():
                 "emprendedorProfile.html",
                 id=id,
                 data=data,
+                data2=data2,
                 dataEmprendimiento=dataEmprendimiento,
                 verdaderoEmprendimiento=verdaderoEmprendimiento,
                 estado=estado,
@@ -156,6 +165,7 @@ def ProfileEmp():
 
         # Insertar nuevo emprendimiento
         elif formId == 4:
+            data2 = logic.getNotification(idEmprendedor)
             id_emprendedor = idEmprendedor
             estado = request.form["estado"]
             descripcion = request.form["descripcion"]
@@ -228,11 +238,13 @@ def ProfileEmp():
             return render_template(
                 "emprendedorProfile.html",
                 data=data,
+                data2=data2,
                 dataEmprendimiento=dataEmprendimiento,
             )
 
         # Sale del emprendimiento by IdEmprendimiento
         elif formId == 5:
+            data2 = logic.getNotification(idEmprendedor)
             id_emprendimiento = int(request.form["id"])
             logicEmprendimiento.salirEmprendimiento(idEmprendedor, id_emprendimiento)
             data = logic.getDatosGeneralesById(idUsuario)
@@ -242,6 +254,7 @@ def ProfileEmp():
             return render_template(
                 "emprendedorProfile.html",
                 data=data,
+                data2=data2,
                 dataEmprendimiento=dataEmprendimiento,
             )
 

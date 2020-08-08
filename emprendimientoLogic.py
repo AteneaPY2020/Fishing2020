@@ -236,8 +236,8 @@ class emprendimientoLogic(Logic):
         id_emprendimiento = Emprendimiento.getEmprendimientoById(id_emprendimiento)
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor) "
-            + f"values (0, 'te han añadido al emprendimiento {id_emprendimiento.getNombre()}', {id_emprendedor.getId()});"
+            "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha) "
+            + f"values (0, 'te han añadido al emprendimiento {id_emprendimiento.getNombre()}', {id_emprendedor.getId()}, current_date());"
         )
         print(sql)
         rows = database.executeNonQueryRows(sql)

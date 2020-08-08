@@ -160,3 +160,11 @@ class emprendedorLogic(Logic):
                 path = os.getcwd() + "\\static\\images\\emprendedor\\" + nombre_foto
                 with open(path, "wb") as file:
                     file.write(foto)
+
+    def getNotification(self, idUsuario):
+        database = self.get_databaseXObj()
+        sql = f"select notificaciones.mensaje, notificaciones.fecha from fishingdb.notificaciones where id_emprendedor={idUsuario} Order by notificaciones.fecha desc;"
+        print(sql)
+        data = database.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, ["mensaje", "fecha"],)
+        return data

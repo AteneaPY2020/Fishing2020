@@ -1,106 +1,113 @@
 {% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for("static", filename="css/contacto.css")}}">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <title>EmprendedorProfile</title>
 {% endblock head %}
 
 {% block body %}
     <h1>Emprendedor</h1>
-    
+    <div class="col-xs-6">
+        <div id="lhs">
     <!--Fotillo-->
-    <img src="/static/images/emprendedor/{{data[0]["nombre_foto"]}}" width="400" height="341">
-    <br>
+            <img src="/static/images/emprendedor/{{data[0]["nombre_foto"]}}" width="400" height="341">
+            <br>
     
-    <!--Informacion general-->
-    Nombre:
-    {{data[0]["nombre"]}}
-    <br>
-    Email:
-    {{data[0]["email"]}}
-    <br>
-    Telefono:
-    {{data[0]["telefono"]}}
-    <br>
-    Pais:
-    {{data[0]["pais"]}}
-    <br>
-    Ciudad:
-    {{data[0]["ciudad"]}}
-    <br>
-    Biografia:
-    <br>
-    {{data[0]["biografia"]}}
-    <br><br>
+            <!--Informacion general-->
+            Nombre:
+            {{data[0]["nombre"]}}
+            <br>
+            Email:
+            {{data[0]["email"]}}
+            <br>
+            Telefono:
+            {{data[0]["telefono"]}}
+            <br>
+            Pais:
+            {{data[0]["pais"]}}
+            <br>
+            Ciudad:
+            {{data[0]["ciudad"]}}
+            <br>
+            Biografia:
+            <br>
+            {{data[0]["biografia"]}}
+            <br><br>
 
     <!--Boton Modificar la informacion general-->
-    <form action="/emprendedorProfile" method="POST">
-        <button type="submit" value="update">Modificar Informacion Personal</button>
-        
-        <input type="hidden" name="formId" id="formId" value="1">
-        <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
-        <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
-        <input type="hidden" name="email" id="email" value="{{data[0]["email"]}}"> 
-        <input type="hidden" name="telefono" id="telefono" value="{{data[0]["telefono"]}}">
-        <input type="hidden" name="pais" id="pais" value="{{data[0]["pais"]}}">              
-        <input type="hidden" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}">
-        <input type="hidden" name="biografia" id="biografia" value="{{data[0]["biografia"]}}">
-        
-    </form>
+        <form action="/emprendedorProfile" method="POST">
+            <button type="submit" value="update">Modificar Informacion Personal</button>
+            
+            <input type="hidden" name="formId" id="formId" value="1">
+            <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
+            <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
+            <input type="hidden" name="email" id="email" value="{{data[0]["email"]}}"> 
+            <input type="hidden" name="telefono" id="telefono" value="{{data[0]["telefono"]}}">
+            <input type="hidden" name="pais" id="pais" value="{{data[0]["pais"]}}">              
+            <input type="hidden" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}">
+            <input type="hidden" name="biografia" id="biografia" value="{{data[0]["biografia"]}}">
+            
+        </form>
     
     <!--Form Modificar la informacion general-->
-    {% if verdadero %}
-        <p>Modificar datos personales</p>
-        <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-            Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
-            Email: <input type="text" name="email" id="email" value="{{email}}"> <br>
-            Telefono: <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
-            Pais: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
-            Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
-            Biografia: <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{biografia}}</textarea><br><br>
-            Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-            
-            <!--Aplicar cambios-->
-            <button type="submit" value="update">Aplicar cambios</button>
-            <input type="hidden" name="formId" id="formId" value="2">
-            <input type="hidden" name="id" id="id" value="{{id}}">
-        </form>
-    {% endif %}
+        {% if verdadero %}
+            <p>Modificar datos personales</p>
+            <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
+                Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
+                Email: <input type="text" name="email" id="email" value="{{email}}"> <br>
+                Telefono: <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
+                Pais: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
+                Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
+                Biografia: <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{biografia}}</textarea><br><br>
+                Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                
+                <!--Aplicar cambios-->
+                <button type="submit" value="update">Aplicar cambios</button>
+                <input type="hidden" name="formId" id="formId" value="2">
+                <input type="hidden" name="id" id="id" value="{{id}}">
+            </form>
+        {% endif %}
 
     <!--Emprendimientos-->
     <h3>Mis emprendimientos </h3>
-
+    
+    <div style="text-align:center;">
     <!--Tabla de emprendimientos-->
-    <table border="1">
+        <table border="1">
 
-        <tr>
-            <th>Emprendimiento</th>
-            <th>Ir</th>
-            <th>Salir</th>
-        </tr>
-        
-        {% for registro in dataEmprendimiento %}
-        <tr>
-        <td>{{registro["nombre"]}}</td>
-        <td>
-            <!--Boton "Ir"-->
-            <form action="/emprendedorProfile" method="POST">
-                <button type="submit" value="ir">Ir</button>
-                <input type="hidden" name="formId" id="formId" value="6">
-                <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-            </form>
-        </td>
-        <td>
-            <!--Boton "delete"-->
-            <form action="/emprendedorProfile" method="POST">
-                <button type="submit" value="delete">Salir</button>
-                <input type="hidden" name="formId" id="formId" value="5">
-                <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-            </form>
-        </td>
-        {% endfor %}
-    </table>
+            <tr>
+                <th>Emprendimiento</th>
+                <th>Ir</th>
+                <th>Salir</th>
+            </tr>
+            
+            {% for registro in dataEmprendimiento %}
+            <tr>
+            <td>{{registro["nombre"]}}</td>
+            <td>
+                <!--Boton "Ir"-->
+                <form action="/emprendedorProfile" method="POST">
+                    <button type="submit" value="ir">Ir</button>
+                    <input type="hidden" name="formId" id="formId" value="6">
+                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                </form>
+            </td>
+            <td>
+                <!--Boton "delete"-->
+                <form action="/emprendedorProfile" method="POST">
+                    <button type="submit" value="delete">Salir</button>
+                    <input type="hidden" name="formId" id="formId" value="5">
+                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                </form>
+            </td>
+            {% endfor %}
+        </table>
+    </div>
     <br>
-
+    
 
     <!--Boton crear nuevo emprendimiento-->
     <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
@@ -162,7 +169,28 @@
     </form>
     <br><br>
     {% endif %}
+</div>
+</div>
 
+    <div class="col-xs-6">
+        <div id="lhs">
+    <!--Notificaciones-->
+        <h2>Notificaciones </h2>
+        <!--Tabla de notificaciones-->
+        <table border="1">
+            <tr>
+                <th>Notificación</th>
+                <th>Fecha</th>
+            </tr>     
+            {% for registro in data2 %}
+            <tr>
+            <td>{{registro["mensaje"]}}</td>
+            <td>{{registro["fecha"]}}</td>
+            {% endfor %}
+        </table>
+        <br>
+    </div>
+    </div>
 
 {% endblock body %}
 

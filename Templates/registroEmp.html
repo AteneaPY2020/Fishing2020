@@ -6,7 +6,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>BootZard - Bootstrap Wizard Template</title>
+        <title>Registro Emprendedor</title>
 
         <!-- CSS -->
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
@@ -15,19 +15,12 @@
 		<link rel="stylesheet" href="static/t2/assets/css/form-elements.css">
         <link rel="stylesheet" href="static/t2/assets/css/style.css">
 
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="static/t2/assets/ico/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="static/t2/assets/ico/apple-touch-icon-57-precomposed.png">
+        <!--Icono de barra-->
+        <link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" href="static/t2/assets/ico/apple-touch-icon.png" />
 
     </head>
 
@@ -83,9 +76,10 @@
 
                     		<h3>Emprendedor</h3>
                             <p style="color: red">{{ errorMessage }}</p>
+                                
                                 <div class="f1-steps">
                                     <div class="f1-progress">
-                                        <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="2" style="width: 16.66%;"></div>
+                                        <div class="f1-progress-line" data-now-value="16.66" data-number-of-steps="" style="width: 16.66%;"></div>
                                     </div>
                                     <div class="f1-step active">
                                         <div class="f1-step-icon"><i class="fa fa-key"></i></div>
@@ -95,6 +89,7 @@
                                         <div class="f1-step-icon"><i class="fa fa-user"></i></div>
                                         <p>Emprendedor</p>
                                     </div>
+
                                 </div>
                     		
 
@@ -156,6 +151,7 @@
                                     <label class="sr-only" for="f1-about-yourself">Biografia</label>
                                     <textarea name="bio" placeholder="Biografia" class="f1-about-yourself form-control" id="bio" value={{biox}}></textarea>
                                 </div>
+
                                 <div class="f1-buttons">
                                     <button type="button" class="btn btn-previous">Anterior</button>
                                     <button type="submit" class="btn btn-submit">Crear cuenta</button>

@@ -25,3 +25,6 @@ class emprendedorObj:
 
     def getId(self):
         return self.id
+
+    def getNombre(self):
+        return self.nombre

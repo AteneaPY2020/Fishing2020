@@ -7,3 +7,6 @@ class UserObj:
 
     def getId(self):
         return self.id
+
+    def getUser(self):
+        return self.user

@@ -39,6 +39,7 @@ def quienesSomos():
                 data = logic.getAllFundadores(idEmprendimiento)
                 data2 = logic.getHistoria(idEmprendimiento)
                 message = "Se ha agregado al fundador"
+                logic.insertNotificationFundador(user, idEmprendimiento)
                 logic.saveImagesFundadores(idEmprendimiento)
                 return render_template(
                     "quienes_somos.html", data=data, data2=data2, message=message

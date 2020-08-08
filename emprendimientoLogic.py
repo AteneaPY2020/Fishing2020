@@ -227,6 +227,22 @@ class emprendimientoLogic(Logic):
         rows = database.executeNonQueryRows(sql)
         return rows
 
+    def insertNotificationFundador(self, user, id_emprendimiento):
+        id_usuario = UserLogic()
+        usuario = id_usuario.getUserByUser(user)
+        Emprendedor = emprendedorLogic()
+        Emprendimiento = emprendimientoLogic()
+        id_emprendedor = Emprendedor.getEmprendedorByUser(usuario.getId())
+        id_emprendimiento = Emprendimiento.getEmprendimientoById(id_emprendimiento)
+        database = self.get_databaseXObj()
+        sql = (
+            "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor) "
+            + f"values (0, 'te han añadido al emprendimiento {id_emprendimiento.getNombre()}', {id_emprendedor.getId()});"
+        )
+        print(sql)
+        rows = database.executeNonQueryRows(sql)
+        return rows
+
     def deleteFundador(self, idFundador):
         database = self.get_databaseXObj()
         sql = f"delete from fishingdb.fundador where fundador.id = '{idFundador}';"

@@ -19,6 +19,21 @@
     
     <!-- Theme CSS -->  
     <link id="theme-style" rel="stylesheet" href="static/perfil/assets/css/styles.css">
+    <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/perfil/assets/css/util.css">
+	<link rel="stylesheet" type="text/css" href="static/perfil/assets/css/main.css">
     
 
 {% endblock head %}
@@ -92,8 +107,85 @@
                             <div class="item featured text-center">
                                 <h3 class="title">Frase fabulosa</a></h3>
                                 <p class="summary">Revisa los emprendimientos que posees</p>
+
+                                <div class="limiter">
+		                            <div class="container-table100">
+			                            <div class="wrap-table100">
+					                    <div class="table">
+
+						                <div class="row header">
+                                            <div class="cell">
+                                                Emprendimiento
+                                            </div>
+                                            <div class="cell">
+                                                Ir
+                                            </div>
+                                            <div class="cell">
+                                                Salir
+                                            </div>
+                                        </div>
+
+                                        {% for registro in dataEmprendimiento %}
+                                            <div class="row">
+                                                <div class="cell" data-title="Full Name">
+                                                    <tr>
+                                                    <td>{{registro["nombre"]}}</td>
+                                                    <td>
+                                                </div>
+
+                                                <div class="cell" data-title="Age">
+                                                    <tr>
+                                                    <form action="/emprendedorProfile" method="POST">
+                                                        <button type="submit" value="ir">Ir</button>
+                                                        <input type="hidden" name="formId" id="formId" value="6">
+                                                        <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                                    </form>
+                                                    <td>
+                                                </div>
+
+                                                <div class="cell" data-title="Job Title">
+                                                    <tr>
+                                                    <form action="/emprendedorProfile" method="POST">
+                                                    <button type="submit" value="delete">Salir</button>
+                                                    <input type="hidden" name="formId" id="formId" value="5">
+                                                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                                </form>
+                                                    <td>
+                                                </div>
+                                        {% endfor %}
+
+                                        </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+
                                 <div class="featured-image">
-                                <a class="btn btn-cta-secondary" href="https://wrapbootstrap.com/theme/delta-promote-mobile-app-effectively-WB09R23P8?ref=3wm" target="_blank"><i class="fa fa-thumbs-o-up"></i> Crear nuevo emprendimiento</a>                 
+                                <!--<a class="btn btn-cta-secondary" href="https://wrapbootstrap.com/theme/delta-promote-mobile-app-effectively-WB09R23P8?ref=3wm" target="_blank"><i class="fa fa-thumbs-o-up"></i> Crear nuevo emprendimiento</a> -->
+                                <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
+                                    <button class="btn btn-cta-secondary" type="submit" value="insert"><i class="fa fa-thumbs-o-up">Crear nuevo emprendimiento</button>
+                                    <input type="hidden" name="formId" id="formId" value="3">
+                                    <input type="hidden" name="id" id="id" value="{{id}}">
+
+                                    <input type="hidden" name="estado" id="estado" value="{{data[0]["estado"]}}">
+                                    <input type="hidden" name="descripcion" id="descripcion" value="{{data[0]["descripcion"]}}">
+                                    <input type="hidden" name="historia" id="historia" value="{{data[0]["historia"]}}"> 
+                                    <input type="hidden" name="eslogan" id="eslogan" value="{{data[0]["eslogan"]}}">
+                                    <input type="hidden" name="inversion_inicial" id="inversion_inicial" value="{{data[0]["inversion_inicial"]}}">              
+                                    <input type="hidden" name="fecha_fundacion" id="fecha_fundacion" value="{{data[0]["fecha_fundacion"]}}">
+                                    <input type="hidden" name="venta_año_anterior" id="venta_año_anterior" value="{{data[0]["venta_año_anterior"]}}">
+                                    <input type="hidden" name="oferta_porcentaje" id="oferta_porcentaje" value="{{data[0]["oferta_porcentaje"]}}">              
+                                    <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
+                                    <input type="hidden" name="email" id="nombre" email="{{data[0]["email"]}}">
+                                    <input type="hidden" name="telefono" id="telefono" value="{{data[0]["telefono"]}}">
+                                    <input type="hidden" name="video" id="video" value="{{data[0]["video"]}}">
+                                    <input type="hidden" name="facebook" id="facebook" value="{{data[0]["facebook"]}}">
+                                    <input type="hidden" name="instagram" id="instagram" value="{{data[0]["instagram"]}}">
+                                    <input type="hidden" name="youtube" id="youtube" value="{{data[0]["youtube"]}}">
+                                    <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{data[0]["nombre_foto"]}}">
+
+    </form>                 
                             </div><!--//item-->
 
                             <!---->

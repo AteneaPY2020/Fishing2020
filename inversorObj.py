@@ -15,3 +15,6 @@ class inversorObj:
 
     def getId(self):
         return self.id
+
+    def getNombre(self):
+        return self.nombre

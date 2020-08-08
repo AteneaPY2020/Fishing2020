@@ -1,6 +1,7 @@
 from logic import Logic
 from inversorObj import inversorObj
 import os
+from userLogic import UserLogic
 
 
 class inversorLogic(Logic):
@@ -156,3 +157,17 @@ class inversorLogic(Logic):
             path = os.getcwd() + "\\static\\images\\inversionistas\\" + nombre_foto
             with open(path, "wb") as file:
                 file.write(foto)
+
+    def insertNotificationCorreo(self, user, id_emprendedor):
+        id_usuario = UserLogic()
+        usuario = id_usuario.getUserByUser(user)
+        Inversor = inversorLogic()
+        id_inversor = Inversor.getIdInversor(usuario.getId())
+        database = self.get_databaseXObj()
+        sql = (
+            "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha) "
+            + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje', {id_emprendedor}, current_date());"
+        )
+        print(sql)
+        rows = database.executeNonQueryRows(sql)
+        return rows

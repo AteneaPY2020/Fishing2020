@@ -1,36 +1,173 @@
 {% block head %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmprendedorProfile</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Responsive HTML5 Website landing Page for Developers">
+    <meta name="author" content="3rd Wave Media">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="static/perfil/assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="static/perfil/assets/plugins/font-awesome/css/font-awesome.css">
+    <!-- github acitivity css -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
+    <link rel="stylesheet" href="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css">
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="static/perfil/assets/css/styles.css">
+ 
+    
+
 {% endblock head %}
 
 {% block body %}
-    <h1>Emprendedor</h1>
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#page-top">START FISHING</a>
+            
+            <!--<button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded"
+                type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">-->
+                
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                            href="/logIn">LOG IN</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                            href="#about">ABOUT</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                            href="#categorias">CATEGORIAS</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
     
-    <!--Fotillo-->
-    <img src="/static/images/emprendedor/{{data[0]["nombre_foto"]}}" width="400" height="341">
-    <br>
-    
+    <!-- ******HEADER****** --> 
+    <header class="header">
+        <div class="container">    
+            <!--Fotillo-->                   
+            <img class="profile-image img-responsive pull-left"  src="/static/images/emprendedor/{{data[0]["nombre_foto"]}}" alt="FotoPerfil" />
+            <div class="profile-content pull-left">
+                <h1 class="name">{{data[0]["nombre"]}}</h1>
+                <h2 class="desc">Emprendedor</h2>   
+                <ul class="social list-inline">
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>                   
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github-alt"></i></a></li>                  
+                    <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>                 
+                </ul> 
+            </div><!--//profile-->
+            <a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" target="_blank"><i class="fa fa-paper-plane"></i>Editar mi perfil</a>              
+        </div><!--//container-->
+    </header><!--//header-->
+
+    <!--COLUMNA MAYOR-->
+    <div class="container sections-wrapper">
+        <div class="row">
+            <div class="primary col-md-8 col-sm-12 col-xs-12">
+                <section class="about section">
+                    <div class="section-inner">
+                        <h2 class="heading">Biografía</h2>
+                        <div class="content">
+                            <p>{{data[0]["biografia"]}}</p>
+                        </div><!--//content-->
+                    </div><!--//section-inner-->                 
+                </section>
+                
+                <section class="latest section">
+                    <div class="section-inner">
+                        <h2 class="heading">Emprendimientos</h2>
+                        <div class="content">    
+                                               
+                            <div class="item featured text-center">
+                                <h3 class="title">Frase fabulosa</a></h3>
+                                <p class="summary">Revisa los emprendimientos que posees</p>
+                                <div class="featured-image">
+                                <a class="btn btn-cta-secondary" href="https://wrapbootstrap.com/theme/delta-promote-mobile-app-effectively-WB09R23P8?ref=3wm" target="_blank"><i class="fa fa-thumbs-o-up"></i> Crear nuevo emprendimiento</a>                 
+                            </div><!--//item-->
+
+                            <!---->
+
+                            <hr class="divider" />
+                            
+                            
+                            
+                            
+                            
+                            
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </section><!--//section-->
+                
+                
+                
+                
+               
+            </div><!--//primary-->
+
+
+            <!--BARRA INFERIOR-->
+            <div class="secondary col-md-4 col-sm-12 col-xs-12">
+                 <aside class="info aside section">
+                    <div class="section-inner">
+                        <h2 class="heading sr-only">Basic Information</h2>
+                        <div class="content">
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-map-marker"></i><span class="sr-only">Location:</span>{{data[0]["pais"]}}, {{data[0]["ciudad"]}}</li>
+                                <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="#">{{data[0]["email"]}}</a></li>
+                                <li><i class="fa fa-envelope-o"></i><span class="sr-only">Telefono:</span><a href="#">{{data[0]["telefono"]}}</a></li>
+                                                        
+                            </ul>
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </aside><!--//aside-->
+                
+                <aside class="skills aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Notificaciones</h2>
+                        <div class="content">
+                            <p class="intro">
+                                Revisa las interacciones de tu emprendimiento con inverisionistas
+                            <div class="skillset">
+                               
+                                <div class="item">
+                                    <h3 class="level-title">Python &amp; Django<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to add more info...">Expert</span></h3>
+                                    <div class="level-bar">
+                                        <div class="level-bar-inner" data-level="96%">
+                                        </div>                                      
+                                    </div><!--//level-bar-->                                 
+                                </div><!--//item-->
+                        
+                                
+                                <div class="item">
+                                    <h3 class="level-title">HTML5, CSS3, SASS &amp; LESS<span class="level-label">Expert</span></h3>
+                                    <div class="level-bar">
+                                        <div class="level-bar-inner" data-level="96%">
+                                        </div>                                      
+                                    </div><!--//level-bar-->                                 
+                                </div><!--//item-->
+                                
+                                
+                            </div>              
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </aside><!--//section-->
+                
+
+
+        </div>
+    </div>
     <!--Informacion general-->
-    Nombre:
-    {{data[0]["nombre"]}}
-    <br>
-    Email:
-    {{data[0]["email"]}}
-    <br>
-    Telefono:
-    {{data[0]["telefono"]}}
-    <br>
-    Pais:
-    {{data[0]["pais"]}}
-    <br>
-    Ciudad:
-    {{data[0]["ciudad"]}}
-    <br>
-    Biografia:
-    <br>
-    {{data[0]["biografia"]}}
-    <br><br>
+
+
+
 
     <!--Boton Modificar la informacion general-->
     <form action="/emprendedorProfile" method="POST">

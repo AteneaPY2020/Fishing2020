@@ -258,7 +258,7 @@
 
     <!--Boton Modificar la informacion general-->
     <form action="/emprendedorProfile" method="POST">
-        <button type="submit" value="update">Modificar Informacion Personal</button>
+        <button class="btn btn-cta-secondary" type="submit" value="update">Modificar Informacion Personal</button>
         
         <input type="hidden" name="formId" id="formId" value="1">
         <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
@@ -294,7 +294,7 @@
     
 
     <!--Boton crear nuevo emprendimiento-->
-    <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
+    <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data"
         <input type="hidden" name="formId" id="formId" value="3">
         <input type="hidden" name="id" id="id" value="{{id}}">
 

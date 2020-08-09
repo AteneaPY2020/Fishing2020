@@ -27,7 +27,7 @@ h6 {
   color: #778492;
 }
 a {
-  color: #3aaa64;
+  color: #54ba4e;
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;
@@ -66,14 +66,14 @@ a.btn-cta-primary,
 }
 a.btn-cta-primary:hover,
 .btn-cta-primary:hover {
-  background: #49ac43;
-  border: 1px solid #49ac43;
+  background: #54ba4e;
+  border: 1px solid #54ba4e;
   color: #fff;
 }
 a.btn-cta-secondary,
 .btn-cta-secondary {
-  background: #79d34c;
-  border: 1px solid ##79d34c;
+  background: #54ba4e;
+  border: 1px solid #54ba4e;
   color: #fff;
   font-weight: 600;
   text-transform: uppercase;
@@ -92,12 +92,12 @@ a.btn-cta-secondary:hover,
   font-size: 12px;
 }
 a.dotted-link {
-  border-bottom: 1px dotted #778492;
-  color: #778492;
+  border-bottom: 1px dotted #54ba4e;
+  color: #54ba4e;
 }
 a.dotted-link:hover {
   text-decoration: none;
-  color: #49515a;
+  color: #54ba4e;
 }
 /*
 iframe {
@@ -429,6 +429,10 @@ iframe {
 .education .item {
   margin-bottom: 30px;
 }
+
+
+
+
 .education .item:last-child {
   margin-bottom: 0;
 }
@@ -485,23 +489,18 @@ iframe {
   margin-bottom: 10px;
 }
 
-.navbar {
-  position: relative;
+.navbar-nav {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem; }
-  .navbar .container,
-.navbar .container-fluid,
-.navbar .container-sm,
-.navbar .container-md,
-.navbar .container-lg,
-.navbar .container-xl {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between; }
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none; }
+  .navbar-nav .nav-link {
+    padding-right: 0;
+    padding-left: 0; }
+  .navbar-nav .dropdown-menu {
+    position: static;
+    float: none; }
 
 .fixed-top {
   position: fixed;
@@ -513,6 +512,28 @@ iframe {
 .bg-secondary {
   background-color: #1f2d41 !important; }
 
+  .container {
+    width: 100%;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    margin-right: auto;
+    margin-left: auto; }
+  
+  @media (min-width: 576px) {
+    .container {
+      max-width: 540px; } }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 720px; } }
+  
+  @media (min-width: 992px) {
+    .container {
+      max-width: 960px; } }
+  
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1140px; } }
 
 @media (max-width: 991.98px) {
   .navbar-expand-lg > .container,

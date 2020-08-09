@@ -44,15 +44,10 @@ def busqueda():
     if request.method == "GET":
         return render_template("busquedas.html", message="")
     elif request.method == "POST":
-        logicProd = productoLogic()
         logicEmp = emprendimientoLogic()
-        prodData = []
         empData = []
         Emprendimientos = bLogic.buscarEmprendimiento(busqueda)
-        Productos = bLogic.buscarProducto(busqueda)
-        for id_producto in Productos:
-            Producto = logicProd.getProductoById(id_producto)
-            prodData.append(Producto)
+        prodData = bLogic.buscarProducto(busqueda)
 
         for id_emprendimiento in Emprendimientos:
             Emprendimiento = logicEmp.getEmprendimientoById(id_emprendimiento)

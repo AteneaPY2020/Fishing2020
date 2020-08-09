@@ -189,3 +189,11 @@ class emprendedorLogic(Logic):
         data = dataBase.executeQuery(sql)
         id_emprendedor = data[0][0]
         return id_emprendedor
+
+    def getNotification(self, idUsuario):
+        database = self.get_databaseXObj()
+        sql = f"select notificaciones.mensaje, notificaciones.fecha, notificaciones.hora from fishingdb.notificaciones where id_emprendedor={idUsuario} Order by notificaciones.fecha, notificaciones.hora desc;"
+        print(sql)
+        data = database.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, ["mensaje", "fecha", "hora"],)
+        return data

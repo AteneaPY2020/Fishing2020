@@ -13,6 +13,15 @@
     <link rel="stylesheet" href="static/perfil/assets/plugins/bootstrap/css/bootstrap.min.css">   
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="static/perfil/assets/plugins/font-awesome/css/font-awesome.css">
+
+    <link rel="stylesheet" href="static/perfil/main.css">
+    <script>
+            function showPopup(newColor) {
+                var elem = document.getElementById('bg-modal');
+                elem.style.display = newColor;
+            }
+    </script>
+
     <!-- github acitivity css -->
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
     <link rel="stylesheet" href="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css">
@@ -82,7 +91,8 @@
                     <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>                 
                 </ul> 
             </div><!--//profile-->
-            <a class="btn btn-cta-primary pull-right" href="http://themes.3rdwavemedia.com/" target="_blank"><i class="fa fa-paper-plane"></i>Editar mi perfil</a>              
+            
+
         </div><!--//container-->
     </header><!--//header-->
 
@@ -258,9 +268,14 @@
 
 
     <!--Boton Modificar la informacion general-->
+    
     <form action="/emprendedorProfile" method="POST">
-        <button class="btn btn-cta-secondary" type="submit" value="update">Modificar Informacion Personal</button>
         
+        <!--<a class="btn-cta-primary pull-left" onclick="showPopup('flex');"  target="_blank"><i class="fa fa-paper-plane"></i><button class="buttonpopup" type="submit" value="update">Modificar Informacion Personal</button> </a> -->
+        <a class="btn-cta-primary pull-left" onclick="showPopup('flex');"  target="_blank"><i class="fa fa-paper-plane"></i><button type="submit" value="update">Modificar Informacion Personal</button> </a> 
+        <a  onclick="showPopup('flex');" target="_blank"> <button class="buttonpopup" value="update">Modificar</button> </a>
+
+
         <input type="hidden" name="formId" id="formId" value="1">
         <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
         <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
@@ -274,21 +289,27 @@
     
     <!--Form Modificar la informacion general-->
     {% if verdadero %}
-        <p>Modificar datos personales</p>
-        <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-            Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
-            Email: <input type="text" name="email" id="email" value="{{email}}"> <br>
-            Telefono: <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
-            Pais: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
-            Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
-            Biografia: <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{biografia}}</textarea><br><br>
-            Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-            
-            <!--Aplicar cambios-->
-            <button type="submit" value="update">Aplicar cambios</button>
-            <input type="hidden" name="formId" id="formId" value="2">
-            <input type="hidden" name="id" id="id" value="{{id}}">
-        </form>
+        <div id="bg-modal"> 
+            <div class="modal-contact" >
+                    
+                    <p>Modificar datos personales</p>
+                    <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
+                        Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
+                        Email: <input type="text" name="email" id="email" value="{{email}}"> <br><br>
+                        Telefono: <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br><br>
+                        Pais: <input type="text" name="pais" id="pais" value="{{pais}}"><br><br>
+                        Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br><br>
+                        Biografia: <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{biografia}}</textarea><br><br>
+                        Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+                        
+                        <!--Aplicar cambios--> 
+                        <a onclick= "showPopup('none');"> <button type="submit" class="buttonpopupclose" value="update">Aplicar cambios</button> </a>
+                        <input type="hidden" name="formId" id="formId" value="2">
+                        <input type="hidden" name="id" id="id" value="{{id}}">
+                    </form>
+                </div>
+            </div>
+        
     {% endif %}
 
     <!--Emprendimientos-->

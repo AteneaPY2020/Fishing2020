@@ -6,12 +6,13 @@ from inversorObj import inversorObj
 from emprendedorLogic import emprendedorLogic
 from emprendedorObj import emprendedorObj
 from emprendimientoLogic import emprendimientoLogic
-from especialidadLogic import especialidadLogic
+from interesLogic import interesLogic
 from especialidadObj import especialidadObj
 from guardadosLogic import guardadosLogic
 from guardadosObj import guardadosObj
 from productoLogic import productoLogic
 from productoObj import productoObj
+from busquedaLogic import busquedaLogic
 
 inicio_inversionista = Blueprint(
     "module2_bp", __name__, template_folder="Templates", static_folder="static"
@@ -22,23 +23,12 @@ inicio_inversionista = Blueprint(
 def InicioInv():
     user = session["user"]
     id_user = int(user["id"])
-    print(id_user)
-    logicEsp = especialidadLogic()
+    logicInt = interesLogic()
     logicInv = inversorLogic()
     datos = logicInv.getIdInversor(id_user)
     Inversor = logicInv.createDictionary(datos)
     id_inv = int(Inversor["id"])
-    intereses = list(logicInv.getAllInteres(id_inv))
-    print(Inversor)
-    print(intereses)
-    logicEmp = emprendimientoLogic()
-    data = []
-    for id_interes in intereses:
-        datosEsp = logicEsp.getAllEspecialidad(id_interes)
-        for id_emprendimiento in datosEsp:
-            Emprendimiento = logicEmp.getEmprendimientoById(id_emprendimiento)
-            print(data)
-            data.append(Emprendimiento)
+    data = logicInt.getAllInteresByIdInv(id_inv)
 
     if request.method == "GET":
         return render_template("inicioInversionista.html", data=data, message="")
@@ -48,11 +38,28 @@ def InicioInv():
 
 @inicio_inversionista.route("/busqueda", methods=["GET", "POST"])
 def busqueda():
+    busqueda = request.form["busqueda"]
+    bLogic = busquedaLogic()
 
     if request.method == "GET":
-        return render_template("inicioInversionista.html", message="")
+        return render_template("busquedas.html", message="")
     elif request.method == "POST":
-        return render_template("inicioInversionista.html", message="")
+        logicProd = productoLogic()
+        logicEmp = emprendimientoLogic()
+        prodData = []
+        empData = []
+        Emprendimientos = bLogic.buscarEmprendimiento(busqueda)
+        Productos = bLogic.buscarProducto(busqueda)
+        for id_producto in Productos:
+            Producto = logicProd.getProductoById(id_producto)
+            prodData.append(Producto)
+
+        for id_emprendimiento in Emprendimientos:
+            Emprendimiento = logicEmp.getEmprendimientoById(id_emprendimiento)
+            empData.append(Emprendimiento)
+        return render_template(
+            "busquedas.html", prodData=prodData, empData=empData, busqueda=busqueda,
+        )
 
 
 @inicio_inversionista.route("/perfilInversionista", methods=["GET", "POST"])
@@ -166,15 +173,9 @@ def guardadosInv():
     id_inv = int(Inversor["id"])
     # Guardados
     logicSave = guardadosLogic()
-    guardados = list(logicSave.getAllGuardados(id_inv))
-    print(Inversor)
-    print(guardados)
-    logicProd = productoLogic()
-    data = []
-    for id_producto in guardados:
-        Producto = logicProd.getProductoById(id_producto)
-        print(1)
-        data.append(Producto)
+    data = logicSave.getAllGuardados(id_inv)
+    print(data)
+
     if request.method == "GET":
         return render_template("guardadosInversionista.html", data=data, message="")
     elif request.method == "POST":
@@ -184,10 +185,5 @@ def guardadosInv():
         print(id_prod)
         if formId == 2:
             logicSave.deleteGuardado(id_inv, id_prod)
-            guardados = list(logicSave.getAllGuardados(id_inv))
-            data = []
-            for id_producto in guardados:
-                Producto = logicProd.getProductoById(id_producto)
-                print(data)
-                data.append(Producto)
+            data = logicSave.getAllGuardados(id_inv)
         return render_template("guardadosInversionista.html", data=data, message="")

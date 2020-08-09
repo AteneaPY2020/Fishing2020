@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsquedas</title>
+</head>
+<body>
+    <h1>Resultados de {{busqueda}}</h1>
+    <table>
+        
+        {%for registro in empData%}
+        <tr>
+            <th><img src="/static/images/emprendimientos/{{registro["nombre_foto"]}}" width="100" height="100"></th>
+            <th>Nombre: {{registro["nombre"]}}<br>Descripcion: {{registro["descripcion"]}}</th>
+        </tr>
+        {%endfor%}
+        {%for registro in prodData%}
+        <tr>
+            <th><img src="/static/images/productos/{{registro["nombre_foto"]}}" width="100" height="100"></th>
+            <th>Nombre: {{registro["nombre"]}}<br>Descripcion: {{registro["descripcion"]}}</th>
+        </tr>
+        {%endfor%}
+        
+    </table>
+    
+</body>
+</html>

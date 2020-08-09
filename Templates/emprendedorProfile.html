@@ -117,7 +117,6 @@
                             <div class="item featured text-center">
                                 <h3 class="title">Frase fabulosa</a></h3>
                                 <p class="summary">Revisa los emprendimientos que posees</p>
-
                                 <div class="limiter">
 		                            <div class="container-table100">
 			                            <div class="wrap-table100">
@@ -128,7 +127,7 @@
                                                 Emprendimiento
                                             </div>
                                             <div class="cell">
-                                                Ir
+                                                Visitar
                                             </div>
                                             <div class="cell">
                                                 Eliminar
@@ -136,10 +135,30 @@
                                         </div>
                                         {% for registro in dataEmprendimiento %}
                                             <div class="row">
+
+                                                <div class="cell1" data-title="Full Name">
+                                                    <tr>
+                                                    <td>df</td>
+                                                    <td>
+                                                </div>
+                                                <div class="cell1" data-title="Age">
+                                                    <tr>
+                                                    <td>sd</td>
+                                                    </tr>
+                                                </div>
+
+                                                <div class="cell1" data-title="Job Title">
+                                                    <tr>
+                                                    <td>sdf</td>
+                                                    </tr>
+                                                </div>
+                                                </div>
+
+                                                <div class="row">
                                                 <div class="cell" data-title="Full Name">
                                                     <tr>
                                                     <td>{{registro["nombre"]}}</td>
-                                                    <td>
+                                                    </tr>
                                                 </div>
                                                 <div class="cell" data-title="Age">
                                                     <tr>
@@ -148,7 +167,7 @@
                                                         <input type="hidden" name="formId" id="formId" value="6">
                                                         <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                                     </form>
-                                                    <td>
+                                                    </tr>
                                                 </div>
 
                                                 <div class="cell" data-title="Job Title">
@@ -158,8 +177,9 @@
                                                     <input type="hidden" name="formId" id="formId" value="5">
                                                     <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                                 </form>
-                                                    <td>
+                                                    </tr>
                                                 </div>
+
                                         {% endfor %}
 
                                         </div>

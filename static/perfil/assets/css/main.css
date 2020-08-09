@@ -189,6 +189,17 @@ iframe {
   padding-bottom: 20px;
   border-bottom: 1px solid #f2f2f2;
 }
+.row .cell1 {
+  font-family: Poppins-Regular;
+  font-size: 15px;
+  color: #666666;
+  line-height: 1.2;
+  font-weight: unset !important;
+
+  padding-top: 2px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #f2f2f2;
+}
 
 .row.header .cell {
   font-family: Poppins-Regular;

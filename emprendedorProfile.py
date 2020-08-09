@@ -19,8 +19,6 @@ def ProfileEmp():
     data = logic.getDatosGeneralesById(idUsuario)
     idEmprendedor = data[0]["id"]
     if request.method == "GET":
-        # Fotillo
-        logic.saveImagesEmprendedor(idUsuario)
         # Datillos
         dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
             idEmprendedor
@@ -89,14 +87,12 @@ def ProfileEmp():
                     pais,
                     ciudad,
                     biografia,
-                    nombre_foto,
                     binary_foto,
                 )
             data = logic.getDatosGeneralesById(idUsuario)
             dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
                 idEmprendedor
             )
-            logic.saveImagesEmprendedor(idUsuario)
 
             return render_template(
                 "emprendedorProfile.html",
@@ -106,52 +102,17 @@ def ProfileEmp():
 
         # Crear nuevo emprendimiento
         elif formId == 3:
-            id = idEmprendedor
-            estado = request.form["estado"]
-            descripcion = request.form["descripcion"]
-            historia = request.form["historia"]
-            eslogan = request.form["eslogan"]
-            inversion_inicial = request.form["inversion_inicial"]
-            fecha_fundacion = request.form["fecha_fundacion"]
-            venta_año_anterior = request.form["venta_año_anterior"]
-            oferta_porcentaje = request.form["oferta_porcentaje"]
-            nombre = request.form["nombre"]
-            nombre_foto = request.form["nombre_foto"]
-            video = request.form["video"]
-            email = request.form["email"]
-            telefono = request.form["telefono"]
-            facebook = request.form["facebook"]
-            instagram = request.form["instagram"]
-            youtube = request.form["youtube"]
-
             verdaderoEmprendimiento = True
 
             dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
-                id
+                idEmprendedor
             )
             data = logic.getDatosGeneralesById(idUsuario)
             return render_template(
                 "emprendedorProfile.html",
-                id=id,
                 data=data,
                 dataEmprendimiento=dataEmprendimiento,
                 verdaderoEmprendimiento=verdaderoEmprendimiento,
-                estado=estado,
-                descripcion=descripcion,
-                historia=historia,
-                eslogan=eslogan,
-                inversion_inicial=inversion_inicial,
-                fecha_fundacion=fecha_fundacion,
-                venta_año_anterior=venta_año_anterior,
-                oferta_porcentaje=oferta_porcentaje,
-                nombre=nombre,
-                nombre_foto=nombre_foto,
-                video=video,
-                email=email,
-                telefono=telefono,
-                facebook=facebook,
-                instagram=instagram,
-                youtube=youtube,
             )
 
         # Insertar nuevo emprendimiento
@@ -210,7 +171,6 @@ def ProfileEmp():
                     oferta_porcentaje,
                     id_emprendedor,
                     nombre,
-                    nombre_foto,
                     binary_foto,
                     video,
                     email,

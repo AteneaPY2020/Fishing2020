@@ -13,7 +13,6 @@ def registroProducto():
     mostrar = False
     data2 = None
     data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
-    logicProducto.saveImagesProductos(id_emprendimiento)
     if request.method == "GET":
         return render_template("registroProductos.html", data=data)
     elif request.method == "POST":
@@ -42,7 +41,6 @@ def registroProducto():
                 binary_foto = foto.read()
                 logicProducto.insertNewProducto(
                     nombre,
-                    nombre_foto,
                     binary_foto,
                     descripcion,
                     costoUnitario,
@@ -51,14 +49,12 @@ def registroProducto():
                     id_emprendimiento,
                 )
             data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
-            logicProducto.saveImagesProductos(id_emprendimiento)
 
         # Elimina emprendimiento
         elif formId == 2:
             id_producto = request.form["id_producto"]
             logicProducto.deleteProducto(id_producto)
             data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
-            logicProducto.saveImagesProductos(id_emprendimiento)
 
         # Direcciona hacia el form de update
         elif formId == 3:
@@ -105,7 +101,6 @@ def registroProducto():
                 logicProducto.updateProducto(
                     id_producto,
                     nombre,
-                    nombre_foto,
                     binary_foto,
                     descripcion,
                     costoUnitario,
@@ -113,7 +108,6 @@ def registroProducto():
                     patente,
                 )
             data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
-            logicProducto.saveImagesProductos(id_emprendimiento)
 
         return render_template(
             "registroProductos.html", data=data, mostrar=mostrar, data2=data2

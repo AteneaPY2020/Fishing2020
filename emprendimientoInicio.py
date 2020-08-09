@@ -56,13 +56,7 @@ def getInformacionGeneral():
             else:
                 binary_foto = foto.read()
                 logic.updateDatosGeneralesWithFoto(
-                    idEmprendimiento,
-                    descripcion,
-                    eslogan,
-                    nombre,
-                    nombre_foto,
-                    binary_foto,
-                    video,
+                    idEmprendimiento, descripcion, eslogan, nombre, binary_foto, video,
                 )
             data = logic.getDatosGeneralesById(idEmprendimiento)
             logic.saveImagesEmprendimiento(idEmprendimiento)

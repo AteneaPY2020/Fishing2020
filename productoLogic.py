@@ -21,7 +21,6 @@ class productoLogic(Logic):
     def insertNewProducto(
         self,
         name,
-        nombre_foto,
         foto,
         descripcion,
         costo_unitario,
@@ -31,13 +30,11 @@ class productoLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.productos (id, nombre, nombre_foto, foto, descripcion, costo_unitario, precio_venta, patente, id_emprendimiento) "
-            + "values (0, %s, %s, %s, %s, %s, %s, %s, %s);"
+            "insert into fishingdb.productos (id, nombre, descripcion, costo_unitario, precio_venta, patente, id_emprendimiento) "
+            + "values (0, %s, %s, %s, %s, %s, %s);"
         )
         data = (
             name,
-            nombre_foto,
-            foto,
             descripcion,
             costo_unitario,
             precio_venta,
@@ -45,6 +42,21 @@ class productoLogic(Logic):
             id_emprendimiento,
         )
         rows = database.executeNonQueryRowsTuple(sql, data)
+
+        id_producto = self.getIdProductoByIdEmprendimiento(
+            id_emprendimiento, descripcion
+        )
+        nombre_foto = str(id_producto) + ".png"
+
+        sql2 = (
+            "update fishingdb.productos "
+            + "set productos.nombre_foto = %s, productos.foto = %s "
+            + "where productos.id = %s;"
+        )
+        data2 = (nombre_foto, foto, id_producto)
+        database.executeNonQueryRowsTuple(sql2, data2)
+        self.saveImagesProductos(id_producto)
+
         return rows
 
     def insertNewProductoWithoutPhoto(
@@ -81,8 +93,8 @@ class productoLogic(Logic):
         data = self.tupleToDictionaryList(data, self.keys)
         return data
 
-    def saveImagesProductos(self, id_emprendimiento):
-        data = self.getAllProductosByIdEmprendimiento(id_emprendimiento)
+    def saveImagesProductos(self, id_producto):
+        data = self.getProductoByIdDiccionary(id_producto)
         for registro in data:
             foto = registro["foto"]
             nombre_foto = registro["nombre_foto"]
@@ -113,7 +125,6 @@ class productoLogic(Logic):
         self,
         id_producto,
         name,
-        nombre_foto,
         foto,
         descripcion,
         costo_unitario,
@@ -123,12 +134,11 @@ class productoLogic(Logic):
         database = self.get_databaseXObj()
         sql = (
             "update fishingdb.productos"
-            + " set nombre = %s, nombre_foto = %s, foto = %s, descripcion = %s, costo_unitario = %s, precio_venta = %s, patente = %s"
+            + " set nombre = %s, foto = %s, descripcion = %s, costo_unitario = %s, precio_venta = %s, patente = %s"
             + " where id = %s;"
         )
         data = (
             name,
-            nombre_foto,
             foto,
             descripcion,
             costo_unitario,
@@ -137,6 +147,7 @@ class productoLogic(Logic):
             id_producto,
         )
         rows = database.executeNonQueryRowsTuple(sql, data)
+        self.saveImagesProductos(id_producto)
         return rows
 
     def getProductoById(self, id):
@@ -161,3 +172,21 @@ class productoLogic(Logic):
             return prodObj
         else:
             return None
+
+    def getIdProductoByIdEmprendimiento(self, id_emprendimiento, descripcion):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "SELECT productos.id FROM fishingdb.productos "
+            + f"where productos.id_emprendimiento = {id_emprendimiento} and productos.descripcion = '{descripcion}';"
+        )
+        data = dataBase.executeQuery(sql)
+        id_producto = data[0][0]
+        return id_producto
+
+    def getProductoByIdDiccionary(self, id):
+        dataBase = self.get_databaseXObj()
+        sql = "SELECT * FROM fishingdb.productos " + f"where productos.id = {id};"
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        return data

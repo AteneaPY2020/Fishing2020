@@ -18,16 +18,28 @@ class inversorLogic(Logic):
             "nombre_foto",
         ]
 
-    def insertNewInversor(
-        self, name, bio, email, id_user, country, city, nombre_foto, foto
-    ):
+    def insertNewInversor(self, name, bio, email, id_user, country, city, foto):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.inversionista (id, nombre, biografia, email, id_usuario, pais, ciudad, nombre_foto, foto) "
-            + "values (0, %s, %s, %s, %s, %s, %s, %s, %s);"
+            "insert into fishingdb.inversionista (id, nombre, biografia, email, id_usuario, pais, ciudad) "
+            + "values (0, %s, %s, %s, %s, %s, %s);"
         )
-        data = (name, bio, email, id_user, country, city, nombre_foto, foto)
+        data = (name, bio, email, id_user, country, city)
         rows = database.executeNonQueryRowsTuple(sql, data)
+
+        id_inversionista = self.getIdInversionistaByIdUsuario(id_user)
+        nombre_foto = str(id_inversionista) + ".png"
+
+        sql2 = (
+            "update fishingdb.inversionista "
+            + "set inversionista.nombre_foto = %s, inversionista.foto = %s "
+            + "where inversionista.id = %s;"
+        )
+        data2 = (nombre_foto, foto, id_inversionista)
+        database.executeNonQueryRowsTuple(sql2, data2)
+
+        self.saveImagesInversionista(id_user)
+
         return rows
 
     def insertNewInversorWithoutPhoto(
@@ -130,7 +142,10 @@ class inversorLogic(Logic):
 
     def updateInversionista(self, id, name, bio, email, id_user, country, city):
         database = self.get_databaseXObj()
-        sql = f"update fishingdb.inversionista set inversionista.nombre= '{name}', inversionista.biografia= '{bio}', inversionista.email= '{email}', + inversionista.id_usuario= '{id_user}', inversionista.pais= '{country}', inversionista.ciudad= '{city}' where inversionista.id = '{id}';"
+        sql = (
+            f"update fishingdb.inversionista set inversionista.nombre= '{name}', inversionista.biografia= '{bio}', inversionista.email= '{email}', "
+            + f"inversionista.id_usuario= '{id_user}', inversionista.pais= '{country}', inversionista.ciudad= '{city}' where inversionista.id = '{id}';"
+        )
         row = database.executeNonQueryRows(sql)
         return row
 
@@ -153,6 +168,17 @@ class inversorLogic(Logic):
         foto = Inversor["foto"]
         nombre_foto = Inversor["nombre_foto"]
         if nombre_foto != "inversionista.jpg":
-            path = os.getcwd() + "\\static\\images\\inversionistas\\" + nombre_foto
+            path = os.getcwd() + "\\static\\images\\inversionista\\" + nombre_foto
             with open(path, "wb") as file:
                 file.write(foto)
+
+    def getIdInversionistaByIdUsuario(self, id_usuario):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "select inversionista.id from fishingdb.inversionista inner join fishingdb.usuario "
+            + "on inversionista.id_usuario = usuario.id "
+            + f"where usuario.id like '{id_usuario}';"
+        )
+        data = dataBase.executeQuery(sql)
+        id_emprendedor = data[0][0]
+        return id_emprendedor

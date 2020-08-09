@@ -90,10 +90,9 @@ def signUpInversor():
                 cityx=city,
             )
         else:
-            userData = logicUsuario.getUser(user, password)
             logicUsuario.insertNewUser(user, password, rol)
-            logicUsuario.getNewUser(user, password, rol)
-            idUsuario = int(logicUsuario.getNewUser(user, password, rol).getId())
+            userData = logicUsuario.getUser(user, password)
+            idUsuario = int(userData.getId())
             # Creando nuevo Inversor
             logicInversor = inversorLogic()
             if nombre_foto == "default.png":
@@ -102,7 +101,7 @@ def signUpInversor():
                 )
             else:
                 logicInversor.insertNewInversor(
-                    name, bio, email, idUsuario, country, city, nombre_foto, binary_foto
+                    name, bio, email, idUsuario, country, city, binary_foto
                 )
             logicInversor.getNewInversor(name, bio, email, idUsuario, country, city)
             idInversor = int(
@@ -173,10 +172,9 @@ def signUpEmprendedor():
                 phonex=phone,
             )
         else:
-            userData = logicUsuario.getUser(user, password)
             logicUsuario.insertNewUser(user, password, rol)
-            current_user = logicUsuario.getNewUser(user, password, rol)
-            id_user = int(current_user.getId())
+            userData = logicUsuario.getUser(user, password)
+            id_user = int(userData.getId())
             # Creando nuevo emprendedor
             logicEmprendedor = emprendedorLogic()
 
@@ -186,15 +184,7 @@ def signUpEmprendedor():
                 )
             else:
                 logicEmprendedor.insertNewEmprendedor(
-                    name,
-                    email,
-                    phone,
-                    id_user,
-                    country,
-                    city,
-                    bio,
-                    nombre_foto,
-                    binary_foto,
+                    name, email, phone, id_user, country, city, bio, binary_foto,
                 )
             dataDic = logicUsuario.createDictionary(userData)
             session["user"] = dataDic

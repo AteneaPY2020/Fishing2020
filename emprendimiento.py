@@ -154,4 +154,3 @@ def informacion():
             return render_template(
                 "informacion.html", data=data, data2=data2, mostrar1=False
             )
-

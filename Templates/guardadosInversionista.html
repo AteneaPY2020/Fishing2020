@@ -22,12 +22,12 @@
     <table>
     {%for registro in data%}
       <tr>
-        <td><img src="/static/images/productos/{{registro["nombre_foto"]}}" width="100" height="100"></td>
-        <td>Nombre: {{registro["nombre"]}} <br><br> Descripción: {{registro["descripcion"]}}</td>
+        <td><img src="/static/images/productos/{{registro[3]}}" width="100" height="100"></td>
+        <td>Nombre: {{registro[2]}} <br><br> Descripción: {{registro[1]}}</td>
         <form action="/guardadosInv" method="POST">
         <td><button type="submit" value= "Delete">Borrar</button></td>
         <input type="hidden" name="formId" id="formId" value="2">
-        <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+        <input type="hidden" name="id" id="id" value="{{registro[0]}}">
         </form>
       </tr>
     {%endfor%}

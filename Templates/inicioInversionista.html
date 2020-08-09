@@ -22,13 +22,13 @@
     <h1>Bienvenido</h1>
     <table>
         {%for registro in data%}
-        <tr>{%if registro["nombre_foto"] == None%}
+        <tr>{%if registro[2] == None%}
                 <td><img src="/static/images/emprendimientos/unnamed.png" width="100" height="100"></td>
             {%endif%}
-            {%if registro["nombre_foto"] != None%}
-            <td><img src="/static/images/emprendimientos/{{registro["nombre_foto"]}}" width="100" height="100"></td>
+            {%if registro[2] != None%}
+            <td><img src="/static/images/emprendimientos/{{registro[2]}}" width="100" height="100"></td>
             {%endif%}
-            <td>Nombre: {{registro["nombre"]}}<br>Descripcion: {{registro["descripcion"]}}</td>
+            <td>Nombre: {{registro[1]}}<br>Descripcion: {{registro[0]}}</td>
             
         </tr>
         {%endfor%}

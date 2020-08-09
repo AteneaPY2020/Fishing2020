@@ -23,6 +23,7 @@ def ProfileEmp():
         dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
             idEmprendedor
         )
+        data2 = logic.getNotification(idEmprendedor)
         return render_template(
             "emprendedorProfile.html",
             data=data,

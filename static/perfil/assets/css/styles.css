@@ -253,7 +253,7 @@ iframe {
   position: relative;
 }
 .latest .featured-image .text {
-  background: #3aaa64;
+  background: #54ba4e;
   color: #fff;
 }
 .latest .featured-image .ribbon {
@@ -394,7 +394,7 @@ iframe {
 }
 .skills .skillset .level-bar-inner {
   height: 15px;
-  background: #66cb8c;
+  background: #54ba4e;
 }
 /* Testimonials section */
 .testimonials .item {
@@ -410,7 +410,7 @@ iframe {
   margin-bottom: 15px;
 }
 .testimonials .item .quote .fa {
-  color: #79d19a;
+  color: #54ba4e;
   margin-right: 15px;
 }
 .testimonials .item .source {
@@ -609,16 +609,136 @@ iframe {
     position: static;
     float: none; }
 
+    .ml-auto,
+    .mx-auto {
+      margin-left: auto !important; }
+
+
+      .nav-tabs {
+        border-bottom: 0.125rem solid #dee2e6; }
+        .nav-tabs .nav-item {
+          margin-bottom: -0.125rem; }
+        .nav-tabs .nav-link {
+          border: 0.125rem solid transparent;
+          border-top-left-radius: 0.5rem;
+          border-top-right-radius: 0.5rem; }
+          .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+            border-color: #e9ecef #e9ecef #dee2e6; }
+          .nav-tabs .nav-link.disabled {
+            color: #6c757d;
+            background-color: transparent;
+            border-color: transparent; }
+        .nav-tabs .nav-link.active,
+      .nav-tabs .nav-item.show .nav-link {
+          color: #495057;
+          background-color: #fff;
+          border-color: #dee2e6 #dee2e6 #fff; }
+        .nav-tabs .dropdown-menu {
+          margin-top: -0.125rem;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0; }
+
+
+          .nav-fill .nav-item {
+            flex: 1 1 auto;
+            text-align: center; }
+          
+          .nav-justified .nav-item {
+            flex-basis: 0;
+            flex-grow: 1;
+            text-align: center; }
+            .mr-0,
+            .mx-0 {
+              margin-right: 0 !important; }
+            
+            .mb-0,
+            .my-0 {
+              margin-bottom: 0 !important; }
+            
+            .ml-0,
+            .mx-0 {
+              margin-left: 0 !important; }
+
+              .mx-lg-1 {
+                margin-right: 0.25rem !important; }
+
+                .mx-lg-1 {
+                  margin-left: 0.25rem !important; }
+
+                  #mainNav {
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+                    font-family: "SB Heading", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+                    font-weight: 700; }
+                    #mainNav .navbar-brand {
+                      color: #fff; }
+                    #mainNav .navbar-nav {
+                      margin-top: 1rem; }
+                      #mainNav .navbar-nav li.nav-item a.nav-link {
+                        color: #fff; }
+                        #mainNav .navbar-nav li.nav-item a.nav-link:hover {
+                          color: #ce3f22; }
+                        #mainNav .navbar-nav li.nav-item a.nav-link:active, #mainNav .navbar-nav li.nav-item a.nav-link:focus {
+                          color: #fff; }
+                        #mainNav .navbar-nav li.nav-item a.nav-link.active {
+                          color: #ce3f22; }
+                    #mainNav .navbar-toggler {
+                      font-size: 80%;
+                      padding: 0.8rem; }
+
+                      .pt-3,
+                      .py-3 {
+                        padding-top: 1rem !important; }
+                      
+                      .pr-3,
+                      .px-3 {
+                        padding-right: 1rem !important; }
+                      
+                      .pb-3,
+                      .py-3 {
+                        padding-bottom: 1rem !important; }
+
+                        .pr-0,
+                        .px-0 {
+                          padding-right: 0 !important; }
+                        
+                        .pb-0,
+                        .py-0 {
+                          padding-bottom: 0 !important; }
+                        
+                        .pl-0,
+                        .px-0 {
+                          padding-left: 0 !important; }
+
+                          .pr-lg-3,
+                          .px-lg-3 {
+                              padding-right: 1rem !important; }
+                            .pb-lg-3,
+                          .py-lg-3 {
+                              padding-bottom: 1rem !important; }
+                            .pl-lg-3,
+                          .px-lg-3 {
+                              padding-left: 1rem !important; }
 .navbar-brand {
   display: inline-block;
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
   margin-right: 1rem;
-  font-size: 1.25rem;
+  font-size: 2.5rem;
   line-height: inherit;
   white-space: nowrap; }
   .navbar-brand:hover, .navbar-brand:focus {
     text-decoration: none; }
+
+    .navbar-toggler {
+      padding: 0.25rem 0.75rem;
+      font-size: 1.25rem;
+      line-height: 1;
+      background-color: transparent;
+      border: 0.125rem solid transparent;
+      border-radius: 0.5rem; }
+      .navbar-toggler:hover, .navbar-toggler:focus {
+        text-decoration: none; }
 
 .credits ul li a:hover {
   color: #49515a;

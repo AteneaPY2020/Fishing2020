@@ -214,6 +214,28 @@ class emprendimientoLogic(Logic):
         )
         return data
 
+    def checkUserAlredyExist(self, user, idEmprendimiento):
+        id_usuario = UserLogic()
+        usuario = id_usuario.getUserByUser(user)
+
+        infoEmprendedor = emprendedorLogic()
+        id_emprendedor = infoEmprendedor.getEmprendedorByUser(usuario.getId())
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "SELECT fundador.id FROM fishingdb.fundador "
+            + f"where fundador.id_emprendedor = {id_emprendedor.getId()} and fundador.id_emprendimiento = {idEmprendimiento};"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        counter = 0
+        for item in data:
+            counter += 1
+
+        if counter > 0:
+            return True
+        else:
+            return False
+
     def saveImagesFundadores(self, idEmprendimiento):
         data = self.getAllFundadores(idEmprendimiento)
         for registro in data:

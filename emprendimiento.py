@@ -32,17 +32,29 @@ def quienesSomos():
             user = request.form["user"]
             rol = 3
             logicUsuario = UserLogic()
+            logicEmpre = emprendimientoLogic()
             # Comprobando si existe
             existeUsuario = logicUsuario.checkUserInUsuario(user, rol)
             if existeUsuario:
-                rows = logic.insertNewFundador(user, idEmprendimiento)
-                data = logic.getAllFundadores(idEmprendimiento)
-                data2 = logic.getHistoria(idEmprendimiento)
-                message = "Se ha agregado al fundador"
-                logic.saveImagesFundadores(idEmprendimiento)
-                return render_template(
-                    "quienes_somos.html", data=data, data2=data2, message=message
-                )
+                # compruebo si ya lo habian insertado
+                alredyInseted = logicEmpre.checkUserAlredyExist(user, idEmprendimiento)
+                if alredyInseted is False:
+                    rows = logic.insertNewFundador(user, idEmprendimiento)
+                    data = logic.getAllFundadores(idEmprendimiento)
+                    data2 = logic.getHistoria(idEmprendimiento)
+                    message = "Se ha agregado al fundador"
+                    return render_template(
+                        "quienes_somos.html", data=data, data2=data2, message=message
+                    )
+                else:
+                    data = logic.getAllFundadores(idEmprendimiento)
+                    data2 = logic.getHistoria(idEmprendimiento)
+                    message = (
+                        "El usuario ya se encuentra asignado a este emprendimiento."
+                    )
+                    return render_template(
+                        "quienes_somos.html", data=data, data2=data2, message=message
+                    )
             else:
                 data = logic.getAllFundadores(idEmprendimiento)
                 data2 = logic.getHistoria(idEmprendimiento)

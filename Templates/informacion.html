@@ -58,6 +58,7 @@
                                 </tr>
                                 </table>
                                 <br>
+                                {%if not vistaEmprendimiento%}
                                 <form action="/informacion" method="POST">
                                     <button type="submit" value="modificar"> Modificar</button>
                                     <input type="hidden" name="formId" id="formId" value="3">
@@ -67,6 +68,7 @@
                                     <input type="hidden" name="instagramx" id="instagramx" value = "{{registro["instagram"]}}">
                                     <input type="hidden" name="youtubex" id="youtubex" value = "{{registro["youtube"]}}">
                                 </form>
+                                {%endif%}
                             {% endfor %}  
 
                         {%if mostrar1%}
@@ -126,6 +128,7 @@
                                 </tr>
                                 </table>
                                 <br>
+                                {%if not vistaEmprendimiento%}
                                     <form action="/informacion" method="POST">
                                         <button type="submit" value="delete"> Modificar</button>
                                         <input type="hidden" name="formId" id="formId" value="1">
@@ -134,6 +137,7 @@
                                         <input type="hidden" name="venta_año_anteriorx" id="venta_año_anteriorx" value = "{{registro["venta_año_anterior"]}}">
                                         <input type="hidden" name="oferta_porcentajex" id="oferta_porcentajex" value = "{{registro["oferta_porcentaje"]}}">
                                     </form>
+                                {%endif%}
                             {% endfor %}
                             
                         {%if mostrar%}

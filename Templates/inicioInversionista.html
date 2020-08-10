@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio Inversionista</title>
+    <style>
+        .btn-link {
+            border: none;
+            outline: none;
+            background: none;
+            cursor: pointer;
+            color: #0000EE;
+            padding: 0;
+            text-decoration: underline;
+            font-family: inherit;
+            font-size: inherit;
+        }
+    </style>
 </head>
 <body>
     
@@ -22,13 +35,12 @@
     <h1>Bienvenido</h1>
     <table>
         {%for registro in data%}
-        <tr>{%if registro[2] == None%}
-                <td><img src="/static/images/emprendimientos/unnamed.png" width="100" height="100"></td>
-            {%endif%}
-            {%if registro[2] != None%}
-            <td><img src="/static/images/emprendimientos/{{registro[2]}}" width="100" height="100"></td>
-            {%endif%}
-            <td>Nombre: {{registro[1]}}<br>Descripcion: {{registro[0]}}</td>
+        <tr>
+            <td><img src="/static/images/emprendimiento/{{registro[2]}}" width="100" height="100"></td>
+            <td>Nombre: <form action="/emprendimientoInicioInversionista" method="POST">
+            <input type="hidden" name="empId" id="empId" value="{{registro[3]}}"> 
+            <button type="submit" class="btn-link">{{registro[1]}}</button>
+            <br>Descripcion: {{registro[0]}}</td>
             
         </tr>
         {%endfor%}

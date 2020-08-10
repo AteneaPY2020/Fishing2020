@@ -12,6 +12,23 @@ emprendimiento = Blueprint(
 )
 
 
+@emprendimiento.route("/quienes_somosInv", methods=["GET", "POST"])
+def quienesSomosInv():
+    idEmprendimiento = session["empId"]
+    logic = emprendimientoLogic()
+    if request.method == "GET":
+        data = logic.getAllFundadores(idEmprendimiento)
+        data2 = logic.getHistoria(idEmprendimiento)
+        logic.saveImagesFundadores(idEmprendimiento)
+        return render_template(
+            "quienes_somos.html",
+            data=data,
+            data2=data2,
+            message="",
+            vistaEmprendimiento=True,
+        )
+
+
 @emprendimiento.route("/quienes_somos", methods=["GET", "POST"])
 def quienesSomos():
     logic = emprendimientoLogic()
@@ -91,6 +108,22 @@ def quienesSomos():
             return render_template(
                 "quienes_somos.html", data=data, data2=data2, message=message
             )
+
+
+@emprendimiento.route("/informacionInv", methods=["GET", "POST"])
+def informacionInv():
+    logic = emprendimientoLogic()
+    idEmprendimiento = session["empId"]
+    if request.method == "GET":
+        data = logic.getContactos(idEmprendimiento)
+        data2 = logic.getInfoFinanciera(idEmprendimiento)
+        return render_template(
+            "informacion.html",
+            data=data,
+            data2=data2,
+            vistaEmprendimiento=True,
+            message="",
+        )
 
 
 @emprendimiento.route("/informacion", methods=["GET", "POST"])

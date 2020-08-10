@@ -21,6 +21,7 @@ inicio_inversionista = Blueprint(
 
 @inicio_inversionista.route("/InicioInv", methods=["GET", "POST"])
 def InicioInv():
+    session["empId"] = ""
     user = session["user"]
     id_user = int(user["id"])
     logicInt = interesLogic()
@@ -92,10 +93,7 @@ def perfilInversionista():
             nombre = Inversor["nombre"]
             biografia = Inversor["biografia"]
             ciudad = Inversor["ciudad"]
-            print(ciudad)
             pais = Inversor["pais"]
-            print(pais)
-            print(Inversor)
             email = Inversor["email"]
             return render_template(
                 "perfil_inversionista.html",

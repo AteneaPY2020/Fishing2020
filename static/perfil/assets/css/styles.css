@@ -123,6 +123,7 @@ iframe {
   height: 200px;
   overflow: hidden;
   border-radius: 50%;
+
 }
 
 .circular--portrait img {
@@ -189,7 +190,7 @@ iframe {
   margin-bottom: 30px;
 }
 .section .section-inner {
-  background: #fff;
+  background: rgb(235, 238, 238);
   padding: 30px;
 }
 .section .heading {

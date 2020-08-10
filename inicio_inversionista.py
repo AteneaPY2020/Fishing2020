@@ -255,6 +255,7 @@ def correo():
         message1 = "Correo enviado exitosamente"
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
+        logicInv.insertNotificationCorreo(user, idEmprendimiento)
         return render_template(
             "informacion.html",
             data=data,

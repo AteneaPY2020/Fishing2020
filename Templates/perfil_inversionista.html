@@ -1,60 +1,251 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% block head %}
+    <title>EmprendedorProfile</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Inversionista</title>
+    <meta name="description" content="Responsive HTML5 Website landing Page for Developers">
+    <meta name="author" content="3rd Wave Media">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="static/perfil/assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="static/perfil/assets/plugins/font-awesome/css/font-awesome.css">
 
-    <!--Icono de barra-->
-	<link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
-	<link rel="apple-touch-icon" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114x114.png" />
-	<link rel="apple-touch-icon" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144x144.png" />
-	<link rel="apple-touch-icon" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72x72.png" />
-	<link rel="apple-touch-icon" href="static/t2/assets/ico/apple-touch-icon.png" />
+    <link rel="stylesheet" href="static/perfil/main.css">
+    <script>
+            function showPopup(newColor) {
+                var elem = document.getElementById('bg-modal');
+                elem.style.display = newColor;
+            }
+    </script>
 
-
-</head>
-<body>
-    <table>
-        <tr>
-            <form action="/busqueda">
-            <th><input type= "text" id="busqueda" name="busqueda"></th>
-            <th><input type="submit" value="buscar"></th>
-            </form>
-            <th><a href="/InicioInv">Inicio</a></th>
-            <th><a href="/perfilInversionista">Perfil</a></th>
-            <th><a href="/guardadosInv">Guardados</a></th>
-            <th>Cerrar sesión</th>
-        </tr>
-    </table>
-    <h1>Edita tu perfil</h1>
+    <!-- github acitivity css -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
+    <link rel="stylesheet" href="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css">
     
-            {%if editar%}
-            <form action="/perfilInversionista" method="POST" enctype="multipart/form-data">
-            Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
-            Foto de perfil: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-            Biografia: <input type="text" name="biografia" id="biografia" value="{{biografia}}"><br>
-            Correo Electrónico: <input type="text" name="email" id="email" value="{{email}}"><br>
-            País: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
-            Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
-            <td><button type="submit" value= "Update">Actualizar</button></td>
-            <input type="hidden" name="formId" id="formId" value="2">
-            </form>
-            {%endif%}
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="static/perfil/assets/css/styles.css">
+    <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/perfil/assets/css/util.css">
+	<link rel="stylesheet" type="text/css" href="static/perfil/assets/css/main.css">
 
-            {%if not editar%}
-            <img src="/static/images/inversionistas/{{nombre_foto}}" width="100" height="100"><br>
-            Nombre: {{nombre}}<br>
-            Biografía: {{biografia}}<br>
-            Correo Electrónico: {{email}}<br>
-            País: {{pais}}<br>
-            Ciudad: {{ciudad}}<br>
-            <form action="/perfilInversionista" method="POST" enctype="multipart/form-data">
-            <td><button type="submit" value= "Update">Actualizar</button></td>
-            <input type="hidden" name="formId" id="formId" value="1">
-            </form>
-            {%endif%}
-     
+    <!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
     
-</body>
-</html>
+
+{% endblock head %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-lg bg-secondary fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand " href="#page-top">START FISHING</a>
+            
+            <!--<button class="navbar-toggler navbar-toggler-right font-weight-bold bg-primary text-white rounded"
+                type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">-->
+                
+                <ul class="navbar-nav ml-auto pull-right">
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                            href="/InicioInv">INICIO </a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                            href="/perfilInversionista">PERFIL</a>
+                    </li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+                            href="/guardadosInv">GUARDADOS</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- ******HEADER****** --> 
+    <header class="header">
+        <div class="container">
+                <!--Fotillo-->
+            <br>
+            <br>                    
+            <div  class="circular--portrait pull-left" >
+            <img align="center" src="/static/images/inversionistas/{{nombre_foto}}" />
+            </div>
+            <div class="profile-content pull-left">
+                <h1 class="name">{{nombre}}</h1>
+                <h2 class="desc">Inversionista</h2>   
+                <ul class="social list-inline">
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>                   
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github-alt"></i></a></li>                  
+                    <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>                 
+                </ul> 
+            </div><!--//profile-->
+            
+
+        </div><!--//container-->
+    </header><!--//header-->
+
+    <!--Informacion general-->
+
+
+        <!--COLUMNA MAYOR-->
+    <div class="container sections-wrapper">
+        <div class="row">
+            <div class="primary col-md-8 col-sm-12 col-xs-12">
+                <section class="about section">
+                    <div class="section-inner">
+                        <h2 class="heading">Biografia</h2>
+                        <div class="content">
+                            <p>{{biografia}}</p>
+                        </div><!--//content-->
+                    </div><!--//section-inner-->                 
+                </section>
+                
+                <section class="latest section">
+                    <div class="section-inner">
+                        <h2 class="heading">Emprendimientos</h2>
+                        <div class="content">    
+                                               
+                            <div class="item featured text-center">
+                                <h3 class="title">Frase fabulosa</a></h3>
+                                <p class="summary">Revisa los emprendimientos que posees</p>
+
+                                
+                    
+
+                            
+                            <!---->
+
+                            <hr class="divider" />
+ 
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </section><!--//section-->
+                
+                
+                
+                
+               
+            </div><!--//primary-->
+
+
+        <!--BARRA INFERIOR-->
+            <div class="secondary col-md-4 col-sm-12 col-xs-12">
+                 <aside class="info aside section">
+                    <div class="section-inner">
+                        <h2 class="heading sr-only">Basic Information</h2>
+                        <div class="content">
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-map-marker"></i><span class="sr-only">Ubicación:</span>{{pais}}, {{ciudad}}</li>
+                                <li><i class="fa fa-envelope-o"></i><span class="sr-only">Email:</span><a href="#">{{email}}</a></li>
+
+                            </ul>
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </aside><!--//aside-->
+                
+                <aside class="skills aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Notificaciones</h2>
+                        <div class="content">
+                            <p class="intro">
+                                Revisa las interacciones de TU emprendimiento con inverisionistas
+                            <div class="skillset">
+                               
+                                <div class="item">
+                                    <h3 class="level-title">Python &amp; Django<span class="level-label" data-toggle="tooltip" data-placement="left" data-animation="true" title="You can use the tooltip to add more info...">Expert</span></h3>
+                                    <div class="level-bar">
+                                        <div class="level-bar-inner" data-level="96%">
+                                        </div>                                      
+                                    </div><!--//level-bar-->                                 
+                                </div><!--//item-->
+                        
+                                
+                                <div class="item">
+                                    <h3 class="level-title">HTML5, CSS3, SASS &amp; LESS<span class="level-label">Expert</span></h3>
+                                    <div class="level-bar">
+                                        <div class="level-bar-inner" data-level="96%">
+                                        </div>                                      
+                                    </div><!--//level-bar-->                                 
+                                </div><!--//item-->
+                                
+                                
+                            </div>              
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </aside><!--//section-->
+        </div>
+    </div>
+
+    <!--Boton Modificar la informacion general-->
+    
+    <form action="/emprendedorProfile" method="POST">
+        
+        <!--<a class="btn btn-cta-primary pull-left" onclick="showPopup('flex');"  target="_blank"><i class="fa fa-paper-plane"></i><button class="buttonpopup" type="submit" value="update">Modificar Informacion Personal</button> </a> -->
+        <a class="btn btn-cta-primary pull-left buttonpopup" onclick="showPopup('flex');">
+            <button type="submit" value="update"></button>Modificar
+            <i class="fa fa-paper-plane"></i>
+        </a>
+        <a class="btn btn-cta-primary pull-left" onclick="showPopup('flex');"  target="_blank"><i class="fa fa-paper-plane"></i><button class="buttonpopup" type="submit" value="update">Modificar Informacion Personal</button> </a> 
+
+        <input type="hidden" name="formId" id="formId" value="1">
+       
+
+        <input type="hidden" name="nombre" id="nombre" value="{{nombre}}">
+        <input type="hidden" name="fileToUpload" id="fileToUpload">
+        <input type="hidden" name="biografia" id="biografia" value="{{biografia}}">
+        <input type="hidden" name="email" id="email" value="{{email}}">
+        <input type="hidden" name="pais" id="pais" value="{{pais}}">
+        <input type="hidden" name="ciudad" id="ciudad" value="{{ciudad}}">
+
+    </form>
+    
+    <!--Form Modificar la informacion general-->
+    {% if verdadero %}
+        <div id="bg-modal"> 
+            <div class="modal-contact" >
+                    <p>Modificar datos personales</p>
+                    <form action="/perfilInversionista" method="POST" enctype="multipart/form-data">
+                        Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
+                        Foto de perfil: <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                        Biografia: <input type="text" name="biografia" id="biografia" value="{{biografia}}"><br>
+                        Correo Electrónico: <input type="text" name="email" id="email" value="{{email}}"><br>
+                        País: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
+                        Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
+                        <!--Aplicar cambios--> 
+                        <a onclick= "showPopup('none');"> <button type="submit" class="buttonpopupclose" value="update">Aplicar cambios</button> </a>
+                        <input type="hidden" name="formId" id="formId" value="2">
+                        <input type="hidden" name="iformIdd" id="formId" value="2">
+                    </form>
+                </div>
+            </div>
+        
+    {% endif %}
+
+    <!--Emprendimientos-->
+    
+
+
+                
+{% endblock body %}

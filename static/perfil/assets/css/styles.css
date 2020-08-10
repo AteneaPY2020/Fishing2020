@@ -123,13 +123,11 @@ iframe {
   height: 200px;
   overflow: hidden;
   border-radius: 50%;
-  margin-left: 5px;
 }
 
 .circular--portrait img {
   width: 100%;
   height: auto;
-  margin-right: 30px;
 }
 .header .btn {
   margin-top: 60px;

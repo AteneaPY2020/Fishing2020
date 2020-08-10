@@ -1,7 +1,4 @@
-<!--======================================================================================================-->
-<!--======================================================================================================-->
-<!--==============HTML EMPRENDEDOR========================================================================-->
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 {% block head %}
     <meta charset="UTF-8">
@@ -96,6 +93,7 @@
                 <h3>{{registro["nombre"]}}</h3>
                 <h4>Está comprometido con sus clientes</h4>
                 <p>Conoce más sobre nosotros</p>
+                {% if vistaEmprendimiento %}
                 <form action="/emprendimientoInicio" method="POST" enctype="multipart/form-data">
                         <button class="button button--active mt-3 mt-xl-4" type="submit" value="update">Modifica tu información</button>
                         <input type="hidden" name="formId" id="formId" value="1">
@@ -105,6 +103,7 @@
                         <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{registro["nombre_foto"]}}">
                         <input type="hidden" name="video" id="video" value = "{{registro["video"]}}">
                 </form>
+                {% endif %}
 
                 </div>
             </div>

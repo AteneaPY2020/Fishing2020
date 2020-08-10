@@ -8,8 +8,8 @@
     
     <link rel="stylesheet" href="static/emprendimiento/vendors/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="static/emprendimiento/vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="static/emprendimiento/vendors/themify-icons/themify-icons.css">
-	<link rel="stylesheet" href="static/emprendimiento/vendors/linericon/style.css">
+    <link rel="stylesheet" href="static/emprendimiento/vendors/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="static/emprendimiento/vendors/linericon/style.css">
     <link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.theme.default.min.css">
     <link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="static/emprendimiento/css/style.css">
@@ -132,17 +132,21 @@
                 <select>
                     
                 </select>
-                </div>
+            </div>
+            
             <div class="sorting mr-auto">
               
             </div>
+           
             <div>
+              
               <div class="input-group filter-bar-search">
                 <input type="text" placeholder="Search">
                 <div class="input-group-append">
                   <button type="button"><i class="ti-search"></i></button>
                 </div>
               </div>
+
             </div>
         </div>
           <!-- End Filter Bar -->
@@ -166,7 +170,8 @@
                     </div> 
                 </div>
 
-              
+                <!--============================INVERSIONISTA=================================================================-->
+                
                 <div class="col-md-6 col-lg-4">
                     <div class="card text-center card-product">
                   
@@ -176,33 +181,59 @@
                             <p>Costo unitario: ${{registro["costo_unitario"]}}</p>
                             <p>Precio de venta: {{registro["precio_venta"]}}</p>
                             <p>Descripción:{{registro["descripcion"]}} </p>
+
+                        </div>
+                    </div>
+                </div>
+               
+                <!--==========================================================================================================-->
+
+                {% if vistaEmprendimiento%}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card text-center card-product">
+                  
+                        <div class="card-body">
+                            <h4 class="card-product__title"><a href="#">{{registro["nombre"]}}</a></h4>
+                            <p>Patente: {{registro["patente"]}}</p>
+                            <p>Costo unitario: ${{registro["costo_unitario"]}}</p>
+                            <p>Precio de venta: {{registro["precio_venta"]}}</p>
+                            <p>Descripción:{{registro["descripcion"]}} </p>
+                            
                             <form action="/registroProductos" method="POST" enctype="multipart/form-data">
                                 <input type="submit" class="button button-postComment button--active" value="Borrar">
                                 <input type="hidden" name="formId" id="formId" value="2">
                                 <input type="hidden" name="id_producto" id="id_producto" value="{{registro["id"]}}">
                             </form>
-                        <form action="/registroProductos" method="POST" enctype="multipart/form-data">
-                            <br>
-                            <input type="submit" class="button button-postComment button--active" value="Modificar">
-                            <input type="hidden" name="formId" id="formId" value="3">
-                            <input type="hidden" name="id_producto" id="id_producto" value="{{registro["id"]}}">
-                            <input type="hidden" id="nombre" name="nombre" value="{{registro["nombre"]}}">
-                            <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{registro["nombre_foto"]}}">
-                            <input type="hidden" name="descripcion" id="descripcion" value="{{registro["descripcion"]}}">
-                            <input type="hidden" name="costoUnitario" id="costoUnitario" value="{{registro["costo_unitario"]}}">
-                            <input type="hidden" name="precioVenta" id="precioVenta" value="{{registro["precio_venta"]}}">
-                            <input type="hidden" name="patente" id="patente" value="{{registro["patente"]}}">
-                        </form>
+                             
+                            <form action="/registroProductos" method="POST" enctype="multipart/form-data">
+                                <br>
+                                <input type="submit" class="button button-postComment button--active" value="Modificar">
+                               
+                                <input type="hidden" name="formId" id="formId" value="3">
+                                <input type="hidden" name="id_producto" id="id_producto" value="{{registro["id"]}}">
+                                <input type="hidden" id="nombre" name="nombre" value="{{registro["nombre"]}}">
+                                <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{registro["nombre_foto"]}}">
+                                <input type="hidden" name="descripcion" id="descripcion" value="{{registro["descripcion"]}}">
+                                <input type="hidden" name="costoUnitario" id="costoUnitario" value="{{registro["costo_unitario"]}}">
+                                <input type="hidden" name="precioVenta" id="precioVenta" value="{{registro["precio_venta"]}}">
+                                <input type="hidden" name="patente" id="patente" value="{{registro["patente"]}}">
+                            </form>
+                           
                   </div>
                 </div>
-            </div>
+              </div>
+                
+            {% endif %}
+
+
         </section>
-        {% endfor %}
+      {% endfor %}
     </div>
   </section>
 	<!-- ================ category section end ================= -->		  
 
 <!-- ================ Subscribe section start ================= -->		  
+  {% if vistaEmprendimiento %}
   <section class="subscribe-position">
     <div class="container">
       <div class="subscribe text-center">
@@ -237,6 +268,7 @@
       </div>
     </div>
   </section>
+  {% endif %}
 	<!-- ================ Subscribe section end ================= -->		  
 
 

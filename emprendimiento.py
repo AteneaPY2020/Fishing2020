@@ -18,12 +18,22 @@ def quienesSomos():
     message = ""
     verdadero = False
     idEmprendimiento = session["emprendimiento"]
+
+    # Vista
+    vistaEmprendimiento = True
+
     if request.method == "GET":
+        # vista Inversionista
+        vistaEmprendimiento = False
         data = logic.getAllFundadores(idEmprendimiento)
         data2 = logic.getHistoria(idEmprendimiento)
         logic.saveImagesFundadores(idEmprendimiento)
         return render_template(
-            "quienes_somos.html", data=data, data2=data2, message=message
+            "quienes_somos.html",
+            data=data,
+            data2=data2,
+            message=message,
+            vistaEmprendimiento=vistaEmprendimiento,
         )
     elif request.method == "POST":
         formId = int(request.form["formId"])

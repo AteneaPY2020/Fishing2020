@@ -17,8 +17,8 @@
 {% endblock head %}
 {% block body %}
     <!--================ Start Header Menu Area =================-->
-    <header class="header_area">
-    	<div class="main_menu">
+        <header class="header_area">
+        <div class="main_menu">
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
             <a class="navbar-brand logo_h" href="index.html"><img src="" alt=""></a>
@@ -43,13 +43,13 @@
                 <li class="nav-item active"><a class="nav-link" href="/quienes_somosInv">Historia</a></li>
                 {%endif%}
                 {% if not vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="/PlataformaProductos">Productos</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/registroProductos">Productos</a></li>
                 {%endif%}
                 {% if vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/registroProductosInv">Productos</a></li>
                 {%endif%}
                 {% if not vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="/registroProductos">Contactos</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/informacion">Contactos</a></li>
                 {%endif%}
                 {% if vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/infoEmprendimiento">Nuestra información</a></li>
@@ -193,25 +193,9 @@
                     </div> 
                 </div>
 
-                <!--============================INVERSIONISTA=================================================================-->
-                
-                <div class="col-md-6 col-lg-4">
-                    <div class="card text-center card-product">
-                  
-                        <div class="card-body">
-                            <h4 class="card-product__title"><a href="#">{{registro["nombre"]}}</a></h4>
-                            <p>Patente: {{registro["patente"]}}</p>
-                            <p>Costo unitario: ${{registro["costo_unitario"]}}</p>
-                            <p>Precio de venta: {{registro["precio_venta"]}}</p>
-                            <p>Descripción:{{registro["descripcion"]}} </p>
-
-                        </div>
-                    </div>
-                </div>
-               
                 <!--==========================================================================================================-->
 
-                {% if not vistaEmprendimiento%}
+                
                 <div class="col-md-6 col-lg-4">
                     <div class="card text-center card-product">
                   
@@ -222,31 +206,32 @@
                             <p>Precio de venta: {{registro["precio_venta"]}}</p>
                             <p>Descripción:{{registro["descripcion"]}} </p>
                             
-                            <form action="/registroProductos" method="POST" enctype="multipart/form-data">
-                                <input type="submit" class="button button-postComment button--active" value="Borrar">
-                                <input type="hidden" name="formId" id="formId" value="2">
-                                <input type="hidden" name="id_producto" id="id_producto" value="{{registro["id"]}}">
-                            </form>
+                            {% if not vistaEmprendimiento%}
+                              <form action="/registroProductos" method="POST" enctype="multipart/form-data">
+                                  <input type="submit" class="button button-postComment button--active" value="Borrar">
+                                  <input type="hidden" name="formId" id="formId" value="2">
+                                  <input type="hidden" name="id_producto" id="id_producto" value="{{registro["id"]}}">
+                              </form>
                              
-                            <form action="/registroProductos" method="POST" enctype="multipart/form-data">
-                                <br>
-                                <input type="submit" class="button button-postComment button--active" value="Modificar">
-                               
-                                <input type="hidden" name="formId" id="formId" value="3">
-                                <input type="hidden" name="id_producto" id="id_producto" value="{{registro["id"]}}">
-                                <input type="hidden" id="nombre" name="nombre" value="{{registro["nombre"]}}">
-                                <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{registro["nombre_foto"]}}">
-                                <input type="hidden" name="descripcion" id="descripcion" value="{{registro["descripcion"]}}">
-                                <input type="hidden" name="costoUnitario" id="costoUnitario" value="{{registro["costo_unitario"]}}">
-                                <input type="hidden" name="precioVenta" id="precioVenta" value="{{registro["precio_venta"]}}">
-                                <input type="hidden" name="patente" id="patente" value="{{registro["patente"]}}">
-                            </form>
-                           
+                              <form action="/registroProductos" method="POST" enctype="multipart/form-data">
+                                  <br>
+                                  <input type="submit" class="button button-postComment button--active" value="Modificar">
+                                
+                                  <input type="hidden" name="formId" id="formId" value="3">
+                                  <input type="hidden" name="id_producto" id="id_producto" value="{{registro["id"]}}">
+                                  <input type="hidden" id="nombre" name="nombre" value="{{registro["nombre"]}}">
+                                  <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{registro["nombre_foto"]}}">
+                                  <input type="hidden" name="descripcion" id="descripcion" value="{{registro["descripcion"]}}">
+                                  <input type="hidden" name="costoUnitario" id="costoUnitario" value="{{registro["costo_unitario"]}}">
+                                  <input type="hidden" name="precioVenta" id="precioVenta" value="{{registro["precio_venta"]}}">
+                                  <input type="hidden" name="patente" id="patente" value="{{registro["patente"]}}">
+                              </form>
+                           {% endif %}
                   </div>
                 </div>
               </div>
                 
-            {% endif %}
+            
 
 
         </section>

@@ -25,7 +25,7 @@ def quienesSomosInv():
             data=data,
             data2=data2,
             message="",
-            vistaEmprendimiento=False,
+            vistaEmprendimiento=True,
         )
 
 

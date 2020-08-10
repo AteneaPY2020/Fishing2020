@@ -193,7 +193,7 @@ def correo():
     logic = emprendimientoLogic()
     message = ""
 
-    idEmprendimiento = session["emprendimiento"]
+    idEmprendimiento = session["empId"]
     if request.method == "GET":
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
@@ -211,7 +211,7 @@ def correo():
         logicInv = inversorLogic()
         datos = logicInv.getIdInversor(id_user)
 
-        idEmprendimiento = session["emprendimiento"]
+        idEmprendimiento = session["empId"]
         logicEmpr = emprendimientoLogic()
         infoEmpren = logicEmpr.getIdEmprendimiento(idEmprendimiento)
 

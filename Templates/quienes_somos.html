@@ -30,42 +30,38 @@
                 <span class="icon-bar"></span>
             </button>
             <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                {% if vistaEmprendimiento %}
+                <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                {% if not vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/emprendimientoInicioInversionista">Inicio</a></li>
                 {%endif%}
-                {% if not vistaEmprendimiento %}
-				<li class="nav-item active"><a class="nav-link" href="/emprendimientoInicio">Inicio</a></li>
+                {% if vistaEmprendimiento %}
+                <li class="nav-item active"><a class="nav-link" href="/emprendimientoInicio">Inicio</a></li>
                 {%endif%}
-                {% if not vistaEmprendimiento %}
+                {% if vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/quienes_somos">Historia</a></li>
                 {%endif%}
-                {% if vistaEmprendimiento %}
+                {% if not vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/quienes_somosInv">Historia</a></li>
                 {%endif%}
-                {% if not vistaEmprendimiento %}
+                {% if vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/PlataformaProductos">Productos</a></li>
                 {%endif%}
-                {% if vistaEmprendimiento %}
+                {% if not vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/registroProductosInv">Productos</a></li>
                 {%endif%}
-                {% if not vistaEmprendimiento %}
+                {% if vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/registroProductos">Contactos</a></li>
                 {%endif%}
-                {% if vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="/informacionInv">Nuestra información</a></li>
+                {% if not vistaEmprendimiento %}
+                <li class="nav-item active"><a class="nav-link" href="/infoEmprendimiento">Nuestra información</a></li>
                 {%endif%}
-				{% if vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="#Contacto">Contacto</a></li>
-                {%endif%}
-                
-                
                 </ul>
 
                 <ul class="nav-shop">
-                {% if not vistaEmprendimiento %}
+                {% if vistaEmprendimiento %}
                 <li class="nav-item"><a class="button button-header" href="emprendedorProfile">Volver a mi perfil</a></li>
                 {%endif%}
-                {% if vistaEmprendimiento %}
+                {% if not vistaEmprendimiento %}
                 <li class="nav-item"><a class="button button-header" href="/InicioInv">Volver a mi perfil</a></li>
                 {%endif%}
                 </ul>
@@ -106,7 +102,7 @@
                                                                 <p>{{registro["historia"]}}</p>
                                                             {% endfor %}
                                                             <br>
-															{% if not vistaEmprendimiento %} 
+															{% if vistaEmprendimiento %} 
                                                             <textarea  name="historia" rows="10" cols="75" >Escribe aquí tu historia</textarea>
                                                             <br><br><button type="submit" value="insert" class="button button-postComment button--active"> Modificar</button>
                                                             <input type="hidden" name="formId" id="formId" value="3">
@@ -140,7 +136,7 @@
 															</div>
 															<div class="reply-btn">
 																	
-                                                                {% if not vistaEmprendimiento %} 
+                                                                {% if vistaEmprendimiento %} 
                                                                 <form action="/quienes_somos" method="POST">
                                                                     <button type="submit" value="delete" class="button button-postComment button--active"> Borrar</button>
                                                                     <input type="hidden" name="formId" id="formId" value="2">
@@ -154,7 +150,7 @@
                                             {% endfor %}											
     
 											</div>
-									{% if not vistaEmprendimiento %} 
+									{% if vistaEmprendimiento %} 
 									<div class="comment-form">
 											<h3>Agregar fundadores</h3>
                                             <p>{{message}}</p>

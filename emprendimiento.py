@@ -110,22 +110,6 @@ def quienesSomos():
             )
 
 
-@emprendimiento.route("/informacionInv", methods=["GET", "POST"])
-def informacionInv():
-    logic = emprendimientoLogic()
-    idEmprendimiento = session["empId"]
-    if request.method == "GET":
-        data = logic.getContactos(idEmprendimiento)
-        data2 = logic.getInfoFinanciera(idEmprendimiento)
-        return render_template(
-            "informacion.html",
-            data=data,
-            data2=data2,
-            vistaEmprendimiento=False,
-            message="",
-        )
-
-
 @emprendimiento.route("/informacion", methods=["GET", "POST"])
 def informacion():
     vistaInversor = False

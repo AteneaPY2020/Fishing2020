@@ -53,6 +53,16 @@
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+
+    <!--=Import de los pop=-->
+        <link rel="stylesheet" href="static/popup/css/main.css">
+        <link rel="stylesheet" href="static/popup/css/util.css">
+        <script>
+                function showPopup(newColor) {
+                    var elem = document.getElementById('bg-modal');
+                    elem.style.display = newColor;
+                }
+        </script>
     
 
 {% endblock head %}
@@ -93,6 +103,7 @@
             <div class="profile-content pull-left">
                 <h1 class="name">{{nombre}}</h1>
                 <h2 class="desc">Inversionista</h2>   
+                <!-- Redes sociales
                 <ul class="social list-inline">
                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>                   
                     <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -100,6 +111,7 @@
                     <li><a href="#"><i class="fa fa-github-alt"></i></a></li>                  
                     <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>                 
                 </ul> 
+                -->
             </div><!--//profile-->
             
 
@@ -199,15 +211,14 @@
     </div>
 
     <!--Boton Modificar la informacion general-->
-    
-    <form action="/emprendedorProfile" method="POST">
+        <form action="/perfilInversionista" method="POST">
         
         <!--<a class="btn btn-cta-primary pull-left" onclick="showPopup('flex');"  target="_blank"><i class="fa fa-paper-plane"></i><button class="buttonpopup" type="submit" value="update">Modificar Informacion Personal</button> </a> -->
         <a class="btn btn-cta-primary pull-left buttonpopup" onclick="showPopup('flex');">
             <button type="submit" value="update"></button>Modificar
             <i class="fa fa-paper-plane"></i>
         </a>
-        <a class="btn btn-cta-primary pull-left" onclick="showPopup('flex');"  target="_blank"><i class="fa fa-paper-plane"></i><button class="buttonpopup" type="submit" value="update">Modificar Informacion Personal</button> </a> 
+        <a class="btn btn-cta-primary pull-left buttonpopup" onclick="showPopup('flex');"  target="_blank"><i class="fa fa-paper-plane"></i><button class="buttonpopup" type="submit" value="update">Modificar Informacion Personal</button> </a> 
 
         <input type="hidden" name="formId" id="formId" value="1">
        
@@ -224,28 +235,100 @@
     <!--Form Modificar la informacion general-->
     {% if verdadero %}
         <div id="bg-modal"> 
+
             <div class="modal-contact" >
-                    <p>Modificar datos personales</p>
-                    <form action="/perfilInversionista" method="POST" enctype="multipart/form-data">
-                        Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
-                        Foto de perfil: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                        Biografia: <input type="text" name="biografia" id="biografia" value="{{biografia}}"><br>
-                        Correo Electrónico: <input type="text" name="email" id="email" value="{{email}}"><br>
-                        País: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
-                        Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
-                        <!--Aplicar cambios--> 
-                        <a onclick= "showPopup('none');"> <button type="submit" class="buttonpopupclose" value="update">Aplicar cambios</button> </a>
-                        <input type="hidden" name="formId" id="formId" value="2">
-                        <input type="hidden" name="iformIdd" id="formId" value="2">
-                    </form>
+                <div class="container-contact100">
+                    <div class="wrap-contact100">
+                        <form class="contact100-form validate-form" action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
+                            <span class="contact100-form-title">
+                                Modifica tus datos 
+                            </span>
+
+                            <div class="wrap-input100 validate-input" >
+                                <span class="label-input100">Nombre</span>
+                                <input class="input100" type="text" name="nombre" id="nombre" value="{{nombre}}">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input">
+                                <span class="label-input100">Foto</span>
+                                <input class="input100" type="file" name="fileToUpload" id="fileToUpload">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input">
+                                <span class="label-input100">Biografía</span>
+                                <textarea class="input100" name="biografia" cols="30" rows="10" id="biografia">{{biografia}}</textarea>
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" >
+                                <span class="label-input100">Email</span>
+                                <input class="input100" type="text" name="email" id="email" value="{{email}}">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input">
+                                <span class="label-input100">País</span>
+                                <input class="input100" type="text" name="pais" id="pais" value="{{pais}}">
+                                <span class="focus-input100"></span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input">
+                                <span class="label-input100">Ciudad</span>
+                                <input class="input100" type="text" name="ciudad" id="ciudad" value="{{ciudad}}">
+                                <span class="focus-input100"></span>
+                            </div>
+                            <!--Aplicar cambios-->
+                            <a onclick= "showPopup('none');"> <button type="submit" class="buttonpopupclose" value="update">Aplicar cambios</button> </a>
+                            <input type="hidden" name="formId" id="formId" value="2">
+                            <input type="hidden" name="iformIdd" id="formId" value="2">
+
+                        </form>
+                    </div>
                 </div>
             </div>
+        </div>
         
     {% endif %}
 
     <!--Emprendimientos-->
     
+<!--=====SCRIPTS para el pop======-->
+                <script src="static/popup/vendor/jquery/jquery-3.2.1.min.js"></script>
+            <!--===============================================================================================-->
+                <script src="static/popup/vendor/animsition/js/animsition.min.js"></script>
+            <!--===============================================================================================-->
+                <script src="static/popup/vendor/bootstrap/js/popper.js"></script>
+                <script src="static/popup/vendor/bootstrap/js/bootstrap.min.js"></script>
+            <!--===============================================================================================-->
+                <script src="static/popup/vendor/select2/select2.min.js"></script>
+                <script>
+                    $(".selection-2").select2({
+                        minimumResultsForSearch: 20,
+                        dropdownParent: $('#dropDownSelect1')
+                    });
+                </script>
+            <!--===============================================================================================-->
+                <script src="static/popup/vendor/daterangepicker/moment.min.js"></script>
+                <script src="static/popup/vendor/daterangepicker/daterangepicker.js"></script>
+            <!--===============================================================================================-->
+                <script src="static/popup/vendor/countdowntime/countdowntime.js"></script>
+            <!--===============================================================================================-->
+                <script src="js/main.js"></script>
+
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+            <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-23581568-13');
+            </script>
 
 
                 
 {% endblock body %}
+
+</html>

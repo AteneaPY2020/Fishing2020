@@ -12,6 +12,23 @@ emprendimiento = Blueprint(
 )
 
 
+@emprendimiento.route("/quienes_somosInv", methods=["GET", "POST"])
+def quienesSomosInv():
+    idEmprendimiento = session["empId"]
+    logic = emprendimientoLogic()
+    if request.method == "GET":
+        data = logic.getAllFundadores(idEmprendimiento)
+        data2 = logic.getHistoria(idEmprendimiento)
+        logic.saveImagesFundadores(idEmprendimiento)
+        return render_template(
+            "quienes_somos.html",
+            data=data,
+            data2=data2,
+            message="",
+            vistaEmprendimiento=False,
+        )
+
+
 @emprendimiento.route("/quienes_somos", methods=["GET", "POST"])
 def quienesSomos():
     logic = emprendimientoLogic()
@@ -95,17 +112,24 @@ def quienesSomos():
 
 @emprendimiento.route("/informacion", methods=["GET", "POST"])
 def informacion():
+    vistaInversor = False
     logic = emprendimientoLogic()
     message = ""
     mostrar = False
+
     idEmprendimiento = session["emprendimiento"]
     if request.method == "GET":
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
         return render_template(
-            "informacion.html", data=data, data2=data2, message=message
+            "informacion.html",
+            data=data,
+            data2=data2,
+            message=message,
+            vistaEmprendedor=True,
         )
     elif request.method == "POST":
+        vistaEmprendedor = True
         formId = int(request.form["formId"])
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
@@ -118,6 +142,7 @@ def informacion():
             return render_template(
                 "informacion.html",
                 mostrar=True,
+                vistaEmprendedor=True,
                 fecha_fundacionUpx=fecha_fundacionOld,
                 inversion_inicialUpx=inversion_inicialOld,
                 venta_año_anteriorUpx=venta_año_anteriorOld,
@@ -140,7 +165,11 @@ def informacion():
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
             return render_template(
-                "informacion.html", data=data, data2=data2, mostrar=False
+                "informacion.html",
+                data=data,
+                data2=data2,
+                mostrar=False,
+                vistaEmprendedor=True,
             )
         # UPDATE CONTACTOS
         if formId == 3:
@@ -154,6 +183,7 @@ def informacion():
             return render_template(
                 "informacion.html",
                 mostrar1=True,
+                vistaEmprendedor=True,
                 emailUpx=emailOld,
                 telefonoUpx=telefonoOld,
                 facebookUpx=facebookOld,
@@ -174,5 +204,9 @@ def informacion():
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
             return render_template(
-                "informacion.html", data=data, data2=data2, mostrar1=False
+                "informacion.html",
+                data=data,
+                data2=data2,
+                mostrar1=False,
+                vistaEmprendedor=True,
             )

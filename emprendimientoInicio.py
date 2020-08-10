@@ -11,6 +11,33 @@ emprendimientoInicio = Blueprint(
 )
 
 
+@emprendimientoInicio.route(
+    "/emprendimientoInicioInversionista", methods=["GET", "POST"]
+)
+def getInformacion():
+    if session["empId"] == "":
+        idEmprendimiento = int(request.form["empId"])
+        session["empId"] = idEmprendimiento
+    else:
+        idEmprendimiento = session["empId"]
+    logic = emprendimientoLogic()
+    data = logic.getDatosGeneralesById(idEmprendimiento)
+    if request.method == "GET":
+        return render_template(
+            "emprendimientoInicio.html",
+            data=data,
+            message="",
+            vistaEmprendimiento=True,
+        )
+    elif request.method == "POST":
+        return render_template(
+            "emprendimientoInicio.html",
+            data=data,
+            message="",
+            vistaEmprendimiento=True,
+        )
+
+
 @emprendimientoInicio.route("/emprendimientoInicio", methods=["GET", "POST"])
 def getInformacionGeneral():
     logic = emprendimientoLogic()

@@ -6,6 +6,17 @@ registro_productos = Blueprint(
 )
 
 
+@registro_productos.route("/registroProductosInv", methods=["GET", "POST"])
+def registroProductoInv():
+    logicProducto = productoLogic()
+    id_emprendimiento = session["empId"]
+    data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
+    vistaEmprendimiento = True
+    return render_template(
+        "registroProductos.html", data=data, vistaEmprendimiento=vistaEmprendimiento
+    )
+
+
 @registro_productos.route("/registroProductos", methods=["GET", "POST"])
 def registroProducto():
     logicProducto = productoLogic()

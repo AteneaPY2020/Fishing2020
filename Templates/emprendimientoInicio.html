@@ -17,6 +17,7 @@
 
 {% block body %}
     <!--================ Start Header Menu Area =================-->
+    
     <header class="header_area">
         <div class="main_menu">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -30,16 +31,39 @@
             </button>
             <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                 <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                {% if vistaEmprendimiento %}
+                <li class="nav-item active"><a class="nav-link" href="/emprendimientoInicioInversionista">Inicio</a></li>
+                {%endif%}
+                {% if not vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/emprendimientoInicio">Inicio</a></li>
+                {%endif%}
+                {% if not vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/quienes_somos">Historia</a></li>
+                {%endif%}
+                {% if vistaEmprendimiento %}
+                <li class="nav-item active"><a class="nav-link" href="/quienes_somosInv">Historia</a></li>
+                {%endif%}
+                {% if not vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/PlataformaProductos">Productos</a></li>
+                {%endif%}
+                {% if vistaEmprendimiento %}
+                <li class="nav-item active"><a class="nav-link" href="/registroProductosInv">Productos</a></li>
+                {%endif%}
+                {% if not vistaEmprendimiento %}
                 <li class="nav-item active"><a class="nav-link" href="/registroProductos">Contactos</a></li>
-                
-                
+                {%endif%}
+                {% if vistaEmprendimiento %}
+                <li class="nav-item active"><a class="nav-link" href="/infoEmprendimiento">Nuestra información</a></li>
+                {%endif%}
                 </ul>
 
                 <ul class="nav-shop">
+                {% if not vistaEmprendimiento %}
                 <li class="nav-item"><a class="button button-header" href="emprendedorProfile">Volver a mi perfil</a></li>
+                {%endif%}
+                {% if vistaEmprendimiento %}
+                <li class="nav-item"><a class="button button-header" href="/InicioInv">Volver a mi perfil</a></li>
+                {%endif%}
                 </ul>
             </div>
             </div>
@@ -66,7 +90,12 @@
                 <h4>{{registro["eslogan"]}}</h4>
                 <h1>{{registro["nombre"]}}</h1>
                 <p>{{registro["descripcion"]}}</p>
+                {% if not vistaEmprendimiento %}
                 <a class="button button-hero" href="#">Busca nuestros productos</a>
+                {%endif%}
+                {% if vistaEmprendimiento %}
+                <a class="button button-hero" href="/registroProductosInv">Conoce nuestros productos</a>
+                {%endif%}
                 </div>
             </div>
             </div>
@@ -93,7 +122,7 @@
                 <h3>{{registro["nombre"]}}</h3>
                 <h4>Está comprometido con sus clientes</h4>
                 <p>Conoce más sobre nosotros</p>
-                {% if vistaEmprendimiento %}
+                {% if not vistaEmprendimiento %}
                 <form action="/emprendimientoInicio" method="POST" enctype="multipart/form-data">
                         <button class="button button--active mt-3 mt-xl-4" type="submit" value="update">Modifica tu información</button>
                         <input type="hidden" name="formId" id="formId" value="1">

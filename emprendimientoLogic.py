@@ -474,3 +474,37 @@ class emprendimientoLogic(Logic):
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
         return data
+
+    def getIdEmprendimiento(self, id):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "SELECT * FROM fishingdb.emprendimiento "
+            + f"where emprendimiento.id = {id};"
+        )
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        if len(data) > 0:
+            data_dic = data[0]
+            EmprendimientoObj = emprendimientoObj(
+                data_dic["id"],
+                data_dic["estado"],
+                data_dic["descripcion"],
+                data_dic["historia"],
+                data_dic["eslogan"],
+                data_dic["inversion_inicial"],
+                data_dic["fecha_fundacion"],
+                data_dic["venta_año_anterior"],
+                data_dic["oferta_porcentaje"],
+                data_dic["nombre"],
+                data_dic["nombre_foto"],
+                data_dic["foto"],
+                data_dic["video"],
+                data_dic["email"],
+                data_dic["telefono"],
+                data_dic["facebook"],
+                data_dic["instagram"],
+                data_dic["youtube"],
+            )
+            return EmprendimientoObj
+        else:
+            return None

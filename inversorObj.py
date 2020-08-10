@@ -18,3 +18,6 @@ class inversorObj:
 
     def getNombre(self):
         return self.nombre
+
+    def getEmail(self):
+        return self.email

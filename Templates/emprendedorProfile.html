@@ -281,8 +281,12 @@
     
     <form action="/emprendedorProfile" method="POST">
         
-        <!--<a class="btn-cta-primary pull-left" onclick="showPopup('flex');"  target="_blank"><i class="fa fa-paper-plane"></i><button class="buttonpopup" type="submit" value="update">Modificar Informacion Personal</button> </a> -->
-        <a  onclick="showPopup('flex');"  target="_blank"><button class="btn-cta-primary" onclick="showPopup('flex');"  target="_blank" type="submit" class="buttonpopup" value="update" ></button><i class="fa fa-paper-plane"></i>Modificar </a> 
+        <!--<a class="btn btn-cta-primary pull-left" onclick="showPopup('flex');"  target="_blank"><i class="fa fa-paper-plane"></i><button class="buttonpopup" type="submit" value="update">Modificar Informacion Personal</button> </a> -->
+        <a class="btn btn-cta-primary pull-left buttonpopup" onclick="showPopup('flex');">
+            <button type="submit" value="update"></button>Modificar
+            <i class="fa fa-paper-plane"></i>
+        </a>
+        
 
         <input type="hidden" name="formId" id="formId" value="1">
         <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">

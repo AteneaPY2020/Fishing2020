@@ -13,8 +13,16 @@ def registroProducto():
     mostrar = False
     data2 = None
     data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
+    # Vista
+    vistaEmprendimiento = True
+
     if request.method == "GET":
-        return render_template("registroProductos.html", data=data)
+        # True para vista inversionista
+        vistaEmprendimiento = False
+
+        return render_template(
+            "registroProductos.html", data=data, vistaEmprendimiento=vistaEmprendimiento
+        )
     elif request.method == "POST":
         formId = int(request.form["formId"])
         if formId == 1:

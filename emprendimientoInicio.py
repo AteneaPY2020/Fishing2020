@@ -20,8 +20,19 @@ def getInformacionGeneral():
     verdadero = False
     data = logic.getDatosGeneralesById(idEmprendimiento)
     logic.saveImagesEmprendimiento(idEmprendimiento)
+
+    # vista
+    vistaEmprendimiento = True
+
     if request.method == "GET":
-        return render_template("emprendimientoInicio.html", data=data, message=message)
+        # Si es False - Vista emprendedor
+        vistaEmprendimiento = False
+        return render_template(
+            "emprendimientoInicio.html",
+            data=data,
+            message=message,
+            vistaEmprendimiento=vistaEmprendimiento,
+        )
 
     elif request.method == "POST":
         formId = int(request.form["formId"])

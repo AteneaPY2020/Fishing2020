@@ -58,15 +58,17 @@
                                 </tr>
                                 </table>
                                 <br>
-                                <form action="/informacion" method="POST">
-                                    <button type="submit" value="modificar"> Modificar</button>
-                                    <input type="hidden" name="formId" id="formId" value="3">
-                                    <input type="hidden" name="emailx" id="emailx" value = "{{registro["email"]}}">
-                                    <input type="hidden" name="telefonox" id="telefonox" value = "{{registro["telefono"]}}">
-                                    <input type="hidden" name="facebookx" id="facebookx" value = "{{registro["facebook"]}}">
-                                    <input type="hidden" name="instagramx" id="instagramx" value = "{{registro["instagram"]}}">
-                                    <input type="hidden" name="youtubex" id="youtubex" value = "{{registro["youtube"]}}">
-                                </form>
+                                {%if vistaEmprendedor%}
+                                    <form action="/informacion" method="POST">
+                                        <button type="submit" value="modificar"> Modificar</button>
+                                        <input type="hidden" name="formId" id="formId" value="3">
+                                        <input type="hidden" name="emailx" id="emailx" value = "{{registro["email"]}}">
+                                        <input type="hidden" name="telefonox" id="telefonox" value = "{{registro["telefono"]}}">
+                                        <input type="hidden" name="facebookx" id="facebookx" value = "{{registro["facebook"]}}">
+                                        <input type="hidden" name="instagramx" id="instagramx" value = "{{registro["instagram"]}}">
+                                        <input type="hidden" name="youtubex" id="youtubex" value = "{{registro["youtube"]}}">
+                                    </form>
+                                {%endif%}
                             {% endfor %}  
 
                         {%if mostrar1%}
@@ -126,6 +128,7 @@
                                 </tr>
                                 </table>
                                 <br>
+                                {%if vistaEmprendedor%}
                                     <form action="/informacion" method="POST">
                                         <button type="submit" value="delete"> Modificar</button>
                                         <input type="hidden" name="formId" id="formId" value="1">
@@ -134,6 +137,7 @@
                                         <input type="hidden" name="venta_año_anteriorx" id="venta_año_anteriorx" value = "{{registro["venta_año_anterior"]}}">
                                         <input type="hidden" name="oferta_porcentajex" id="oferta_porcentajex" value = "{{registro["oferta_porcentaje"]}}">
                                     </form>
+                                {%endif%}   
                             {% endfor %}
                             
                         {%if mostrar%}
@@ -155,6 +159,15 @@
                 </div>
             </div>
         </div>
+        {%if vistaInversor%}
+        <p>{{message1}}</p>
+        <br>
+            <h2>¿Estas interesado? ¡Envia un correo a los emprendedores!</h2>
+            <form action="/infoEmprendimiento" method="POST">
+                <textarea name="message" id = "message" rows="10" cols="80" >Escribe aquí el correo que deseas enviar</textarea>
+                <button type="submit" value="send"> Enviar</button>
+            </form>
+        {%endif%}
     </div>
 
 </html>

@@ -14,6 +14,11 @@ from productoLogic import productoLogic
 from productoObj import productoObj
 from busquedaLogic import busquedaLogic
 
+# Envio correo
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 inicio_inversionista = Blueprint(
     "module2_bp", __name__, template_folder="Templates", static_folder="static"
 )
@@ -182,3 +187,80 @@ def guardadosInv():
             logicSave.deleteGuardado(id_inv, id_prod)
             data = logicSave.getAllGuardados(id_inv)
         return render_template("guardadosInversionista.html", data=data, message="")
+
+
+@inicio_inversionista.route("/infoEmprendimiento", methods=["GET", "POST"])
+def correo():
+    vistaEmprendedor = False
+    logic = emprendimientoLogic()
+    message = ""
+
+    idEmprendimiento = session["emprendimiento"]
+    if request.method == "GET":
+        data = logic.getContactos(idEmprendimiento)
+        data2 = logic.getInfoFinanciera(idEmprendimiento)
+        return render_template(
+            "informacion.html",
+            data=data,
+            data2=data2,
+            message=message,
+            vistaInversor=True,
+        )
+    elif request.method == "POST":
+        # Datos de sesion
+        user = session["user"]
+        id_user = int(user["id"])
+        logicInv = inversorLogic()
+        datos = logicInv.getIdInversor(id_user)
+
+        idEmprendimiento = session["emprendimiento"]
+        logicEmpr = emprendimientoLogic()
+        infoEmpren = logicEmpr.getIdEmprendimiento(idEmprendimiento)
+
+        message = request.form["message"]
+        user = "fishing.corporation2020@gmail.com"
+        password = "ilovefishing123"
+
+        # Host y puerto SMTP de Gmail
+        gmail = smtplib.SMTP("smtp.gmail.com", 587)
+
+        # protocolo de cifrado de datos
+        gmail.starttls()
+
+        # Credenciales
+        gmail.login(user, password)
+
+        # muestra de la depuracion de la operacion de envio 1=True
+        gmail.set_debuglevel(1)
+
+        header = MIMEMultipart()
+        header["Subject"] = "¡Alguien está interesado en tu emprendimiento!"
+        header["From"] = "fishing.corporation2020@gmail.com"
+        header["To"] = f"{infoEmpren.getEmail()}"
+        Intro = f"{datos.getNombre()} {datos.getEmail()} está interesado en tu emprendimiento.\nSu mensaje es el siguiente: "
+        mensaje = Intro + message
+
+        mensaje = MIMEText(mensaje, "html")  # Content-type:text/html
+        header.attach(mensaje)
+
+        # Enviar email: remitentente, destinatario, mensaje
+        gmail.sendmail(
+            "fishing.corporation2020@gmail.com",
+            f"{infoEmpren.getEmail()}",
+            header.as_string(),
+        )
+
+        # Cerrar la conexion SMTP
+        gmail.quit()
+        print("Correo enviado exitosamente")
+
+        message1 = "Correo enviado exitosamente"
+        data = logic.getContactos(idEmprendimiento)
+        data2 = logic.getInfoFinanciera(idEmprendimiento)
+        return render_template(
+            "informacion.html",
+            data=data,
+            data2=data2,
+            message1=message1,
+            vistaInversor=True,
+        )

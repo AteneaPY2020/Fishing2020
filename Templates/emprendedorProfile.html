@@ -43,6 +43,16 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="static/perfil/assets/css/util.css">
 	<link rel="stylesheet" type="text/css" href="static/perfil/assets/css/main.css">
+
+    <!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
     
 
 {% endblock head %}
@@ -117,69 +127,49 @@
                             <div class="item featured text-center">
                                 <h3 class="title">Frase fabulosa</a></h3>
                                 <p class="summary">Revisa los emprendimientos que posees</p>
+                                
                                 <div class="limiter">
 		                            <div class="container-table100">
 			                            <div class="wrap-table100">
 					                    <div class="table">
+                                            <div class="row header">
+                                                <div class="cell">
+                                                    Emprendimiento
+                                                </div>
+                                                <div class="cell">
+                                                    Visitar
+                                                </div>
+                                                <div class="cell">
+                                                    Eliminar
+                                                </div>
+                                            </div>
+                                        <div class="row">
+                                                <div class="celll" data-title="Full Name">
+                                                    <td>df</td>
+                                                </div>
+                                            </div>
 
-						                <div class="row header">
-                                            <div class="cell">
-                                                Emprendimiento
-                                            </div>
-                                            <div class="cell">
-                                                Visitar
-                                            </div>
-                                            <div class="cell">
-                                                Eliminar
-                                            </div>
-                                        </div>
                                         {% for registro in dataEmprendimiento %}
                                             <div class="row">
-
-                                                <div class="cell1" data-title="Full Name">
-                                                    <tr>
-                                                    <td>df</td>
-                                                    <td>
-                                                </div>
-                                                <div class="cell1" data-title="Age">
-                                                    <tr>
-                                                    <td>sd</td>
-                                                    </tr>
-                                                </div>
-
-                                                <div class="cell1" data-title="Job Title">
-                                                    <tr>
-                                                    <td>sdf</td>
-                                                    </tr>
-                                                </div>
-                                                </div>
-
-                                                <div class="row">
-                                                <div class="cell" data-title="Full Name">
-                                                    <tr>
-                                                    <td>{{registro["nombre"]}}</td>
-                                                    </tr>
+                                                <div class="cell" data-title="Full Name">     
+                                                    {{registro["nombre"]}}
                                                 </div>
                                                 <div class="cell" data-title="Age">
-                                                    <tr>
                                                     <form action="/emprendedorProfile" method="POST">
                                                         <button type="submit" value="ir">Ir</button>
                                                         <input type="hidden" name="formId" id="formId" value="6">
                                                         <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                                     </form>
-                                                    </tr>
                                                 </div>
 
                                                 <div class="cell" data-title="Job Title">
-                                                    <tr>
                                                     <form action="/emprendedorProfile" method="POST">
-                                                    <button type="submit" value="delete">Eliminar</button>
-                                                    <input type="hidden" name="formId" id="formId" value="5">
-                                                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                                                </form>
-                                                    </tr>
+                                                        <button type="submit" value="delete">Eliminar</button>
+                                                        <input type="hidden" name="formId" id="formId" value="5">
+                                                        <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                                    </form>
                                                 </div>
-
+                                            </div>
                                         {% endfor %}
 
                                         </div>
@@ -187,7 +177,7 @@
                                     </div>
                             </div>
                         </div>
-                    </div>
+                    
 
                             <div class="featured-image">
                                 <!--<a class="btn btn-cta-secondary" href="https://wrapbootstrap.com/theme/delta-promote-mobile-app-effectively-WB09R23P8?ref=3wm" target="_blank"><i class="fa fa-thumbs-o-up"></i> Crear nuevo emprendimiento</a> -->
@@ -292,9 +282,7 @@
     <form action="/emprendedorProfile" method="POST">
         
         <!--<a class="btn-cta-primary pull-left" onclick="showPopup('flex');"  target="_blank"><i class="fa fa-paper-plane"></i><button class="buttonpopup" type="submit" value="update">Modificar Informacion Personal</button> </a> -->
-        <a class="btn-cta-primary pull-left" onclick="showPopup('flex');"  target="_blank"><i class="fa fa-paper-plane"></i><button type="submit" value="update">Modificar Informacion Personal</button> </a> 
-        <a  onclick="showPopup('flex');" target="_blank"> <button class="buttonpopup" value="update">Modificar</button> </a>
-
+        <a  onclick="showPopup('flex');"  target="_blank"><button class="btn-cta-primary" onclick="showPopup('flex');"  target="_blank" type="submit" class="buttonpopup" value="update" ></button><i class="fa fa-paper-plane"></i>Modificar </a> 
 
         <input type="hidden" name="formId" id="formId" value="1">
         <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">

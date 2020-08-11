@@ -25,19 +25,16 @@
     <![endif]-->
     
     <!--============================================================================================================-->
-    
-    <link rel="stylesheet" type="text/css" href="{{url_for("static", filename="css/contacto.css")}}">
-
 
 {% endblock head %}
 
 {% block body %}
     <!-- ******HEADER****** --> 
     <header class="header">
-        <div class="container">                       
-            <img class="circular--portrait pull-left" src="static/images/emprendedor/{{data[0]["nombre_foto"]}} alt="" />
+        <div class="container">  
+            <img class="circular--portrait pull-left" src="static/images/emprendedor/{{data[0]["nombre_foto"]}}" alt="James Lee" width="200" height="141"/>                    
             <div class="profile-content pull-left">
-                <h1 class="name">A{{data[0]["nombre"]}}</h1>
+                <h1 class="name">{{data[0]["nombre"]}}</h1>
                 <h2 class="desc">Emprendedor</h2>   
                 <ul class="social list-inline">
                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>                   
@@ -47,8 +44,24 @@
                     <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>                 
                 </ul> 
             </div><!--//profile-->
-            <a class="btn btn-cta-primary pull-right" ><i class="fa fa-paper-plane"></i> Modificar información</a>              
-        </div><!--//container-->
+
+
+            <!--Boton Modificar la informacion general-->
+            <form action="/emprendedorProfile" method="POST">
+                <button type="submit" value="update"class="btn btn-cta-secondary pull-right" ><i class="fa fa-paper-plane"></i>Modificar Informacion Personal</button>
+                
+                <input type="hidden" name="formId" id="formId" value="1">
+                <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
+                <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
+                <input type="hidden" name="email" id="email" value="{{data[0]["email"]}}"> 
+                <input type="hidden" name="telefono" id="telefono" value="{{data[0]["telefono"]}}">
+                <input type="hidden" name="pais" id="pais" value="{{data[0]["pais"]}}">              
+                <input type="hidden" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}">
+                <input type="hidden" name="biografia" id="biografia" value="{{data[0]["biografia"]}}">
+                
+            </form>
+
+            </div><!--//container-->
     </header><!--//header-->
     
     <div class="container sections-wrapper">
@@ -71,7 +84,7 @@
                         <div class="content">    
                                                
                             <div class="item featured text-center">
-                                <h3 class="title"><a target="_blank">An ocean full of ideas</a></h3>
+                                <h3 class="title"><a>An ocean full of ideas</a></h3>
                                 <p class="summary">Presiona "Ir" para ver tu emprendimiento</p>
                                 <div class="featured-image pull-center">
 
@@ -104,9 +117,20 @@
                                             </form>
                                         </td>
                                         {% endfor %}
-                                    </table>       
-                                    <a class="btn btn-cta-secondary" href="" target="_blank"><i class="fa fa-thumbs-o-up"></i> Crear nuevo</a>                 
-                                    <br>      
+                                    </table>  
+
+                                    <br>
+                                    <br>
+                                    
+                                    <!--Boton crear nuevo emprendimiento-->             
+                                    <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
+                                        <button class="btn btn-cta-secondary" type="submit" value="insert"><i class="fa fa-thumbs-o-up"></i>Crear nuevo emprendimiento</button>
+                                        <input type="hidden" name="formId" id="formId" value="3">
+                                        <input type="hidden" name="id" id="id" value="{{id}}">
+
+                                    </form>
+                                    
+     
                                 </div><!--//item-->
                             </div><!--//content-->  
                         </div><!--//section-inner--> 
@@ -181,51 +205,8 @@
     <!-- custom js -->
     <script type="text/javascript" src="static/perfil/assets/js/main.js"></script>   
 
-<!--======================================================================================================================-->
-    <h1>Emprendedor</h1>
-    <div class="col-xs-6">
-        <div id="lhs">
-    <!--Fotillo-->
-            <img src="/static/images/emprendedor/{{data[0]["nombre_foto"]}}" width="400" height="341">
-            <br>
-    
-            <!--Informacion general-->
-            Nombre:
-            {{data[0]["nombre"]}}
-            <br>
-            Email:
-            {{data[0]["email"]}}
-            <br>
-            Telefono:
-            {{data[0]["telefono"]}}
-            <br>
-            Pais:
-            {{data[0]["pais"]}}
-            <br>
-            Ciudad:
-            {{data[0]["ciudad"]}}
-            <br>
-            Biografia:
-            <br>
-            {{data[0]["biografia"]}}
-            <br><br>
-
-    <!--Boton Modificar la informacion general-->
-        <form action="/emprendedorProfile" method="POST">
-            <button type="submit" value="update">Modificar Informacion Personal</button>
-            
-            <input type="hidden" name="formId" id="formId" value="1">
-            <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
-            <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
-            <input type="hidden" name="email" id="email" value="{{data[0]["email"]}}"> 
-            <input type="hidden" name="telefono" id="telefono" value="{{data[0]["telefono"]}}">
-            <input type="hidden" name="pais" id="pais" value="{{data[0]["pais"]}}">              
-            <input type="hidden" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}">
-            <input type="hidden" name="biografia" id="biografia" value="{{data[0]["biografia"]}}">
-            
-        </form>
-    
-    <!--Form Modificar la informacion general-->
+<!--======================================================================================================================-->   
+    <!--POPUP: Form Modificar la informacion general-->
         {% if verdadero %}
             <p>Modificar datos personales</p>
             <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
@@ -244,55 +225,11 @@
             </form>
         {% endif %}
 
-    <!--Emprendimientos-->
-    <h3>Mis emprendimientos </h3>
-    
-    <div style="text-align:center;">
-    <!--Tabla de emprendimientos-->
-        <table border="1">
-
-            <tr>
-                <th>Emprendimiento</th>
-                <th>Ir</th>
-                <th>Salir</th>
-            </tr>
-            
-            {% for registro in dataEmprendimiento %}
-            <tr>
-            <td>{{registro["nombre"]}}</td>
-            <td>
-                <!--Boton "Ir"-->
-                <form action="/emprendedorProfile" method="POST">
-                    <button type="submit" value="ir">Ir</button>
-                    <input type="hidden" name="formId" id="formId" value="6">
-                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                </form>
-            </td>
-            <td>
-                <!--Boton "delete"-->
-                <form action="/emprendedorProfile" method="POST">
-                    <button type="submit" value="delete">Salir</button>
-                    <input type="hidden" name="formId" id="formId" value="5">
-                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                </form>
-            </td>
-            {% endfor %}
-        </table>
-    </div>
-    <br>
     
 
-    <!--Boton crear nuevo emprendimiento-->
-    <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-        <button type="submit" value="insert">Crear nuevo emprendimiento</button>
-        <input type="hidden" name="formId" id="formId" value="3">
-        <input type="hidden" name="id" id="id" value="{{id}}">
 
-    </form>
 
-    <br>
-    <!--Form crear nuevo emprendimiento-->
-
+    <!--POPUP:Form crear nuevo emprendimiento-->
     {% if verdaderoEmprendimiento %}
     
     <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
@@ -324,30 +261,9 @@
     </form>
     <br><br>
     {% endif %}
-</div>
-</div>
 
-    <div class="col-xs-6">
-        <div id="lhs">
-    <!--Notificaciones-->
-        <h2>Notificaciones </h2>
-        <!--Tabla de notificaciones-->
-        <table border="1">
-            <tr>
-                <th>Notificación</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-            </tr>     
-            {% for registro in data2 %}
-            <tr>
-            <td>{{registro["mensaje"]}}</td>
-            <td>{{registro["fecha"]}}</td>
-            <td>{{registro["hora"]}}</td>
-            {% endfor %}
-        </table>
-        <br>
-    </div>
-    </div>
+
+
 
 {% endblock body %}
 

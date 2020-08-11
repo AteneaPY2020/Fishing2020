@@ -2,6 +2,7 @@ from logic import Logic
 from emprendimientoObj import emprendimientoObj
 from userLogic import UserLogic
 from emprendedorLogic import emprendedorLogic
+from inversorLogic import inversorLogic
 from emprendedorObj import emprendedorObj
 import os
 
@@ -508,3 +509,27 @@ class emprendimientoLogic(Logic):
             return EmprendimientoObj
         else:
             return None
+
+    def FundadoresByEmprendimientoCorreo(self, user, id_emprendimiento):
+        id_usuario = UserLogic()
+        usuario = id_usuario.getUserByUser(user)
+        Inversor = inversorLogic()
+        id_inversor = Inversor.getIdInversor(usuario.getId())
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "select id_emprendedor from fishingdb.fundador "
+            + f"where id_emprendimiento = {id_emprendimiento};"
+        )
+        print(sql)
+        fundadores = dataBase.executeQuery(sql)
+        listaFundadores = []
+        for registro in fundadores:
+            sql2 = (
+                "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
+                + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje', {registro[0]}, current_date(), current_time());"
+            )
+            print(sql2)
+            rows = dataBase.executeNonQueryRows(sql2)
+            currentList = list(registro)
+            listaFundadores.append(currentList[0])
+        return listaFundadores

@@ -183,17 +183,3 @@ class inversorLogic(Logic):
         data = dataBase.executeQuery(sql)
         id_emprendedor = data[0][0]
         return id_emprendedor
-
-    def insertNotificationCorreo(self, user, id_emprendedor):
-        id_usuario = UserLogic()
-        usuario = id_usuario.getUserByUser(user)
-        Inversor = inversorLogic()
-        id_inversor = Inversor.getIdInversor(usuario.getId())
-        database = self.get_databaseXObj()
-        sql = (
-            "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
-            + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje', {id_emprendedor}, current_date(), current_time());"
-        )
-        print(sql)
-        rows = database.executeNonQueryRows(sql)
-        return rows

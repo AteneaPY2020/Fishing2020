@@ -149,33 +149,7 @@
           </div>
         </div>
         <div class="col-xl-9 col-lg-8 col-md-7">
-          <!-- Start Filter Bar -->
-            <div class="filter-bar d-flex flex-wrap align-items-center">
-                <div class="">
-                <select>
-                    
-                </select>
-            </div>
-            
-            <div class="sorting mr-auto">
-              
-            </div>
-           
-            <div>
-              
-              <div class="input-group filter-bar-search">
-                <input type="text" placeholder="Search">
-                <div class="input-group-append">
-                  <button type="button"><i class="ti-search"></i></button>
-                </div>
-              </div>
-
-            </div>
-        </div>
-          <!-- End Filter Bar -->
-          <!-- Start Best Seller -->
-
-
+       
         {% for registro in data %}
         <section class="lattest-product-area pb-40 category-list">
             <div class="row">
@@ -183,11 +157,15 @@
                     <div class="card text-center card-product">
                         <div class="card-product__img">
                             <img class="card-img" src="/static/images/productos/{{registro["nombre_foto"]}}" width="350" height="241" alt="">
+                            {% if vistaEmprendimiento%}
                             <ul class="card-product__imgOverlay">
+                            
                             <li><button><i class="ti-search"></i></button></li>
                             <li><button><i class="ti-shopping-cart"></i></button></li>
                             <li><button><i class="ti-heart"></i></button></li>
+
                             </ul>
+                            {% endif %}
                         </div>
                   
                     </div> 
@@ -214,7 +192,7 @@
                               </form>
                              
                               <form action="/registroProductos" method="POST" enctype="multipart/form-data">
-                                  <br>
+                                  
                                   <input type="submit" class="button button-postComment button--active" value="Modificar">
                                 
                                   <input type="hidden" name="formId" id="formId" value="3">

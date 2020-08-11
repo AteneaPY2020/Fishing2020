@@ -13,6 +13,7 @@ from guardadosObj import guardadosObj
 from productoLogic import productoLogic
 from productoObj import productoObj
 from busquedaLogic import busquedaLogic
+from likeLogic import likeLogic
 
 # Envio correo
 import smtplib
@@ -383,3 +384,15 @@ def correo():
             message1=message1,
             vistaInversor=True,
         )
+
+
+@inicio_inversionista.route("/like", methods=["GET", "POST"])
+def like():
+    logic = likeLogic()
+    id_inv = session["id_inv"]
+    id_producto = int(request.form["id"])
+    logic.like(id_inv, id_producto)
+    if request.method == "GET":
+        return redirect("/registroProductosInv")
+    elif request.method == "POST":
+        return redirect("/registroProductosInv")

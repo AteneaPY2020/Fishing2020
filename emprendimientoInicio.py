@@ -18,6 +18,7 @@ def getInformacion():
     if session["empId"] == "":
         idEmprendimiento = int(request.form["empId"])
         session["empId"] = idEmprendimiento
+        print(idEmprendimiento)
     else:
         idEmprendimiento = session["empId"]
     logic = emprendimientoLogic()

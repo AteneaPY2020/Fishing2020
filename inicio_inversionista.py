@@ -79,6 +79,7 @@ def perfilInversionista():
         ciudad = Inversor["ciudad"]
         pais = Inversor["pais"]
         email = Inversor["email"]
+        interes = logicInv.getIntereses(id_inv)
         return render_template(
             "perfil_inversionista.html",
             nombre=nombre,
@@ -87,6 +88,7 @@ def perfilInversionista():
             pais=pais,
             email=email,
             message="",
+            interes=interes,
         )
     elif request.method == "POST":
         formId = int(request.form["formId"])
@@ -100,6 +102,7 @@ def perfilInversionista():
             ciudad = Inversor["ciudad"]
             pais = Inversor["pais"]
             email = Inversor["email"]
+            interes = logicInv.getIntereses(id_inv)
             return render_template(
                 "perfil_inversionista.html",
                 editar=True,
@@ -109,6 +112,7 @@ def perfilInversionista():
                 pais=pais,
                 email=email,
                 message="",
+                interes=interes,
             )
         if formId == 2:
             # Update
@@ -145,6 +149,7 @@ def perfilInversionista():
             nombre_foto = Inversor["nombre_foto"]
             print(nombre_foto)
             logicInv.saveImagesInversionista(id_user)
+            interes = logicInv.getIntereses(id_inv)
 
             return render_template(
                 "perfil_inversionista.html",
@@ -157,6 +162,110 @@ def perfilInversionista():
                 foto=foto,
                 nombre_foto=nombre_foto,
                 message="",
+                interes=interes,
+            )
+        if formId == 3:
+            # Borrar interes
+            idInteres = int(request.form["id"])
+            logicInv.deleteInteres(idInteres)
+
+            datos = logicInv.getIdInversor(id_user)
+            Inversor = logicInv.createDictionary(datos)
+            id_inv = int(Inversor["id"])
+            nombre = Inversor["nombre"]
+            biografia = Inversor["biografia"]
+            ciudad = Inversor["ciudad"]
+            pais = Inversor["pais"]
+            email = Inversor["email"]
+            interes = logicInv.getIntereses(id_inv)
+
+            return render_template(
+                "perfil_inversionista.html",
+                editar=True,
+                nombre=nombre,
+                ciudad=ciudad,
+                biografia=biografia,
+                pais=pais,
+                email=email,
+                message="Interes eliminado",
+                interes=interes,
+            )
+        if formId == 4:
+            datos = logicInv.getIdInversor(id_user)
+            Inversor = logicInv.createDictionary(datos)
+            id_inv = int(Inversor["id"])
+            nombre = Inversor["nombre"]
+            biografia = Inversor["biografia"]
+            ciudad = Inversor["ciudad"]
+            pais = Inversor["pais"]
+            email = Inversor["email"]
+            interes = logicInv.getIntereses(id_inv)
+            return render_template(
+                "perfil_inversionista.html",
+                nombre=nombre,
+                ciudad=ciudad,
+                biografia=biografia,
+                pais=pais,
+                email=email,
+                message="",
+                interes=interes,
+                agregar=True,
+            )
+        if formId == 5:
+            datos = logicInv.getIdInversor(id_user)
+            Inversor = logicInv.createDictionary(datos)
+            id_inv = int(Inversor["id"])
+            # Estas son las categorias
+            i = 1
+            alimento = request.form.get("Alimento")
+            moda = request.form.get("Moda")
+            cYTec = request.form.get("CyTec")
+            ecologia = request.form.get("Ecologia")
+            academico = request.form.get("Academico")
+            social = request.form.get("Social")
+            salud = request.form.get("Salud")
+            belleza = request.form.get("Belleza")
+            entretenimiento = request.form.get("Entretenimiento")
+            infantil = request.form.get("Infantil")
+            otra = request.form.get("Otra")
+            # Fin de las categorias
+            user = session["user"]
+            id_user = int(user["id"])
+            # Insertando nuevos intereses
+            for checkbox in (
+                alimento,
+                moda,
+                ecologia,
+                cYTec,
+                social,
+                salud,
+                academico,
+                entretenimiento,
+                infantil,
+                belleza,
+                otra,
+            ):
+                AlreadyExist = logicInv.checkInteresAlradyAdded(id_inv, i)
+                value = request.form.get(checkbox)
+                if value and AlreadyExist is False:
+                    logicInv.insertNewInteres(i, id_inv)
+                i += 1
+
+            nombre = Inversor["nombre"]
+            biografia = Inversor["biografia"]
+            ciudad = Inversor["ciudad"]
+            pais = Inversor["pais"]
+            email = Inversor["email"]
+            interes = logicInv.getIntereses(id_inv)
+            return render_template(
+                "perfil_inversionista.html",
+                nombre=nombre,
+                ciudad=ciudad,
+                biografia=biografia,
+                pais=pais,
+                email=email,
+                message="Interes agregado",
+                interes=interes,
             )
 
 

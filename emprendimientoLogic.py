@@ -516,6 +516,8 @@ class emprendimientoLogic(Logic):
         Inversor = inversorLogic()
         id_inversor = Inversor.getIdInversor(usuario.getId())
         dataBase = self.get_databaseXObj()
+        Emprendimiento = emprendimientoLogic()
+        idEmprendimiento = Emprendimiento.getEmprendimientoById(id_emprendimiento)
         sql = (
             "select id_emprendedor from fishingdb.fundador "
             + f"where id_emprendimiento = {id_emprendimiento};"
@@ -526,7 +528,7 @@ class emprendimientoLogic(Logic):
         for registro in fundadores:
             sql2 = (
                 "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
-                + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje', {registro[0]}, current_date(), current_time());"
+                + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje al emprendimiento {idEmprendimiento.getNombre()}', {registro[0]}, current_date(), current_time());"
             )
             print(sql2)
             rows = dataBase.executeNonQueryRows(sql2)

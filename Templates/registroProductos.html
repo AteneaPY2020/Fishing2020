@@ -185,7 +185,10 @@
                             <img class="card-img" src="/static/images/productos/{{registro["nombre_foto"]}}" width="350" height="241" alt="">
                             <ul class="card-product__imgOverlay">
                             <li><button><i class="ti-search"></i></button></li>
-                            <li><button><i class="ti-shopping-cart"></i></button></li>
+                            <form action="/guardar" method="POST">
+                            <li><button type="submit"><i class="ti-shopping-cart"></i></button></li>
+                            <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                            </form>
                             <li><button><i class="ti-heart"></i></button></li>
                             </ul>
                         </div>

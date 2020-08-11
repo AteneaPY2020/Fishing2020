@@ -34,6 +34,7 @@ def InicioInv():
     datos = logicInv.getIdInversor(id_user)
     Inversor = logicInv.createDictionary(datos)
     id_inv = int(Inversor["id"])
+    session["id_inv"] = id_inv
     data = logicInt.getAllInteresByIdInv(id_inv)
 
     if request.method == "GET":
@@ -160,6 +161,18 @@ def perfilInversionista():
             )
 
 
+@inicio_inversionista.route("/guardar", methods=["GET", "POST"])
+def guardar():
+    logic = guardadosLogic()
+    id_inv = session["id_inv"]
+    id_producto = int(request.form["id"])
+    logic.guardar(id_inv, id_producto)
+    if request.method == "GET":
+        return redirect("/registroProductosInv")
+    elif request.method == "POST":
+        return redirect("/registroProductosInv")
+
+
 @inicio_inversionista.route("/guardadosInv", methods=["GET", "POST"])
 def guardadosInv():
     # Datos de sesion
@@ -189,7 +202,6 @@ def guardadosInv():
 
 @inicio_inversionista.route("/infoEmprendimiento", methods=["GET", "POST"])
 def correo():
-    vistaEmprendedor = False
     logic = emprendimientoLogic()
     message = ""
 

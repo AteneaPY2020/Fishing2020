@@ -197,3 +197,38 @@ class inversorLogic(Logic):
         print(sql)
         rows = database.executeNonQueryRows(sql)
         return rows
+
+    def getIntereses(self, id_Inversionista):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "SELECT fishingdb.interes.id, fishingdb.categoria.categoria FROM fishingdb.interes "
+            + "inner join fishingdb.categoria on fishingdb.interes.id_categoria = fishingdb.categoria.id "
+            + f"where fishingdb.interes.id_inversionista = {id_Inversionista};"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, ["id", "categoria"])
+        return data
+
+    def deleteInteres(self, id):
+        database = self.get_databaseXObj()
+        sql = f"DELETE FROM fishingdb.interes WHERE (id = '{id}');"
+        rows = database.executeNonQueryRows(sql)
+        return rows
+
+    def checkInteresAlradyAdded(self, id_Inversionista, id_Categoria):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "SELECT interes.id FROM fishingdb.interes "
+            + f"where interes.id_inversionista = {id_Inversionista} and interes.id_categoria = {id_Categoria};"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        counter = 0
+        for item in data:
+            counter += 1
+
+        if counter > 0:
+            return True
+        else:
+            return False

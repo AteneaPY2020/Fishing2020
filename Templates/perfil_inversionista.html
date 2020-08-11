@@ -54,7 +54,58 @@
             <input type="hidden" name="formId" id="formId" value="1">
             </form>
             {%endif%}
-     
+            <br>
+            <br>
+             <p>{{message}}</p>
+            <h3>Tus intereses son: </h3>
+            <p>Tus interes son importantes para mostrarte emprendimientos y productos de relevancia </p>
+            <form action="/perfilInversionista" method="POST">
+                <button type="submit" value="delete">Agregar Interes</button>
+                <input type="hidden" name="formId" id="formId" value="4">
+            </form>
+            {%if  agregar%}
+                <form action="/perfilInversionista" method="POST">
+                    <input type="checkbox" id="Alimento" name="Alimento" value="Alimento">
+                    <label for="Alimento">Alimento</label><br>
+                    <input type="checkbox" id="Moda" name="Moda" value="Moda">
+                    <label for="Moda">Moda</label><br>
+                    <input type="checkbox" id="CyTec" name="CyTec" value="CyTec">
+                    <label for="CyTec">Ciencia y Tecnología</label><br>
+                    <input type="checkbox" id="Social" name="Social" value="Social">
+                    <label for="Social">Social</label><br>
+                    <input type="checkbox" id="Salud" name="Salud" value="Salud">
+                    <label for="Salud">Salud</label><br>
+                    <input type="checkbox" id="Academico" name="Academico" value="Academico">
+                    <label for="Academico">Academico</label><br>
+                    <input type="checkbox" id="Entretenimiento" name="Entretenimiento" value="Entretenimiento">
+                    <label for="Entretenimiento">Entretenimiento</label><br>
+                    <input type="checkbox" id="Infantil" name="Infantil" value="Infantil">
+                    <label for="Infantil">Infantil</label><br>
+                    <input type="checkbox" id="Belleza" name="Belleza" value="Belleza">
+                    <label for="Belleza">Belleza</label><br>
+                    <input type="checkbox" id="Ecologia" name="Ecologia" value="Ecologia">
+                    <label for="Ecologia">Ecología</label><br>
+                    <input type="checkbox" id="Otra" name="Otra" value="Otra">
+                    <label for="Otra">Otra</label><br>
+                    <input type="hidden" name="formId" id="formId" value="5">
+                    <button type="submit" value="insert">Agregar</button>
+                </form>
+            {%endif%}  
+            <br>
+            {% for registro in interes %}
+                <table>
+                    <tr>
+                        <td>{{registro["categoria"]}}</td>
+                        <td>
+                            <form action="/perfilInversionista" method="POST">
+                                <button type="submit" value="delete">Borrar</button>
+                                <input type="hidden" name="formId" id="formId" value="3">
+                                <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+                {% endfor %}
     
 </body>
 </html>

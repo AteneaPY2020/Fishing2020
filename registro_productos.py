@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, session
 from productoLogic import productoLogic
+from likeLogic import likeLogic
 
 registro_productos = Blueprint(
     "registro_productos", __name__, template_folder="Templates", static_folder="static"
@@ -9,11 +10,28 @@ registro_productos = Blueprint(
 @registro_productos.route("/registroProductosInv", methods=["GET", "POST"])
 def registroProductoInv():
     logicProducto = productoLogic()
+    logicLikes = likeLogic()
     id_emprendimiento = session["empId"]
+    id_invrsionista = session["id_inv"]
     data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
+    likes = logicLikes.getAllReaccionesByIdEmprendimiento(id_emprendimiento)
+
+    for registro in data:
+        for fila in likes:
+            registro["liked"] = False
+            if (
+                registro["id"] == fila["id_producto"]
+                and fila["id_inversionista"] == id_invrsionista
+            ):
+                registro["liked"] = True
+                break
+
     vistaEmprendimiento = True
     return render_template(
-        "registroProductos.html", data=data, vistaEmprendimiento=vistaEmprendimiento
+        "registroProductos.html",
+        data=data,
+        vistaEmprendimiento=vistaEmprendimiento,
+        likes=likes,
     )
 
 

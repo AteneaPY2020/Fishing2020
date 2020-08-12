@@ -141,7 +141,7 @@ class emprendedorLogic(Logic):
         self, id, nombre, email, telefono, pais, ciudad, biografia, foto
     ):
         database = self.get_databaseXObj()
-        nombre_foto = str(self.getIdEmprendedorByIdUsuario(id))
+        nombre_foto = str(self.getIdEmprendedorByIdUsuario(id)) + ".png"
         sql = (
             "update fishingdb.emprendedor "
             + "set emprendedor.nombre = %s, emprendedor.email = %s, emprendedor.telefono = %s, "

@@ -13,6 +13,7 @@ from guardadosObj import guardadosObj
 from productoLogic import productoLogic
 from productoObj import productoObj
 from busquedaLogic import busquedaLogic
+from likeLogic import likeLogic
 
 # Envio correo
 import smtplib
@@ -91,6 +92,7 @@ def perfilInversionista():
             ciudad = Inversor["ciudad"]
             pais = Inversor["pais"]
             email = Inversor["email"]
+            nombre_foto = Inversor["nombre_foto"]
             interes = logicInv.getIntereses(id_inv)
             return render_template(
                 "perfil_inversionista.html",
@@ -101,6 +103,7 @@ def perfilInversionista():
                 email=email,
                 message="",
                 interes=interes,
+                nombre_foto=nombre_foto,
             )
         elif request.method == "POST":
             formId = int(request.form["formId"])
@@ -137,16 +140,15 @@ def perfilInversionista():
                 city = request.form["ciudad"]
                 country = request.form["pais"]
                 mail = request.form["email"]
-                nombre_pic = pic.filename
                 if pic.filename == "":
                     logicInv.updateInversionista(
                         id_inv, name, bio, mail, id_user, country, city
                     )
                 else:
                     binary_foto = pic.read()
-                    logicInv.updateInversionistaConFoto(
-                        id_inv, name, bio, mail, country, city, binary_foto, nombre_pic,
-                    )
+                logicInv.updateInversionistaConFoto(
+                    id_inv, name, bio, mail, country, city, binary_foto, id_user
+                )
 
                 # Actualizar datos
                 datos = logicInv.getIdInversor(id_user)
@@ -160,7 +162,6 @@ def perfilInversionista():
                 foto = Inversor["foto"]
                 nombre_foto = Inversor["nombre_foto"]
                 print(nombre_foto)
-                logicInv.saveImagesInversionista(id_user)
                 interes = logicInv.getIntereses(id_inv)
 
                 return render_template(
@@ -403,3 +404,27 @@ def correo():
             message1=message1,
             vistaInversor=True,
         )
+
+
+@inicio_inversionista.route("/like", methods=["GET", "POST"])
+def like():
+    logic = likeLogic()
+    id_inv = session["id_inv"]
+    id_producto = int(request.form["id"])
+    logic.like(id_inv, id_producto)
+    if request.method == "GET":
+        return redirect("/registroProductosInv")
+    elif request.method == "POST":
+        return redirect("/registroProductosInv")
+
+
+@inicio_inversionista.route("/unLike", methods=["GET", "POST"])
+def unLike():
+    logic = likeLogic()
+    id_inv = session["id_inv"]
+    id_producto = int(request.form["id"])
+    logic.unLike(id_inv, id_producto)
+    if request.method == "GET":
+        return redirect("/registroProductosInv")
+    elif request.method == "POST":
+        return redirect("/registroProductosInv")

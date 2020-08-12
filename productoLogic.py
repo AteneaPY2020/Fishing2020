@@ -16,6 +16,7 @@ class productoLogic(Logic):
             "precio_venta",
             "patente",
             "id_emprendimiento",
+            "likes",
         ]
 
     def insertNewProducto(
@@ -134,7 +135,7 @@ class productoLogic(Logic):
         database = self.get_databaseXObj()
         sql = (
             "update fishingdb.productos"
-            + " set nombre = %s, foto = %s, descripcion = %s, costo_unitario = %s, precio_venta = %s, patente = %s"
+            + " set nombre = %s, foto = %s, descripcion = %s, costo_unitario = %s, precio_venta = %s, patente = %s, nombre_foto = %s"
             + " where id = %s;"
         )
         data = (
@@ -144,6 +145,7 @@ class productoLogic(Logic):
             costo_unitario,
             precio_venta,
             patente,
+            str(id_producto) + ".png",
             id_producto,
         )
         rows = database.executeNonQueryRowsTuple(sql, data)

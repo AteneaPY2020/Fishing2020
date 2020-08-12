@@ -448,7 +448,7 @@ class emprendimientoLogic(Logic):
         database = self.get_databaseXObj()
         sql = (
             "update fishingdb.emprendimiento"
-            + " set descripcion = %s, eslogan = %s, nombre = %s, foto = %s, video = %s"
+            + " set descripcion = %s, eslogan = %s, nombre = %s, foto = %s, video = %s, nombre_foto = %s"
             + " where id = %s;"
         )
         print(sql)
@@ -458,6 +458,7 @@ class emprendimientoLogic(Logic):
             nombre,
             foto,
             video,
+            str(idEmprendimiento) + ".png",
             idEmprendimiento,
         )
         rows = database.executeNonQueryRowsTuple(sql, data)

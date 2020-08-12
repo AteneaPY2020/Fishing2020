@@ -4,7 +4,7 @@
 {% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loginform</title>
+    <title>Fishing | Inicio sesión</title>
 
 	<!--Icono de barra-->
 	<link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
@@ -52,19 +52,19 @@
 				<!--Form-->
 				<form class="login100-form validate-form" action="/logIn" method="POST">
 					<span class="login100-form-title p-b-55">
-						Login
+						Inicia sesión 
 					</span>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="user" id="user" placeholder="Email">
+						<input class="input100" type="text" name="user" id="user" placeholder="Usuario">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<span class="lnr lnr-envelope"></span>
+							<span class="lnr lnr-user"></span>
 						</span>
 					</div>
 
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Password is required">
-						<input class="input100" type="password" name="password" id="password" placeholder="Password">
+						<input class="input100" type="password" name="password" id="password" placeholder="Contraseña">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<span class="lnr lnr-lock"></span>
@@ -75,21 +75,21 @@
                     <br>
                     <div class="container-login100-form-btn p-t-25">
 						<button type="submit" value="Log in" class="login100-form-btn">
-							Login
+							Ingresar
 						</button>
 					</div>
 
 					<div class="text-center w-full p-t-115">
 						<span class="txt1">
-							Not a member?
+							¿No tienes una cuenta?
 						</span>
 						<br>
 						<a class="txt1 bo1 hov1" href="/signUpInversor">
-							Sign Up Inversor							
+							Regístrate como inversionista							
 						</a>
 						<br>
 						<a class="txt1 bo1 hov1" href="/signUpEmprendedor">
-							Sign Up Emprendedor							
+							Regístrate como emprendedor							
 						</a>
 					</div>
 				</form>

@@ -1,9 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil Inversionista</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Responsive HTML5 Website landing Page for Developers">
+    <meta name="author" content="3rd Wave Media">     
+    <link rel="stylesheet" href="static/emprendimiento/vendors/fontawesome/css/all.min.css">
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="static/perfil/assets/plugins/bootstrap/css/bootstrap.min.css">   
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="static/perfil/assets/plugins/font-awesome/css/font-awesome.css">
+    <!-- github acitivity css -->
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
+    <link rel="stylesheet" href="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css">
+    
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="static/perfil/assets/css/stylesPerfil.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+
 
     <!--==========================Icono de barra==============================================================-->
 	<link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
@@ -14,23 +37,105 @@
     <!--==========================Icono de barra==============================================================-->
 
 </head>
+
 <body>
-    <table>
-        <tr>
-            <form action="/busqueda">
-            <th><input type= "text" id="busqueda" name="busqueda"></th>
-            <th><input type="submit" value="buscar"></th>
-            </form>
-            <th><a href="/InicioInv">Inicio</a></th>
-            <th><a href="/perfilInversionista">Perfil</a></th>
-            <th><a href="/guardadosInv">Guardados</a></th>
-            <th>Cerrar sesión</th>
-        </tr>
-    </table>
-    <h1>Edita tu perfil</h1>
-    
-            {%if editar%}
+
+    <!-- ******HEADER****** --> 
+<table>
+    <tr>
+        <form action="/busqueda">
+        <th><input type= "text" id="busqueda" name="busqueda"></th>
+        <th><input type="submit" value="buscar"></th>
+        </form>
+        <th><a href="/InicioInv">Inicio</a></th>
+        <th><a href="/perfilInversionista">Perfil</a></th>
+        <th><a href="/guardadosInv">Guardados</a></th>
+        <th>Cerrar sesión</th>
+    </tr>
+</table>
+
+ {%if not editar%}    
+ 
+    <header class="header">
+        <div class="container"> 
+            <img class="circular--portrait pull-left" src="/static/images/inversionista/{{nombre_foto}}" alt="" width="200" height="141"/>                    
+            <div class="profile-content pull-left">
+                <h1 class="name">{{nombre}}</h1>
+                <h2 class="desc">Inversionista</h2>   
+                <ul class="social list-inline">
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>                   
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#"><i class="fa fa-github-alt"></i></a></li>                  
+                    <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>                 
+                </ul> 
+            </div><!--//profile-->
+            
+           <!--Boton Modificar la informacion general-->
             <form action="/perfilInversionista" method="POST" enctype="multipart/form-data">
+                <td><button type="submit" value= "Update"class="btn btn-cta-secondary pull-right" ><i class="fa fa-paper-plane"></i>Modificar Informacion Personal</button></td>
+                <input type="hidden" name="formId" id="formId" value="1">
+            </form>
+
+           
+        </div><!--//container-->
+    </header><!--//header-->
+   
+    <div class="container sections-wrapper">
+        <div class="row">
+            <div class="primary col-md-8 col-sm-12 col-xs-12">
+                <section class="about section">
+                    <div class="section-inner">
+                        <h2 class="heading">Biografía</h2>
+                        <div class="content">
+                            <p>{{biografia}}</p>    
+         
+                                
+                        </div><!--//content-->
+                    </div><!--//section-inner-->                 
+                </section><!--//section-->
+                </section><!--//section-->
+                
+            </div><!--//primary-->
+            <div class="secondary col-md-4 col-sm-12 col-xs-12">
+                 <aside class="info aside section">
+                    <div class="section-inner">
+                        <h2 class="heading sr-only">Basic Information</h2>
+                        <div class="content">
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-map-marker"></i><span class="sr-only"></span>{{ciudad}}, {{pais}}</li>
+                                <li><i class="fa fa-envelope-o"></i><span class="sr-only"></span>{{email}}</li>
+                            </ul>
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </aside><!--//aside-->
+                
+                <aside class="skills aside section">
+                    <div class="section-inner">
+                        <h2 class="heading">Tus intereses</h2>
+                        <div class="content">
+                            <p class="intro">
+                                Revisa tus intereses
+                            <div class="skillset">
+                               
+                                <div class="item">
+                                    <!--intereses-->                          
+                                </div><!--//item-->
+                                
+                            </div>              
+                        </div><!--//content-->  
+                    </div><!--//section-inner-->                 
+                </aside><!--//section-->
+            </div><!--//secondary-->    
+        </div><!--//row-->
+    </div><!--//masonry-->
+
+{%endif%}
+
+
+    <!--POPUP: Form Modificar la informacion general-->
+    {%if editar%}
+        <form action="/perfilInversionista" method="POST" enctype="multipart/form-data">
             Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
             Foto de perfil: <input type="file" name="fileToUpload" id="fileToUpload"><br>
             Biografia: <input type="text" name="biografia" id="biografia" value="{{biografia}}"><br>
@@ -39,22 +144,8 @@
             Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
             <td><button type="submit" value= "Update">Actualizar</button></td>
             <input type="hidden" name="formId" id="formId" value="2">
-            </form>
-            {%endif%}
+        </form>
+    {%endif%}
 
-            {%if not editar%}
-            <img src="/static/images/inversionista/{{nombre_foto}}" width="100" height="100"><br>
-            Nombre: {{nombre}}<br>
-            Biografía: {{biografia}}<br>
-            Correo Electrónico: {{email}}<br>
-            País: {{pais}}<br>
-            Ciudad: {{ciudad}}<br>
-            <form action="/perfilInversionista" method="POST" enctype="multipart/form-data">
-            <td><button type="submit" value= "Update">Actualizar</button></td>
-            <input type="hidden" name="formId" id="formId" value="1">
-            </form>
-            {%endif%}
-     
-    
 </body>
 </html>

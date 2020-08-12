@@ -36,3 +36,31 @@ class likeLogic(Logic):
         )
         data = dataBase.executeQuery(sql)
         return data[0][0]
+
+    def unLike(self, id_inversionista, id_producto):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "delete from fishingdb.reaccion "
+            + f"where id_inversionista = {id_inversionista} and id_producto = {id_producto};"
+        )
+        rows = dataBase.executeNonQueryRows(sql)
+
+        contador = self.getNumLikes(id_producto)
+        sql2 = (
+            "update fishingdb.productos"
+            + f" set likes ={contador - 1}"
+            + f" where id = {id_producto};"
+        )
+        rows = dataBase.executeNonQueryRows(sql2)
+        return rows
+
+    def getAllReaccionesByIdEmprendimiento(self, id_emprendimiento):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "select reaccion.* from fishingdb.productos inner join fishingdb.reaccion "
+            + "on productos.id = reaccion.id_producto "
+            + f"where productos.id_emprendimiento = {id_emprendimiento};"
+        )
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        return data

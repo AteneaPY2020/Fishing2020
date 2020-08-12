@@ -16,6 +16,7 @@ class productoLogic(Logic):
             "precio_venta",
             "patente",
             "id_emprendimiento",
+            "likes",
         ]
 
     def insertNewProducto(

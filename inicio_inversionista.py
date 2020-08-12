@@ -396,3 +396,15 @@ def like():
         return redirect("/registroProductosInv")
     elif request.method == "POST":
         return redirect("/registroProductosInv")
+
+
+@inicio_inversionista.route("/unLike", methods=["GET", "POST"])
+def unLike():
+    logic = likeLogic()
+    id_inv = session["id_inv"]
+    id_producto = int(request.form["id"])
+    logic.unLike(id_inv, id_producto)
+    if request.method == "GET":
+        return redirect("/registroProductosInv")
+    elif request.method == "POST":
+        return redirect("/registroProductosInv")

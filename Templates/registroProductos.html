@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.carousel.min.css">
     <link rel="stylesheet" href="static/emprendimiento/css/style.css">
 
+    <!--==========================Icono de barra==============================================================-->
+    <link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" href="static/t2/assets/ico/apple-touch-icon.png" />
+    <!--==========================Icono de barra==============================================================-->
+    
+
 {% endblock head %}
 {% block body %}
     <!--================ Start Header Menu Area =================-->
@@ -86,24 +95,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xl-3 col-lg-4 col-md-5">
-          <div class="sidebar-categories">
-            <div class="head">Browse Categories</div>
-            <ul class="main-categories">
-              <li class="common-filter">
-                <form action="#">
-                  <ul>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="men" name="brand"><label for="men">Men<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="women" name="brand"><label for="women">Women<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="accessories" name="brand"><label for="accessories">Accessories<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="footwear" name="brand"><label for="footwear">Footwear<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="bayItem" name="brand"><label for="bayItem">Bay item<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="electronics" name="brand"><label for="electronics">Electronics<span> (3600)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="food" name="brand"><label for="food">Food<span> (3600)</span></label></li>
-                  </ul>
-                </form>
-              </li>
-            </ul>
-          </div>
+          
           <div class="sidebar-filter">
             <div class="top-filter-head">Product Filters</div>
             <div class="common-filter">
@@ -132,50 +124,11 @@
                 </ul>
               </form>
             </div>
-            <div class="common-filter">
-              <div class="head">Price</div>
-              <div class="price-range-area">
-                <div id="price-range"></div>
-                <div class="value-wrapper d-flex">
-                  <div class="price">Price:</div>
-                  <span>$</span>
-                  <div id="lower-value"></div>
-                  <div class="to">to</div>
-                  <span>$</span>
-                  <div id="upper-value"></div>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
         <div class="col-xl-9 col-lg-8 col-md-7">
-          <!-- Start Filter Bar -->
-            <div class="filter-bar d-flex flex-wrap align-items-center">
-                <div class="">
-                <select>
-                    
-                </select>
-            </div>
-            
-            <div class="sorting mr-auto">
-              
-            </div>
-           
-            <div>
-              
-              <div class="input-group filter-bar-search">
-                <input type="text" placeholder="Search">
-                <div class="input-group-append">
-                  <button type="button"><i class="ti-search"></i></button>
-                </div>
-              </div>
-
-            </div>
-        </div>
-          <!-- End Filter Bar -->
-          <!-- Start Best Seller -->
-
-
+       
         {% for registro in data %}
         <section class="lattest-product-area pb-40 category-list">
             <div class="row">
@@ -247,7 +200,7 @@
                               </form>
                             
                               <form action="/registroProductos" method="POST" enctype="multipart/form-data">
-                                  <br>
+                                  
                                   <input type="submit" class="button button-postComment button--active" value="Modificar">
                                 
                                   <input type="hidden" name="formId" id="formId" value="3">

@@ -84,227 +84,175 @@
     
     <!--================Blog Area =================-->
 	<section class="blog_area single-post-area py-80px section-margin--small">
-			<div class="container">
-					<div class="row">
-							<div class="col-lg-8 posts-list">
-									<div class="single-post row">
-											<div class="col-lg-12">
-													<div class="feature-img">
-															<img class="img-fluid" src="static/emprendimiento/img/blog/banner.jpg" alt="">
-													</div>
-											</div>
-											
-											<div class="col-lg-15 col-md-15 blog_details">
-													<h2>¿Cómo nació esta idea de negocios?</h2>
-													<p class="excert">
-                                                        <form action="/quienes_somos" method="POST">
-                                                            {% for registro in data2 %}
-                                                                <p>{{registro["historia"]}}</p>
-                                                            {% endfor %}
-                                                            <br>
-															{% if not vistaEmprendimiento %} 
-                                                            <textarea  name="historia" rows="10" cols="75" >Escribe aquí tu historia</textarea>
-                                                            <br><br><button type="submit" value="insert" class="button button-postComment button--active"> Modificar</button>
-                                                            <input type="hidden" name="formId" id="formId" value="3">
-															{% endif %}
-														</form>
-													</p>
-											</div>
-
-									</div>
-									
-									<div class="comments-area">
-											<h3>Fundadores</h3>
-                                            {% for registro in data %}
-                                
-                                            <br><br>
-											<div class="comment-list">
-													<div class="single-comment justify-content-between d-flex">
-															<div class="user justify-content-between d-flex">
-																	<div class="thumb">
-																			<img src="/static/images/emprendedor/{{registro["nombre_foto"]}}" width="125" alt="">
-																	</div>
-																	<div class="desc">
-																			<h5>
-																					<a>{{registro["nombre"]}}</a>
-																			</h5>
-																			<p class="date">Fun</p>
-																			<p class="comment">
-																					{{registro["biografia"]}}
-																			</p>
-																	</div>
-															</div>
-															<div class="reply-btn">
-																	
-                                                                {% if not vistaEmprendimiento %} 
-                                                                <form action="/quienes_somos" method="POST">
-                                                                    <button type="submit" value="delete" class="button button-postComment button--active"> Borrar</button>
-                                                                    <input type="hidden" name="formId" id="formId" value="2">
-                                                                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                                                                </form>
-																{% endif %} 
-                                                                        
-															</div>
-													</div>
-											</div>
-                                            {% endfor %}											
-    
-											</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 posts-list">
+					<div class="single-post row">
+						<div class="col-lg-12">
+							<div class="feature-img">
+									<img class="img-fluid" src="static/emprendimiento/img/blog/banner.jpg" alt="">
+							</div>
+						</div>
+		
+						<div class="col-lg-15 col-md-15 blog_details">
+							<h2>¿Cómo nació esta idea de negocios?</h2>
+							<p class="excert">
+								<form action="/quienes_somos" method="POST">
+									{% for registro in data2 %}
+										<p>{{registro["historia"]}}</p>
+									{% endfor %}
+									<br>
 									{% if not vistaEmprendimiento %} 
-									<div class="comment-form">
-											<h3>Agregar fundadores</h3>
-                                            <p>{{message}}</p>
-                                            
-                                            <form action="/quienes_somos" method="POST">
-                                                <p>Si desea ingresar un nuevo fundador al emprendimiento ingrese el usuario</p>
-                                                
-                                                <label for="user">Usuario:</label>
-                                                <br><input type="text" id="user" name="user">
-                                                <input type="hidden" name="formId" id="formId" value="1">
-                                                <br><br>
-                                                <button type="submit" value="Insertar" class="button button-postComment button--active"> Insertar</button>
-                                                
-											</form>
-									</div>
+									<textarea  name="historia" rows="10" cols="75" >Escribe aquí tu historia</textarea>
+									<br><br><button type="submit" value="insert" class="button button-postComment button--active"> Modificar</button>
+									<input type="hidden" name="formId" id="formId" value="3">
 									{% endif %}
+								</form>
+							</p>
+						</div>
+
+					</div>
+					
+					<div class="comments-area">
+						<h3>Fundadores</h3>
+						{% for registro in data %}
+						<br><br>
+							<div class="comment-list">
+								<div class="single-comment justify-content-between d-flex">
+									<div class="user justify-content-between d-flex">
+										<div class="thumb">
+											<img src="/static/images/emprendedor/{{registro["nombre_foto"]}}" width="125" alt="">
+										</div>
+										<div class="desc">
+											<h5>
+													<a>{{registro["nombre"]}}</a>
+											</h5>
+											<p class="date">Fun</p>
+											<p class="comment">
+													{{registro["biografia"]}}
+											</p>
+										</div>
+									</div>
+									<div class="reply-btn">
+												
+										{% if not vistaEmprendimiento %} 
+										<form action="/quienes_somos" method="POST">
+											<button type="submit" value="delete" class="button button-postComment button--active"> Borrar</button>
+											<input type="hidden" name="formId" id="formId" value="2">
+											<input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+										</form>
+										{% endif %} 
+												
+									</div>
+								</div>
 							</div>
-							<div class="col-lg-4">
-									<div class="blog_right_sidebar">
-											<aside class="single_sidebar_widget search_widget">
-													<div class="input-group">
-															<input type="text" class="form-control" placeholder="Search Posts">
-															<span class="input-group-btn">
-																	<button class="btn btn-default" type="button">
-																			<i class="lnr lnr-magnifier"></i>
-																	</button>
-															</span>
-													</div>
-													<!-- /input-group -->
-													<div class="br"></div>
-											</aside>
-											<aside class="single_sidebar_widget author_widget">
-													<img class="author_img rounded-circle" src="static/emprendimiento/img/blog/author.png" alt="">
-													<h4>Charlie Barber</h4>
-													<p>Senior blog writer</p>
-													<div class="social_icon">
-                              <a href="#">
-                                  <i class="fab fa-facebook-f"></i>
-                              </a>
-                              <a href="#">
-                                  <i class="fab fa-twitter"></i>
-                              </a>
-                              <a href="#">
-                                  <i class="fab fa-github"></i>
-                              </a>
-                              <a href="#">
-                                <i class="fab fa-behance"></i>
-                              </a>
-                          </div>
-													<p>Boot camps have its supporters andit sdetractors. Some people do not understand why you should
-															have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits
-															detractors.
-													</p>
-													<div class="br"></div>
-											</aside>
-											<aside class="single_sidebar_widget popular_post_widget">
-													<h3 class="widget_title">Popular Posts</h3>
-													<div class="media post_item">
-															<img src="static/emprendimiento/img/blog/popular-post/post1.jpg" alt="post">
-															<div class="media-body">
-																	<a href="blog-details.html">
-																			<h3>Space The Final Frontier</h3>
-																	</a>
-																	<p>02 Hours ago</p>
-															</div>
-													</div>
-													<div class="media post_item">
-															<img src="static/emprendimiento/img/blog/popular-post/post2.jpg" alt="post">
-															<div class="media-body">
-																	<a href="blog-details.html">
-																			<h3>The Amazing Hubble</h3>
-																	</a>
-																	<p>02 Hours ago</p>
-															</div>
-													</div>
-													<div class="media post_item">
-															<img src="static/emprendimiento/img/blog/popular-post/post3.jpg" alt="post">
-															<div class="media-body">
-																	<a href="blog-details.html">
-																			<h3>Astronomy Or Astrology</h3>
-																	</a>
-																	<p>03 Hours ago</p>
-															</div>
-													</div>
-													<div class="media post_item">
-															<img src="static/emprendimiento/img/blog/popular-post/post4.jpg" alt="post">
-															<div class="media-body">
-																	<a href="blog-details.html">
-																			<h3>Asteroids telescope</h3>
-																	</a>
-																	<p>01 Hours ago</p>
-															</div>
-													</div>
-													<div class="br"></div>
-											</aside>
-											<aside class="single_sidebar_widget ads_widget">
-													<a href="#">
-															<img class="img-fluid" src="static/emprendimiento/img/blog/add.jpg" alt="">
-													</a>
-													<div class="br"></div>
-											</aside>
-											<aside class="single_sidebar_widget post_category_widget">
-													<h4 class="widget_title">Post Catgories</h4>
-													<ul class="list cat-list">
-															<li>
-																	<a href="#" class="d-flex justify-content-between">
-																			<p>Technology</p>
-																			<p>37</p>
-																	</a>
-															</li>
-															<li>
-																	<a href="#" class="d-flex justify-content-between">
-																			<p>Lifestyle</p>
-																			<p>24</p>
-																	</a>
-															</li>
-															<li>
-																	<a href="#" class="d-flex justify-content-between">
-																			<p>Fashion</p>
-																			<p>59</p>
-																	</a>
-															</li>
-															<li>
-																	<a href="#" class="d-flex justify-content-between">
-																			<p>Art</p>
-																			<p>29</p>
-																	</a>
-															</li>
-															<li>
-																	<a href="#" class="d-flex justify-content-between">
-																			<p>Food</p>
-																			<p>15</p>
-																	</a>
-															</li>
-															<li>
-																	<a href="#" class="d-flex justify-content-between">
-																			<p>Architecture</p>
-																			<p>09</p>
-																	</a>
-															</li>
-															<li>
-																	<a href="#" class="d-flex justify-content-between">
-																			<p>Adventure</p>
-																			<p>44</p>
-																	</a>
-															</li>
-													</ul>
-													<div class="br"></div>
-											</aside>
+						{% endfor %}											
+    
+					</div>
+					
+					{% if not vistaEmprendimiento %} 
+						<div class="comment-form">
+							<h3>Agregar fundadores</h3>
+							<p>{{message}}</p>
+							
+							<form action="/quienes_somos" method="POST">
+								<p>Si desea ingresar un nuevo fundador al emprendimiento ingrese el usuario</p>
+								
+								<label for="user">Usuario:</label>
+								<br><input type="text" id="user" name="user">
+								<input type="hidden" name="formId" id="formId" value="1">
+								<br><br>
+								<button type="submit" value="Insertar" class="button button-postComment button--active"> Insertar</button>
+								
+							</form>
+						</div>
+					{% endif %}
+				</div>
+				
+				<div class="col-lg-4">
+					<div class="blog_right_sidebar">
+						<aside class="single_sidebar_widget author_widget">
+							<div class="social_icon">
+							</div>
+
+						</aside>
+							
+						<aside class="single_sidebar_widget popular_post_widget">
+							<h3 class="widget_title">Conoce historias de éxito en Fishing</h3>	
+							<p>Descubre nuestro compromiso por el éxito de nuestros usuarios:</p>
+								
+							<div class="media post_item">
+									<img src="static/emprendimiento/img/blog/popular-post/post1.jpg" width="150" height="90" alt="post">
+									<div class="media-body">
+										<h3>Grace & Lace</h3>	
+										<a href="https://www.graceandlace.com/">
+											<p>Visita su página</p>	
+										</a>
 											
 									</div>
 							</div>
+							<div class="br"></div>
+							<div class="media post_item"> 
+								<img src="static/emprendimiento/img/blog/popular-post/post2.jpg" width="150" height="90" alt="post">
+								<div class="media-body">
+									<h3>Wicked Good Cupcakes</h3>	
+									<a href="https://www.wickedgoodcupcakes.com/">
+										<p>Visita su página</p>	
+									</a>
+										
+								</div>	
+							</div>
+							<div class="br"></div>
+							<div class="media post_item"> 
+								<img src="static/emprendimiento/img/blog/popular-post/post3.jpg" width="150" height="90" alt="post">
+								<div class="media-body">
+									<h3>The Red Dress Boutique</h3>	
+									<a href="https://www.reddress.com/">
+										<p>Visita su página</p>	
+									</a>
+										
+								</div>	
+							</div>
+							<div class="br"></div>
+							<div class="media post_item"> 
+								<img src="static/emprendimiento/img/blog/popular-post/post4.jpg" width="150" height="90" alt="post">
+								<div class="media-body">
+									<h3>Bombas</h3>	
+									<a href="https://bombas.com/">
+										<p>Visita su página</p>	
+									</a>
+										
+								</div>	
+							</div>
+							<div class="br"></div>
+							<div class="media post_item"> 
+								<img src="static/emprendimiento/img/blog/popular-post/post5.jpg" width="150" height="90" alt="post">
+								<div class="media-body">
+									<h3>Simple Sugars</h3>	
+									<a href="https://www.simplesugarsskincare.com/">
+										<p>Visita su página</p>	
+									</a>
+										
+								</div>	
+							</div>
+							<div class="br"></div>
+							<div class="media post_item"> 
+								<img src="static/emprendimiento/img/blog/popular-post/post6.png" width="150" height="90" alt="post">
+								<div class="media-body">
+									<h3>GrooveBook</h3>	
+									<a href="https://www.groovebook.com/">
+										<p>Visita su página</p>	
+									</a>
+										
+								</div>	
+							</div>
+							<div class="br"></div>
+						</aside>
+
 					</div>
+				</div>
 			</div>
+		</div>
 	</section>
 	<!--================Blog Area =================-->
 

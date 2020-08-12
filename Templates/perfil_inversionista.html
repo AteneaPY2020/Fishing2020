@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css">
     
     <!-- Theme CSS -->  
-    <link id="theme-style" rel="stylesheet" href="static/perfil/assets/css/stylesPerfil.css">
+    <link id="theme-style" rel="stylesheet" href="static/perfil/assets/css/styles.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 
@@ -73,7 +73,7 @@
                 
             <!--Boton Modificar la informacion general-->
                 <form action="/perfilInversionista" method="POST" enctype="multipart/form-data">
-                    <td><button type="submit" value= "Update"class="btn btn-cta-secondary pull-right" ><i class="fa fa-paper-plane"></i>Modificar Informacion Personal</button></td>
+                    <td><button type="submit" value= "Update" class="btn btn-cta-secondary pull-right" ><i class="fa fa-paper-plane"></i>Modificar Informacion Personal</button></td>
                     <input type="hidden" name="formId" id="formId" value="1">
                 </form>
 
@@ -115,11 +115,37 @@
                             <h2 class="heading">Tus intereses</h2>
                             <div class="content">
                                 <p class="intro">
-                                    Revisa tus intereses
+                                    Tus interes son importantes para mostrarte emprendimientos y productos de relevancia
+                                        
                                 <div class="skillset">
                                 
                                     <div class="item">
-                                        <!--intereses-->                          
+                                        <p>{{message}}</p>
+                                        
+                                        <DIR>
+                                            <form action="/perfilInversionista" method="POST">
+                                                <button type="submit" value="delete" class="btn btn-cta-secondary">Agregar Interes</button>
+                                                <input type="hidden" name="formId" id="formId" value="4">
+                                            </form>
+                                        </DIR> 
+                                        <br>
+                                        {% for registro in interes %}
+                                            <table>
+                                                <tr>
+                                                    <td>{{registro["categoria"]}}</td>
+                                                    
+                                                    <td>
+                                                        <form action="/perfilInversionista" method="POST">
+                                                            &nbsp;&nbsp;&nbsp;<button type="submit" value="delete" class="btn btn-cta-secondary pull-right">Borrar</button>
+                                                            <input type="hidden" name="formId" id="formId" value="3">
+                                                            <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                                        </form>
+                                                    </td>
+                                                    <br>
+                                                </tr>
+                                            </table>
+                                        {% endfor %}
+
                                     </div><!--//item-->
                                     
                                 </div>              
@@ -163,76 +189,42 @@
             Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
             <td><button type="submit" value= "Update">Actualizar</button></td>
             <input type="hidden" name="formId" id="formId" value="2">
-            </form>
-            {%endif%}
-
-            {%if not editar%}
-            <img src="/static/images/inversionista/{{nombre_foto}}" width="100" height="100"><br>
-            Nombre: {{nombre}}<br>
-            Biografía: {{biografia}}<br>
-            Correo Electrónico: {{email}}<br>
-            País: {{pais}}<br>
-            Ciudad: {{ciudad}}<br>
-            <form action="/perfilInversionista" method="POST" enctype="multipart/form-data">
-            <td><button type="submit" value= "Update">Actualizar</button></td>
-            <input type="hidden" name="formId" id="formId" value="1">
-            </form>
-            {%endif%}
-            <br>
-            <br>
-            <p>{{message}}</p>
-            <h3>Tus intereses son: </h3>
-            <p>Tus interes son importantes para mostrarte emprendimientos y productos de relevancia </p>
-            <form action="/perfilInversionista" method="POST">
-                <button type="submit" value="delete">Agregar Interes</button>
-                <input type="hidden" name="formId" id="formId" value="4">
-            </form>
-            {%if  agregar%}
-                <form action="/perfilInversionista" method="POST">
-                    <input type="checkbox" id="Alimento" name="Alimento" value="Alimento">
-                    <label for="Alimento">Alimento</label><br>
-                    <input type="checkbox" id="Moda" name="Moda" value="Moda">
-                    <label for="Moda">Moda</label><br>
-                    <input type="checkbox" id="CyTec" name="CyTec" value="CyTec">
-                    <label for="CyTec">Ciencia y Tecnología</label><br>
-                    <input type="checkbox" id="Social" name="Social" value="Social">
-                    <label for="Social">Social</label><br>
-                    <input type="checkbox" id="Salud" name="Salud" value="Salud">
-                    <label for="Salud">Salud</label><br>
-                    <input type="checkbox" id="Academico" name="Academico" value="Academico">
-                    <label for="Academico">Academico</label><br>
-                    <input type="checkbox" id="Entretenimiento" name="Entretenimiento" value="Entretenimiento">
-                    <label for="Entretenimiento">Entretenimiento</label><br>
-                    <input type="checkbox" id="Infantil" name="Infantil" value="Infantil">
-                    <label for="Infantil">Infantil</label><br>
-                    <input type="checkbox" id="Belleza" name="Belleza" value="Belleza">
-                    <label for="Belleza">Belleza</label><br>
-                    <input type="checkbox" id="Ecologia" name="Ecologia" value="Ecologia">
-                    <label for="Ecologia">Ecología</label><br>
-                    <input type="checkbox" id="Otra" name="Otra" value="Otra">
-                    <label for="Otra">Otra</label><br>
-                    <input type="hidden" name="formId" id="formId" value="5">
-                    <button type="submit" value="insert">Agregar</button>
-                </form>
-            {%endif%}  
-            <br>
-            {% for registro in interes %}
-                <table>
-                    <tr>
-                        <td>{{registro["categoria"]}}</td>
-                        <td>
-                            <form action="/perfilInversionista" method="POST">
-                                <button type="submit" value="delete">Borrar</button>
-                                <input type="hidden" name="formId" id="formId" value="3">
-                                <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                            </form>
-                        </td>
-                    </tr>
-                </table>
-                {% endfor %}
-    
         </form>
     {%endif%}
+
+
+    <!--POPUP: Agregar intereses-->
+    {%if  agregar%}
+        <form action="/perfilInversionista" method="POST">
+            <input type="checkbox" id="Alimento" name="Alimento" value="Alimento">
+            <label for="Alimento">Alimento</label><br>
+            <input type="checkbox" id="Moda" name="Moda" value="Moda">
+            <label for="Moda">Moda</label><br>
+            <input type="checkbox" id="CyTec" name="CyTec" value="CyTec">
+            <label for="CyTec">Ciencia y Tecnología</label><br>
+            <input type="checkbox" id="Social" name="Social" value="Social">
+            <label for="Social">Social</label><br>
+            <input type="checkbox" id="Salud" name="Salud" value="Salud">
+            <label for="Salud">Salud</label><br>
+            <input type="checkbox" id="Academico" name="Academico" value="Academico">
+            <label for="Academico">Academico</label><br>
+            <input type="checkbox" id="Entretenimiento" name="Entretenimiento" value="Entretenimiento">
+            <label for="Entretenimiento">Entretenimiento</label><br>
+            <input type="checkbox" id="Infantil" name="Infantil" value="Infantil">
+            <label for="Infantil">Infantil</label><br>
+            <input type="checkbox" id="Belleza" name="Belleza" value="Belleza">
+            <label for="Belleza">Belleza</label><br>
+            <input type="checkbox" id="Ecologia" name="Ecologia" value="Ecologia">
+            <label for="Ecologia">Ecología</label><br>
+            <input type="checkbox" id="Otra" name="Otra" value="Otra">
+            <label for="Otra">Otra</label><br>
+            <input type="hidden" name="formId" id="formId" value="5">
+            <button type="submit" value="insert">Agregar</button>
+        </form>
+    {%endif%}  
+    <br>
+            
+    
 
 </body>
 </html>

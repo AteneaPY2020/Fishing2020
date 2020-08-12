@@ -350,13 +350,14 @@ def correo():
         # Datos de sesion
         user = session["user"]
         id_user = int(user["id"])
+        usuario = user["usuario"]
         logicInv = inversorLogic()
         datos = logicInv.getIdInversor(id_user)
 
         idEmprendimiento = session["empId"]
         logicEmpr = emprendimientoLogic()
         infoEmpren = logicEmpr.getIdEmprendimiento(idEmprendimiento)
-
+        logicEmpr.FundadoresByEmprendimientoCorreo(usuario, idEmprendimiento)
         message = request.form["message"]
         user = "fishing.corporation2020@gmail.com"
         password = "ilovefishing123"
@@ -397,6 +398,7 @@ def correo():
         message1 = "Correo enviado exitosamente"
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
+        # logicEmpr.FundadoresByEmprendimientoCorreo(id_user, idEmprendimiento)
         return render_template(
             "informacion.html",
             data=data,

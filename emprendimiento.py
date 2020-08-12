@@ -69,6 +69,7 @@ def quienesSomos():
                     rows = logic.insertNewFundador(user, idEmprendimiento)
                     data = logic.getAllFundadores(idEmprendimiento)
                     data2 = logic.getHistoria(idEmprendimiento)
+                    logicEmpre.insertNotificationFundador(user, idEmprendimiento)
                     message = "Se ha agregado al fundador"
                     return render_template(
                         "quienes_somos.html", data=data, data2=data2, message=message

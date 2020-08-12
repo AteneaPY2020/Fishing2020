@@ -82,6 +82,7 @@ def perfilInversionista():
         pais = Inversor["pais"]
         email = Inversor["email"]
         interes = logicInv.getIntereses(id_inv)
+        nombre_foto = Inversor["nombre_foto"]
         return render_template(
             "perfil_inversionista.html",
             nombre=nombre,
@@ -91,6 +92,7 @@ def perfilInversionista():
             email=email,
             message="",
             interes=interes,
+            nombre_foto=nombre_foto,
         )
     elif request.method == "POST":
         formId = int(request.form["formId"])
@@ -127,7 +129,6 @@ def perfilInversionista():
             city = request.form["ciudad"]
             country = request.form["pais"]
             mail = request.form["email"]
-            nombre_pic = pic.filename
             if pic.filename == "":
                 logicInv.updateInversionista(
                     id_inv, name, bio, mail, id_user, country, city
@@ -135,7 +136,7 @@ def perfilInversionista():
             else:
                 binary_foto = pic.read()
                 logicInv.updateInversionistaConFoto(
-                    id_inv, name, bio, mail, country, city, binary_foto, nombre_pic,
+                    id_inv, name, bio, mail, country, city, binary_foto, id_user
                 )
 
             # Actualizar datos
@@ -150,7 +151,6 @@ def perfilInversionista():
             foto = Inversor["foto"]
             nombre_foto = Inversor["nombre_foto"]
             print(nombre_foto)
-            logicInv.saveImagesInversionista(id_user)
             interes = logicInv.getIntereses(id_inv)
 
             return render_template(

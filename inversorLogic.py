@@ -151,7 +151,7 @@ class inversorLogic(Logic):
         return row
 
     def updateInversionistaConFoto(
-        self, id, name, bio, email, country, city, foto, nombre_foto
+        self, id, name, bio, email, country, city, foto, id_user
     ):
         database = self.get_databaseXObj()
         sql = (
@@ -159,8 +159,9 @@ class inversorLogic(Logic):
             + " set nombre = %s, biografia = %s, email = %s, pais = %s, ciudad = %s, foto = %s, nombre_foto = %s"
             + " where id = %s;"
         )
-        data = (name, bio, email, country, city, foto, nombre_foto, id)
+        data = (name, bio, email, country, city, foto, str(id) + ".png", id)
         rows = database.executeNonQueryRowsTuple(sql, data)
+        self.saveImagesInversionista(id_user)
         return rows
 
     def saveImagesInversionista(self, id_user):

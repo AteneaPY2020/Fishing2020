@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Responsive HTML5 Website landing Page for Developers">
     <meta name="author" content="3rd Wave Media">     
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
+    <link rel="stylesheet" href="static/emprendimiento/vendors/fontawesome/css/all.min.css">
     <!-- Global CSS -->
     <link rel="stylesheet" href="static/perfil/assets/plugins/bootstrap/css/bootstrap.min.css">   
     <!-- Plugins CSS -->
@@ -32,7 +31,7 @@
     <!-- ******HEADER****** --> 
     <header class="header">
         <div class="container">  
-            <img class="circular--portrait pull-left" src="static/images/emprendedor/{{data[0]["nombre_foto"]}}" alt="James Lee" width="200" height="141"/>                    
+            <img class="circular--portrait pull-left" src="static/images/emprendedor/{{data[0]["nombre_foto"]}}" alt="" width="200" height="141"/>                    
             <div class="profile-content pull-left">
                 <h1 class="name">{{data[0]["nombre"]}}</h1>
                 <h2 class="desc">Emprendedor</h2>   
@@ -103,7 +102,7 @@
                                         <td>
                                             <!--Boton "Ir"-->
                                             <form action="/emprendedorProfile" method="POST">
-                                                <button class="btn btn-cta-secondary" type="submit" value="ir">Ir</button>
+                                                <button class="btn btn-cta-primary" type="submit" value="ir">Ir</button>
                                                 <input type="hidden" name="formId" id="formId" value="6">
                                                 <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                             </form>
@@ -111,7 +110,7 @@
                                         <td>
                                             <!--Boton "delete"-->
                                             <form action="/emprendedorProfile" method="POST">
-                                                <button class="btn btn-cta-secondary" type="submit" value="delete">Salir</button>
+                                                <button class="btn btn-cta-primary" type="submit" value="delete">Salir</button>
                                                 <input type="hidden" name="formId" id="formId" value="5">
                                                 <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                             </form>
@@ -261,7 +260,6 @@
     </form>
     <br><br>
     {% endif %}
-    
 {% endblock body %}
 
 </html>

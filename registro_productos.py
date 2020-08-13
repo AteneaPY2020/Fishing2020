@@ -1,6 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, session
 from productoLogic import productoLogic
 from likeLogic import likeLogic
+from userLogic import UserLogic
+from userObj import UserObj
+from emprendedorLogic import emprendedorLogic
+from emprendedorObj import emprendedorObj
+from emprendimientoLogic import emprendimientoLogic
 
 registro_productos = Blueprint(
     "registro_productos", __name__, template_folder="Templates", static_folder="static"
@@ -42,15 +47,24 @@ def registroProducto():
     mostrar = False
     data2 = None
     data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
+    logicEmprendimiento = emprendimientoLogic()
+    logicEmprendedor = emprendedorLogic()
+    user = session["user"]
+    idUsuario = int(user["id"])
     # Vista
     vistaEmprendimiento = True
 
     if request.method == "GET":
         # True para vista inversionista
         vistaEmprendimiento = False
-
+        data2 = logicEmprendimiento.getDescripcion(id_emprendimiento)
+        data3 = logicEmprendedor.getDatosGeneralesById(idUsuario)
         return render_template(
-            "registroProductos.html", data=data, vistaEmprendimiento=vistaEmprendimiento
+            "registroProductos.html",
+            data=data,
+            data2=data2,
+            data3=data3,
+            vistaEmprendimiento=vistaEmprendimiento,
         )
     elif request.method == "POST":
         formId = int(request.form["formId"])

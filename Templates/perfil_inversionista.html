@@ -275,17 +275,4 @@
 </body>
 </html>
 
-<form action="/registroProductos" method="POST" enctype="multipart/form-data">
-        Nombre: <input type="text" id="nombre" name="nombre" value="{{data2["nombre"]}}"><br>
-        Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-        Descripción: <br><textarea name="descripcion" id="descripcion" cols="30" rows="10"> {{data2["descripcion"]}} </textarea><br>
-        Costo unitatio: $<input type="number" name="costoUnitario" id="costoUnitario" value="{{data2["costo_unitario"]}}" step="0.01"><br>
-        Precio de venta: $<input type="number" name="precioVenta" id="precioVenta" value="{{data2["precio_venta"]}}" step="0.01"><br>
-        No. Patente: <input type="number" name="patente" id="patente" value="{{data2["patente"]}}"><br>
-        <input type="submit" value="Modificar">
-        <input type="hidden" name="formId" id="formId" value="4">
-        <input type="hidden" name="id_producto" id="id_producto" value="{{data2["id_producto"]}}">
-    </form>
-    <form action="/registroProductos" method="GET">
-        <button type="submit" value="Cancelar"></button>
-    </form>
+

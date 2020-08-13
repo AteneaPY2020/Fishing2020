@@ -1,8 +1,5 @@
 $(function () {
 
-
-
-
   $.validator.setDefaults({
     errorClass: 'help-block',
     highlight: function (element) {
@@ -33,26 +30,18 @@ $(function () {
       email: {
         required: true,
         email: true
-
       },
-
       nombre: {
         required: true,
-        lettersonly: false,
         letterswithspace: true
-
-
       },
       pais: {
         required: true,
         letterswithspace: true
-
       },
-
       telefono: {
         required: true,
         digits: true,
-
       },
       biografia: {
         required: true
@@ -61,19 +50,18 @@ $(function () {
       ciudad: {
         required: true,
         letterswithspace: true
-
-      },
+      }
 
     },
     messages: {
 
       email: {
         required: 'Por favor, ingrese un correo',
-        email: 'Por favor, ingrese un correo válido',
-
+        email: 'Por favor, ingrese un correo válido'
       },
       nombre: {
-        required: 'Por favor, ingrese un nombre'
+        required: 'Por favor, ingrese un nombre',
+        letterswithspace: 'Por favor, utilice solo letras'
       },
       pais: {
         required: 'Por favor, ingrese su país',
@@ -92,7 +80,6 @@ $(function () {
       },
       biografia: {
         required: 'Por favor, ingrese su numero de telefonos',
-
       }
     }
 
@@ -107,7 +94,7 @@ $(function () {
 
       nombre: {
         required: true,
-        letterswithspace: false
+        letterswithspace: true
       },
       pais: {
         required: true,
@@ -157,7 +144,7 @@ $(function () {
 
       },
       biografia: {
-        required: 'Por favor, ingrese su numero de telefonos',
+        required: 'Por favor, ingrese su biografia',
 
       }
     }
@@ -175,8 +162,7 @@ $(function () {
         required: true,
       },
       eslogan: {
-        required: true,
-        letterswithspace: true
+        required: true
       },
       inversion_inicial: {
         required: true,
@@ -202,19 +188,17 @@ $(function () {
 
       nombre: {
         required: true,
+        letterswithspace: true
 
       },
       pais: {
         required: true,
         letterswithspace: true
-
-
       },
 
       telefono: {
         required: true,
-        digits: true,
-
+        digits: true
       },
       biografia: {
         required: true
@@ -230,7 +214,7 @@ $(function () {
 
       email: {
         required: 'Por favor, ingrese un correo',
-        email: 'Por favor, ingrese un correo válido',
+        email: 'Por favor, ingrese un correo válido'
 
       },
       historia: {
@@ -261,11 +245,12 @@ $(function () {
 
       },
       nombre: {
-        required: 'Por favor, ingrese el nombre de su emprendimiento'
+        required: 'Por favor, ingrese el nombre de su emprendimiento',
+        letterswithspace: 'Por favor, revise que solo contenga letras'
       },
       pais: {
         required: 'Por favor, ingrese su país',
-        lettersonly: 'Por favor, revise que solo contenga letras'
+        letterswithspace: 'Por favor, revise que solo contenga letras'
 
       },
       ciudad: {
@@ -283,7 +268,6 @@ $(function () {
 
       }
     }
-
   });
 
   $("form[name='formIdInicioEmp']").validate({
@@ -308,7 +292,8 @@ $(function () {
         required: 'Por favor, ingrese su eslogan'
       },
       nombre: {
-        required: 'Por favor, ingrese el nombre de su emprendimiento'
+        required: 'Por favor, ingrese el nombre de su emprendimiento',
+        letterswithspace: 'Por favor, revise que solo contenga letras'
       }
     }
 
@@ -318,6 +303,7 @@ $(function () {
     rules: {
       nombre: {
         required: true,
+        letterswithspace: true
       },
       descripcion: {
         required: true,
@@ -337,7 +323,8 @@ $(function () {
     },
     messages: {
       nombre: {
-        required: 'Por favor, ingrese el nombre de su emprendimiento'
+        required: 'Por favor, ingrese el nombre de su emprendimiento',
+        letterswithspace: 'Por favor, revise que solo contenga letras'
       },
       descripcion: {
         required: 'Por favor, ingrese la descripción de su emprendimiento'
@@ -360,6 +347,7 @@ $(function () {
     rules: {
       nombre: {
         required: true,
+        letterswithspace: true
       },
       descripcion: {
         required: true,
@@ -374,12 +362,13 @@ $(function () {
       },
       patente: {
         required: true,
-        digits: true,
+        number: true,
       }
     },
     messages: {
       nombre: {
-        required: 'Por favor, ingrese el nombre de su emprendimiento'
+        required: 'Por favor, ingrese el nombre de su emprendimiento',
+        letterswithspace: 'Por favor, revise que solo contenga letras'
       },
       descripcion: {
         required: 'Por favor, ingrese la descripción de su emprendimiento'
@@ -405,20 +394,20 @@ $(function () {
       },
       inversion_inicialUP: {
         required: true,
-        number: true,
+        number: true
       },
       venta_año_anteriorUP: {
         required: true,
-        number: true,
+        number: true
       },
       oferta_porcentajeUP: {
         required: true,
-        number: true,
-      },
+        number: true
+      }
     },
     messages: {
       fecha_fundacionUP: {
-        required: 'Por favor, ingrese una fecha válida'
+        required: 'Por favor, ingrese una fecha'
       },
       inversion_inicialUP: {
         required: 'Por favor, ingrese la inversión inicial de su emprendimiento',
@@ -432,6 +421,74 @@ $(function () {
         required: 'Por favor, ingrese la oferta',
         number: 'Por favor, ingrese sólo números'
       }
+    }
+  });
+
+  $("form[name='modifContacto']").validate({
+    rules: {
+      emailUP: {
+        required: true,
+        email: true
+      },
+      telefonoUP: {
+        required: true,
+        digits: true,
+      }
+    },
+    messages: {
+      emailUP: {
+        required: 'Por favor, ingrese su email',
+        email: 'Por favor, ingrese un email válido'
+      },
+      telefonoUP: {
+        required: 'Por favor, ingrese su número telefónico',
+        digits: 'Por favor, ingrese sólo números'
+      },
+
+    }
+  });
+
+  $("form[name='registroemp']").validate({
+    rules: {
+      nombre: {
+        required: true,
+        letterswithspace: true
+      },
+      bio: {
+        required: true
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      phone: {
+        required: true,
+        digits: true,
+      },
+      country: {
+        required: true,
+        letterswithspace: true
+      },
+      city: {
+        required: true,
+        letterswithspace: true
+      }
+
+    },
+    messages: {
+      nombre: {
+        required: 'Por favor, ingrese su nombre',
+        letterswithspace: 'Por favor, ingrese unicamente letras'
+      },
+      emailUP: {
+        required: 'Por favor, ingrese su email',
+        email: 'Por favor, ingrese un email válido'
+      },
+      telefonoUP: {
+        required: 'Por favor, ingrese su número telefónico',
+        digits: 'Por favor, ingrese sólo números'
+      },
+
     }
   });
 

@@ -128,6 +128,7 @@ def informacion():
             data2=data2,
             message=message,
             vistaEmprendedor=True,
+            vistaEmprendimiento=True,
         )
     elif request.method == "POST":
         vistaEmprendedor = True
@@ -139,7 +140,6 @@ def informacion():
             fecha_fundacionOld = request.form["fecha_fundacionx"]
             inversion_inicialOld = request.form["inversion_inicialx"]
             venta_año_anteriorOld = request.form["venta_año_anteriorx"]
-            oferta_porcentajeOld = request.form["oferta_porcentajex"]
             return render_template(
                 "informacion.html",
                 mostrar=True,
@@ -147,21 +147,19 @@ def informacion():
                 fecha_fundacionUpx=fecha_fundacionOld,
                 inversion_inicialUpx=inversion_inicialOld,
                 venta_año_anteriorUpx=venta_año_anteriorOld,
-                oferta_porcentajeUpx=oferta_porcentajeOld,
                 data=data,
                 data2=data2,
+                vistaEmprendimiento=True,
             )
         if formId == 2:
             fecha_fundacion = request.form["fecha_fundacionUP"]
             inversion_inicial = request.form["inversion_inicialUP"]
             venta_año_anterior = request.form["venta_año_anteriorUP"]
-            oferta_porcentaje = request.form["oferta_porcentajeUP"]
             logic.updateInfoFinanciera(
                 idEmprendimiento,
                 inversion_inicial,
                 fecha_fundacion,
                 venta_año_anterior,
-                oferta_porcentaje,
             )
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
@@ -171,6 +169,7 @@ def informacion():
                 data2=data2,
                 mostrar=False,
                 vistaEmprendedor=True,
+                vistaEmprendimiento=True,
             )
         # UPDATE CONTACTOS
         if formId == 3:
@@ -192,6 +191,7 @@ def informacion():
                 youtubeUpx=youtubeOld,
                 data=data,
                 data2=data2,
+                vistaEmprendimiento=True,
             )
         if formId == 4:
             email = request.form["emailUP"]
@@ -210,4 +210,26 @@ def informacion():
                 data2=data2,
                 mostrar1=False,
                 vistaEmprendedor=True,
+                vistaEmprendimiento=True,
+            )
+
+        # Agrega un registro al historial
+        if formId == 5:
+            email = request.form["emailUP"]
+            telefono = request.form["telefonoUP"]
+            facebook = request.form["facebookUP"]
+            instagram = request.form["instagramUP"]
+            youtube = request.form["youtubeUP"]
+            logic.updateContactos(
+                idEmprendimiento, email, telefono, facebook, instagram, youtube
+            )
+            data = logic.getContactos(idEmprendimiento)
+            data2 = logic.getInfoFinanciera(idEmprendimiento)
+            return render_template(
+                "informacion.html",
+                data=data,
+                data2=data2,
+                mostrar1=False,
+                vistaEmprendedor=True,
+                vistaEmprendimiento=True,
             )

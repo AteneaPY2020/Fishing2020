@@ -34,8 +34,9 @@ $(function () {
 
       nombre: {
         required: true,
+        lettersonly: false
 
-        lettersonly: true
+
       },
       pais: {
         required: true,
@@ -100,6 +101,7 @@ $(function () {
 
       nombre: {
         required: true,
+        lettersonly: false
       },
       pais: {
         required: true,
@@ -192,7 +194,7 @@ $(function () {
       nombre: {
         required: true,
 
-        lettersonly: true
+        lettersonly: false
       },
       pais: {
         required: true,
@@ -272,6 +274,36 @@ $(function () {
       biografia: {
         required: 'Por favor, ingrese su numero de telefonos',
 
+      }
+    }
+
+  });
+  $("form[name='formIdInicioEmp']").validate({
+    rules: {
+      nombre: {
+        required: true,
+
+        lettersonly: false
+      },
+      eslogan: {
+        required: true,
+      },
+      descripcion: {
+        required: true,
+      }
+
+    },
+    messages: {
+
+
+      descripcion: {
+        required: 'Por favor, ingrese la descripción de su emprendimiento'
+      },
+      eslogan: {
+        required: 'Por favor, ingrese su eslogan'
+      },
+      nombre: {
+        required: 'Por favor, ingrese el nombre de su emprendimiento'
       }
     }
 

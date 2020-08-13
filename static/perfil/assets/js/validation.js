@@ -356,5 +356,47 @@ $(function () {
       }
     }
   });
+  $("form[name='modiProducto']").validate({
+    rules: {
+      nombre: {
+        required: true,
+      },
+      descripcion: {
+        required: true,
+      },
+      costoUnitario: {
+        required: true,
+        number: true,
+      },
+      precioVenta: {
+        required: true,
+        number: true,
+      },
+      patente: {
+        required: true,
+        digits: true,
+      }
+    },
+    messages: {
+      nombre: {
+        required: 'Por favor, ingrese el nombre de su emprendimiento'
+      },
+      descripcion: {
+        required: 'Por favor, ingrese la descripción de su emprendimiento'
+      },
+      costoUnitario: {
+        required: 'Por favor, ingrese el costo unitario del producto',
+        number: 'Por favor, ingrese un número'
+      },
+      precioVenta: {
+        required: 'Por favor, ingrese el costo unitario del producto',
+        number: 'Por favor, ingrese un número'
+      },
+      patente: {
+        required: 'Por favor, ingrese el costo unitario del producto',
+        number: 'Por favor, ingrese un número'
+      }
+    }
+  });
 
 });

@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio Inversionista</title>
-
+    <link rel="stylesheet" href="static/emprendimiento/vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="static/emprendimiento/vendors/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="static/emprendimiento/vendors/themify-icons/themify-icons.css">
+	<link rel="stylesheet" href="static/emprendimiento/vendors/linericon/style.css">
+    <link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="static/emprendimiento/css/style.css">
     <!--==========================Icono de barra==============================================================-->
 	<link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
 	<link rel="apple-touch-icon" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114x114.png" />
@@ -29,31 +35,79 @@
     </style>
 </head>
 <body>
-    
-    <table>
-        <tr>
-            <form action="/busqueda" method="POST">
-            <th><input type= "text" id="busqueda" name="busqueda"></th>
-            <th><input type="submit" value="buscar"></th>
-            </form>
-            <th><a href="/InicioInv">Inicio</a></th>
-            <th><a href="/perfilInversionista">Perfil</a></th>
-            <th><a href="/guardadosInv">Guardados</a></th>
-            <th><a href="/cerrarSesion">Cerrar sesión</a></th>
-        </tr>
-    </table>
-    <h1>Bienvenido</h1>
-    <table>
-        {%for registro in data%}
-        <tr>
-            <td><img src="/static/images/emprendimiento/{{registro[2]}}" width="100" height="100"></td>
-            <td>Nombre: <form action="/emprendimientoInicioInversionista" method="POST">
-            <input type="hidden" name="empId" id="empId" value="{{registro[3]}}"> 
-            <button type="submit" class="btn-link">{{registro[1]}}</button>
-            </form><br>Descripcion: {{registro[0]}}</td>
-            
-        </tr>
-        {%endfor%}
-    </table>
+    <!--================ Start Header Menu Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+            <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                
+                <div class="cupon_text d-flex align-items-center">
+                    <u1 class="nav-shop">
+                    <li class="nav-item"><button style="margin: 3px"><i class="ti-search"></i></button></li> 
+                    </u1><br><br>
+                    <form action="/busqueda">
+                    <input style="margin: 5px" type="text" id="busqueda" name="busqueda" />
+                    <input style="margin-right: 200px" class="button button-header" type="submit" value="buscar" />
+                    </form>
+                </div>
+
+                    <li class="nav-item"><a class="nav-link" href="/InicioInv">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/perfilInversionista">Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/guardadosInv">Guardados</a></li>
+                </ul>
+                <ul class="nav-shop">
+                <li class="nav-item"><a class="button button-header" href="/cerrarSesion">Cerrar sesión</a></li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+        </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
+    <!-- ================ start banner area ================= -->	
+    <section class="blog-banner-area" id="category">
+            <div class="blog-banner">
+                <div class="text-center">
+                    <h1>Bienvenido</h1>
+                </div>
+            </div>
+    </section>
+        <!-- ================ end banner area ================= --> 
+    <section class="cart_area">
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table>
+                        {%for registro in data%}
+                        <tbody>
+                            <tr>
+                                <td><img src="/static/images/emprendimiento/{{registro[2]}}" width="100" height="100"></td>
+                                <td>Nombre: <form action="/emprendimientoInicioInversionista" method="POST">
+                                <input type="hidden" name="empId" id="empId" value="{{registro[3]}}"> 
+                                <button type="submit" class="btn-link">{{registro[1]}}</button>
+                                </form><br>Descripcion: {{registro[0]}}</td>
+                                
+                            </tr>
+                        </tbody>
+                        {%endfor%}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row d-flex">
+                    <p class="col-lg-12 footer-text text-center">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Fishing 2020 | An ocean full of great ideas <i class="fa fa-heart" aria-hidden="true"></i> by <a>Fishing</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+            </div>
+        </div>
+    </footer><!--//footer-->
 </body>
 </html>

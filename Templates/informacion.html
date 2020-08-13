@@ -41,38 +41,38 @@
             </button>
             <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                 <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                {% if not vistaEmprendimiento %}
+                {% if not vistaEmprendedor %}
                 <li class="nav-item active"><a class="nav-link" href="/emprendimientoInicioInversionista">Inicio</a></li>
                 {%endif%}
-                {% if  vistaEmprendimiento %}
+                {% if  vistaEmprendedor %}
                 <li class="nav-item active"><a class="nav-link" href="/emprendimientoInicio">Inicio</a></li>
                 {%endif%}
-                {% if  vistaEmprendimiento %}
+                {% if  vistaEmprendedor %}
                 <li class="nav-item active"><a class="nav-link" href="/quienes_somos">Historia</a></li>
                 {%endif%}
-                {% if not vistaEmprendimiento %}
+                {% if not vistaEmprendedor %}
                 <li class="nav-item active"><a class="nav-link" href="/quienes_somosInv">Historia</a></li>
                 {%endif%}
-                {% if  vistaEmprendimiento %}
+                {% if  vistaEmprendedor %}
                 <li class="nav-item active"><a class="nav-link" href="/registroProductos">Productos</a></li>
                 {%endif%}
-                {% if not vistaEmprendimiento %}
+                {% if not vistaEmprendedor %}
                 <li class="nav-item active"><a class="nav-link" href="/registroProductosInv">Productos</a></li>
                 {%endif%}
-                {% if  vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="/informacion">Contactos</a></li>
+                {% if  vistaEmprendedor %}
+                <li class="nav-item active"><a class="nav-link" href="/informacion">Información</a></li>
                 {%endif%}
-                {% if not vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="/infoEmprendimiento">Nuestra información</a></li>
+                {% if not vistaEmprendedor %}
+                <li class="nav-item active"><a class="nav-link" href="/infoEmprendimiento">Información</a></li>
                 {%endif%}
                 </ul>
 
                 <ul class="nav-shop">
-                {% if  vistaEmprendimiento %}
+                {% if  vistaEmprendedor %}
                 <li class="nav-item"><a class="button button-header" href="emprendedorProfile">Volver a mi perfil</a></li>
                 {%endif%}
-                {% if not vistaEmprendimiento %}
-                <li class="nav-item"><a class="button button-header" href="/InicioInv">Volver a mi perfil</a></li>
+                {% if not vistaEmprendedor %}
+                <li class="nav-item"><a class="button button-header" href="/InicioInv">Volver al inicio</a></li>
                 {%endif%}
                 </ul>
             </div>

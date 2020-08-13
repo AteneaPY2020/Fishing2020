@@ -298,23 +298,91 @@
     <!--POPUP:Form crear nuevo emprendimiento-->
     {% if verdaderoEmprendimiento %}
     
-    <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-        Estado: 
-        <select name="estado" id="estado">
-            <option value="Huevo">Huevo </option>
-            <option value="Pez Dorado">Pez dorado</option>
-            <option value="tiburon">Tiburón</option>
+    <form action="/emprendedorProfile" name="crear" id="crear" method="POST" enctype="multipart/form-data">
+        
+        <div class="field">
+            <label class="" for="estado">Estado:</label>
+                <div class="control">
+                <select name="estado" id="estado">
+                    <option value="Huevo">Huevo </option>
+                    <option value="Pez Dorado">Pez dorado</option>
+                    <option value="tiburon">Tiburón</option>
+                </select><br>
         </select><br>
-        Descripcion: <br><textarea name="descripcion" cols="30" rows="10" id="descripcion" value="{{descripcion}}"></textarea><br>
-        Historia: <input type="text" name="historia" id="historia" value="{{historia}}"><br>
-        Eslogan: <input type="text" name="eslogan" id="eslogan" value="{{eslogan}}"><br>
-        Inversion inicial: <input type="text" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"><br>
-        Fecha fundacion: <input type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}"><br>
-        Venta de año anterior: <input type="text" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"><br>
-        Porcentaje a ofertar: <input type="text" name="oferta_porcentaje" id="oferta_porcentaje" value="{{oferta_porcentaje}}"><br>
-        Nombre del emprendimiento: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
-        Email: <input type="text" name="email" id="email" value="{{email}}"><br>
-        Telefono: <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="descripcion">Descripcion:</label>
+                <div class="control">
+                    <br><textarea name="descripcion" cols="30" rows="10" id="descripcion" value="{{descripcion}}"></textarea><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="historia">Historia:</label>
+                <div class="control">
+                    <input type="text" name="historia" id="historia" value="{{historia}}"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="eslogan">Eslogan:</label>
+                <div class="control">
+                    <input type="text" name="eslogan" id="eslogan" value="{{eslogan}}"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="inversion_inicial">Inversion inicial:</label>
+                <div class="control">
+                    <input type="text" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="fecha_fundacion">Fecha de fundacion:</label>
+                <div class="control">
+                    <input type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="venta_año_anterior">Venta de año anterior</label>
+                <div class="control">
+                    <input type="text" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="oferta_porcentaje">Porcentaje a ofertar:</label>
+                <div class="control">
+                    <input type="text" name="oferta_porcentaje" id="oferta_porcentaje" value="{{oferta_porcentaje}}"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="nombre">Nombre del emprendimiento:</label>
+                <div class="control">
+                    <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="email">Email:</label>
+                <div class="control">
+                    <input type="text" name="email" id="email" value="{{email}}"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="telefono">Telefono:</label>
+                <div class="control">
+                    <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
+                </div>
+        </div>
+        
+        
         Video: <input type="url" name="video" id="video" value="{{video}}"><br>
         Facebook: <input type="text" name="facebook" id="facebook" value="{{facebook}}"><br>
         Instagram: <input type="text" name="instagram" id="instagram" value="{{instagram}}"><br>

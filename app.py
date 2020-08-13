@@ -15,6 +15,7 @@ app.register_blueprint(emprendimiento, url_prefix="")
 app.register_blueprint(emprendimientoInicio, url_prefix="")
 app.register_blueprint(emprendedorProfile, url_prefix="")
 app.register_blueprint(cerrarSesion, url_prefix="")
+app.register_blueprint(admin, url_prefix="")
 app.secret_key = "ILoveFishing"
 
 

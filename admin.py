@@ -10,6 +10,7 @@ from emprendimientoLogic import emprendimientoLogic
 from categoriaLogic import CategoriaLogic
 from productoObj import productoObj
 from productoLogic import productoLogic
+from adminLogic import adminLogic
 
 admin = Blueprint(
     "admin", __name__, template_folder="Templates", static_folder="static"
@@ -353,12 +354,12 @@ def productos():
 # ----------------------------------------------------------------------------------------------------------
 @admin.route("/fundadoresAdmin", methods=["GET", "POST"])
 def fundadores():
-    logic = fundadorLogic()
+    logic = adminLogic()
     verdadero = False
     if request.method == "GET":
         data = logic.getAllFundadores()
         message = ""
-        return render_template("fundadores.html", data=data, message=message)
+        return render_template("fundadoresAdmin.html", data=data, message=message)
     elif request.method == "POST":
         formId = int(request.form["formId"])
         # INSERTAR
@@ -367,35 +368,54 @@ def fundadores():
             emprendimiento = request.form["name"]
             rol = 3
             logicUsuario = UserLogic()
-            logicEmpre = emprendimientoLogic()
+            logicEmpre = adminLogic()
             # Comprobando si existe
             existeUsuario = logicUsuario.checkUserInUsuario(user, rol)
             existeEmprendimiento = logicEmpre.checkEmprendimiento(emprendimiento)
 
             if existeUsuario and existeEmprendimiento:
-                logicInsert = fundadorLogic()
-                rows = logicInsert.insertNewFundador(user, emprendimiento)
-                data = logic.getAllFundadores()
-                message = "Se ha agregado al fundador"
-                return render_template("fundadores.html", data=data, message=message)
+                # Compruebo si no lo habian registrado antes en el mismo emprendimiento
+                logicRegist = emprendimientoLogic()
+                idEmprendimiento = logicEmpre.getEmprendimientoByName(emprendimiento)
+                AlreadyExist = logicRegist.checkUserAlredyExist(
+                    user, idEmprendimiento.getId()
+                )
+                if AlreadyExist is False:
+                    rows = logic.insertNewFundadorByName(user, emprendimiento)
+                    data = logic.getAllFundadores()
+                    message = "Se ha agregado al fundador"
+                    return render_template(
+                        "fundadoresAdmin.html", data=data, message=message
+                    )
+                else:
+                    data = logic.getAllFundadores()
+                    message = (
+                        "El usuario ya se encuentra asignado a este emprendimiento."
+                    )
+                    return render_template(
+                        "fundadoresAdmin.html", data=data, massage=message
+                    )
             else:
                 data = logic.getAllFundadores()
                 message = "El usuario o emprendimiento seleccionado no existe. Pruebe de nuevo"
-                return render_template("fundadores.html", data=data, message=message)
+                return render_template(
+                    "fundadoresAdmin.html", data=data, message=message
+                )
         # ELIMINAR
         elif formId == 2:
             id = int(request.form["id"])
-            logic.deleteFundador(id)
+            logicDelete = emprendimientoLogic()
+            logicDelete.deleteFundador(id)
             message = "Se ha eliminado un fundador"
             data = logic.getAllFundadores()
-            return render_template("fundadores.html", data=data, message=message)
+            return render_template("fundadoresAdmin.html", data=data, message=message)
         # Va al form para dar update
         elif formId == 3:
             verdadero = True
             id = int(request.form["id"])
             data = logic.getAllFundadores()
             return render_template(
-                "fundadores.html", data=data, verdadero=verdadero, id=id,
+                "fundadoresAdmin.html", data=data, verdadero=verdadero, id=id,
             )
         # UPDATE
         else:
@@ -404,20 +424,39 @@ def fundadores():
             emprendimiento = request.form["name"]
             rol = 3
             logicUsuario = UserLogic()
-            logicEmpre = emprendimientoLogic()
+            logicEmpre = adminLogic()
             # Comprobando si existe
             existeUsuario = logicUsuario.checkUserInUsuario(user, rol)
             existeEmprendimiento = logicEmpre.checkEmprendimiento(emprendimiento)
 
             if existeUsuario and existeEmprendimiento:
-                logic.updateFundador(id, user, emprendimiento)
-                data = logic.getAllFundadores()
-                massage = "Se ha modificado al fundador"
-                return render_template("fundadores.html", data=data, massage=massage)
+                # Compruebo si no lo habian registrado antes en el mismo emprendimiento
+                logicRegist = emprendimientoLogic()
+                idEmprendimiento = logicEmpre.getEmprendimientoByName(emprendimiento)
+                AlreadyExist = logicRegist.checkUserAlredyExist(
+                    user, idEmprendimiento.getId()
+                )
+                if AlreadyExist is False:
+                    logic.updateFundador(id, user, emprendimiento)
+                    data = logic.getAllFundadores()
+                    massage = "Se ha modificado al fundador"
+                    return render_template(
+                        "fundadoresAdmin.html", data=data, massage=massage
+                    )
+                else:
+                    data = logic.getAllFundadores()
+                    message = (
+                        "El usuario ya se encuentra asignado a este emprendimiento."
+                    )
+                    return render_template(
+                        "fundadoresAdmin.html", data=data, massage=message
+                    )
             else:
                 data = logic.getAllFundadores()
                 massage = "El usuario o emprendimiento seleccionado no existe. Preuebe de nuevo"
-                return render_template("fundadores.html", data=data, message=massage)
+                return render_template(
+                    "fundadoresAdmin.html", data=data, message=massage
+                )
 
 
 # ----------------------------------------------------------------------------------------------------------

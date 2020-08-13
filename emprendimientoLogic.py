@@ -334,12 +334,6 @@ class emprendimientoLogic(Logic):
         rows = database.executeNonQueryRows(sql)
         return rows
 
-    # def deleteContacto(self, id):
-    #     database = self.get_databaseXObj()
-    #     sql = f"delete from fishingdb.fundador where fundador.id = '{idFundador}';"
-    #     rows = database.executeNonQueryRows(sql)
-    #     return rows
-
     def getInfoFinanciera(self, idEmprendimiento):
         dataBase = self.get_databaseXObj()
         sql = (
@@ -529,10 +523,12 @@ class emprendimientoLogic(Logic):
         for registro in fundadores:
             sql2 = (
                 "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
-                + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje al emprendimiento {idEmprendimiento.getNombre()}', {registro[0]}, current_date(), current_time());"
+                + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje al emprendimiento {idEmprendimiento.getNombre()}', {registro[0]}, "
+                + "current_date(), current_time());"
             )
             print(sql2)
             rows = dataBase.executeNonQueryRows(sql2)
             currentList = list(registro)
             listaFundadores.append(currentList[0])
         return listaFundadores
+

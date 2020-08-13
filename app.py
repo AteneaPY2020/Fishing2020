@@ -6,6 +6,7 @@ from emprendimiento import emprendimiento
 from emprendimientoInicio import emprendimientoInicio
 from emprendedorProfile import emprendedorProfile
 from cerrarSesion import cerrarSesion
+from admin import admin
 
 app = Flask(__name__)
 app.register_blueprint(login_registro, url_prefix="")

@@ -297,6 +297,17 @@ class emprendimientoLogic(Logic):
         data = self.tupleToDictionaryList(data, ["historia"])
         return data
 
+    def getDescripcion(self, idEmprendimiento):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "select fishingdb.emprendimiento.descripcion from fishingdb.emprendimiento "
+            + f"where fishingdb.emprendimiento.id = {idEmprendimiento};"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, ["descripcion"])
+        return data
+
     def updateHistoria(self, idEmprendimiento, historia):
         database = self.get_databaseXObj()
         sql = (

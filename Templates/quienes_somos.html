@@ -259,6 +259,7 @@
 <br><br><br><br>
 
     <!--================ Start footer Area  =================-->	
+{% for registro in data3 %}	
 	<footer class="footer">
 		<div class="footer-area">
 			<div class="container">
@@ -266,19 +267,20 @@
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title large_title">Descripcion</h4>
-							<p>
-                                CODIGO
-							</p>
-							
+							{% for registro in data4 %}
+								<p>
+                                {{registro["descripcion"]}}
+								</p>
+							{% endfor %}
 						</div>
 					</div>
 					<div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title">Redes sociales</h4>
 							<ul class="list">
-								<li><a>Facebook: CODIGO</a></li>
-								<li><a>Instagram: CODIGO</a></li>
-                                <li><a>Youtube: CODIGO</a></li>
+								<li><a>Facebook: {{registro["facebook"]}}</a></li>
+								<li><a>Instagram: {{registro["instagram"]}}</a></li>
+                                <li><a>Youtube: {{registro["youtube"]}}</a></li>
 							</ul>
 						</div>
 					</div>
@@ -292,7 +294,7 @@
 									Numero de telefono
 								</p>
 								<p>
-									CODIGO
+									{{registro["telefono"]}}
 								</p>
 	
 								<p class="sm-head">
@@ -300,7 +302,7 @@
 									Email
 								</p>
 								<p>
-									CODIGO
+									{{registro["email"]}}
 								</p>
 							</div>
 						</div>
@@ -320,7 +322,7 @@
 			</div>
 		</div>
 	</footer>
-
+{% endfor %}
 	<!--================ End footer Area  =================-->
 
 

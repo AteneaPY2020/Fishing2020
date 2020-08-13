@@ -19,11 +19,15 @@ def quienesSomosInv():
     if request.method == "GET":
         data = logic.getAllFundadores(idEmprendimiento)
         data2 = logic.getHistoria(idEmprendimiento)
+        data3 = logic.getDatosGeneralesById(idEmprendimiento)
+        data4 = logic.getDescripcion(idEmprendimiento)
         logic.saveImagesFundadores(idEmprendimiento)
         return render_template(
             "quienes_somos.html",
             data=data,
             data2=data2,
+            data3=data3,
+            data4=data4,
             message="",
             vistaEmprendimiento=True,
         )
@@ -44,11 +48,15 @@ def quienesSomos():
         vistaEmprendimiento = False
         data = logic.getAllFundadores(idEmprendimiento)
         data2 = logic.getHistoria(idEmprendimiento)
+        data3 = logic.getDatosGeneralesById(idEmprendimiento)
+        data4 = logic.getDescripcion(idEmprendimiento)
         logic.saveImagesFundadores(idEmprendimiento)
         return render_template(
             "quienes_somos.html",
             data=data,
             data2=data2,
+            data3=data3,
+            data4=data4,
             message=message,
             vistaEmprendimiento=vistaEmprendimiento,
         )
@@ -117,15 +125,18 @@ def informacion():
     logic = emprendimientoLogic()
     message = ""
     mostrar = False
-
     idEmprendimiento = session["emprendimiento"]
     if request.method == "GET":
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
+        data3 = logic.getDatosGeneralesById(idEmprendimiento)
+        data4 = logic.getDescripcion(idEmprendimiento)
         return render_template(
             "informacion.html",
             data=data,
             data2=data2,
+            data3=data3,
+            data4=data4,
             message=message,
             vistaEmprendedor=True,
         )

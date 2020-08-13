@@ -15,10 +15,13 @@ registro_productos = Blueprint(
 @registro_productos.route("/registroProductosInv", methods=["GET", "POST"])
 def registroProductoInv():
     logicProducto = productoLogic()
+    logicEmprendimiento = emprendimientoLogic()
     logicLikes = likeLogic()
     id_emprendimiento = session["empId"]
     id_invrsionista = session["id_inv"]
     data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
+    data3 = logicEmprendimiento.getDatosGeneralesById(id_emprendimiento)
+    data4 = logicEmprendimiento.getDescripcion(id_emprendimiento)
     likes = logicLikes.getAllReaccionesByIdEmprendimiento(id_emprendimiento)
 
     for registro in data:
@@ -37,6 +40,8 @@ def registroProductoInv():
         data=data,
         vistaEmprendimiento=vistaEmprendimiento,
         likes=likes,
+        data3=data3,
+        data4=data4,
     )
 
 

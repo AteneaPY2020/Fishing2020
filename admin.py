@@ -468,7 +468,7 @@ def signUPEmprendimiento():
     verdadero = False
     if request.method == "GET":
         data = logic.getAllEmprendimientoLen()
-        return render_template("emprendimiento.html", data=data, massage=massage)
+        return render_template("emprendimientoAdmin.html", data=data, massage=massage)
 
     elif request.method == "POST":  # "POST"
         formId = int(request.form["formId"])
@@ -484,36 +484,81 @@ def signUPEmprendimiento():
             oferta_porcentaje = request.form["oferta_porcentaje"]
             id_emprendedor = request.form["id_emprendedor"]
             nombre = request.form["nombre"]
+            foto = request.files["fileToUpload"]
+            nombre_foto = foto.filename
+            video = request.form["video"]
+            email = request.form["email"]
+            telefono = request.form["telefono"]
+            facebook = request.form["facebook"]
+            instagram = request.form["instagram"]
+            youtube = request.form["youtube"]
 
             try:
-                logic.insertNewEmprendimiento(
-                    estado,
-                    descripcion,
-                    historia,
-                    eslogan,
-                    inversion_inicial,
-                    fecha_fundacion,
-                    venta_año_anterior,
-                    oferta_porcentaje,
-                    id_emprendedor,
-                    nombre,
-                )
-                massage = "Se ha insertado un nuevo emprendimiento"
+                if foto.filename == "":
+                    nombre_foto = "default.png"
+
+                    logic.insertNewEmprendimientoWithoutPhoto(
+                        estado,
+                        descripcion,
+                        historia,
+                        eslogan,
+                        inversion_inicial,
+                        fecha_fundacion,
+                        venta_año_anterior,
+                        oferta_porcentaje,
+                        id_emprendedor,
+                        nombre,
+                        nombre_foto,
+                        video,
+                        email,
+                        telefono,
+                        facebook,
+                        instagram,
+                        youtube,
+                    )
+                else:
+                    binary_foto = foto.read()
+                    logic.insertNewEmprendimiento(
+                        estado,
+                        descripcion,
+                        historia,
+                        eslogan,
+                        inversion_inicial,
+                        fecha_fundacion,
+                        venta_año_anterior,
+                        oferta_porcentaje,
+                        id_emprendedor,
+                        nombre,
+                        binary_foto,
+                        video,
+                        email,
+                        telefono,
+                        facebook,
+                        instagram,
+                        youtube,
+                    )
+                message = "Se ha insertado un nuevo emprendimiento"
                 data = logic.getAllEmprendimientoLen()
+
+                return render_template(
+                    "emprendimientoAdmin.html", data=data, message=message,
+                )
 
             except mysql.connector.Error as error:
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 massage = "No se puede insertar. No existe el id emprendedor"
                 data = logic.getAllEmprendimientoLen()
 
-            return render_template("emprendimiento.html", data=data, massage=massage)
+            return render_template(
+                "emprendimientoAdmin.html", data=data, massage=massage
+            )
 
             # Elimina una categoria
         elif formId == 2:
             id = int(request.form["id"])
 
             try:
-                logic.deleteEmprendimiento(id)
+                logic.deleteEmprendimientoByIdEmprendimiento(id)
                 massage = "Se ha eliminado un usuario"
                 data = logic.getAllEmprendimientoLen()
 
@@ -522,7 +567,9 @@ def signUPEmprendimiento():
                 massage = "No se puede eliminar. Afecta la integridad de los datos"
                 data = logic.getAllEmprendimientoLen()
 
-            return render_template("emprendimiento.html", data=data, massage=massage)
+            return render_template(
+                "emprendimientoAdmin.html", data=data, massage=massage
+            )
         # Va al form para dar update
         elif formId == 3:
             id = int(request.form["id"])
@@ -536,10 +583,17 @@ def signUPEmprendimiento():
             oferta_porcentaje = request.form["oferta_porcentaje"]
             id_emprendedor = request.form["id_emprendedor"]
             nombre = request.form["nombre"]
+            nombre_foto = request.form["nombre_foto"]
+            video = request.form["video"]
+            email = request.form["email"]
+            telefono = request.form["telefono"]
+            facebook = request.form["facebook"]
+            instagram = request.form["instagram"]
+            youtube = request.form["youtube"]
             verdadero = True
             data = logic.getAllEmprendimientoLen()
             return render_template(
-                "emprendimiento.html",
+                "emprendimientoAdmin.html",
                 data=data,
                 verdadero=verdadero,
                 id=id,
@@ -553,6 +607,13 @@ def signUPEmprendimiento():
                 oferta_porcentaje=oferta_porcentaje,
                 id_emprendedor=id_emprendedor,
                 nombre=nombre,
+                nombre_foto=nombre_foto,
+                video=video,
+                email=email,
+                telefono=telefono,
+                facebook=facebook,
+                instagram=instagram,
+                youtube=youtube,
             )
 
         # Modifica una categoria
@@ -568,6 +629,13 @@ def signUPEmprendimiento():
             oferta_porcentaje = request.form["oferta_porcentaje"]
             id_emprendedor = request.form["id_emprendedor"]
             nombre = request.form["nombre"]
+            nombre_foto = request.form["nombre_foto"]
+            video = request.form["video"]
+            email = request.form["email"]
+            telefono = request.form["telefono"]
+            facebook = request.form["facebook"]
+            instagram = request.form["instagram"]
+            youtube = request.form["youtube"]
 
             try:
                 logic.updateEmprendimiento(
@@ -582,6 +650,13 @@ def signUPEmprendimiento():
                     oferta_porcentaje,
                     id_emprendedor,
                     nombre,
+                    nombre_foto,
+                    video,
+                    email,
+                    telefono,
+                    facebook,
+                    instagram,
+                    youtube,
                 )
                 data = logic.getAllEmprendimientoLen()
                 massage = "Se ha modificado el emprendimiento"
@@ -591,7 +666,9 @@ def signUPEmprendimiento():
                 massage = "No se puede modificar. No existe el id emprendedor"
                 data = logic.getAllEmprendimientoLen()
 
-            return render_template("emprendimiento.html", data=data, massage=massage)
+            return render_template(
+                "emprendimientoAdmin.html", data=data, massage=massage
+            )
 
 
 # ----------------------------------------------------------------------------------------------------------

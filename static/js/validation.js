@@ -38,7 +38,7 @@ $(function () {
 
       nombre: {
         required: true,
-        lettersonly: false,
+        lettersonly: false
         letterswithspace: true
 
 
@@ -355,6 +355,7 @@ $(function () {
         number: 'Por favor, ingrese un número'
       }
     }
+
   });
 
 });

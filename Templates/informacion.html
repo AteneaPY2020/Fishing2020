@@ -89,16 +89,17 @@
 					<h1>Información del emprendimiento</h1>
 				</div>
 			</div>
-    	</div>
+        </div>
 	<!-- ================ end banner area ================= -->
 
     <!--================Checkout Area =================-->
-<section class="checkout_area section-margin--small">
+
     <section class="order_details section-margin--small">
         <div class="container">          
             <div class="order_details_table">
                 <h2>Información financiera</h2>
                 <div class="table-responsive">
+                    
                     {% for registro in data2 %}    
                         <table class="table">
                             <thead>
@@ -167,46 +168,45 @@
                             </form>
                         {%endif%} 
                     {% endfor %}
-                </div>
-            </div>
-        
-            <br><br>
-            
-            <div class="billing_details">
-                <div class="row">
-                    <!--Correo-->
-                    {%if vistaInversor%}
-                        <div class="col-lg-8">
-                            <h3>Contacta a los fundadores de este emprendimiento</h3>
-                            Recuerda: <br>
-                            - Fishing es la mejor plataforma interactiva para invertir tu capital <br>
-                            - Fishing protege tu información <br>
-                            - Fishing te notificará si un inversionista está interesado en ti a través de un correo a la cuenta de todos los fundadores. Luego del primer contacto, nuestra plataforma deja a los involucrados continuar las negociaciones por los medios c=que consideren pertinentes
-                            <p>{{message1}}</p>
-                            <br>
-                            <form action="/infoEmprendimiento" method="POST">
-                                <textarea name="message" id = "message" rows="12" cols="100" >Escribe aquí el correo que deseas enviar</textarea>
-                                <br><br><button class="button button-paypal" type="submit" value="send"> Enviar</button>
-                            </form>
-                        </div>
-                    {%endif%}
-                    <!--Correo-->
-                    {%if vistaEmprendedor%}
-                        <div class="col-lg-8">
-                            <h3>Comparte tu información a través de nuestra plataforma</h3>
-                            Recuerda: <br>
-                            - Fishing es la mejor plataforma interactiva para hacer crecer tu negocio <br>
-                            - Fishing protege tu información <br>
-                            - Fishing te notificará si un inversionista está interesado en ti, a través de un correo. Luego del primer contacto, nuestra plataforma deja a los involucrados continuar las negociaciones por los medios que consideren pertinentes
-                        </div>
-                    {%endif%}
-                </div>
-            </div>
 
-            <div class="col-lg-4">
-                <div class="order_box">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+<!--================Checkout Area =================-->
+<section class="checkout_area section-margin--small">
+    <div class="container">
+        
+        <div class="billing_details">
+            <div class="row">
+                <div class="col-lg-8">
+                    {%if vistaInversor%}
+                        <h3>Contacta a los fundadores de este emprendimiento</h3>
+                        Recuerda: <br>
+                        - Fishing es la mejor plataforma interactiva para invertir tu capital <br>
+                        - Fishing protege tu información <br>
+                        - Fishing te notificará si un inversionista está interesado en ti a través de un correo a la cuenta de todos los fundadores. Luego del primer contacto, nuestra plataforma deja a los involucrados continuar las negociaciones por los medios c=que consideren pertinentes
+                        <p>{{message1}}</p>
+                        <br>
+                        <form action="/infoEmprendimiento" method="POST">
+                            <textarea name="message" id = "message" rows="12" cols="85" >Escribe aquí el correo que deseas enviar</textarea>
+                            <br><br><button class="button button-paypal" type="submit" value="send"> Enviar</button>
+                        </form>
+                    {%endif%}
                     
-                    {% for registro in data %}
+                    {%if vistaEmprendedor%}
+                    <h3>Comparte tu información a través de nuestra plataforma</h3>
+                    Recuerda: <br>
+                    - Fishing es la mejor plataforma interactiva para hacer crecer tu negocio <br>
+                    - Fishing protege tu información <br>
+                    - Fishing te notificará si un inversionista está interesado en ti, a través de un correo. Luego del primer contacto, nuestra plataforma deja a los involucrados continuar las negociaciones por los medios que consideren pertinentes
+                    {%endif%}
+                </div>
+                <div class="col-lg-4">
+                    <div class="order_box">
+                        {% for registro in data %}
                         <h2>Contactos</h2>
                         
                         <ul class="list">
@@ -235,12 +235,14 @@
                             </form>
                         {% endif %}
 
-                    {% endfor %}                     
-                </div>  
+                    {% endfor %}    
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 </section>
+<!--================End Checkout Area =================-->
     
 <!--================ Start footer Area  =================-->	
 {% for registro in data3 %}	
@@ -309,6 +311,7 @@
 {% endfor %}
 <!--================ End footer Area  =================-->    
 
+</html>
 
 
 <!--POPUP: Modificar informacion de contacto-->
@@ -329,13 +332,7 @@
         </table>
     </form>
 {%endif%}
-                </div>
-            </div>
-
-            <div class="col-xs-6">
-                <div id="lhs">
-                    <p>{{message}}</p>
-                    <br>
+                
 
 <!--POPUP: Modificar informacion -->                            
 {%if mostrar%}
@@ -354,5 +351,3 @@
         </table>
     </form>
 {%endif%}
-
-</html>

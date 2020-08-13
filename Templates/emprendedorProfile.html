@@ -29,6 +29,7 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144x144.png" />
 	<link rel="apple-touch-icon" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72x72.png" />
 	<link rel="apple-touch-icon" href="static/t2/assets/ico/apple-touch-icon.png" />
+    
     <!--==========================Icono de barra==============================================================-->
 
 
@@ -205,12 +206,75 @@
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
     <script type="text/javascript" src="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.js"></script>
     <!-- custom js -->
-    <script type="text/javascript" src="static/perfil/assets/js/main.js"></script>   
+    <script type="text/javascript" src="static/perfil/assets/js/main.js"></script>
+    
+    <!-- Javascript control de errores --> 
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+    <script src="static/perfil/assets/js/validation.js"></script>
+    
+    
 
 <!--======================================================================================================================-->   
     <!--POPUP: Form Modificar la informacion general-->
         {% if verdadero %}
+        <div class="container">
             <p>Modificar datos personales</p>
+            <form NAME="formId" id="formId" action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
+
+                
+                <div class="field">
+                    <label class="" for="email">Nombre</label>
+                        <div class="control">
+                            <input class="input" type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
+                        
+                </div>
+
+                <div class="field">
+                    <label class="" for="email">Email</label>
+                        <div class="control">
+                            <input type="text" name="email" id="email" value="{{email}}"> <br>
+                        </div>
+                </div>
+
+                <div class="field">
+                    <label class="" for="telefono">Telefono</label>
+                        <div class="control">
+                            <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
+                        </div>
+                </div>
+
+                <div class="field">
+                    <label class="" for="pais">País</label>
+                        <div class="control">
+                            <input type="text" name="pais" id="pais" value="{{pais}}"><br>
+                        </div>
+                </div>
+
+                <div class="field">
+                    <label class="" for="ciudad">Ciudad</label>
+                        <div class="control">
+                            <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
+                        </div>
+                </div>
+
+                <div class="field">
+                    <label class="" for="biografia">Biografia</label>
+                        <div class="control">
+                            <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{biografia}}</textarea><br><br>
+                        </div>
+                </div>
+                
+                Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                
+                <!--Aplicar cambios-->
+                <button type="submit" value="update">Aplicar cambios</button>
+                <input type="hidden" name="formId" id="formId" value="2">
+                <input type="hidden" name="id" id="id" value="{{id}}">
+            </form>
+        </div>
+            <!--<p>Modificar datos personales</p>
             <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
                 Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
                 Email: <input type="text" name="email" id="email" value="{{email}}"> <br>
@@ -221,10 +285,10 @@
                 Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
                 
                 <!--Aplicar cambios-->
-                <button type="submit" value="update">Aplicar cambios</button>
+                <!--<button type="submit" value="update">Aplicar cambios</button>
                 <input type="hidden" name="formId" id="formId" value="2">
                 <input type="hidden" name="id" id="id" value="{{id}}">
-            </form>
+            </form>-->
         {% endif %}
 
     

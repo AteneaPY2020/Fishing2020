@@ -21,6 +21,8 @@ def Admin():
     return render_template("indexAdmin.html")
 
 
+# ----------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------
 @admin.route("/inversionistaAdmin", methods=["GET", "POST"])
 def inversionista():
     logic = inversorLogic()
@@ -140,7 +142,9 @@ def inversionista():
 
             return render_template("inversionista.html", data=data, message=message)
 
-    # -------------------------------------------------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------
 
 
 @admin.route("/emprendedorAdmin", methods=["GET", "POST"])
@@ -255,6 +259,8 @@ def emprendedor():
             return render_template("emprendedor.html", data=data, message=message)
 
 
+# ----------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------
 @admin.route("/productosAdmin", methods=["POST", "GET"])
 def productos():
     logic = productosLogic()
@@ -343,6 +349,8 @@ def productos():
         return render_template("productos.html", datosx=datos, mostrar=False)
 
 
+# ----------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------
 @admin.route("/fundadoresAdmin", methods=["GET", "POST"])
 def fundadores():
     logic = fundadorLogic()
@@ -412,6 +420,8 @@ def fundadores():
                 return render_template("fundadores.html", data=data, message=massage)
 
 
+# ----------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------
 @admin.route("/EmprendimientoAdmin", methods=["GET", "POST"])
 def signUPEmprendimiento():
     logic = emprendimientoLogic()
@@ -545,6 +555,8 @@ def signUPEmprendimiento():
             return render_template("emprendimiento.html", data=data, massage=massage)
 
 
+# ----------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------
 @admin.route("/categoriaAdmin", methods=["GET", "POST"])
 def categoria():
     logic = CategoriaLogic()

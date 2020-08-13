@@ -398,5 +398,41 @@ $(function () {
       }
     }
   });
+  $("form[name='infoEMp']").validate({
+    rules: {
+      fecha_fundacionUP: {
+        required: true,
+      },
+      inversion_inicialUP: {
+        required: true,
+        number: true,
+      },
+      venta_año_anteriorUP: {
+        required: true,
+        number: true,
+      },
+      oferta_porcentajeUP: {
+        required: true,
+        number: true,
+      },
+    },
+    messages: {
+      fecha_fundacionUP: {
+        required: 'Por favor, ingrese una fecha válida'
+      },
+      inversion_inicialUP: {
+        required: 'Por favor, ingrese la inversión inicial de su emprendimiento',
+        number: 'Por favor, ingrese sólo números'
+      },
+      venta_año_anteriorUP: {
+        required: 'Por favor, ingrese las ventas del año anterior',
+        number: 'Por favor, ingrese sólo números'
+      },
+      oferta_porcentajeUP: {
+        required: 'Por favor, ingrese la oferta',
+        number: 'Por favor, ingrese sólo números'
+      }
+    }
+  });
 
 });

@@ -158,6 +158,7 @@
                         </table>
                         <br>
                         {%if vistaEmprendedor%}
+                        
                             <form action="/informacion" method="POST">
                                 <button class="button button-paypal" type="submit" value="delete"> Modificar</button>
                                 <input type="hidden" name="formId" id="formId" value="1">
@@ -306,12 +307,18 @@
         
 
     
+<!-- Javascript control de errores --> 
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+    <script src="static/perfil/assets/js/validation.js"></script>
 
 
 <!--================End Checkout Area =================-->
 
 <!--POPUP: Modificar informacion de contacto-->
 {%if mostrar1%}
+    
     <form action = "/informacion" method = "POST">
         <br>
         <p>Modifica el campo que necesites</p>
@@ -338,20 +345,46 @@
 
 <!--POPUP: Modificar informacion -->                            
 {%if mostrar%}
-    <form action = "/informacion" method = "POST">
-    <br>
-    <p>Modifica el campo que necesites</p>
-        <table>
-            <tr>
-                <td><input type="text" id="fecha_fundacionUP" name="fecha_fundacionUP" value="{{fecha_fundacionUpx}}" ></td>
-                <td><input type="text" id="inversion_inicialUP" name="inversion_inicialUP" value="{{inversion_inicialUpx}}" ></td>
-                <td><input type="text" id="venta_año_anteriorUP" name="venta_año_anteriorUP" value="{{venta_año_anteriorUpx}}" ></td>
-                <td><input type="text" id="oferta_porcentajeUP" name="oferta_porcentajeUP" value="{{oferta_porcentajeUpx}}" ></td>
-                <td><input type="submit" value = "Aceptar Cambios"> </td>
-                <input type="hidden" id="formId" name="formId" value="2">
-            </tr>
-        </table>
-    </form>
+    <div class="container">
+                <form name="infoEMp" id="infoEMp" action="/informacion" method="POST" enctype="multipart/form-data">
+                    <br>
+                    <p>Modifica el campo que necesites</p>
+                        <table>
+                            <tr>
+                                <div class="field">
+                                        <div class="control">
+                                        <td><input type="date" id="fecha_fundacionUP" name="fecha_fundacionUP" value="{{fecha_fundacionUpx}}" ></td>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                        <div class="control">
+                                        <td><input type="text" id="inversion_inicialUP" name="inversion_inicialUP" value="{{inversion_inicialUpx}}" ></td>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                        <div class="control">
+                                        <td><input type="text" id="venta_año_anteriorUP" name="venta_año_anteriorUP" value="{{venta_año_anteriorUpx}}" ></td>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                        <div class="control">
+                                        <td><input type="text" id="oferta_porcentajeUP" name="oferta_porcentajeUP" value="{{oferta_porcentajeUpx}}" ></td>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                        <div class="control">
+                                        <td><input type="submit" value = "Aceptar Cambios"> </td>
+                                    </div>
+                                </div>
+                                    <input type="hidden" id="formId" name="formId" value="2">
+                                </tr>
+                            </table>
+                </form> 
+          </div> 
 {%endif%}
 
 

@@ -48,9 +48,6 @@ def registroProducto():
     data2 = None
     data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
     logicEmprendimiento = emprendimientoLogic()
-    logicEmprendedor = emprendedorLogic()
-    user = session["user"]
-    idUsuario = int(user["id"])
     # Vista
     vistaEmprendimiento = True
 
@@ -58,7 +55,7 @@ def registroProducto():
         # True para vista inversionista
         vistaEmprendimiento = False
         data2 = logicEmprendimiento.getDescripcion(id_emprendimiento)
-        data3 = logicEmprendedor.getDatosGeneralesById(idUsuario)
+        data3 = logicEmprendimiento.getDatosGeneralesById(id_emprendimiento)
         return render_template(
             "registroProductos.html",
             data=data,

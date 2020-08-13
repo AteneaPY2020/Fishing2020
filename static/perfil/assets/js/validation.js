@@ -34,8 +34,72 @@ $(function () {
 
       nombre: {
         required: true,
-        nowhitespace: true,
+
         lettersonly: true
+      },
+      pais: {
+        required: true,
+        lettersonly: true
+
+      },
+
+      telefono: {
+        required: true,
+        digits: true,
+
+      },
+      biografia: {
+        required: true
+      },
+      ciudad: {
+        required: true,
+        lettersonly: true
+
+      },
+
+    },
+    messages: {
+
+      email: {
+        required: 'Por favor, ingrese un correo',
+        email: 'Por favor, ingrese un correo válido',
+
+      },
+      nombre: {
+        required: 'Por favor, ingrese un nombre'
+      },
+      pais: {
+        required: 'Por favor, ingrese su país',
+        lettersonly: 'Por favor, revise que solo contenga letras, sin espacios'
+
+      },
+      ciudad: {
+        required: 'Por favor, ingrese su ciudad',
+        lettersonly: 'Por favor, revise que solo contenga letras, sin espacios'
+
+      },
+      telefono: {
+        required: 'Por favor, ingrese su numero de telefono',
+        digits: 'Por favor, revise que solo contenga números'
+
+      },
+      biografia: {
+        required: 'Por favor, ingrese su numero de telefonos',
+
+      }
+    }
+
+  });
+  $("form[name='formIdInv']").validate({
+    rules: {
+      email: {
+        required: true,
+        email: true
+
+      },
+
+      nombre: {
+        required: true,
       },
       pais: {
         required: true,
@@ -127,12 +191,12 @@ $(function () {
 
       nombre: {
         required: true,
-        nowhitespace: true,
+
         lettersonly: true
       },
       pais: {
         required: true,
-        nowhitespace: true,
+
         lettersonly: true
 
       },

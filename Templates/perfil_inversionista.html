@@ -184,18 +184,58 @@
     <script src="static/perfil/assets/js/validation.js"></script>
 
 
+
     <!--POPUP: Form Modificar la informacion general-->
+
     {%if editar%}
-        <form action="/perfilInversionista" method="POST" enctype="multipart/form-data">
-            Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
-            Foto de perfil: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-            Biografia: <input type="text" name="biografia" id="biografia" value="{{biografia}}"><br>
-            Correo Electrónico: <input type="text" name="email" id="email" value="{{email}}"><br>
-            País: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
-            Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
-            <td><button type="submit" value= "Update">Actualizar</button></td>
-            <input type="hidden" name="formId" id="formId" value="2">
-        </form>
+        <div class="container">
+            <p>Modificar datos personales</p>
+                <form NAME="formIdInv" id="formIdInv" action="/perfilInversionista" method="POST" enctype="multipart/form-data">
+                    <div class="field">
+                        <label class="" for="nombre">Nombre</label>
+                            <div class="control">
+                            <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="" for="fileToUpload">Foto de perfil: </label>
+                            <div class="control">
+                            <input type="file" name="fileToUpload" id="fileToUpload "><br>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="" for="biografia">Biografia</label>
+                            <div class="control">
+                                <input type="text" name="biografia" id="biografia" value="{{biografia}}"><br>
+                            </div>
+                    </div>
+
+
+                    <div class="field">
+                        <label class="" for="email">Email</label>
+                            <div class="control">
+                                <input type="text" name="email" id="email" value="{{email}}"><br>
+                            </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="" for="pais">País</label>
+                            <div class="control">
+                                <input type="text" name="pais" id="pais" value="{{pais}}"><br>
+                            </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="" for="ciudad">Ciudad</label>
+                            <div class="control">
+                                <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
+                            </div>
+                    </div>
+                <td><button type="submit" value= "Update">Actualizar</button></td>
+                <input type="hidden" name="formId" id="formId" value="2">
+            </form>   
+        </div> 
     {%endif%}
 
 

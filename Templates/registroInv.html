@@ -176,28 +176,10 @@
                             <fieldset>
                                 <br>
                                 <h4>Tus temas de interés:</h4><br>
-                                <input type="checkbox" id="Alimento" name="Alimento" value="Alimento">
-                                <label for="Alimento">Alimento</label><br>
-                                <input type="checkbox" id="Moda" name="Moda" value="Moda">
-                                <label for="Moda">Moda</label><br>
-                                <input type="checkbox" id="CyTec" name="CyTec" value="CyTec">
-                                <label for="CyTec">Ciencia y Tecnología</label><br>
-                                <input type="checkbox" id="Social" name="Social" value="Social">
-                                <label for="Social">Social</label><br>
-                                <input type="checkbox" id="Salud" name="Salud" value="Salud">
-                                <label for="Salud">Salud</label><br>
-                                <input type="checkbox" id="Academico" name="Academico" value="Academico">
-                                <label for="Academico">Academico</label><br>
-                                <input type="checkbox" id="Entretenimiento" name="Entretenimiento" value="Entretenimiento">
-                                <label for="Entretenimiento">Entretenimiento</label><br>
-                                <input type="checkbox" id="Infantil" name="Infantil" value="Infantil">
-                                <label for="Infantil">Infantil</label><br>
-                                <input type="checkbox" id="Belleza" name="Belleza" value="Belleza">
-                                <label for="Belleza">Belleza</label><br>
-                                <input type="checkbox" id="Ecologia" name="Ecologia" value="Ecologia">
-                                <label for="Ecologia">Ecología</label><br>
-                                <input type="checkbox" id="Otra" name="Otra" value="Otra">
-                                <label for="Otra">Otra</label><br>
+                                {% for cat in categorias %}
+                                    <input type="checkbox" name="{{cat["id"]}}" value="{{cat["id"]}}">
+                                    <label for="{{cat["id"]}}">{{cat["categoria"]}}</label><br>
+                                {% endfor %}
                                 <div class="form-group">
 
                                     <div class="f1-buttons">

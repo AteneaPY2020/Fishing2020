@@ -50,10 +50,10 @@
                 <li class="nav-item active"><a class="nav-link" href="/registroProductosInv">Productos</a></li>
                 {%endif%}
                 {% if not vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="/informacion">Contactos</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/informacion">Información</a></li>
                 {%endif%}
                 {% if vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="/infoEmprendimiento">Nuestra información</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/infoEmprendimiento">Información</a></li>
                 {%endif%}
                 </ul>
 
@@ -62,7 +62,7 @@
                 <li class="nav-item"><a class="button button-header" href="emprendedorProfile">Volver a mi perfil</a></li>
                 {%endif%}
                 {% if vistaEmprendimiento %}
-                <li class="nav-item"><a class="button button-header" href="/InicioInv">Volver a mi perfil</a></li>
+                <li class="nav-item"><a class="button button-header" href="/InicioInv">Volver al inicio</a></li>
                 {%endif%}
                 </ul>
             </div>
@@ -79,7 +79,7 @@
 					<h1>Historia - fundadores</h1>
 				</div>
 			</div>
-    	</div>
+		</div>
 	<!-- ================ end banner area ================= -->
     
     <!--================Blog Area =================-->
@@ -103,7 +103,7 @@
 									{% endfor %}
 									<br>
 									{% if not vistaEmprendimiento %} 
-									<textarea  name="historia" rows="10" cols="75" >Escribe aquí tu historia</textarea>
+									<textarea  name="historia" rows="10" cols="100" >Escribe aquí tu historia</textarea>
 									<br><br><button type="submit" value="insert" class="button button-postComment button--active"> Modificar</button>
 									<input type="hidden" name="formId" id="formId" value="3">
 									{% endif %}
@@ -112,6 +112,24 @@
 						</div>
 
 					</div>
+
+					{% if not vistaEmprendimiento %} 
+						<div class="comment-form">
+							<h3>Agregar fundadores</h3>
+							<p>{{message}}</p>
+							
+							<form action="/quienes_somos" method="POST">
+								<p>Si desea ingresar un nuevo fundador al emprendimiento ingrese el usuario</p>
+								
+								<label for="user">Usuario:</label>
+								<br><input type="text" id="user" name="user">
+								<input type="hidden" name="formId" id="formId" value="1">
+								<br><br>
+								<button type="submit" value="Insertar" class="button button-postComment button--active"> Insertar</button>
+								
+							</form>
+						</div>
+					{% endif %}
 					
 					<div class="comments-area">
 						<h3>Fundadores</h3>
@@ -149,24 +167,6 @@
 						{% endfor %}											
     
 					</div>
-					
-					{% if not vistaEmprendimiento %} 
-						<div class="comment-form">
-							<h3>Agregar fundadores</h3>
-							<p>{{message}}</p>
-							
-							<form action="/quienes_somos" method="POST">
-								<p>Si desea ingresar un nuevo fundador al emprendimiento ingrese el usuario</p>
-								
-								<label for="user">Usuario:</label>
-								<br><input type="text" id="user" name="user">
-								<input type="hidden" name="formId" id="formId" value="1">
-								<br><br>
-								<button type="submit" value="Insertar" class="button button-postComment button--active"> Insertar</button>
-								
-							</form>
-						</div>
-					{% endif %}
 				</div>
 				
 				<div class="col-lg-4">
@@ -259,6 +259,7 @@
 <br><br><br><br>
 
     <!--================ Start footer Area  =================-->	
+{% for registro in data3 %}	
 	<footer class="footer">
 		<div class="footer-area">
 			<div class="container">
@@ -266,19 +267,20 @@
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title large_title">Descripcion</h4>
-							<p>
-                                CODIGO
-							</p>
-							
+							{% for registro in data4 %}
+								<p>
+                                {{registro["descripcion"]}}
+								</p>
+							{% endfor %}
 						</div>
 					</div>
 					<div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title">Redes sociales</h4>
 							<ul class="list">
-								<li><a>Facebook: CODIGO</a></li>
-								<li><a>Instagram: CODIGO</a></li>
-                                <li><a>Youtube: CODIGO</a></li>
+								<li><a>Facebook: {{registro["facebook"]}}</a></li>
+								<li><a>Instagram: {{registro["instagram"]}}</a></li>
+                                <li><a>Youtube: {{registro["youtube"]}}</a></li>
 							</ul>
 						</div>
 					</div>
@@ -292,7 +294,7 @@
 									Numero de telefono
 								</p>
 								<p>
-									CODIGO
+									{{registro["telefono"]}}
 								</p>
 	
 								<p class="sm-head">
@@ -300,7 +302,7 @@
 									Email
 								</p>
 								<p>
-									CODIGO
+									{{registro["email"]}}
 								</p>
 							</div>
 						</div>
@@ -320,7 +322,7 @@
 			</div>
 		</div>
 	</footer>
-
+{% endfor %}
 	<!--================ End footer Area  =================-->
 
 

@@ -64,10 +64,10 @@
                 <li class="nav-item active"><a class="nav-link" href="/registroProductosInv">Productos</a></li>
                 {%endif%}
                 {% if not vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="/informacion">Contactos</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/informacion">Información</a></li>
                 {%endif%}
                 {% if vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="/infoEmprendimiento">Nuestra información</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/infoEmprendimiento">Información</a></li>
                 {%endif%}
                 </ul>
 
@@ -76,7 +76,7 @@
                 <li class="nav-item"><a class="button button-header" href="emprendedorProfile">Volver a mi perfil</a></li>
                 {%endif%}
                 {% if vistaEmprendimiento %}
-                <li class="nav-item"><a class="button button-header" href="/InicioInv">Volver a mi perfil</a></li>
+                <li class="nav-item"><a class="button button-header" href="/InicioInv">Volver al inicio</a></li>
                 {%endif%}
                 </ul>
             </div>
@@ -86,15 +86,57 @@
     </header>
     <!--================ End Header Menu Area =================-->
     <!-- ================ start banner area ================= -->	
-		<div class="container h-1">
+		{% if vistaEmprendimiento %}
+    <div class="container h-1">
 		<br><br>
 			<div class="blog-banner">
 				<div class="text-center">
 					<h1>Productos - Servicios</h1>
 				</div>
 			</div>
-    	</div>
+    </div>
+    {% endif %}
 	<!-- ================ end banner area ================= -->
+
+  <!-- ================ Subscribe section start ================= -->		  
+  {% if not vistaEmprendimiento %}
+  <section class="subscribe-position">
+    <div class="container">
+      <div class="subscribe text-center">
+        <h3>Productos - Servicios</h3>
+        <br><br>
+        <p>Ingresa otro producto o servicio de tu emprendimiento</p>
+        <div id="mc_embed_signup">
+          <form action="/registroProductos" method="POST" enctype="multipart/form-data">
+            Nombre: <input type="text" id="nombre" name="nombre"><br>
+            Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
+            Descripción: <br><textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
+            Costo unitatio: $<input type="number" name="costoUnitario" id="costoUnitario" step="0.01"><br>
+            Precio de venta: $<input type="number" name="precioVenta" id="precioVenta" step="0.01"><br>
+            No. Patente: <input type="number" name="patente" id="patente"><br>
+            <input type="submit" value="Registrar">
+            <input type="hidden" name="formId" id="formId" value="1">
+        <!--IGNORAAAAR, NO BORRAR-->
+        </form>
+          
+          <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
+            <div class="form-group ml-sm-auto">
+              <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" >
+              <div class="info"></div>
+            </div>
+            <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
+            <div style="position: absolute; left: -5000px;">
+              <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+            </div>
+
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  {% endif %}
+	<!-- ================ Subscribe section end ================= -->	
 
     <!-- ================ category section start ================= -->		  
   <section class="section-margin--small mb-5">
@@ -103,48 +145,22 @@
         <div class="col-xl-3 col-lg-4 col-md-5">
           
           <div class="sidebar-filter">
-            <div class="top-filter-head">Product Filters</div>
             <div class="common-filter">
-              <div class="head">Brands</div>
-              <form action="#">
-                <ul>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="apple" name="brand"><label for="apple">Apple<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="asus" name="brand"><label for="asus">Asus<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="gionee" name="brand"><label for="gionee">Gionee<span>(19)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="micromax" name="brand"><label for="micromax">Micromax<span>(19)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="samsung" name="brand"><label for="samsung">Samsung<span>(19)</span></label></li>
-                </ul>
-              </form>
+              <div class="head"></div>
+                <img class="card-img" src="static/emprendimiento/img/gallery/FishingPublicidad__1.png" width="800" height="700" alt="">
+              </div>            
             </div>
-            <div class="common-filter">
-              <div class="head">Color</div>
-              <form action="#">
-                <ul>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="black" name="color"><label for="black">Black<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather" name="color"><label for="balckleather">Black
-                      Leather<span>(29)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="blackred" name="color"><label for="blackred">Black
-                      with red<span>(19)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="gold" name="color"><label for="gold">Gold<span>(19)</span></label></li>
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey" name="color"><label for="spacegrey">Spacegrey<span>(19)</span></label></li>
-                </ul>
-              </form>
-            </div>
-            
           </div>
-        </div>
-        <div class="col-xl-9 col-lg-8 col-md-7">
-       
+        <div class="col-xl-9 col-lg-8 col-md-7">       
         {% for registro in data %}
         <section class="lattest-product-area pb-40 category-list">
             <div class="row">
                 <div class="col-md-6 col-lg-7">
                     <div class="card text-center card-product">
                         <div class="card-product__img">
-                            <img class="card-img" src="/static/images/productos/{{registro["nombre_foto"]}}" width="350" height="241" alt="">
-                            {% if vistaEmprendimiento %}
+                            <br><img class="card-img" src="/static/images/productos/{{registro["nombre_foto"]}}" width="350" height="241" alt="">
+                            {% if vistaEmprendimiento %} <!--Guardar-->
                               <ul class="card-product__imgOverlay">
-                                <li><button><i class="ti-search"></i></button></li>
                                 <form action="/guardar" method="POST">
                                   <li><button type="submit"><i class="ti-shopping-cart"></i></button></li>
                                   <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
@@ -377,6 +393,8 @@
     {% endif %}
 
     <!--================ Start footer Area  =================-->	
+  
+  {% for registro in data3 %}	
 	<footer class="footer">
 		<div class="footer-area">
 			<div class="container">
@@ -384,19 +402,20 @@
 					<div class="col-lg-3 col-md-6 col-sm-6">
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title large_title">Descripcion</h4>
-							<p>
-                                CODIGO
-							</p>
-							
+							{% for registro in data2 %}
+								<p>
+                  {{registro["descripcion"]}}
+								</p>
+							{% endfor %}
 						</div>
 					</div>
 					<div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title">Redes sociales</h4>
 							<ul class="list">
-								<li><a>Facebook: CODIGO</a></li>
-								<li><a>Instagram: CODIGO</a></li>
-                                <li><a>Youtube: CODIGO</a></li>
+								<li><a>Facebook: {{registro["facebook"]}}</a></li>
+								<li><a>Instagram: {{registro["instagram"]}}</a></li>
+                                <li><a>Youtube: {{registro["youtube"]}}</a></li>
 							</ul>
 						</div>
 					</div>
@@ -410,7 +429,7 @@
 									Numero de telefono
 								</p>
 								<p>
-									CODIGO
+									{{registro["telefono"]}}
 								</p>
 	
 								<p class="sm-head">
@@ -418,7 +437,7 @@
 									Email
 								</p>
 								<p>
-									CODIGO
+									{{registro["email"]}}
 								</p>
 							</div>
 						</div>
@@ -438,6 +457,7 @@
 			</div>
 		</div>
 	</footer>
+{% endfor %}
 
 {% endblock body %}
 

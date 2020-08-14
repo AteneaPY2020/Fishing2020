@@ -194,7 +194,7 @@ def perfilInversionista():
 
                 return render_template(
                     "perfil_inversionista.html",
-                    editar=True,
+                    editar=False,
                     nombre=nombre,
                     ciudad=ciudad,
                     biografia=biografia,
@@ -339,10 +339,14 @@ def correo():
     if request.method == "GET":
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
+        data3 = logic.getDatosGeneralesById(idEmprendimiento)
+        data4 = logic.getDescripcion(idEmprendimiento)
         return render_template(
             "informacion.html",
             data=data,
             data2=data2,
+            data3=data3,
+            data4=data4,
             message=message,
             vistaInversor=True,
         )

@@ -60,10 +60,10 @@
                 <li class="nav-item active"><a class="nav-link" href="/registroProductosInv">Productos</a></li>
                 {%endif%}
                 {% if not vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="/informacion">Contactos</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/informacion">Información</a></li>
                 {%endif%}
                 {% if vistaEmprendimiento %}
-                <li class="nav-item active"><a class="nav-link" href="/infoEmprendimiento">Nuestra información</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/infoEmprendimiento">Información</a></li>
                 {%endif%}
                 </ul>
 
@@ -72,7 +72,7 @@
                 <li class="nav-item"><a class="button button-header" href="emprendedorProfile">Volver a mi perfil</a></li>
                 {%endif%}
                 {% if vistaEmprendimiento %}
-                <li class="nav-item"><a class="button button-header" href="/InicioInv">Volver a mi perfil</a></li>
+                <li class="nav-item"><a class="button button-header" href="/InicioInv">Volver al inicio</a></li>
                 {%endif%}
                 </ul>
             </div>
@@ -101,7 +101,7 @@
                 <h1>{{registro["nombre"]}}</h1>
                 <p>{{registro["descripcion"]}}</p>
                 {% if not vistaEmprendimiento %}
-                <a class="button button-hero" href="#">Busca nuestros productos</a>
+                <a class="button button-hero" href="/registroProductos">Revisa tus productos</a>
                 {%endif%}
                 {% if vistaEmprendimiento %}
                 <a class="button button-hero" href="/registroProductosInv">Conoce nuestros productos</a>
@@ -116,11 +116,11 @@
         <br><br>
         <!--================ Hero Carousel start =================-->
         <section class="section-margin mt-0">
-            
-            <iframe width="1510" height="650" src="{{registro["video"]}}" 
-            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen></iframe>
-             
+            <div style="text-align:center">
+                <iframe width="1250" height="650" src="{{registro["video"]}}" 
+                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen></iframe>
+            </div>     
         </section>
         <!--================ Hero Carousel end =================-->
         <!-- ================ offer section start ================= --> 

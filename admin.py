@@ -675,12 +675,12 @@ def signUPEmprendimiento():
 # ----------------------------------------------------------------------------------------------------------
 @admin.route("/categoriaAdmin", methods=["GET", "POST"])
 def categoria():
-    logic = CategoriaLogic()
+    logic = adminLogic()
     massage = ""
     verdadero = False
     if request.method == "GET":
         data = logic.getAllCategorias()
-        return render_template("categoria.html", data=data, massage=massage)
+        return render_template("categoriaAdmin.html", data=data, massage=massage)
     elif request.method == "POST":
         formId = int(request.form["formId"])
         # Inserta una categoría
@@ -689,7 +689,7 @@ def categoria():
             logic.insertCategoria(categoria)
             massage = "Se ha insertado un nuevo usuario"
             data = logic.getAllCategorias()
-            return render_template("categoria.html", data=data, massage=massage)
+            return render_template("categoriaAdmin.html", data=data, massage=massage)
         # Elimina una categoria
         elif formId == 2:
             id = int(request.form["id"])
@@ -704,7 +704,7 @@ def categoria():
                 massage = "No se puede eliminar. Afecta la integridad de los datos"
                 data = logic.getAllCategorias()
 
-            return render_template("categoria.html", data=data, massage=massage)
+            return render_template("categoriaAdmin.html", data=data, massage=massage)
         # Va al form para dar update
         elif formId == 3:
             id = int(request.form["id"])
@@ -712,7 +712,7 @@ def categoria():
             verdadero = True
             data = logic.getAllCategorias()
             return render_template(
-                "categoria.html",
+                "categoriaAdmin.html",
                 data=data,
                 verdadero=verdadero,
                 categoria=categoria,
@@ -725,4 +725,4 @@ def categoria():
             logic.updateCategoria(id, categoria)
             data = logic.getAllCategorias()
             massage = "Se ha modificado el usuario"
-            return render_template("categoria.html", data=data, massage=massage)
+            return render_template("categoriaAdmin.html", data=data, massage=massage)

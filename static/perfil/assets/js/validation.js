@@ -29,27 +29,32 @@ $(function () {
     rules: {
       email: {
         required: true,
-        email: true
+        email: true,
+        maxlength: 150
       },
       nombre: {
         required: true,
-        letterswithspace: true
+        letterswithspace: true,
+        maxlength: 100
       },
       pais: {
         required: true,
-        letterswithspace: true
+        letterswithspace: true,
+        maxlength: 100
       },
       telefono: {
         required: true,
         digits: true,
+        maxlength: 25
       },
       biografia: {
-        required: true
-
+        required: true,
+        maxlength: 500
       },
       ciudad: {
         required: true,
-        letterswithspace: true
+        letterswithspace: true,
+        maxlength: 100
       }
 
     },
@@ -57,29 +62,35 @@ $(function () {
 
       email: {
         required: 'Por favor, ingrese un correo',
-        email: 'Por favor, ingrese un correo válido'
+        email: 'Por favor, ingrese un correo válido',
+        maxlength: 'Por favor, no ingrese más de 150 caracteres'
       },
       nombre: {
         required: 'Por favor, ingrese un nombre',
-        letterswithspace: 'Por favor, utilice solo letras'
+        letterswithspace: 'Por favor, utilice solo letras',
+        maxlength: 'Por favor, no ingrese más de 100 caracteres'
       },
       pais: {
         required: 'Por favor, ingrese su país',
-        letterswithspace: 'Por favor, revise que solo contenga letras'
+        letterswithspace: 'Por favor, revise que solo contenga letras',
+        maxlength: 'Por favor, no ingrese más de 100 caracteres'
 
       },
       ciudad: {
         required: 'Por favor, ingrese su ciudad',
-        letterswithspace: 'Por favor, revise que solo contenga letras'
+        letterswithspace: 'Por favor, revise que solo contenga letras',
+        maxlength: 'Por favor, no ingrese más de 100 caracteres'
 
       },
       telefono: {
         required: 'Por favor, ingrese su numero de telefono',
-        digits: 'Por favor, revise que solo contenga números'
+        digits: 'Por favor, revise que solo contenga números',
+        maxlength: 'Por favor, no ingrese más de 25 caracteres'
 
       },
       biografia: {
-        required: 'Por favor, ingrese su numero de telefonos',
+        required: 'Por favor, ingrese su biografía',
+        maxlength: 'Por favor, no ingrese más de 500 caracteres'
       }
     }
 
@@ -88,31 +99,28 @@ $(function () {
     rules: {
       email: {
         required: true,
-        email: true
-
+        email: true,
+        maxlength: 150
       },
 
       nombre: {
         required: true,
-        letterswithspace: true
+        letterswithspace: true,
+        maxlength: 100
       },
       pais: {
         required: true,
-        letterswithspace: true
-
-      },
-
-      telefono: {
-        required: true,
-        digits: true,
-
+        letterswithspace: true,
+        maxlength: 100
       },
       biografia: {
-        required: true
+        required: true,
+        maxLength: 200
       },
       ciudad: {
         required: true,
-        letterswithspace: true
+        letterswithspace: true,
+        maxlength: 100
 
       },
 
@@ -122,29 +130,28 @@ $(function () {
       email: {
         required: 'Por favor, ingrese un correo',
         email: 'Por favor, ingrese un correo válido',
+        maxlength: 'Por favor, no ingrese más de 150 caracteres'
 
       },
       nombre: {
         required: 'Por favor, ingrese un nombre',
-        letterswithspace: 'Por favor, revise que solo contenga letras'
+        letterswithspace: 'Por favor, revise que solo contenga letras',
+        maxlength: 'Por favor, no ingrese más de 100 caracteres'
       },
       pais: {
         required: 'Por favor, ingrese su país',
-        letterswithspace: 'Por favor, revise que solo contenga letras'
+        letterswithspace: 'Por favor, revise que solo contenga letras',
+        maxlength: 'Por favor, no ingrese más de 100 caracteres'
 
       },
       ciudad: {
         required: 'Por favor, ingrese su ciudad',
-        letterswithspace: 'Por favor, revise que solo contenga letras'
-
-      },
-      telefono: {
-        required: 'Por favor, ingrese su numero de telefono',
-        digits: 'Por favor, revise que solo contenga números'
-
+        letterswithspace: 'Por favor, revise que solo contenga letras',
+        maxlength: 'Por favor, no ingrese más de 100 caracteres'
       },
       biografia: {
         required: 'Por favor, ingrese su biografia',
+        maxLength: 'Por favor, revise que su biografía no exceda 200 caracteres'
 
       }
     }
@@ -157,12 +164,15 @@ $(function () {
       },
       descripcion: {
         required: true,
+        maxLength: 500
       },
       historia: {
         required: true,
+        maxLength: 500
       },
       eslogan: {
-        required: true
+        required: true,
+        maxlength: 500
       },
       inversion_inicial: {
         required: true,
@@ -176,55 +186,50 @@ $(function () {
       oferta_porcentaje: {
         required: true,
         number: true,
+        range: [0, 100]
       },
       fecha_fundacion: {
         required: true,
       },
       email: {
         required: true,
-        email: true
+        email: true,
+        maxlength: 150
 
       },
 
       nombre: {
         required: true,
-        letterswithspace: true
+        letterswithspace: true,
+        maxlength: 100
 
       },
-      pais: {
-        required: true,
-        letterswithspace: true
-      },
-
       telefono: {
         required: true,
-        digits: true
-      },
-      biografia: {
-        required: true
-      },
-      ciudad: {
-        required: true,
-        letterswithspace: true
-
-      },
+        digits: true,
+        maxlength: 25
+      }
 
     },
     messages: {
 
       email: {
         required: 'Por favor, ingrese un correo',
-        email: 'Por favor, ingrese un correo válido'
+        email: 'Por favor, ingrese un correo válido',
+        maxLength: 'Por favor, revise que no exceda 150 caracteres'
 
       },
-      historia: {
-        required: 'Por favor, ingrese la historia de su emprendimiento'
-      },
       descripcion: {
-        required: 'Por favor, ingrese la descripción de su emprendimiento'
+        required: 'Por favor, ingrese la descripción de su emprendimiento',
+        maxLength: 'Por favor, no exeda 500 palabaras'
+      },
+      historia: {
+        required: 'Por favor, ingrese la descripción de su emprendimiento',
+        maxLength: 'Por favor, no exeda 500 palabaras'
       },
       eslogan: {
-        required: 'Por favor, ingrese su eslogan'
+        required: 'Por favor, ingrese su eslogan',
+        maxLength: 'Por favor, no exceda 500 caracteres'
       },
       fecha_fundacion: {
         required: 'Por favor, la fecha de fundación'
@@ -241,30 +246,19 @@ $(function () {
       },
       oferta_porcentaje: {
         required: 'Por favor, ingrese la oferta ej: 20',
-        number: 'Por favor, revise que solo contenga números'
+        number: 'Por favor, revise que solo contenga números',
+        range: 'Por favor, revise que su porcentaje este entre 0 y 100'
 
       },
       nombre: {
         required: 'Por favor, ingrese el nombre de su emprendimiento',
-        letterswithspace: 'Por favor, revise que solo contenga letras'
-      },
-      pais: {
-        required: 'Por favor, ingrese su país',
-        letterswithspace: 'Por favor, revise que solo contenga letras'
-
-      },
-      ciudad: {
-        required: 'Por favor, ingrese su ciudad',
-        letterswithspace: 'Por favor, revise que solo contenga letras'
-
+        letterswithspace: 'Por favor, revise que solo contenga letras',
+        maxLength: 'Por favor,  no exceda 100 caracteres'
       },
       telefono: {
         required: 'Por favor, ingrese su numero de telefonos',
-        digits: 'Por favor, revise que solo contenga números'
-
-      },
-      biografia: {
-        required: 'Por favor, ingrese su numero de telefonos',
+        digits: 'Por favor, revise que solo contenga números',
+        maxlength: 'Por favor, no ingrese más de 25 caracteres'
 
       }
     }
@@ -274,26 +268,33 @@ $(function () {
     rules: {
       nombre: {
         required: true,
-        letterswithspace: true
+        letterswithspace: true,
+        maxlength: 100
+
       },
       eslogan: {
         required: true,
+        maxlength: 500
       },
       descripcion: {
         required: true,
+        maxLength: 500
       }
     },
     messages: {
 
       descripcion: {
-        required: 'Por favor, ingrese la descripción de su emprendimiento'
+        required: 'Por favor, ingrese la descripción de su emprendimiento',
+        maxLength: 'Por favor, no exeda 500 palabaras'
       },
       eslogan: {
-        required: 'Por favor, ingrese su eslogan'
+        required: 'Por favor, ingrese su eslogan',
+        maxLength: 'Por favor, no exeda 500 palabaras'
       },
       nombre: {
         required: 'Por favor, ingrese el nombre de su emprendimiento',
-        letterswithspace: 'Por favor, revise que solo contenga letras'
+        letterswithspace: 'Por favor, revise que solo contenga letras',
+        maxLength: 'Por favor, no exeda 100 palabaras'
       }
     }
 
@@ -303,31 +304,38 @@ $(function () {
     rules: {
       nombre: {
         required: true,
-        letterswithspace: true
+        letterswithspace: true,
+        maxLength: 100
       },
       descripcion: {
         required: true,
+        maxLength: 300
       },
       costoUnitario: {
         required: true,
-        number: true,
+        number: true
       },
       precioVenta: {
         required: true,
         number: true,
+
       },
       patente: {
         required: true,
         digits: true,
+        maxLength: 20
       }
     },
     messages: {
       nombre: {
-        required: 'Por favor, ingrese el nombre de su emprendimiento',
-        letterswithspace: 'Por favor, revise que solo contenga letras'
+        required: 'Por favor, ingrese el nombre del producto',
+        letterswithspace: 'Por favor, revise que solo contenga letras',
+        maxLength: 'Por favor, no exeda 100 caracteres'
       },
       descripcion: {
-        required: 'Por favor, ingrese la descripción de su emprendimiento'
+        required: 'Por favor, ingrese la descripción del producto',
+        maxLength: 'Por favor, no exeda 450 palabaras',
+        maxLength: 'Por favor, no exeda 300 caracteres'
       },
       costoUnitario: {
         required: 'Por favor, ingrese el costo unitario del producto',
@@ -339,7 +347,8 @@ $(function () {
       },
       patente: {
         required: 'Por favor, ingrese el costo unitario del producto',
-        number: 'Por favor, ingrese un número'
+        number: 'Por favor, ingrese un número',
+        maxLength: 'Por favor, no exeda 20 caracteres'
       }
     }
   });
@@ -347,10 +356,12 @@ $(function () {
     rules: {
       nombre: {
         required: true,
-        letterswithspace: true
+        letterswithspace: true,
+        maxLength: 100
       },
       descripcion: {
         required: true,
+        maxLength: 300
       },
       costoUnitario: {
         required: true,
@@ -363,15 +374,19 @@ $(function () {
       patente: {
         required: true,
         number: true,
+        maxLength: 20
       }
     },
     messages: {
       nombre: {
         required: 'Por favor, ingrese el nombre de su emprendimiento',
-        letterswithspace: 'Por favor, revise que solo contenga letras'
+        letterswithspace: 'Por favor, revise que solo contenga letras',
+        maxLength: 'Por favor, no exeda 100 caracteres'
       },
       descripcion: {
-        required: 'Por favor, ingrese la descripción de su emprendimiento'
+        required: 'Por favor, ingrese la descripción de su emprendimiento',
+        maxLength: 'Por favor, no exeda 450 palabaras',
+        maxLength: 'Por favor, no exeda 300 caracteres'
       },
       costoUnitario: {
         required: 'Por favor, ingrese el costo unitario del producto',
@@ -383,7 +398,8 @@ $(function () {
       },
       patente: {
         required: 'Por favor, ingrese el costo unitario del producto',
-        number: 'Por favor, ingrese un número'
+        number: 'Por favor, ingrese un número',
+        maxLength: 'Por favor, no exeda 20 caracteres'
       }
     }
   });
@@ -402,7 +418,9 @@ $(function () {
       },
       oferta_porcentajeUP: {
         required: true,
-        number: true
+        number: true,
+        range: [0, 100]
+
       }
     },
     messages: {
@@ -419,7 +437,8 @@ $(function () {
       },
       oferta_porcentajeUP: {
         required: 'Por favor, ingrese la oferta',
-        number: 'Por favor, ingrese sólo números'
+        number: 'Por favor, ingrese sólo números',
+        range: 'Por favor, revise que su porcentaje este entre 0 y 100'
       }
     }
   });
@@ -428,21 +447,25 @@ $(function () {
     rules: {
       emailUP: {
         required: true,
-        email: true
+        email: true,
+        maxLength: 100
       },
       telefonoUP: {
         required: true,
         digits: true,
+        maxLength: 25
       }
     },
     messages: {
       emailUP: {
         required: 'Por favor, ingrese su email',
-        email: 'Por favor, ingrese un email válido'
+        email: 'Por favor, ingrese un email válido',
+        maxLength: 'Por favor, no exeda 100 caracteres'
       },
       telefonoUP: {
         required: 'Por favor, ingrese su número telefónico',
-        digits: 'Por favor, ingrese sólo números'
+        digits: 'Por favor, ingrese sólo números',
+        maxLength: 'Por favor, no exeda 25 caracteres'
       },
 
     }

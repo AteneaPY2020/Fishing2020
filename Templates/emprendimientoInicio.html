@@ -159,7 +159,7 @@
 
         {% if verdadero %}
         <div class="container">
-            <p>Modificar datos personales</p>
+            <p>Modificar datos de tu emprendimiento</p>
             <form NAME="formIdInicioEmp" id="formIdInicioEmp" action="/emprendimientoInicio" method="POST" enctype="multipart/form-data">
 
                 
@@ -180,7 +180,7 @@
                 <div class="field">
                     <label class="" for="descripcion">Descripcion:</label>
                         <div class="control">
-                            <input type="textbox" name="descripcion" id="descripcion" value="{{data2["descripcion"]}}"><br><br>
+                            <textarea type="textbox" name="descripcion" id="descripcion" value="{{data2["descripcion"]}}"cols="30" rows="10"></textarea><br><br>
                         </div>
                 </div>
 

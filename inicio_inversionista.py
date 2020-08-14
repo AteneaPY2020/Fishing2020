@@ -194,7 +194,7 @@ def perfilInversionista():
 
                 return render_template(
                     "perfil_inversionista.html",
-                    editar=True,
+                    editar=False,
                     nombre=nombre,
                     ciudad=ciudad,
                     biografia=biografia,

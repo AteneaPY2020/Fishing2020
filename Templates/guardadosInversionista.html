@@ -7,36 +7,31 @@
         <title>Publicaciones Guardadas</title>
         <link rel="stylesheet" href="static/emprendimiento/vendors/bootstrap/bootstrap.min.css">
         <link rel="stylesheet" href="static/emprendimiento/vendors/fontawesome/css/all.min.css">
-	      <link rel="stylesheet" href="static/emprendimiento/vendors/themify-icons/themify-icons.css">
-	      <link rel="stylesheet" href="static/emprendimiento/vendors/linericon/style.css">
+	    <link rel="stylesheet" href="static/emprendimiento/vendors/themify-icons/themify-icons.css">
+	    <link rel="stylesheet" href="static/emprendimiento/vendors/linericon/style.css">
         <link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.theme.default.min.css">
         <link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.carousel.min.css">
         <link rel="stylesheet" href="static/emprendimiento/css/style.css">
-
-        
-
     <!--==========================Icono de barra==============================================================-->
-	      <link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
-	      <link rel="apple-touch-icon" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114x114.png" />
-	      <link rel="apple-touch-icon" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144x144.png" />
-	      <link rel="apple-touch-icon" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72x72.png" />
-	      <link rel="apple-touch-icon" href="static/t2/assets/ico/apple-touch-icon.png" />
+        <link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" href="static/t2/assets/ico/apple-touch-icon.png" />
     <!--==========================Icono de barra==============================================================-->
-
-
-            <style>
-                .btn-link {
-                    border: none;
-                    outline: none;
-                    background: none;
-                    cursor: pointer;
-                    color: #0000EE;
-                    padding: 0;
-                    text-decoration: underline;
-                    font-family: inherit;
-                    font-size: inherit;
-                }
-            </style>
+        <style>
+            .btn-link {
+                border: none;
+                outline: none;
+                background: none;
+                cursor: pointer;
+                color: #0000EE;
+                padding: 0;
+                text-decoration: underline;
+                font-family: inherit;
+                font-size: inherit;
+            }
+        </style>
     </head>
     <body>
 <!--================ Start Header Menu Area =================-->
@@ -70,67 +65,72 @@
         </div>
     </header>
     <!--================ End Header Menu Area =================-->
-
     <!-- ================ start banner area ================= -->	
     <br><br><div class="blog-banner">
         <div class="text-center"><br>
             <h1>Publicaciones Guardadas</h1>
         </div>
     </div>
-    <!-- ================ end banner area ================= --> 
-
-    <!--================Cart Area =================-->
+    <!-- ================ End banner area ================= --> 
     <section class="cart_area">
         <div class="container">
             <div class="cart_inner">
+            <br>
                 <div class="table-responsive">
                     <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Productos</th>
-                    </tr>
-                    </thead>
-                    {%for registro in data%}
+                        <thead>
+                            <tr>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Emprendimiento</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <!---->
                         <tbody>
+                            {%for registro in data%}
                             <tr>
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
-                                            <img src="/static/images/productos/{{registro[3]}}" width="125" height="125">
+                                            <img src="/static/images/productos/{{registro[3]}}" width="150" height="150" alt="">
                                         </div>
                                         <div class="media-body">
-                                            <p>Nombre: {{registro[2]}} <br>Descripción: {{registro[1]}}<br>Producto de:</p>
-                                            <div class="cupon_text d-flex align-items-center">
-                                                <form action="/emprendimientoInicioInversionista" method="POST">
-                                                <input type="hidden" name="empId" id="empId" value="{{registro[5]}}"> 
-                                                <button type="submit" class="btn-link">{{registro[4]}}</button>
-                                                </form>
-                                            </div>
+                                            <p>{{registro[2]}}</p>
                                         </div>
                                     </div>
                                 </td>
+
                                 <td>
-                                    <div class="cupon_text d-flex align-items-center">
-                                        <form action="/guardadosInv" method="POST">
-                                            <button class="button button-paypal" type="submit" value="Delete"> Borrar</button>
-                                            <input type="hidden" name="formId" id="formId" value="2">
-                                            <input type="hidden" name="id" id="id" value="{{registro[0]}}">
-                                        </form>
-                                    </div>
-                                </td> 
-                            <tr>
+                                    <h5>{{registro[1]}}</h5>
+                                </td>
+
+                                <td>
+                                    <form action="/emprendimientoInicioInversionista" method="POST">
+                                        <input type="hidden" name="empId" id="empId" value="{{registro[5]}}"> 
+                                        <button type="submit" class="button button-paypal">{{registro[4]}}</button>
+                                    </form>
+                                </td>
+
+                                <td>
+                                    <form action="/guardadosInv" method="POST">
+                                        <button class="button button-paypal" type="submit" value="Delete"> Borrar</button>
+                                        <input type="hidden" name="formId" id="formId" value="2">
+                                        <input type="hidden" name="id" id="id" value="{{registro[0]}}">
+                                    </form>
+                                </td>
+                            </tr>
+                            {%endfor%}
                         </tbody>
-                    {%endfor%}
+                        
                     </table>
                 </div>
             </div>
         </div>
     </section>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <!--================Area=================-->
+    <br><br>
+    <br><br>
     <footer class="footer">
         <div class="footer-bottom">
             <div class="container">
@@ -142,6 +142,7 @@
                 </div>
             </div>
         </div>
-    </footer><!--//footer-->
+    </footer>
+    <!--================End=================-->
     </body>
 </html>

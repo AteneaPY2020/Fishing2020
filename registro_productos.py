@@ -21,7 +21,7 @@ def registroProductoInv():
     id_invrsionista = session["id_inv"]
     data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
     data3 = logicEmprendimiento.getDatosGeneralesById(id_emprendimiento)
-    data4 = logicEmprendimiento.getDescripcion(id_emprendimiento)
+    data2 = logicEmprendimiento.getDescripcion(id_emprendimiento)
     likes = logicLikes.getAllReaccionesByIdEmprendimiento(id_emprendimiento)
 
     for registro in data:
@@ -41,7 +41,7 @@ def registroProductoInv():
         vistaEmprendimiento=vistaEmprendimiento,
         likes=likes,
         data3=data3,
-        data4=data4,
+        data2=data2,
     )
 
 

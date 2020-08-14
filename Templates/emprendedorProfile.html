@@ -1,173 +1,139 @@
 {% block head %}
-     <title>Perfil emprendedor</title>
-    <!-- Meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Perfil emprendedor</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Responsive HTML5 Website landing Page for Developers">
-    <meta name="author" content="3rd Wave Media">     
-    <link rel="stylesheet" href="static/emprendimiento/vendors/fontawesome/css/all.min.css">
-    <!-- Global CSS -->
-    <link rel="stylesheet" href="static/perfil/assets/plugins/bootstrap/css/bootstrap.min.css">   
-    <!-- Plugins CSS -->
-    <link rel="stylesheet" href="static/perfil/assets/plugins/font-awesome/css/font-awesome.css">
-    <!-- github acitivity css -->
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/octicons/2.0.2/octicons.min.css">
-    <link rel="stylesheet" href="http://caseyscarborough.github.io/github-activity/github-activity-0.1.0.min.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <!-- Theme CSS -->  
-    <link id="theme-style" rel="stylesheet" href="static/perfil/assets/css/styles.css">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="static/emprendimiento/vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="static/emprendimiento/vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="static/emprendimiento/vendors/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="static/emprendimiento/vendors/linericon/style.css">
+    <link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="static/emprendimiento/css/style.css">
 
     <!--==========================Icono de barra==============================================================-->
-	<link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
-	<link rel="apple-touch-icon" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114x114.png" />
-	<link rel="apple-touch-icon" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144x144.png" />
-	<link rel="apple-touch-icon" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72x72.png" />
-	<link rel="apple-touch-icon" href="static/t2/assets/ico/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" href="static/t2/assets/ico/apple-touch-icon.png" />
     <!--==========================Icono de barra==============================================================-->
-
-
-    <!--============================================================================================================-->
-
+    
 {% endblock head %}
 
 {% block body %}
-    <!-- ******HEADER****** --> 
-    <header class="header">
-        <div class="container">  
-            <img class="circular--portrait pull-left" src="static/images/emprendedor/{{data[0]["nombre_foto"]}}" alt="" width="200" height="141"/>                    
-            <div class="profile-content pull-left">
-                <h1 class="name">{{data[0]["nombre"]}}</h1>
-                <h2 class="desc">Emprendedor</h2>   
-                <ul class="social list-inline">
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>                   
-                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                    <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fa fa-github-alt"></i></a></li>                  
-                    <li class="last-item"><a href="#"><i class="fa fa-hacker-news"></i></a></li>                 
-                </ul> 
-            </div><!--//profile-->
 
+    <!--================ Start Header Menu Area =================-->
+    <header class="header_area">
+        <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+            <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                    <li class="nav-item"><a class="nav-link">FISHING | An ocean full of grear ideas</a></li>
+                    <li class="nav-item"><a class="nav-link"></a></li>
+                    <li class="nav-item"><a class="nav-link"></a></li>
+                </ul>
+                <ul class="nav-shop">
+                <li class="nav-item"><a class="button button-header" href="/cerrarSesion">Cerrar sesión</a></li>
+                </ul>
+            </div>
+            </div>
+        </nav>
+        </div>
+    </header>
+    <!--================ End Header Menu Area =================-->
 
-            <!--Boton Modificar la informacion general-->
-            <form action="/emprendedorProfile" method="POST">
-                <button type="submit" value="update" class="btn btn-cta-secondary pull-right" ><i class="fa fa-paper-plane"></i>Modificar Informacion Personal</button>
-                
-                <input type="hidden" name="formId" id="formId" value="1">
-                <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
-                <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
-                <input type="hidden" name="email" id="email" value="{{data[0]["email"]}}"> 
-                <input type="hidden" name="telefono" id="telefono" value="{{data[0]["telefono"]}}">
-                <input type="hidden" name="pais" id="pais" value="{{data[0]["pais"]}}">              
-                <input type="hidden" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}">
-                <input type="hidden" name="biografia" id="biografia" value="{{data[0]["biografia"]}}">
-                
-            </form>
-
-            </div><!--//container-->
-    </header><!--//header-->
-    
-    <div class="container sections-wrapper">
-        <div class="row">
-            <div class="primary col-md-8 col-sm-12 col-xs-12">
-                <section class="about section">
-                    <div class="section-inner">
-                        <h2 class="heading">Biografía</h2>
-                        <div class="content">
-                            <p>{{data[0]["biografia"]}}</p>             
-                                
-                        </div><!--//content-->
-                    </div><!--//section-inner-->                 
-                </section><!--//section-->                   <section class="latest section">
-                    <div class="section-inner">
-                        <h2 class="heading">Mis emprendimientos</h2>
-                        <div class="content">                                                   
-                            <div class="item featured text-center">
-                                <h3 class="title"><a>An ocean full of great ideas</a></h3>
-                                <p class="summary">Presiona "Ir" para ver tu emprendimiento</p>
-                                <div class="featured-image pull-center">
-                                    <!--Tabla de emprendimientos--> 
-                                    <table border="1">
-                                        <tr>
-                                            <th>Emprendimiento</th>
-                                            <th>Ir</th>
-                                            <th>Salir</th>
-                                        </tr>
-                                        
-                                        {% for registro in dataEmprendimiento %}
-                                        <tr>
-                                        <td>{{registro["nombre"]}}</td>
-                                        <td>
-                                            <!--Boton "Ir"-->
-                                            <form action="/emprendedorProfile" method="POST">
-                                                <button class="btn btn-cta-primary" type="submit" value="ir">Ir</button>
-                                                <input type="hidden" name="formId" id="formId" value="6">
-                                                <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <!--Boton "delete"-->
-                                            <form action="/emprendedorProfile" method="POST">
-                                                <button class="btn btn-cta-primary" type="submit" value="delete">Salir</button>
-                                                <input type="hidden" name="formId" id="formId" value="5">
-                                                <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                                            </form>
-                                        </td>
-                                        {% endfor %}
-                                    </table>  
-
-                                    <br>
-                                    <br>
-                                    
-                                    <!--Boton crear nuevo emprendimiento-->             
-                                    <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-                                        <button class="btn btn-cta-secondary" type="submit" value="insert"><i class="fa fa-thumbs-o-up"></i>Crear nuevo emprendimiento</button>
-                                        <input type="hidden" name="formId" id="formId" value="3">
-                                        <input type="hidden" name="id" id="id" value="{{id}}">
-
-                                    </form>
-                                    
-     
-                                </div><!--//item-->
-                            </div><!--//content-->  
-                        </div><!--//section-inner--> 
-                    </div>                
-                </section><!--//section-->
-                
-            </section><!--//section-->
-                
-            </div><!--//primary-->
-            <div class="secondary col-md-4 col-sm-12 col-xs-12">
-                 <aside class="info aside section">
-                    <div class="section-inner">
-                        <h2 class="heading sr-only">Basic Information</h2>
-                        <div class="content">
-                            <ul class="list-unstyled">
-                                <li><i class="fa fa-map-marker"></i><span class="sr-only"></span>{{data[0]["ciudad"]}}, {{data[0]["pais"]}}</li>
-                                <li><i class="fa fa-envelope-o"></i><span class="sr-only"></span>{{data[0]["email"]}}</li>
-                                <li><i class="fa fa-link"></i><span class="sr-only"></span>{{data[0]["telefono"]}}</li>
-                            </ul>
-                        </div><!--//content-->  
-                    </div><!--//section-inner-->                 
-                </aside><!--//aside-->
-                
-                <aside class="skills aside section">
-                    <div class="section-inner">
-                        <h2 class="heading">Notificaciones</h2>
-                        <div class="content">
-                            <p class="intro">
-                                Revisa a que inversionistas les interesa tu idea de negocios
-                            <div class="skillset">
-                               
-                                <div class="item">
-                                                                 
-                                </div><!--//item-->
-                                    <table border="1">
+    <section class="blog_area single-post-area py-80px section-margin--small">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 posts-list">
+                    <div class="comments-area">
+                        <h4>Biografía</h4>
+                        <div class="comment-list">
+                                <div class="single-comment justify-content-between d-flex">
+                                        <div class="user justify-content-between d-flex">
+                                            <p class="comment">
+                                                {{data[0]["biografia"]}}
+                                            </p>
+                                        </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="comment-form">
+                        <h4>Mis emprendimientos</h4>
+                        <table border="1">
+                            <tr>
+                                <th>Emprendimiento</th>
+                                <th>Ir</th>
+                                <th>Salir</th>
+                            </tr>
+                            
+                            {% for registro in dataEmprendimiento %}
+                            <tr>
+                            <td>{{registro["nombre"]}}</td>
+                            <td>
+                                <!--Boton "Ir"-->
+                                <form action="/emprendedorProfile" method="POST">
+                                    <button class="btn btn-cta-primary" type="submit" value="ir">Ir</button>
+                                    <input type="hidden" name="formId" id="formId" value="6">
+                                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                </form>
+                            </td>
+                            <td>
+                                <!--Boton "delete"-->
+                                <form action="/emprendedorProfile" method="POST">
+                                    <button class="btn btn-cta-primary" type="submit" value="delete">Salir</button>
+                                    <input type="hidden" name="formId" id="formId" value="5">
+                                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                </form>
+                            </td>
+                            {% endfor %}
+                        </table>
+                        <!--Boton crear nuevo emprendimiento-->             
+                        <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
+                            <br><td><button class="button button-postComment button--active" type="submit" value="insert"><i class="fa fa-thumbs-o-up"></i>Crear nuevo emprendimiento</button></td>
+                            <input type="hidden" name="formId" id="formId" value="3">
+                            <input type="hidden" name="id" id="id" value="{{id}}">
+                        </form>  
+                    </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    <aside class="single_sidebar_widget author_widget"> 
+                        <img class="author_img rounded-circle" src="static/images/emprendedor/{{data[0]["nombre_foto"]}}" width="210" height="200" alt="">
+                        <h4>{{data[0]["nombre"]}}</h4>
+                        <p>Inversionista</p>
+                        <div class="social_icon">
+                        </div>
+                        <p>
+                            {{data[0]["ciudad"]}}, {{data[0]["pais"]}}<br>
+                            {{data[0]["email"]}}<br>
+                            {{data[0]["telefono"]}}
+                        </p>
+                        <br>
+                        <!--Boton Modificar la informacion general-->
+                        <form action="/emprendedorProfile" method="POST">
+                            <td><button type="submit" value="update" class="button button-postComment button--active" ><i class="fa fa-paper-plane"></i>Modificar informacion</button></td>
+                            
+                            <input type="hidden" name="formId" id="formId" value="1">
+                            <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
+                            <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
+                            <input type="hidden" name="email" id="email" value="{{data[0]["email"]}}"> 
+                            <input type="hidden" name="telefono" id="telefono" value="{{data[0]["telefono"]}}">
+                            <input type="hidden" name="pais" id="pais" value="{{data[0]["pais"]}}">              
+                            <input type="hidden" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}">
+                            <input type="hidden" name="biografia" id="biografia" value="{{data[0]["biografia"]}}">
+                            
+                        </form>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Notificaciones</h3>
+                        <div class="media post_item">
+                            <div class="media-body">
+                                <table border="1">
                                     <tr>
                                         <th>Notificación</th>
                                         <th>Fecha</th>
@@ -180,22 +146,39 @@
                                     <td>{{registro["hora"]}}</td>
                                     {% endfor %}
                                 </table>
-                            </div>              
-                        </div><!--//content-->  
-                    </div><!--//section-inner-->                 
-                </aside><!--//section-->
-            </div><!--//secondary-->    
-        </div><!--//row-->
-    </div><!--//masonry-->
-    
-    <!-- ******FOOTER****** --> 
-    <footer class="footer">
-        <div class="container text-center">
-                <small class="copyright">Fishing2020 | An ocean full of great ideas</small>
-        </div><!--//container-->
-    </footer><!--//footer-->
- 
+                            </div>
+                        </div>
+                    </aside>
+                    
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
 
+    <br>
+    <footer class="footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row d-flex">
+                    <p class="col-lg-12 footer-text text-center">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Fishing 2020 | An ocean full of great ideas <i class="fa fa-heart" aria-hidden="true"></i> by <a>Fishing</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+            
+    
+    
+                                
+                
     <!-- Javascript -->          
     <script type="text/javascript" src="static/perfil/assets/plugins/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="static/perfil/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
@@ -209,23 +192,23 @@
 
 <!--======================================================================================================================-->   
     <!--POPUP: Form Modificar la informacion general-->
-        {% if verdadero %}
-            <p>Modificar datos personales</p>
-            <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-                Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
-                Email: <input type="text" name="email" id="email" value="{{email}}"> <br>
-                Telefono: <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
-                Pais: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
-                Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
-                Biografia: <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{biografia}}</textarea><br><br>
-                Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                
-                <!--Aplicar cambios-->
-                <button type="submit" value="update">Aplicar cambios</button>
-                <input type="hidden" name="formId" id="formId" value="2">
-                <input type="hidden" name="id" id="id" value="{{id}}">
-            </form>
-        {% endif %}
+    {% if verdadero %}
+        <p>Modificar datos personales</p>
+        <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
+            Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
+            Email: <input type="text" name="email" id="email" value="{{email}}"> <br>
+            Telefono: <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
+            Pais: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
+            Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
+            Biografia: <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{biografia}}</textarea><br><br>
+            Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
+            
+            <!--Aplicar cambios-->
+            <button type="submit" value="update">Aplicar cambios</button>
+            <input type="hidden" name="formId" id="formId" value="2">
+            <input type="hidden" name="id" id="id" value="{{id}}">
+        </form>
+    {% endif %}
 
     
 
@@ -261,7 +244,6 @@
         <button type="submit" value="update">Crear emprendimiento</button>
         <input type="hidden" name="formId" id="formId" value="4">
     </form>
-    <br><br>
     {% endif %}
 {% endblock body %}
 

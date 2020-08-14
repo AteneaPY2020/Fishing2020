@@ -97,8 +97,9 @@
   <section class="subscribe-position">
     <div class="container">
       <div class="subscribe text-center">
-        <h3>Ingresa otro producto</h3>
-        <p>Llena todos los campos</p>
+        <h3>Productos - Servicios</h3>
+        <br><br>
+        <p>Ingresa otro producto o servicio de tu emprendimiento</p>
         <div id="mc_embed_signup">
           <form action="/registroProductos" method="POST" enctype="multipart/form-data">
             Nombre: <input type="text" id="nombre" name="nombre"><br>
@@ -152,9 +153,8 @@
                     <div class="card text-center card-product">
                         <div class="card-product__img">
                             <br><img class="card-img" src="/static/images/productos/{{registro["nombre_foto"]}}" width="350" height="241" alt="">
-                            {% if vistaEmprendimiento %}
+                            {% if vistaEmprendimiento %} <!--Guardar-->
                               <ul class="card-product__imgOverlay">
-                                <li><button><i class="ti-search"></i></button></li>
                                 <form action="/guardar" method="POST">
                                   <li><button type="submit"><i class="ti-shopping-cart"></i></button></li>
                                   <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
@@ -264,70 +264,72 @@
     {% endif %}
 
     <!--================ Start footer Area  =================-->	
-  {% for registro in data3 %}
-    <footer class="footer">
-      <div class="footer-area">
-        <div class="container">
-          <div class="row section_gap">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-              <div class="single-footer-widget tp_widgets">
-                <h4 class="footer_title large_title">Descripcion</h4>
-                  {% for registro in data4 %}
-								    <p>
-                      {{registro["descripcion"]}}
-								    </p>
-							    {% endfor %}
-              </div>
-            </div>
-            <div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
-              <div class="single-footer-widget tp_widgets">
-                <h4 class="footer_title">Redes sociales</h4>
-                <ul class="list">
-                  <li><a>Facebook: {{registro["facebook"]}}</a></li>
-								  <li><a>Instagram: {{registro["instagram"]}}</a></li>
-                  <li><a>Youtube: {{registro["youtube"]}}</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-              <div class="single-footer-widget tp_widgets">
-                <h4 class="footer_title">Contact Us</h4>
-                <div class="ml-40">
-                  
-                  <p class="sm-head">
-                    <span class="fa fa-phone"></span>
-                    Numero de telefono
-                  </p>
-                  <p>
-                    {{registro["telefono"]}}
-                  </p>
-    
-                  <p class="sm-head">
-                    <span class="fa fa-envelope"></span>
-                    Email
-                  </p>
-                  <p>
-                    {{registro["email"]}}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  
+  {% for registro in data3 %}	
+	<footer class="footer">
+		<div class="footer-area">
+			<div class="container">
+				<div class="row section_gap">
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title large_title">Descripcion</h4>
+							{% for registro in data2 %}
+								<p>
+                  {{registro["descripcion"]}}
+								</p>
+							{% endfor %}
+						</div>
+					</div>
+					<div class="offset-lg-1 col-lg-2 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title">Redes sociales</h4>
+							<ul class="list">
+								<li><a>Facebook: {{registro["facebook"]}}</a></li>
+								<li><a>Instagram: {{registro["instagram"]}}</a></li>
+                                <li><a>Youtube: {{registro["youtube"]}}</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title">Contact Us</h4>
+							<div class="ml-40">
+								
+								<p class="sm-head">
+									<span class="fa fa-phone"></span>
+									Numero de telefono
+								</p>
+								<p>
+									{{registro["telefono"]}}
+								</p>
+	
+								<p class="sm-head">
+									<span class="fa fa-envelope"></span>
+									Email
+								</p>
+								<p>
+									{{registro["email"]}}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-      <div class="footer-bottom">
-        <div class="container">
-          <div class="row d-flex">
-            <p class="col-lg-12 footer-text text-center">
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                          Copyright &copy;<script>document.write(new Date().getFullYear());</script> Fishing 2020 | An ocean full of great ideas <i class="fa fa-heart" aria-hidden="true"></i> by <a>Fishing</a>
-                          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  {% endfor %}
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row d-flex">
+					<p class="col-lg-12 footer-text text-center">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Fishing 2020 | An ocean full of great ideas <i class="fa fa-heart" aria-hidden="true"></i> by <a>Fishing</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+				</div>
+			</div>
+		</div>
+	</footer>
+{% endfor %}
+
 {% endblock body %}
 
 

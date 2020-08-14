@@ -14,6 +14,7 @@ from productoLogic import productoLogic
 from productoObj import productoObj
 from busquedaLogic import busquedaLogic
 from likeLogic import likeLogic
+from ofertaLogic import ofertaLogic
 
 # Envio correo
 import smtplib
@@ -334,17 +335,19 @@ def guardadosInv():
 def correo():
     logic = emprendimientoLogic()
     message = ""
-
     idEmprendimiento = session["empId"]
+    logicOferta = ofertaLogic()
     if request.method == "GET":
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
+        ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
         return render_template(
             "informacion.html",
             data=data,
             data2=data2,
             message=message,
             vistaInversor=True,
+            ultima_oferta=ultima_oferta,
         )
     elif request.method == "POST":
         # Datos de sesion
@@ -358,6 +361,7 @@ def correo():
         logicEmpr = emprendimientoLogic()
         infoEmpren = logicEmpr.getIdEmprendimiento(idEmprendimiento)
         logicEmpr.FundadoresByEmprendimientoCorreo(usuario, idEmprendimiento)
+        ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
         message = request.form["message"]
         user = "fishing.corporation2020@gmail.com"
         password = "ilovefishing123"
@@ -405,6 +409,7 @@ def correo():
             data2=data2,
             message1=message1,
             vistaInversor=True,
+            ultima_oferta=ultima_oferta,
         )
 
 

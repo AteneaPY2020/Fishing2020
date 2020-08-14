@@ -176,28 +176,78 @@
                                     <th scope="col">Porcentaje</th>
                                     <th scope="col">Fecha</th>
                                 </tr>
+                                {% for registro in ofertas %}
                                 <tr>
                                     <td>
-                                        <p>aengangeargnegnaerg</p>
+                                        <p>{{registro["especificaciones"]}}</p>
                                     </td>
                                     <td>
-                                        <p>$ 12000</p>
+                                        <p>$ {{registro["oferta"]}}</p>
                                     </td>
                                     <td>
-                                        <p>14 %</p>
+                                        <p>{{registro["porcentaje"]}} %</p>
                                     </td>
                                     <td>
-                                        <p>20/12/2020</p>
+                                        <p>{{registro["fecha"]}}</p>
                                     </td>
                                 </tr>
+                                {% endfor %}
                             </thead>
                         </table>
                         <form action="/informacion" method="POST">
                             <button class="button button-paypal" type="submit" value="insert">Agregar</button>
                             <input type="hidden" name="formId" id="formId" value="5">
                         </form>
-
+                            {% if ultima_oferta != None %}
+                            <br>
+                            <form action="/informacion" method="POST">
+                                <button class="button button-paypal" type="submit" value="delete">Eliminar último registro</button>
+                                <input type="hidden" name="formId" id="formId" value="7">
+                                <input type="hidden" name="id_historial" id="id_historial" value="{{ultima_oferta["id"]}}">
+                            </form>
+                            <br>
+                            <form action="/informacion" method="POST">
+                                <button class="button button-paypal" type="submit" value="update">Modificar último registro</button>
+                                <input type="hidden" name="formId" id="formId" value="8">
+                                <input type="hidden" name="id_historial" id="id_historial" value="{{ultima_oferta["id"]}}">
+                                <input type="hidden" name="especificaciones" id="especificaciones" value="{{ultima_oferta["especificaciones"]}}">
+                                <input type="hidden" name="oferta" id="oferta" value="{{ultima_oferta["oferta"]}}">
+                                <input type="hidden" name="porcentaje" id="porcentaje" value="{{ultima_oferta["porcentaje"]}}">
+                            </form>
+                            {% endif %}
                         {%endif%}
+
+                        {%if not vistaEmprendedor%}
+                            {% if ultima_oferta != None %}
+                            <br><br>
+                            <h2>Oferta actual</h2>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Especificaciones</th>
+                                        <th scope="col">Valor</th>
+                                        <th scope="col">Porcentaje</th>
+                                        <th scope="col">Fecha</th>
+                                    </tr>
+                                </thead>
+                                <tr>
+                                    <td>
+                                        <p>{{ultima_oferta["especificaciones"]}}</p>
+                                    </td>
+                                    <td>
+                                        <p>$ {{ultima_oferta["oferta"]}}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ultima_oferta["porcentaje"]}} %</p>
+                                    </td>
+                                    <td>
+                                        <p>{{ultima_oferta["fecha"]}}</p>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </table>
+                        {%endif%}
+
                     </div>
                 </div>
 
@@ -385,9 +435,31 @@
                     <td><input type="text" id="instagramUP" name="instagramUP" value="{{instagramUpx}}"></td>
                     <td><input type="text" id="youtubeUP" name="youtubeUP" value="{{youtubeUpx}}"></td>
                     <td><input type="submit" value="Aceptar Cambios"> </td>
+                    <td><input type="submit" value="Aceptar Cambios"> </td>
                     <input type="hidden" id="formId" name="formId" value="4">
                 </tr>
             </table>
+        </form>
+        {%endif%}
+        {%if mostrar2%}
+        <p>Inserta una nueva oferta</p>
+        <form action="/informacion" method="POST">
+            Especificaciones: <input type="text" id="especificaciones" name="especificaciones"><br>
+            Oferta: $<input type="text" id="oferta" name="oferta"><br>
+            Porcentaje: <input type="text" id="porcentaje" name="porcentaje">% <br>
+            <input type="submit" value="Agregar"><br>
+            <input type="hidden" id="formId" name="formId" value="6"><br>
+        </form>
+        {%endif%}
+        {%if mostrar3%}
+        <p>Inserta una nueva oferta</p>
+        <form action="/informacion" method="POST">
+            Especificaciones: <input type="text" id="especificaciones" name="especificaciones" value="{{data3["especificaciones"]}}"><br>
+            Oferta: $<input type="text" id="oferta" name="oferta" value="{{data3["oferta"]}}"><br>
+            Porcentaje: <input type="text" id="porcentaje" name="porcentaje" value="{{data3["porcentaje"]}}">% <br>
+            <input type="submit" value="Agregar"><br>
+            <input type="hidden" id="formId" name="formId" value="9"><br>
+            <input type="hidden" id="id_historial" name="id_historial" value="{{data3["id_historial"]}}"><br>
         </form>
         {%endif%}
         </div>

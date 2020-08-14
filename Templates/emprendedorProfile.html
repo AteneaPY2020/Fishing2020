@@ -63,11 +63,11 @@
                     </div>
                     <div class="comment-form">
                         <h4>Mis emprendimientos</h4>
-                        <table border="1">
+                        <table class="table">
                             <tr>
                                 <th>Emprendimiento</th>
                                 <th>Ir</th>
-                                <th>Salir</th>
+                                <th>Eliminar</th>
                             </tr>
                             
                             {% for registro in dataEmprendimiento %}
@@ -84,7 +84,7 @@
                             <td>
                                 <!--Boton "delete"-->
                                 <form action="/emprendedorProfile" method="POST">
-                                    <button class="btn btn-cta-primary" type="submit" value="delete">Salir</button>
+                                    <button class="btn btn-cta-primary" type="submit" value="delete">Eliminar</button>
                                     <input type="hidden" name="formId" id="formId" value="5">
                                     <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                 </form>
@@ -132,10 +132,10 @@
                     <aside class="single_sidebar_widget popular_post_widget">
                         <h3 class="widget_title">Notificaciones</h3>
                         <div class="media post_item">
-                            <div class="media-body">
-                                <table border="1">
+                            <div class="">
+                                <table class="table">
                                     <tr>
-                                        <th>Notificación</th>
+                                        <th></th>
                                         <th>Fecha</th>
                                         <th>Hora</th>
                                     </tr>     

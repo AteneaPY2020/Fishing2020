@@ -233,3 +233,17 @@ class inversorLogic(Logic):
             return True
         else:
             return False
+
+    def deleteInversionista(self, id):
+        database = self.get_databaseXObj()
+        sql = f"delete from fishingdb.inversionista where inversionista.id = '{id}';"
+        row = database.executeNonQueryRows(sql)
+        return row
+
+    def getAllInversionista(self):
+        dataBase = self.get_databaseXObj()
+        sql = "SELECT * FROM fishingdb.inversionista;"
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        return data
+

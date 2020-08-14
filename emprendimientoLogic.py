@@ -339,12 +339,6 @@ class emprendimientoLogic(Logic):
         rows = database.executeNonQueryRows(sql)
         return rows
 
-    # def deleteContacto(self, id):
-    #     database = self.get_databaseXObj()
-    #     sql = f"delete from fishingdb.fundador where fundador.id = '{idFundador}';"
-    #     rows = database.executeNonQueryRows(sql)
-    #     return rows
-
     def getInfoFinanciera(self, idEmprendimiento):
         dataBase = self.get_databaseXObj()
         sql = (
@@ -530,3 +524,4 @@ class emprendimientoLogic(Logic):
             currentList = list(registro)
             listaFundadores.append(currentList[0])
         return listaFundadores
+

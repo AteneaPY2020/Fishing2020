@@ -200,3 +200,16 @@ class emprendedorLogic(Logic):
         data = database.executeQuery(sql)
         data = self.tupleToDictionaryList(data, ["mensaje", "fecha", "hora"],)
         return data
+
+    def getAllEmprendedores(self):
+        dataBase = self.get_databaseXObj()
+        sql = "select * from fishingdb.emprendedor;"
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        return data
+
+    def deleteEmprendedor(self, id):
+        database = self.get_databaseXObj()
+        sql = f"delete from fishingdb.emprendedor where emprendedor.id = '{id}';"
+        rows = database.executeNonQueryRows(sql)
+        return rows

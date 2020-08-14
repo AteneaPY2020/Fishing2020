@@ -6,6 +6,8 @@ from inversorObj import inversorObj
 from emprendedorLogic import emprendedorLogic
 from emprendedorObj import emprendedorObj
 from emprendimientoLogic import emprendimientoLogic
+from ofertaLogic import ofertaLogic
+from guardadosLogic import guardadosLogic
 
 emprendimiento = Blueprint(
     "emprendimiento", __name__, template_folder="Templates", static_folder="static"
@@ -125,12 +127,17 @@ def informacion():
     logic = emprendimientoLogic()
     message = ""
     mostrar = False
+    logicOferta = ofertaLogic()
+
     idEmprendimiento = session["emprendimiento"]
     if request.method == "GET":
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
         data3 = logic.getDatosGeneralesById(idEmprendimiento)
         data4 = logic.getDescripcion(idEmprendimiento)
+        ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
+        ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+
         return render_template(
             "informacion.html",
             data=data,
@@ -139,18 +146,24 @@ def informacion():
             data4=data4,
             message=message,
             vistaEmprendedor=True,
+            vistaEmprendimiento=True,
+            ofertas=ofertas,
+            ultima_oferta=ultima_oferta,
         )
     elif request.method == "POST":
         vistaEmprendedor = True
         formId = int(request.form["formId"])
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
+        ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
+        ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
         # UPDATE INFO FINANCIERA
         if formId == 1:
             fecha_fundacionOld = request.form["fecha_fundacionx"]
             inversion_inicialOld = request.form["inversion_inicialx"]
             venta_año_anteriorOld = request.form["venta_año_anteriorx"]
-            oferta_porcentajeOld = request.form["oferta_porcentajex"]
+            ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
+            ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
             return render_template(
                 "informacion.html",
                 mostrar=True,
@@ -158,30 +171,35 @@ def informacion():
                 fecha_fundacionUpx=fecha_fundacionOld,
                 inversion_inicialUpx=inversion_inicialOld,
                 venta_año_anteriorUpx=venta_año_anteriorOld,
-                oferta_porcentajeUpx=oferta_porcentajeOld,
                 data=data,
                 data2=data2,
+                vistaEmprendimiento=True,
+                ofertas=ofertas,
+                ultima_oferta=ultima_oferta,
             )
         if formId == 2:
             fecha_fundacion = request.form["fecha_fundacionUP"]
             inversion_inicial = request.form["inversion_inicialUP"]
             venta_año_anterior = request.form["venta_año_anteriorUP"]
-            oferta_porcentaje = request.form["oferta_porcentajeUP"]
             logic.updateInfoFinanciera(
                 idEmprendimiento,
                 inversion_inicial,
                 fecha_fundacion,
                 venta_año_anterior,
-                oferta_porcentaje,
             )
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
+            ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
+            ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
             return render_template(
                 "informacion.html",
                 data=data,
                 data2=data2,
                 mostrar=False,
                 vistaEmprendedor=True,
+                vistaEmprendimiento=True,
+                ofertas=ofertas,
+                ultima_oferta=ultima_oferta,
             )
         # UPDATE CONTACTOS
         if formId == 3:
@@ -192,6 +210,8 @@ def informacion():
             youtubeOld = request.form["youtubex"]
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
+            ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
+            ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
             return render_template(
                 "informacion.html",
                 mostrar1=True,
@@ -203,6 +223,9 @@ def informacion():
                 youtubeUpx=youtubeOld,
                 data=data,
                 data2=data2,
+                vistaEmprendimiento=True,
+                ofertas=ofertas,
+                ultima_oferta=ultima_oferta,
             )
         if formId == 4:
             email = request.form["emailUP"]
@@ -215,10 +238,119 @@ def informacion():
             )
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
+            ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
+            ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
             return render_template(
                 "informacion.html",
                 data=data,
                 data2=data2,
                 mostrar1=False,
                 vistaEmprendedor=True,
+                vistaEmprendimiento=True,
+                ofertas=ofertas,
+                ultima_oferta=ultima_oferta,
             )
+
+        # Agrega un registro al historial
+        if formId == 5:
+            data = logic.getContactos(idEmprendimiento)
+            data2 = logic.getInfoFinanciera(idEmprendimiento)
+            ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
+            ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+            return render_template(
+                "informacion.html",
+                data=data,
+                data2=data2,
+                mostrar2=True,
+                vistaEmprendedor=True,
+                vistaEmprendimiento=True,
+                ofertas=ofertas,
+                ultima_oferta=ultima_oferta,
+            )
+        if formId == 6:
+            data = logic.getContactos(idEmprendimiento)
+            data2 = logic.getInfoFinanciera(idEmprendimiento)
+            especificaciones = request.form["especificaciones"]
+            oferta = float(request.form["oferta"])
+            porcentaje = float(request.form["porcentaje"])
+            logicOferta.insertOferta(
+                especificaciones, oferta, porcentaje, idEmprendimiento
+            )
+            ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
+            ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+            return render_template(
+                "informacion.html",
+                data=data,
+                data2=data2,
+                vistaEmprendedor=True,
+                vistaEmprendimiento=True,
+                ofertas=ofertas,
+                ultima_oferta=ultima_oferta,
+            )
+        # Delete
+        if formId == 7:
+            data = logic.getContactos(idEmprendimiento)
+            data2 = logic.getInfoFinanciera(idEmprendimiento)
+            id_historial = request.form["id_historial"]
+            logicOferta.deleteHistorial(id_historial)
+            ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
+            ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+            return render_template(
+                "informacion.html",
+                data=data,
+                data2=data2,
+                vistaEmprendedor=True,
+                vistaEmprendimiento=True,
+                ofertas=ofertas,
+                ultima_oferta=ultima_oferta,
+            )
+
+        # Update
+        if formId == 8:
+            data = logic.getContactos(idEmprendimiento)
+            data2 = logic.getInfoFinanciera(idEmprendimiento)
+            id_historial = request.form["id_historial"]
+            especificaciones = request.form["especificaciones"]
+            oferta = float(request.form["oferta"])
+            porcentaje = float(request.form["porcentaje"])
+            ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
+            ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+            data3 = {
+                "id_historial": id_historial,
+                "especificaciones": especificaciones,
+                "oferta": oferta,
+                "porcentaje": porcentaje,
+            }
+            return render_template(
+                "informacion.html",
+                data=data,
+                data2=data2,
+                vistaEmprendedor=True,
+                vistaEmprendimiento=True,
+                ofertas=ofertas,
+                ultima_oferta=ultima_oferta,
+                data3=data3,
+                mostrar3=True,
+            )
+        if formId == 9:
+            data = logic.getContactos(idEmprendimiento)
+            data2 = logic.getInfoFinanciera(idEmprendimiento)
+            id_historial = request.form["id_historial"]
+            especificaciones = request.form["especificaciones"]
+            oferta = float(request.form["oferta"])
+            porcentaje = float(request.form["porcentaje"])
+            logicOferta.updateHistorial(
+                especificaciones, oferta, porcentaje, id_historial
+            )
+            ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
+            ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+            return render_template(
+                "informacion.html",
+                data=data,
+                data2=data2,
+                vistaEmprendedor=True,
+                vistaEmprendimiento=True,
+                ofertas=ofertas,
+                ultima_oferta=ultima_oferta,
+            )
+

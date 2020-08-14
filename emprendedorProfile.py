@@ -135,7 +135,6 @@ def ProfileEmp():
                 inversion_inicial = request.form["inversion_inicial"]
                 fecha_fundacion = request.form["fecha_fundacion"]
                 venta_año_anterior = request.form["venta_año_anterior"]
-                oferta_porcentaje = request.form["oferta_porcentaje"]
                 nombre = request.form["nombre"]
                 foto = request.files["fileToUpload"]
                 nombre_foto = foto.filename
@@ -157,7 +156,6 @@ def ProfileEmp():
                         inversion_inicial,
                         fecha_fundacion,
                         venta_año_anterior,
-                        oferta_porcentaje,
                         id_emprendedor,
                         nombre,
                         nombre_foto,
@@ -178,7 +176,6 @@ def ProfileEmp():
                         inversion_inicial,
                         fecha_fundacion,
                         venta_año_anterior,
-                        oferta_porcentaje,
                         id_emprendedor,
                         nombre,
                         binary_foto,

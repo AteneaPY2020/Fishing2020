@@ -257,26 +257,7 @@
                 <input type="hidden" name="id" id="id" value="{{id}}">
             </form>
         </div>
-            <!--<p>Modificar datos personales</p>
-            <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-                Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
-                Email: <input type="text" name="email" id="email" value="{{email}}"> <br>
-                Telefono: <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
-                Pais: <input type="text" name="pais" id="pais" value="{{pais}}"><br>
-                Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
-                Biografia: <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{biografia}}</textarea><br><br>
-                Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                
-                <!--Aplicar cambios-->
-                <!--<button type="submit" value="update">Aplicar cambios</button>
-                <input type="hidden" name="formId" id="formId" value="2">
-                <input type="hidden" name="id" id="id" value="{{id}}">
-            </form>-->
         {% endif %}
-
-    
-
-
 
     <!--POPUP:Form crear nuevo emprendimiento-->
     {% if verdaderoEmprendimiento %}
@@ -363,15 +344,7 @@
                 <div class="control">
                     <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
                 </div>
-        </div>
-        
-        
-        Video: <input type="url" name="video" id="video" value="{{video}}"><br>
-        Facebook: <input type="text" name="facebook" id="facebook" value="{{facebook}}"><br>
-        Instagram: <input type="text" name="instagram" id="instagram" value="{{instagram}}"><br>
-        Youtube: <input type="text" name="youtube" id="youtube" value="{{youtube}}"><br>
-        Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
-        
+        </div>        
         <!--Insertar emprendimiento-->
         <button type="submit" value="update">Crear emprendimiento</button>
         <input type="hidden" name="formId" id="formId" value="4">

@@ -19,7 +19,6 @@ class emprendimientoLogic(Logic):
             "inversion_inicial",
             "fecha_fundacion",
             "venta_año_anterior",
-            "oferta_porcentaje",
             "nombre",
             "nombre_foto",
             "foto",
@@ -41,7 +40,6 @@ class emprendimientoLogic(Logic):
         inversion_inicial,
         fecha_fundacion,
         venta_año_anterior,
-        oferta_porcentaje,
         id_emprendedor,
         nombre,
         foto,
@@ -54,9 +52,9 @@ class emprendimientoLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "INSERT INTO fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_anio_anterior, oferta_porcentaje, "
+            "INSERT INTO fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_anio_anterior, "
             + "nombre, video, email, telefono, facebook, instagram, youtube) "
-            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
         )
 
         data = (
@@ -67,7 +65,6 @@ class emprendimientoLogic(Logic):
             inversion_inicial,
             fecha_fundacion,
             venta_año_anterior,
-            oferta_porcentaje,
             nombre,
             video,
             email,
@@ -109,7 +106,6 @@ class emprendimientoLogic(Logic):
         inversion_inicial,
         fecha_fundacion,
         venta_año_anterior,
-        oferta_porcentaje,
         id_emprendedor,
         nombre,
         nombre_foto,
@@ -122,9 +118,9 @@ class emprendimientoLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "INSERT INTO fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_anio_anterior, oferta_porcentaje, "
+            "INSERT INTO fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_anio_anterior, "
             + "nombre, video, email, telefono, facebook, instagram, youtube) "
-            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
         )
 
         data = (
@@ -135,7 +131,6 @@ class emprendimientoLogic(Logic):
             inversion_inicial,
             fecha_fundacion,
             venta_año_anterior,
-            oferta_porcentaje,
             nombre,
             video,
             email,
@@ -183,7 +178,6 @@ class emprendimientoLogic(Logic):
                 data_dic["inversion_inicial"],
                 data_dic["fecha_fundacion"],
                 data_dic["venta_año_anterior"],
-                data_dic["oferta_porcentaje"],
                 data_dic["nombre"],
                 data_dic["nombre_foto"],
                 data_dic["foto"],
@@ -354,35 +348,24 @@ class emprendimientoLogic(Logic):
     def getInfoFinanciera(self, idEmprendimiento):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select emprendimiento.inversion_inicial, emprendimiento.fecha_fundacion, emprendimiento.venta_anio_anterior, emprendimiento.oferta_porcentaje "
+            "select emprendimiento.inversion_inicial, emprendimiento.fecha_fundacion, emprendimiento.venta_anio_anterior "
             + "from fishingdb.emprendimiento "
             + f"where fishingdb.emprendimiento.id = {idEmprendimiento};"
         )
         print(sql)
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(
-            data,
-            [
-                "inversion_inicial",
-                "fecha_fundacion",
-                "venta_año_anterior",
-                "oferta_porcentaje",
-            ],
+            data, ["inversion_inicial", "fecha_fundacion", "venta_año_anterior"],
         )
         return data
 
     def updateInfoFinanciera(
-        self,
-        idEmprendimiento,
-        inversion_inicial,
-        fecha_fundacion,
-        venta_año_anterior,
-        oferta_porcentaje,
+        self, idEmprendimiento, inversion_inicial, fecha_fundacion, venta_año_anterior,
     ):
         database = self.get_databaseXObj()
         sql = (
             f"UPDATE fishingdb.emprendimiento SET inversion_inicial = '{inversion_inicial}', fecha_fundacion = '{fecha_fundacion}', venta_anio_anterior = '{venta_año_anterior}', "
-            + f"oferta_porcentaje = '{oferta_porcentaje}' WHERE id = {idEmprendimiento};"
+            + f" WHERE id = {idEmprendimiento};"
         )
         print(sql)
         rows = database.executeNonQueryRows(sql)
@@ -507,7 +490,6 @@ class emprendimientoLogic(Logic):
                 data_dic["inversion_inicial"],
                 data_dic["fecha_fundacion"],
                 data_dic["venta_año_anterior"],
-                data_dic["oferta_porcentaje"],
                 data_dic["nombre"],
                 data_dic["nombre_foto"],
                 data_dic["foto"],
@@ -540,7 +522,8 @@ class emprendimientoLogic(Logic):
         for registro in fundadores:
             sql2 = (
                 "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
-                + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje al emprendimiento {idEmprendimiento.getNombre()}', {registro[0]}, current_date(), current_time());"
+                + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje al emprendimiento {idEmprendimiento.getNombre()}', {registro[0]}, "
+                + "current_date(), current_time());"
             )
             print(sql2)
             rows = dataBase.executeNonQueryRows(sql2)

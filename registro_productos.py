@@ -1,9 +1,48 @@
 from flask import Blueprint, render_template, request, redirect, session
 from productoLogic import productoLogic
+from likeLogic import likeLogic
+from userLogic import UserLogic
+from userObj import UserObj
+from emprendedorLogic import emprendedorLogic
+from emprendedorObj import emprendedorObj
+from emprendimientoLogic import emprendimientoLogic
 
 registro_productos = Blueprint(
     "registro_productos", __name__, template_folder="Templates", static_folder="static"
 )
+
+
+@registro_productos.route("/registroProductosInv", methods=["GET", "POST"])
+def registroProductoInv():
+    logicProducto = productoLogic()
+    logicEmprendimiento = emprendimientoLogic()
+    logicLikes = likeLogic()
+    id_emprendimiento = session["empId"]
+    id_invrsionista = session["id_inv"]
+    data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
+    data3 = logicEmprendimiento.getDatosGeneralesById(id_emprendimiento)
+    data2 = logicEmprendimiento.getDescripcion(id_emprendimiento)
+    likes = logicLikes.getAllReaccionesByIdEmprendimiento(id_emprendimiento)
+
+    for registro in data:
+        for fila in likes:
+            registro["liked"] = False
+            if (
+                registro["id"] == fila["id_producto"]
+                and fila["id_inversionista"] == id_invrsionista
+            ):
+                registro["liked"] = True
+                break
+
+    vistaEmprendimiento = True
+    return render_template(
+        "registroProductos.html",
+        data=data,
+        vistaEmprendimiento=vistaEmprendimiento,
+        likes=likes,
+        data3=data3,
+        data2=data2,
+    )
 
 
 @registro_productos.route("/registroProductos", methods=["GET", "POST"])
@@ -13,9 +52,22 @@ def registroProducto():
     mostrar = False
     data2 = None
     data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
-    logicProducto.saveImagesProductos(id_emprendimiento)
+    logicEmprendimiento = emprendimientoLogic()
+    # Vista
+    vistaEmprendimiento = True
+
     if request.method == "GET":
-        return render_template("registroProductos.html", data=data)
+        # True para vista inversionista
+        vistaEmprendimiento = False
+        data2 = logicEmprendimiento.getDescripcion(id_emprendimiento)
+        data3 = logicEmprendimiento.getDatosGeneralesById(id_emprendimiento)
+        return render_template(
+            "registroProductos.html",
+            data=data,
+            data2=data2,
+            data3=data3,
+            vistaEmprendimiento=vistaEmprendimiento,
+        )
     elif request.method == "POST":
         formId = int(request.form["formId"])
         if formId == 1:
@@ -42,7 +94,6 @@ def registroProducto():
                 binary_foto = foto.read()
                 logicProducto.insertNewProducto(
                     nombre,
-                    nombre_foto,
                     binary_foto,
                     descripcion,
                     costoUnitario,
@@ -51,14 +102,12 @@ def registroProducto():
                     id_emprendimiento,
                 )
             data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
-            logicProducto.saveImagesProductos(id_emprendimiento)
 
         # Elimina emprendimiento
         elif formId == 2:
             id_producto = request.form["id_producto"]
             logicProducto.deleteProducto(id_producto)
             data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
-            logicProducto.saveImagesProductos(id_emprendimiento)
 
         # Direcciona hacia el form de update
         elif formId == 3:
@@ -105,7 +154,6 @@ def registroProducto():
                 logicProducto.updateProducto(
                     id_producto,
                     nombre,
-                    nombre_foto,
                     binary_foto,
                     descripcion,
                     costoUnitario,
@@ -113,7 +161,6 @@ def registroProducto():
                     patente,
                 )
             data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
-            logicProducto.saveImagesProductos(id_emprendimiento)
 
         return render_template(
             "registroProductos.html", data=data, mostrar=mostrar, data2=data2

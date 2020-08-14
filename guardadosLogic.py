@@ -11,18 +11,27 @@ class guardadosLogic(Logic):
             "id_producto",
         ]
 
+    def guardar(self, id_inversionista, id_producto):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "insert into fishingdb.guardado (id, id_inversionista, id_producto) "
+            + "values (0, %s, %s);"
+        )
+        data = (id_inversionista, id_producto)
+        rows = dataBase.executeNonQueryRowsTuple(sql, data)
+        return rows
+
     def getAllGuardados(self, id_inversionista):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select id_producto from fishingdb.guardado "
+            "select productos.id, productos.descripcion, productos.nombre, productos.nombre_foto, emprendimiento.nombre, emprendimiento.id "
+            + "from inversionista inner join guardado on guardado.id_inversionista = inversionista.id "
+            + "inner join productos on productos.id = guardado.id_producto "
+            + "inner join emprendimiento on productos.id_emprendimiento = emprendimiento.id "
             + f"where id_inversionista = {id_inversionista};"
         )
         data = dataBase.executeQuery(sql)
-        lista = []
-        for registro in data:
-            currentList = list(registro)
-            lista.append(currentList[0])
-        return lista
+        return data
 
     def deleteGuardado(self, id_inversionista, id_producto):
         database = self.get_databaseXObj()

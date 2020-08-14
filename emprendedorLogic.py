@@ -21,12 +21,12 @@ class emprendedorLogic(Logic):
 
     # Insertar emprendimiento
     def insertNewEmprendedor(
-        self, name, email, phone, id_user, country, city, biografia, nombre_foto, foto
+        self, name, email, phone, id_user, country, city, biografia, foto
     ):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.emprendedor (id, nombre, email, telefono, id_usuario, pais, ciudad, biografia, nombre_foto, foto) "
-            + "values (0, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+            "insert into fishingdb.emprendedor (id, nombre, email, telefono, id_usuario, pais, ciudad, biografia) "
+            + "values (0, %s, %s, %s, %s, %s, %s, %s);"
         )
         data = (
             name,
@@ -36,10 +36,22 @@ class emprendedorLogic(Logic):
             country,
             city,
             biografia,
-            nombre_foto,
-            foto,
         )
         rows = database.executeNonQueryRowsTuple(sql, data)
+
+        id_emprendedor = self.getIdEmprendedorByIdUsuario(id_user)
+        nombre_foto = str(id_emprendedor) + ".png"
+
+        sql2 = (
+            "update fishingdb.emprendedor "
+            + "set emprendedor.nombre_foto = %s, emprendedor.foto = %s "
+            + "where emprendedor.id = %s;"
+        )
+        data2 = (nombre_foto, foto, id_emprendedor)
+        database.executeNonQueryRowsTuple(sql2, data2)
+
+        self.saveImagesEmprendedor(id_user)
+
         return rows
 
     def insertNewEmprendedorWithoutPhoto(
@@ -126,9 +138,10 @@ class emprendedorLogic(Logic):
         return rows
 
     def updateEmprendedorbyIdUsuarioWithPhoto(
-        self, id, nombre, email, telefono, pais, ciudad, biografia, nombre_foto, foto
+        self, id, nombre, email, telefono, pais, ciudad, biografia, foto
     ):
         database = self.get_databaseXObj()
+        nombre_foto = str(self.getIdEmprendedorByIdUsuario(id)) + ".png"
         sql = (
             "update fishingdb.emprendedor "
             + "set emprendedor.nombre = %s, emprendedor.email = %s, emprendedor.telefono = %s, "
@@ -138,13 +151,18 @@ class emprendedorLogic(Logic):
         )
         data = (nombre, email, telefono, pais, ciudad, biografia, nombre_foto, foto, id)
         rows = database.executeNonQueryRowsTuple(sql, data)
+        self.saveImagesEmprendedor(id)
         return rows
 
     # Obtener datos byId
     def getDatosGeneralesById(self, idUsuario):
         dataBase = self.get_databaseXObj()
 
-        sql = f"select * from fishingdb.emprendedor where id_usuario={idUsuario};"
+        sql = (
+            "select * from fishingdb.emprendedor inner join fishingdb.usuario "
+            + "on emprendedor.id_usuario = usuario.id "
+            + f"where usuario.id like '{idUsuario}';"
+        )
         print(sql)
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
@@ -160,3 +178,25 @@ class emprendedorLogic(Logic):
                 path = os.getcwd() + "\\static\\images\\emprendedor\\" + nombre_foto
                 with open(path, "wb") as file:
                     file.write(foto)
+
+    def getIdEmprendedorByIdUsuario(self, id_usuario):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "select emprendedor.id from fishingdb.emprendedor inner join fishingdb.usuario "
+            + "on emprendedor.id_usuario = usuario.id "
+            + f"where usuario.id like '{id_usuario}';"
+        )
+        data = dataBase.executeQuery(sql)
+        id_emprendedor = data[0][0]
+        return id_emprendedor
+
+    def getNotification(self, idUsuario):
+        database = self.get_databaseXObj()
+        sql = (
+            f"select notificaciones.mensaje, notificaciones.fecha, notificaciones.hora from fishingdb.notificaciones where id_emprendedor={idUsuario} "
+            + "Order by notificaciones.fecha, notificaciones.hora desc;"
+        )
+        print(sql)
+        data = database.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, ["mensaje", "fecha", "hora"],)
+        return data

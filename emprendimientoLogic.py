@@ -2,6 +2,7 @@ from logic import Logic
 from emprendimientoObj import emprendimientoObj
 from userLogic import UserLogic
 from emprendedorLogic import emprendedorLogic
+from inversorLogic import inversorLogic
 from emprendedorObj import emprendedorObj
 import os
 
@@ -18,7 +19,6 @@ class emprendimientoLogic(Logic):
             "inversion_inicial",
             "fecha_fundacion",
             "venta_año_anterior",
-            "oferta_porcentaje",
             "nombre",
             "nombre_foto",
             "foto",
@@ -40,10 +40,8 @@ class emprendimientoLogic(Logic):
         inversion_inicial,
         fecha_fundacion,
         venta_año_anterior,
-        oferta_porcentaje,
         id_emprendedor,
         nombre,
-        nombre_foto,
         foto,
         video,
         email,
@@ -54,9 +52,9 @@ class emprendimientoLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "INSERT INTO fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_año_anterior, oferta_porcentaje, "
-            + "nombre, nombre_foto, foto, video, email, telefono, facebook, instagram, youtube) "
-            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+            "INSERT INTO fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_anio_anterior, "
+            + "nombre, video, email, telefono, facebook, instagram, youtube) "
+            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
         )
 
         data = (
@@ -67,10 +65,7 @@ class emprendimientoLogic(Logic):
             inversion_inicial,
             fecha_fundacion,
             venta_año_anterior,
-            oferta_porcentaje,
             nombre,
-            nombre_foto,
-            foto,
             video,
             email,
             telefono,
@@ -88,6 +83,17 @@ class emprendimientoLogic(Logic):
         id_emprendedimiento = data[0][0]
         self.insertFundadorById(id_emprendedor, id_emprendedimiento)
 
+        sql3 = (
+            "update fishingdb.emprendimiento "
+            + "set emprendimiento.nombre_foto = %s, emprendimiento.foto = %s "
+            + "where emprendimiento.id = %s;"
+        )
+        nombre_foto = str(id_emprendedimiento) + ".png"
+        data2 = (nombre_foto, foto, id_emprendedimiento)
+        database.executeNonQueryRowsTuple(sql3, data2)
+
+        self.saveImagesEmprendimiento(id_emprendedimiento)
+
         return rows
 
     # Intert with out foto
@@ -100,7 +106,6 @@ class emprendimientoLogic(Logic):
         inversion_inicial,
         fecha_fundacion,
         venta_año_anterior,
-        oferta_porcentaje,
         id_emprendedor,
         nombre,
         nombre_foto,
@@ -113,9 +118,9 @@ class emprendimientoLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "INSERT INTO fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_año_anterior, oferta_porcentaje, "
+            "INSERT INTO fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_anio_anterior, "
             + "nombre, video, email, telefono, facebook, instagram, youtube) "
-            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
         )
 
         data = (
@@ -126,7 +131,6 @@ class emprendimientoLogic(Logic):
             inversion_inicial,
             fecha_fundacion,
             venta_año_anterior,
-            oferta_porcentaje,
             nombre,
             video,
             email,
@@ -174,10 +178,15 @@ class emprendimientoLogic(Logic):
                 data_dic["inversion_inicial"],
                 data_dic["fecha_fundacion"],
                 data_dic["venta_año_anterior"],
-                data_dic["oferta_porcentaje"],
                 data_dic["nombre"],
                 data_dic["nombre_foto"],
                 data_dic["foto"],
+                data_dic["video"],
+                data_dic["email"],
+                data_dic["telefono"],
+                data_dic["facebook"],
+                data_dic["instagram"],
+                data_dic["youtube"],
             )
             return emprendimientObj
         else:
@@ -199,6 +208,28 @@ class emprendimientoLogic(Logic):
             data, ["id", "nombre_foto", "foto", "nombre", "biografia"]
         )
         return data
+
+    def checkUserAlredyExist(self, user, idEmprendimiento):
+        id_usuario = UserLogic()
+        usuario = id_usuario.getUserByUser(user)
+
+        infoEmprendedor = emprendedorLogic()
+        id_emprendedor = infoEmprendedor.getEmprendedorByUser(usuario.getId())
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "SELECT fundador.id FROM fishingdb.fundador "
+            + f"where fundador.id_emprendedor = {id_emprendedor.getId()} and fundador.id_emprendimiento = {idEmprendimiento};"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        counter = 0
+        for item in data:
+            counter += 1
+
+        if counter > 0:
+            return True
+        else:
+            return False
 
     def saveImagesFundadores(self, idEmprendimiento):
         data = self.getAllFundadores(idEmprendimiento)
@@ -227,6 +258,22 @@ class emprendimientoLogic(Logic):
         rows = database.executeNonQueryRows(sql)
         return rows
 
+    def insertNotificationFundador(self, user, id_emprendimiento):
+        id_usuario = UserLogic()
+        usuario = id_usuario.getUserByUser(user)
+        Emprendedor = emprendedorLogic()
+        Emprendimiento = emprendimientoLogic()
+        id_emprendedor = Emprendedor.getEmprendedorByUser(usuario.getId())
+        id_emprendimiento = Emprendimiento.getEmprendimientoById(id_emprendimiento)
+        database = self.get_databaseXObj()
+        sql = (
+            "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
+            + f"values (0, 'te han añadido al emprendimiento {id_emprendimiento.getNombre()}', {id_emprendedor.getId()}, current_date(), current_time());"
+        )
+        print(sql)
+        rows = database.executeNonQueryRows(sql)
+        return rows
+
     def deleteFundador(self, idFundador):
         database = self.get_databaseXObj()
         sql = f"delete from fishingdb.fundador where fundador.id = '{idFundador}';"
@@ -242,6 +289,17 @@ class emprendimientoLogic(Logic):
         print(sql)
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, ["historia"])
+        return data
+
+    def getDescripcion(self, idEmprendimiento):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "select fishingdb.emprendimiento.descripcion from fishingdb.emprendimiento "
+            + f"where fishingdb.emprendimiento.id = {idEmprendimiento};"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, ["descripcion"])
         return data
 
     def updateHistoria(self, idEmprendimiento, historia):
@@ -290,35 +348,24 @@ class emprendimientoLogic(Logic):
     def getInfoFinanciera(self, idEmprendimiento):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select emprendimiento.inversion_inicial, emprendimiento.fecha_fundacion, emprendimiento.venta_año_anterior, emprendimiento.oferta_porcentaje "
+            "select emprendimiento.inversion_inicial, emprendimiento.fecha_fundacion, emprendimiento.venta_anio_anterior "
             + "from fishingdb.emprendimiento "
             + f"where fishingdb.emprendimiento.id = {idEmprendimiento};"
         )
         print(sql)
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(
-            data,
-            [
-                "inversion_inicial",
-                "fecha_fundacion",
-                "venta_año_anterior",
-                "oferta_porcentaje",
-            ],
+            data, ["inversion_inicial", "fecha_fundacion", "venta_año_anterior"],
         )
         return data
 
     def updateInfoFinanciera(
-        self,
-        idEmprendimiento,
-        inversion_inicial,
-        fecha_fundacion,
-        venta_año_anterior,
-        oferta_porcentaje,
+        self, idEmprendimiento, inversion_inicial, fecha_fundacion, venta_año_anterior,
     ):
         database = self.get_databaseXObj()
         sql = (
-            f"UPDATE fishingdb.emprendimiento SET inversion_inicial = '{inversion_inicial}', fecha_fundacion = '{fecha_fundacion}', venta_año_anterior = '{venta_año_anterior}', "
-            + f"oferta_porcentaje = '{oferta_porcentaje}' WHERE id = {idEmprendimiento};"
+            f"UPDATE fishingdb.emprendimiento SET inversion_inicial = '{inversion_inicial}', fecha_fundacion = '{fecha_fundacion}', venta_anio_anterior = '{venta_año_anterior}', "
+            + f" WHERE id = {idEmprendimiento};"
         )
         print(sql)
         rows = database.executeNonQueryRows(sql)
@@ -348,8 +395,8 @@ class emprendimientoLogic(Logic):
         return row
 
     # Imagen
-    def saveImagesEmprendimiento(self, idEmprendedor):
-        data = self.getAllEmprendimientosByIdEmprendendor(idEmprendedor)
+    def saveImagesEmprendimiento(self, id_emprendimiento):
+        data = self.getEmprendimientoByIdDiccionary(id_emprendimiento)
         for registro in data:
             foto = registro["foto"]
             nombre_foto = registro["nombre_foto"]
@@ -391,12 +438,12 @@ class emprendimientoLogic(Logic):
         return rows
 
     def updateDatosGeneralesWithFoto(
-        self, idEmprendimiento, descripcion, eslogan, nombre, nombre_foto, foto, video,
+        self, idEmprendimiento, descripcion, eslogan, nombre, foto, video,
     ):
         database = self.get_databaseXObj()
         sql = (
             "update fishingdb.emprendimiento"
-            + " set descripcion = %s, eslogan = %s, nombre = %s, nombre_foto = %s, foto = %s, video = %s"
+            + " set descripcion = %s, eslogan = %s, nombre = %s, foto = %s, video = %s, nombre_foto = %s"
             + " where id = %s;"
         )
         print(sql)
@@ -404,10 +451,82 @@ class emprendimientoLogic(Logic):
             descripcion,
             eslogan,
             nombre,
-            nombre_foto,
             foto,
             video,
+            str(idEmprendimiento) + ".png",
             idEmprendimiento,
         )
         rows = database.executeNonQueryRowsTuple(sql, data)
+        self.saveImagesEmprendimiento(idEmprendimiento)
         return rows
+
+    def getEmprendimientoByIdDiccionary(self, id):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "SELECT * FROM fishingdb.emprendimiento "
+            + f"where emprendimiento.id = {id};"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        return data
+
+    def getIdEmprendimiento(self, id):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "SELECT * FROM fishingdb.emprendimiento "
+            + f"where emprendimiento.id = {id};"
+        )
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        if len(data) > 0:
+            data_dic = data[0]
+            EmprendimientoObj = emprendimientoObj(
+                data_dic["id"],
+                data_dic["estado"],
+                data_dic["descripcion"],
+                data_dic["historia"],
+                data_dic["eslogan"],
+                data_dic["inversion_inicial"],
+                data_dic["fecha_fundacion"],
+                data_dic["venta_año_anterior"],
+                data_dic["nombre"],
+                data_dic["nombre_foto"],
+                data_dic["foto"],
+                data_dic["video"],
+                data_dic["email"],
+                data_dic["telefono"],
+                data_dic["facebook"],
+                data_dic["instagram"],
+                data_dic["youtube"],
+            )
+            return EmprendimientoObj
+        else:
+            return None
+
+    def FundadoresByEmprendimientoCorreo(self, user, id_emprendimiento):
+        id_usuario = UserLogic()
+        usuario = id_usuario.getUserByUser(user)
+        Inversor = inversorLogic()
+        id_inversor = Inversor.getIdInversor(usuario.getId())
+        dataBase = self.get_databaseXObj()
+        Emprendimiento = emprendimientoLogic()
+        idEmprendimiento = Emprendimiento.getEmprendimientoById(id_emprendimiento)
+        sql = (
+            "select id_emprendedor from fishingdb.fundador "
+            + f"where id_emprendimiento = {id_emprendimiento};"
+        )
+        print(sql)
+        fundadores = dataBase.executeQuery(sql)
+        listaFundadores = []
+        for registro in fundadores:
+            sql2 = (
+                "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
+                + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje al emprendimiento {idEmprendimiento.getNombre()}', {registro[0]}, "
+                + "current_date(), current_time());"
+            )
+            print(sql2)
+            rows = dataBase.executeNonQueryRows(sql2)
+            currentList = list(registro)
+            listaFundadores.append(currentList[0])
+        return listaFundadores

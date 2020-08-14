@@ -566,7 +566,6 @@ def signUPEmprendimiento():
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 massage = "No se puede eliminar. Afecta la integridad de los datos"
                 data = logic.getAllEmprendimientoLen()
-
             return render_template(
                 "emprendimientoAdmin.html", data=data, massage=massage
             )
@@ -693,17 +692,14 @@ def categoria():
         # Elimina una categoria
         elif formId == 2:
             id = int(request.form["id"])
-
             try:
                 logic.deleteCategoria(id)
                 massage = "Se ha eliminado un usuario"
                 data = logic.getAllCategorias()
-
             except mysql.connector.Error as error:
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 massage = "No se puede eliminar. Afecta la integridad de los datos"
                 data = logic.getAllCategorias()
-
             return render_template("categoria.html", data=data, massage=massage)
         # Va al form para dar update
         elif formId == 3:
@@ -719,10 +715,90 @@ def categoria():
                 id=id,
             )
         # Modifica una categoria
-        else:
+        elif formId == 4:
             id = int(request.form["id"])
             categoria = request.form["categoria"]
             logic.updateCategoria(id, categoria)
             data = logic.getAllCategorias()
             massage = "Se ha modificado el usuario"
             return render_template("categoria.html", data=data, massage=massage)
+
+
+# ----------------------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------------------------
+@admin.route("/agregarAdmin", methods=["GET", "POST"])
+def agregarAdmin():
+    logic = adminLogic()
+    message = ""
+    verdadero = False
+    if request.method == "GET":
+        data = logic.getAllAdmin()
+        return render_template("agregarAdmin.html", data=data, message=message)
+    elif request.method == "POST":
+        formId = int(request.form["formId"])
+        # INSERTAR
+        if formId == 1:
+            usuario = request.form["usuario"]
+            password = request.form["password"]
+            rol = 1
+            logicUsuario = UserLogic()
+            logic = adminLogic()
+            # Comprobando si existe
+            existeUsuario = logicUsuario.checkUserInUsuario(usuario, rol)
+
+            if not existeUsuario:
+                rows = logic.insertAdmin(usuario, password)
+                data = logic.getAllAdmin()
+                message = "Se ha agregado un nuevo administrador"
+                return render_template("agregarAdmin.html", data=data, message=message)
+            else:
+                data = logic.getAllAdmin()
+                message = "El usuario ya existe, pruebe otro"
+                return render_template("agregarAdmin.html", data=data, message=message)
+        # ELIMINAR
+        elif formId == 2:
+            id = int(request.form["id"])
+            logicDelete = adminLogic()
+            logicDelete.deleteAdmin(id)
+            message2 = "Se ha eliminado un administrador"
+            data = logic.getAllAdmin()
+            return render_template("agregarAdmin.html", data=data, message2=message2)
+        # form para dar update
+        elif formId == 3:
+            logic = adminLogic()
+            verdadero = True
+            id = int(request.form["id"])
+            usuario = request.form["usuario"]
+            password = request.form["password"]
+            data = logic.getAllAdmin()
+            return render_template(
+                "agregarAdmin.html",
+                usuario=usuario,
+                password=password,
+                data=data,
+                verdadero=verdadero,
+                id=id,
+            )
+        # UPDATE
+        elif formId == 4:
+            logic = adminLogic()
+            id = int(request.form["id"])
+            usuario = request.form["usuario"]
+            password = request.form["password"]
+            rol = 1
+            logicUsuario = UserLogic()
+            # Comprobando si existe
+            existeUsuario = logicUsuario.checkUserInUsuario(usuario, rol)
+            if not existeUsuario:
+                logic.updateAdmin(id, usuario, password)
+                data = logic.getAllAdmin()
+                message2 = "Se ha modificado al administrador"
+                return render_template(
+                    "agregarAdmin.html", data=data, message2=message2
+                )
+            else:
+                data = logic.getAllAdmin()
+                message2 = "El usuario seleccionado ya existe. Pruebe de nuevo"
+                return render_template(
+                    "agregarAdmin.html", data=data, verdadero=False, message2=message2
+                )

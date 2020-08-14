@@ -137,3 +137,46 @@ class adminLogic(Logic):
         print(sql)
         rows = database.executeNonQueryRows(sql)
         return rows
+
+    def getAllAdmin(self):
+        database = self.get_databaseXObj()
+        sql = "SELECT usuario.id, usuario.usuario, usuario.password FROM fishingdb.usuario where rol = 1;"
+        print(sql)
+        data = database.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, ["id", "usuario", "password"])
+        return data
+
+    def getAdminById(self, id):
+        database = self.get_databaseXObj()
+        sql = "SELECT usuario.id, usuario.usuario, usuario.password FROM fishingdb.usuario where usuario.id ='{id}';"
+        print(sql)
+        data = database.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, ["id", "usuario", "password"])
+        return data
+
+    def insertAdmin(self, usuario, password):
+        database = self.get_databaseXObj()
+        sql = (
+            "insert into fishingdb.usuario (id, usuario, password, rol) "
+            + f"values (0, '{usuario}','{password}',1);"
+        )
+        print(sql)
+        rows = database.executeNonQueryRows(sql)
+        return rows
+
+    def deleteAdmin(self, id):
+        database = self.get_databaseXObj()
+        sql = f"delete from fishingdb.usuario where usuario.id = '{id}';"
+        print(sql)
+        rows = database.executeNonQueryRows(sql)
+        return rows
+
+    def updateAdmin(self, id, usuario, password):
+        database = self.get_databaseXObj()
+        sql = (
+            f"update fishingdb.usuario set usuario.usuario= '{usuario}', "
+            + f"usuario.password='{password}' where usuario.id = '{id}';"
+        )
+        print(sql)
+        rows = database.executeNonQueryRows(sql)
+        return rows

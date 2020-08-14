@@ -80,7 +80,8 @@
     </header>
     <!--================ End Header Menu Area =================-->
     <!-- ================ start banner area ================= -->	
-		<div class="container h-1">
+		{% if vistaEmprendimiento %}
+    <div class="container h-1">
 		<br><br>
 			<div class="blog-banner">
 				<div class="text-center">
@@ -88,7 +89,47 @@
 				</div>
 			</div>
     </div>
+    {% endif %}
 	<!-- ================ end banner area ================= -->
+
+  <!-- ================ Subscribe section start ================= -->		  
+  {% if not vistaEmprendimiento %}
+  <section class="subscribe-position">
+    <div class="container">
+      <div class="subscribe text-center">
+        <h3>Ingresa otro producto</h3>
+        <p>Llena todos los campos</p>
+        <div id="mc_embed_signup">
+          <form action="/registroProductos" method="POST" enctype="multipart/form-data">
+            Nombre: <input type="text" id="nombre" name="nombre"><br>
+            Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
+            Descripción: <br><textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
+            Costo unitatio: $<input type="number" name="costoUnitario" id="costoUnitario" step="0.01"><br>
+            Precio de venta: $<input type="number" name="precioVenta" id="precioVenta" step="0.01"><br>
+            No. Patente: <input type="number" name="patente" id="patente"><br>
+            <input type="submit" value="Registrar">
+            <input type="hidden" name="formId" id="formId" value="1">
+        <!--IGNORAAAAR, NO BORRAR-->
+        </form>
+          
+          <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
+            <div class="form-group ml-sm-auto">
+              <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" >
+              <div class="info"></div>
+            </div>
+            <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
+            <div style="position: absolute; left: -5000px;">
+              <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+            </div>
+
+          </form>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  {% endif %}
+	<!-- ================ Subscribe section end ================= -->	
 
     <!-- ================ category section start ================= -->		  
   <section class="section-margin--small mb-5">
@@ -200,45 +241,6 @@
     </div>
   </section>
 	<!-- ================ category section end ================= -->		  
-
-<!-- ================ Subscribe section start ================= -->		  
-  {% if not vistaEmprendimiento %}
-  <section class="subscribe-position">
-    <div class="container">
-      <div class="subscribe text-center">
-        <h3 class="subscribe__title">Ingresa otro producto</h3>
-        <p>Llena todos los campos</p>
-        <div id="mc_embed_signup">
-          <form action="/registroProductos" method="POST" enctype="multipart/form-data">
-            Nombre: <input type="text" id="nombre" name="nombre"><br>
-            Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-            Descripción: <br><textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
-            Costo unitatio: $<input type="number" name="costoUnitario" id="costoUnitario" step="0.01"><br>
-            Precio de venta: $<input type="number" name="precioVenta" id="precioVenta" step="0.01"><br>
-            No. Patente: <input type="number" name="patente" id="patente"><br>
-            <input type="submit" value="Registrar">
-            <input type="hidden" name="formId" id="formId" value="1">
-        <!--IGNORAAAAR, NO BORRAR-->
-        </form>
-          
-          <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
-            <div class="form-group ml-sm-auto">
-              <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" >
-              <div class="info"></div>
-            </div>
-            <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
-            <div style="position: absolute; left: -5000px;">
-              <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-            </div>
-
-          </form>
-        </div>
-        
-      </div>
-    </div>
-  </section>
-  {% endif %}
-	<!-- ================ Subscribe section end ================= -->		  
 
 
     <br><br>

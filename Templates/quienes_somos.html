@@ -103,7 +103,7 @@
 									{% endfor %}
 									<br>
 									{% if not vistaEmprendimiento %} 
-									<textarea  name="historia" rows="10" cols="75" >Escribe aquí tu historia</textarea>
+									<textarea  name="historia" rows="10" cols="100" >Escribe aquí tu historia</textarea>
 									<br><br><button type="submit" value="insert" class="button button-postComment button--active"> Modificar</button>
 									<input type="hidden" name="formId" id="formId" value="3">
 									{% endif %}
@@ -112,6 +112,24 @@
 						</div>
 
 					</div>
+
+					{% if not vistaEmprendimiento %} 
+						<div class="comment-form">
+							<h3>Agregar fundadores</h3>
+							<p>{{message}}</p>
+							
+							<form action="/quienes_somos" method="POST">
+								<p>Si desea ingresar un nuevo fundador al emprendimiento ingrese el usuario</p>
+								
+								<label for="user">Usuario:</label>
+								<br><input type="text" id="user" name="user">
+								<input type="hidden" name="formId" id="formId" value="1">
+								<br><br>
+								<button type="submit" value="Insertar" class="button button-postComment button--active"> Insertar</button>
+								
+							</form>
+						</div>
+					{% endif %}
 					
 					<div class="comments-area">
 						<h3>Fundadores</h3>
@@ -149,24 +167,6 @@
 						{% endfor %}											
     
 					</div>
-					
-					{% if not vistaEmprendimiento %} 
-						<div class="comment-form">
-							<h3>Agregar fundadores</h3>
-							<p>{{message}}</p>
-							
-							<form action="/quienes_somos" method="POST">
-								<p>Si desea ingresar un nuevo fundador al emprendimiento ingrese el usuario</p>
-								
-								<label for="user">Usuario:</label>
-								<br><input type="text" id="user" name="user">
-								<input type="hidden" name="formId" id="formId" value="1">
-								<br><br>
-								<button type="submit" value="Insertar" class="button button-postComment button--active"> Insertar</button>
-								
-							</form>
-						</div>
-					{% endif %}
 				</div>
 				
 				<div class="col-lg-4">

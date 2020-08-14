@@ -164,7 +164,7 @@ class adminLogic(Logic):
         rows = database.executeNonQueryRows(sql)
         return rows
 
-        def getAllEmprendimientoID(self):
+    def getAllEmprendimientoID(self):
         database = self.get_databaseXObj()
         sql = "SELECT id, nombre FROM fishingdb.emprendimiento;"
         data = database.executeQuery(sql)

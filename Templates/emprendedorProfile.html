@@ -279,72 +279,118 @@
         <div class="field">
             <label class="" for="descripcion">Descripcion:</label>
                 <div class="control">
-                    <br><textarea name="descripcion" cols="30" rows="10" id="descripcion" value="{{descripcion}}"></textarea><br>
+                    <br><textarea name="descripcion" cols="30" rows="10" id="descripcion"></textarea><br>
                 </div>
         </div>
 
         <div class="field">
             <label class="" for="historia">Historia:</label>
                 <div class="control">
-                    <textarea name="historia" id="historia" value="{{historia}}" cols="30" rows="10"></textarea><br>
+                    <textarea name="historia" id="historia" cols="30" rows="10"></textarea><br>
                 </div>
         </div>
 
         <div class="field">
             <label class="" for="eslogan">Eslogan:</label>
                 <div class="control">
-                    <input type="text" name="eslogan" id="eslogan" value="{{eslogan}}"><br>
+                    <input type="text" name="eslogan" id="eslogan"><br>
                 </div>
         </div>
 
         <div class="field">
             <label class="" for="inversion_inicial">Inversion inicial:</label>
                 <div class="control">
-                    <input type="text" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"><br>
+                    <input type="text" name="inversion_inicial" id="inversion_inicial"><br>
                 </div>
         </div>
 
         <div class="field">
             <label class="" for="fecha_fundacion">Fecha de fundacion:</label>
                 <div class="control">
-                    <input type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}"><br>
+                    <input type="date" name="fecha_fundacion" id="fecha_fundacion"><br>
                 </div>
         </div>
 
         <div class="field">
             <label class="" for="venta_año_anterior">Venta de año anterior</label>
                 <div class="control">
-                    <input type="text" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"><br>
+                    <input type="text" name="venta_año_anterior" id="venta_año_anterior"><br>
                 </div>
         </div>
 
         <div class="field">
             <label class="" for="oferta_porcentaje">Porcentaje a ofertar:</label>
                 <div class="control">
-                    <input type="text" name="oferta_porcentaje" id="oferta_porcentaje" value="{{oferta_porcentaje}}"><br>
+                    <input type="text" name="oferta_porcentaje" id="oferta_porcentaje"><br>
                 </div>
         </div>
 
         <div class="field">
             <label class="" for="nombre">Nombre del emprendimiento:</label>
                 <div class="control">
-                    <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
+                    <input type="text" name="nombre" id="nombre"><br><br>
                 </div>
         </div>
 
         <div class="field">
             <label class="" for="email">Email:</label>
                 <div class="control">
-                    <input type="text" name="email" id="email" value="{{email}}"><br>
+                    <input type="text" name="email" id="email"><br>
                 </div>
         </div>
 
         <div class="field">
             <label class="" for="telefono">Telefono:</label>
                 <div class="control">
-                    <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
+                    <input type="text" name="telefono" id="telefono"><br>
                 </div>
-        </div>        
+        </div>  
+
+        <div class="field">
+            <label class="" for="telefono">Video:</label>
+                <div class="control">
+                    <input type="url" name="video" id="video"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="telefono">Facebook: </label>
+                <div class="control">
+                    <input type="text" name="facebook" id="facebook"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="telefono">Instagram:</label>
+                <div class="control">
+                    <input type="text" name="instagram" id="instagram"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="telefono">Youtube:</label>
+                <div class="control">
+                    <input type="text" name="youtube" id="youtube"><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="telefono">Foto:</label>
+                <div class="control">
+                    <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+                </div>
+        </div>
+
+        <div class="field">
+            <label class="" for="eslogan">Categorías:</label>
+                <div class="control">
+                    {% for cat in categorias %}
+                        <input type="checkbox" name="{{cat["id"]}}" value="{{cat["id"]}}">
+                        <label for="{{cat["id"]}}">{{cat["categoria"]}}</label><br>
+                    {% endfor %}
+                </div>
+        </div>
+
         <!--Insertar emprendimiento-->
         <button type="submit" value="update">Crear emprendimiento</button>
         <input type="hidden" name="formId" id="formId" value="4">

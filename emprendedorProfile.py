@@ -3,6 +3,7 @@ import mysql.connector
 from mysql.connector import Error
 from emprendedorLogic import emprendedorLogic
 from emprendimientoLogic import emprendimientoLogic
+from categoriaLogic import CategoriaLogic
 
 
 emprendedorProfile = Blueprint(
@@ -116,12 +117,14 @@ def ProfileEmp():
                     idEmprendedor
                 )
                 data = logic.getDatosGeneralesById(idUsuario)
+                categorias = CategoriaLogic().getAllCategorias()
                 return render_template(
                     "emprendedorProfile.html",
                     data=data,
                     data2=data2,
                     dataEmprendimiento=dataEmprendimiento,
                     verdaderoEmprendimiento=verdaderoEmprendimiento,
+                    categorias=categorias,
                 )
 
             # Insertar nuevo emprendimiento
@@ -186,6 +189,18 @@ def ProfileEmp():
                         instagram,
                         youtube,
                     )
+                id_emprendimiento = logicEmprendimiento.getNewIdEmprendimiento(
+                    nombre, eslogan, fecha_fundacion
+                )
+                categorias = CategoriaLogic().getAllCategorias()
+
+                for checkbox in categorias:
+                    id_categoria = checkbox["id"]
+                    value = request.form.get(str(id_categoria))
+                    if value:
+                        logicEmprendimiento.insertEspecialidad(
+                            id_emprendimiento, id_categoria
+                        )
 
                 data = logic.getDatosGeneralesById(idUsuario)
                 dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(

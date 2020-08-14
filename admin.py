@@ -264,96 +264,169 @@ def emprendedor():
 # ----------------------------------------------------------------------------------------------------------
 @admin.route("/productosAdmin", methods=["POST", "GET"])
 def productos():
-    getEmprendimiento = adminLogic()
-    id_emprendimiento = getEmprendimiento.getAllEmprendimientoID()
-    for emprendimiento in id_emprendimiento:
-        logic = productoLogic()
-        datos = logic.getAllProductosByIdEmprendimiento(emprendimiento.get)
-        message = ""
-        if request.method == "GET":
-            return render_template("productosAdmin.html", datosx=datos, mostrar=False)
+    logic = adminLogic()
+    datos = logic.getAllEmprendimientoID()
+    message = ""
+    if request.method == "GET":
+        return render_template("productosAdmin.html", datosx=datos, mostrar=False)
 
-        elif request.method == "POST":
-            if request.form.get("formId"):
-                formId = int(request.form["formId"])
-                if formId == 1:
-                    id_prod = request.form["idColumnaU"]
-                    nameOld = request.form["NameU"]
-                    fotoOld = request.form["fotoU"]
-                    descOld = request.form["descU"]
-                    costoOld = request.form["costoU"]
-                    precioOld = request.form["precioU"]
-                    patenteOld = request.form["patenteU"]
-                    id_empOld = request.form["idEmpU"]
-                    return render_template(
-                        "productos.html",
-                        mostrar=True,
-                        idx=id_prod,
-                        nameUpx=nameOld,
-                        fotoUpx=fotoOld,
-                        descUpx=descOld,
-                        costoUpx=costoOld,
-                        precioUpx=precioOld,
-                        patenteUpx=patenteOld,
-                        empex=id_empOld,
-                        datosx=datos,
+    elif request.method == "POST":
+        if request.form.get("formId"):
+            formId = int(request.form["formId"])
+            # Mostrar productos de un determinado emprendimiento
+            if formId == 1:
+                id_Empren = request.form["id"]
+                Empren_Name = request.form["name"]
+                logicProductos = productoLogic()
+                productos = logicProductos.getAllProductosByIdEmprendimiento(id_Empren)
+                datos = logic.getAllEmprendimientoID()
+                return render_template(
+                    "productosAdmin.html",
+                    prductos=True,
+                    datos=productos,
+                    name=Empren_Name,
+                    datosx=datos,
+                    idEmpren=id_Empren,
+                )
+            # Delete
+            if formId == 2:
+                id_producto = request.form["id"]
+                logicProductos = productoLogic()
+                logicProductos.deleteProducto(id_producto)
+                id_Empren = request.form["idEmpren"]
+                Empren_Name = request.form["name"]
+                logicProductos = productoLogic()
+                productos = logicProductos.getAllProductosByIdEmprendimiento(id_Empren)
+                datos = logic.getAllEmprendimientoID()
+                return render_template(
+                    "productosAdmin.html",
+                    prductos=True,
+                    datos=productos,
+                    name=Empren_Name,
+                    datosx=datos,
+                    idEmpren=id_Empren,
+                )
+            # Mando al form de modificacion
+            elif formId == 3:
+                nombre = request.form["nombre"]
+                nombre_foto = request.form["nombre_foto"]
+                descripcion = request.form["descripcion"]
+                costoUnitario = float(request.form["costoUnitario"])
+                precioVenta = float(request.form["precioVenta"])
+                patente = int(request.form["patente"])
+                id_producto = int(request.form["id_producto"])
+                data2 = {
+                    "id_producto": id_producto,
+                    "nombre": nombre,
+                    "nombre_foto": nombre_foto,
+                    "descripcion": descripcion,
+                    "costo_unitario": costoUnitario,
+                    "precio_venta": precioVenta,
+                    "patente": patente,
+                }
+                id_Empren = request.form["idEmpren"]
+                Empren_Name = request.form["name"]
+                logicProductos = productoLogic()
+                productos = logicProductos.getAllProductosByIdEmprendimiento(id_Empren)
+                datos = logic.getAllEmprendimientoID()
+                return render_template(
+                    "productosAdmin.html",
+                    prductos=True,
+                    datos=productos,
+                    name=Empren_Name,
+                    datosx=datos,
+                    data2=data2,
+                    mostrar=True,
+                    idEmpren=id_Empren,
+                )
+            # Modifica el producto
+            elif formId == 4:
+                nombre = request.form["nombre"]
+                foto = request.files["fileToUpload"]
+                descripcion = request.form["descripcion"]
+                costoUnitario = float(request.form["costoUnitario"])
+                precioVenta = float(request.form["precioVenta"])
+                patente = int(request.form["patente"])
+                id_producto = int(request.form["id_producto"])
+                nombre_foto = foto.filename
+                logicProductos = productoLogic()
+                if foto.filename == "":
+                    logicProductos.updateProductoWithoutPhoto(
+                        id_producto,
+                        nombre,
+                        descripcion,
+                        costoUnitario,
+                        precioVenta,
+                        patente,
                     )
-                if formId == 2:
-                    id_prod = int(request.form["idxForm"])
-                    name = request.form["nameUp"]
-                    foto = request.form["fotoUp"]
-                    desc = request.form["descUp"]
-                    costo = float(request.form["costoUp"])
-                    precio = float(request.form["precioUp"])
-                    patente = int(request.form["patenteUp"])
-                    logic.updateProducto(
-                        id_prod, name, foto, desc, costo, precio, patente
+                else:
+                    binary_foto = foto.read()
+                    logicProductos.updateProducto(
+                        id_producto,
+                        nombre,
+                        binary_foto,
+                        descripcion,
+                        costoUnitario,
+                        precioVenta,
+                        patente,
                     )
-                    datos = logic.getAllProductoLen()
-                    render_template("productos.html", datosx=datos, mostrar=False)
-                if formId == 3:
-                    id_prod = request.form["idColumnaD"]
-                    logic.deleteProducto(id_prod)
-                    datos = logic.getAllProductoLen()
-                    render_template("productos.html", datosx=datos, mostrar=False)
-                if formId == 4:
-                    nombre = request.form["newName"]
-                    foto = request.form["newFoto"]
-                    desc = request.form["newDesc"]
-                    costo = float(request.form["newCosto"])
-                    precio = float(request.form["newPrecio"])
-                    patente = int(request.form["newPatente"])
-                    idEmp = int(request.form["newId_emp"])
+                id_Empren = request.form["idEmpren"]
+                Empren_Name = request.form["name"]
+                productos = logicProductos.getAllProductosByIdEmprendimiento(id_Empren)
+                datos = logic.getAllEmprendimientoID()
+                return render_template(
+                    "productosAdmin.html",
+                    prductos=True,
+                    datos=productos,
+                    name=Empren_Name,
+                    datosx=datos,
+                    idEmpren=id_Empren,
+                )
+            # Insertar
+            if formId == 5:
+                nombre = request.form["nombre"]
+                foto = request.files["fileToUpload"]
+                descripcion = request.form["descripcion"]
+                costoUnitario = request.form["costoUnitario"]
+                precioVenta = request.form["precioVenta"]
+                patente = request.form["patente"]
+                nombre_foto = foto.filename
+                id_Empren = request.form["idEmpren"]
+                logicProductos = productoLogic()
 
-                    if (
-                        nombre != ""
-                        and desc != ""
-                        and costo != ""
-                        and precio != ""
-                        and patente != ""
-                        and idEmp != ""
-                    ):
-                        logic = productosLogic()
-                        try:
-                            logic.insertNewProducto(
-                                nombre, foto, desc, costo, precio, patente, idEmp
-                            )
-                        except mysql.connector.Error as error:
-                            print(
-                                "Failed inserting BLOB data into MySQL table {}".format(
-                                    error
-                                )
-                            )
-                            message = "No se puede eliminar. Afecta la integridad de los datos"
-                        datos = logic.getAllProductoLen()
-                        return render_template(
-                            "productos.html",
-                            datosx=datos,
-                            mostrar=False,
-                            message=message,
-                        )
-
-        return render_template("productos.html", datosx=datos, mostrar=False)
+                if foto.filename == "":
+                    nombre_foto = "products.jpg"
+                    logicProductos.insertNewProductoWithoutPhoto(
+                        nombre,
+                        nombre_foto,
+                        descripcion,
+                        costoUnitario,
+                        precioVenta,
+                        patente,
+                        id_Empren,
+                    )
+                else:
+                    binary_foto = foto.read()
+                    logicProductos.insertNewProducto(
+                        nombre,
+                        binary_foto,
+                        descripcion,
+                        costoUnitario,
+                        precioVenta,
+                        patente,
+                        id_Empren,
+                    )
+                Empren_Name = request.form["name"]
+                productos = logicProductos.getAllProductosByIdEmprendimiento(id_Empren)
+                datos = logic.getAllEmprendimientoID()
+                return render_template(
+                    "productosAdmin.html",
+                    prductos=True,
+                    datos=productos,
+                    name=Empren_Name,
+                    datosx=datos,
+                    idEmpren=id_Empren,
+                )
 
 
 # ----------------------------------------------------------------------------------------------------------

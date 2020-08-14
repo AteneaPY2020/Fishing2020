@@ -170,3 +170,5 @@ class adminLogic(Logic):
         data = database.executeQuery(sql)
         data = self.tupleToDictionaryList(data, ["id", "nombre"])
         return data
+
+    

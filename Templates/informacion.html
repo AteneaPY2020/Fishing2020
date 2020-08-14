@@ -170,24 +170,27 @@
                                     <th scope="col">Porcentaje</th>
                                     <th scope="col">Fecha</th>
                                 </tr>
-                                {% for registro in ofertas %}
-                                <tr>
-                                    <td>
-                                        <p>{{registro["especificaciones"]}}</p>
-                                    </td>
-                                    <td>
-                                        <p>$ {{registro["oferta"]}}</p>
-                                    </td>
-                                    <td>
-                                        <p>{{registro["porcentaje"]}} %</p>
-                                    </td>
-                                    <td>
-                                        <p>{{registro["fecha"]}}</p>
-                                    </td>
-                                </tr>
-                                {% endfor %}
                             </thead>
+                                {% for registro in ofertas %}
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p>{{registro["especificaciones"]}}</p>
+                                            </td>
+                                            <td>
+                                                <p>$ {{registro["oferta"]}}</p>
+                                            </td>
+                                            <td>
+                                                <p>{{registro["porcentaje"]}} %</p>
+                                            </td>
+                                            <td>
+                                                <p>{{registro["fecha"]}}</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                {% endfor %}
                         </table>
+                        <br><br>
                         <form action="/informacion" method="POST">
                             <button class="button button-paypal" type="submit" value="insert">Agregar</button>
                             <input type="hidden" name="formId" id="formId" value="5">
@@ -224,20 +227,22 @@
                                         <th scope="col">Fecha</th>
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td>
-                                        <p>{{ultima_oferta["especificaciones"]}}</p>
-                                    </td>
-                                    <td>
-                                        <p>$ {{ultima_oferta["oferta"]}}</p>
-                                    </td>
-                                    <td>
-                                        <p>{{ultima_oferta["porcentaje"]}} %</p>
-                                    </td>
-                                    <td>
-                                        <p>{{ultima_oferta["fecha"]}}</p>
-                                    </td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p>{{ultima_oferta["especificaciones"]}}</p>
+                                        </td>
+                                        <td>
+                                            <p>$ {{ultima_oferta["oferta"]}}</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ultima_oferta["porcentaje"]}} %</p>
+                                        </td>
+                                        <td>
+                                            <p>{{ultima_oferta["fecha"]}}</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             {% endif %}
                         </table>
                         {%endif%}
@@ -443,7 +448,7 @@
     {%if mostrar2%}
         <p>Inserta una nueva oferta</p>
         <form action="/informacion" method="POST">
-            Especificaciones: <input type="text" id="especificaciones" name="especificaciones"><br>
+            Especificaciones: <textarea  name="especificaciones" id="especificaciones" rows="10" cols="100" ></textarea>
             Oferta: $<input type="text" id="oferta" name="oferta"><br>
             Porcentaje: <input type="text" id="porcentaje" name="porcentaje">% <br>
             <input type="submit" value="Agregar"><br>
@@ -454,7 +459,7 @@
     {%if mostrar3%}
         <p>Inserta una nueva oferta</p>
         <form action="/informacion" method="POST">
-            Especificaciones: <input type="text" id="especificaciones" name="especificaciones" value="{{data3["especificaciones"]}}"><br>
+            Especificaciones: <textarea  name="especificaciones" id="especificaciones" rows="10" cols="100" >{{data3["especificaciones"]}}</textarea>
             Oferta: $<input type="text" id="oferta" name="oferta" value="{{data3["oferta"]}}"><br>
             Porcentaje: <input type="text" id="porcentaje" name="porcentaje" value="{{data3["porcentaje"]}}">% <br>
             <input type="submit" value="Agregar"><br>

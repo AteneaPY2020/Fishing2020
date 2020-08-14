@@ -210,12 +210,12 @@ CREATE TABLE `historial` (
   `especificaciones` varchar(500) NOT NULL,
   `oferta` double NOT NULL,
   `porcentaje` double NOT NULL,
-  `fecha` date NOT NULL,
+  `fecha` datetime NOT NULL,
   `id_emprendimiento` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_historial_emprendimiento1_idx` (`id_emprendimiento`),
   CONSTRAINT `fk_historial_emprendimiento1` FOREIGN KEY (`id_emprendimiento`) REFERENCES `emprendimiento` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,6 +224,7 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
+INSERT INTO `historial` VALUES (4,'aregga',1234,12.3,'2020-08-13 21:57:34',9),(7,'srtht',1234,12.98,'2020-08-13 22:50:29',13);
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -416,4 +417,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-13 12:22:46
+-- Dump completed on 2020-08-14  9:46:16

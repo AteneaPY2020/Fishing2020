@@ -162,6 +162,7 @@
                         {%if vistaEmprendedor%}
                         <br><br>
                         <h2>Historial de ofertas</h2>
+
                         <table class="table">
                             <thead>
                                 <tr>
@@ -170,25 +171,31 @@
                                     <th scope="col">Porcentaje</th>
                                     <th scope="col">Fecha</th>
                                 </tr>
+                                
                             </thead>
-                                {% for registro in ofertas %}
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <p>{{registro["especificaciones"]}}</p>
-                                            </td>
-                                            <td>
-                                                <p>$ {{registro["oferta"]}}</p>
-                                            </td>
-                                            <td>
-                                                <p>{{registro["porcentaje"]}} %</p>
-                                            </td>
-                                            <td>
-                                                <p>{{registro["fecha"]}}</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                {% endfor %}
+                            {% for registro in ofertas %}
+                                <tr>
+                                    <td>
+                                        <p>{{registro["especificaciones"]}}</p>
+                                    </td>
+                                    <td>
+                                        <p>$ {{registro["oferta"]}}</p>
+                                    </td>
+                                    <td>
+                                        <p>{{registro["porcentaje"]}} %</p>
+                                    </td>
+                                    <td>
+                                        <p>{{registro["fecha"]}}</p>
+                                    </td>
+                                </tr>
+                                
+                            {% endfor %}
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
                         </table>
                         <br><br>
                         <form action="/informacion" method="POST">

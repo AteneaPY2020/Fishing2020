@@ -80,25 +80,46 @@ def quienesSomos():
                     data = logic.getAllFundadores(idEmprendimiento)
                     data2 = logic.getHistoria(idEmprendimiento)
                     logicEmpre.insertNotificationFundador(user, idEmprendimiento)
+                    data3 = logic.getDatosGeneralesById(idEmprendimiento)
+                    data4 = logic.getDescripcion(idEmprendimiento)
                     message = "Se ha agregado al fundador"
                     return render_template(
-                        "quienes_somos.html", data=data, data2=data2, message=message
+                        "quienes_somos.html",
+                        data=data,
+                        data2=data2,
+                        message=message,
+                        data3=data3,
+                        data4=data4,
                     )
                 else:
                     data = logic.getAllFundadores(idEmprendimiento)
                     data2 = logic.getHistoria(idEmprendimiento)
+                    data3 = logic.getDatosGeneralesById(idEmprendimiento)
+                    data4 = logic.getDescripcion(idEmprendimiento)
                     message = (
                         "El usuario ya se encuentra asignado a este emprendimiento."
                     )
                     return render_template(
-                        "quienes_somos.html", data=data, data2=data2, message=message
+                        "quienes_somos.html",
+                        data=data,
+                        data2=data2,
+                        message=message,
+                        data3=data3,
+                        data4=data4,
                     )
             else:
                 data = logic.getAllFundadores(idEmprendimiento)
                 data2 = logic.getHistoria(idEmprendimiento)
+                data3 = logic.getDatosGeneralesById(idEmprendimiento)
+                data4 = logic.getDescripcion(idEmprendimiento)
                 message = "El usuario o emprendimiento seleccionado no existe. Pruebe de nuevo"
                 return render_template(
-                    "quienes_somos.html", data=data, data2=data2, message=message
+                    "quienes_somos.html",
+                    data=data,
+                    data2=data2,
+                    message=message,
+                    data3=data3,
+                    data4=data4,
                 )
         # ELIMINAR
         elif formId == 2:
@@ -107,8 +128,15 @@ def quienesSomos():
             message = "Se ha eliminado un fundador"
             data = logic.getAllFundadores(idEmprendimiento)
             data2 = logic.getHistoria(idEmprendimiento)
+            data3 = logic.getDatosGeneralesById(idEmprendimiento)
+            data4 = logic.getDescripcion(idEmprendimiento)
             return render_template(
-                "quienes_somos.html", data=data, data2=data2, message=message
+                "quienes_somos.html",
+                data=data,
+                data2=data2,
+                message=message,
+                data3=data3,
+                data4=data4,
             )
         # MODIFICAR HISTORIA
         elif formId == 3:
@@ -116,8 +144,15 @@ def quienesSomos():
             logic.updateHistoria(idEmprendimiento, historia)
             data = logic.getAllFundadores(idEmprendimiento)
             data2 = logic.getHistoria(idEmprendimiento)
+            data3 = logic.getDatosGeneralesById(idEmprendimiento)
+            data4 = logic.getDescripcion(idEmprendimiento)
             return render_template(
-                "quienes_somos.html", data=data, data2=data2, message=message
+                "quienes_somos.html",
+                data=data,
+                data2=data2,
+                message=message,
+                data3=data3,
+                data4=data4,
             )
 
 
@@ -155,6 +190,8 @@ def informacion():
         formId = int(request.form["formId"])
         data = logic.getContactos(idEmprendimiento)
         data2 = logic.getInfoFinanciera(idEmprendimiento)
+        data3 = logic.getDatosGeneralesById(idEmprendimiento)
+        data4 = logic.getDescripcion(idEmprendimiento)
         ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
         ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
         # UPDATE INFO FINANCIERA
@@ -173,6 +210,8 @@ def informacion():
                 venta_año_anteriorUpx=venta_año_anteriorOld,
                 data=data,
                 data2=data2,
+                data3=data3,
+                data4=data4,
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
                 ultima_oferta=ultima_oferta,
@@ -189,12 +228,16 @@ def informacion():
             )
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
+            data3 = logic.getDatosGeneralesById(idEmprendimiento)
+            data4 = logic.getDescripcion(idEmprendimiento)
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
             return render_template(
                 "informacion.html",
                 data=data,
                 data2=data2,
+                data3=data3,
+                data4=data4,
                 mostrar=False,
                 vistaEmprendedor=True,
                 vistaEmprendimiento=True,
@@ -210,6 +253,8 @@ def informacion():
             youtubeOld = request.form["youtubex"]
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
+            data3 = logic.getDatosGeneralesById(idEmprendimiento)
+            data4 = logic.getDescripcion(idEmprendimiento)
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
             return render_template(
@@ -223,6 +268,8 @@ def informacion():
                 youtubeUpx=youtubeOld,
                 data=data,
                 data2=data2,
+                data3=data3,
+                data4=data4,
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
                 ultima_oferta=ultima_oferta,
@@ -238,12 +285,16 @@ def informacion():
             )
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
+            data3 = logic.getDatosGeneralesById(idEmprendimiento)
+            data4 = logic.getDescripcion(idEmprendimiento)
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
             return render_template(
                 "informacion.html",
                 data=data,
                 data2=data2,
+                data3=data3,
+                data4=data4,
                 mostrar1=False,
                 vistaEmprendedor=True,
                 vistaEmprendimiento=True,
@@ -255,12 +306,16 @@ def informacion():
         if formId == 5:
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
+            data3 = logic.getDatosGeneralesById(idEmprendimiento)
+            data4 = logic.getDescripcion(idEmprendimiento)
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
             return render_template(
                 "informacion.html",
                 data=data,
                 data2=data2,
+                data3=data3,
+                data4=data4,
                 mostrar2=True,
                 vistaEmprendedor=True,
                 vistaEmprendimiento=True,
@@ -270,6 +325,8 @@ def informacion():
         if formId == 6:
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
+            data3 = logic.getDatosGeneralesById(idEmprendimiento)
+            data4 = logic.getDescripcion(idEmprendimiento)
             especificaciones = request.form["especificaciones"]
             oferta = float(request.form["oferta"])
             porcentaje = float(request.form["porcentaje"])
@@ -282,6 +339,8 @@ def informacion():
                 "informacion.html",
                 data=data,
                 data2=data2,
+                data3=data3,
+                data4=data4,
                 vistaEmprendedor=True,
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
@@ -291,6 +350,8 @@ def informacion():
         if formId == 7:
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
+            data3 = logic.getDatosGeneralesById(idEmprendimiento)
+            data4 = logic.getDescripcion(idEmprendimiento)
             id_historial = request.form["id_historial"]
             logicOferta.deleteHistorial(id_historial)
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
@@ -299,6 +360,8 @@ def informacion():
                 "informacion.html",
                 data=data,
                 data2=data2,
+                data3=data3,
+                data4=data4,
                 vistaEmprendedor=True,
                 vistaEmprendimiento=True,
                 ofertas=ofertas,

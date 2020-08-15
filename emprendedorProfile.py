@@ -20,6 +20,8 @@ def ProfileEmp():
         idUsuario = int(user["id"])
         data = logic.getDatosGeneralesById(idUsuario)
         idEmprendedor = data[0]["id"]
+        categorias = CategoriaLogic().getAllCategorias()
+
         if request.method == "GET":
             # Datillos
             dataEmprendimiento = logicEmprendimiento.getAllEmprendimientosByIdEmprendendor(
@@ -31,6 +33,7 @@ def ProfileEmp():
                 data=data,
                 dataEmprendimiento=dataEmprendimiento,
                 data2=data2,
+                categorias=categorias,
             )
 
         elif request.method == "POST":
@@ -67,6 +70,7 @@ def ProfileEmp():
                     pais=pais,
                     ciudad=ciudad,
                     biografia=biografia,
+                    categorias=categorias,
                 )
 
             # Aplicar cambios en informacion general
@@ -107,6 +111,7 @@ def ProfileEmp():
                     data=data,
                     data2=data2,
                     dataEmprendimiento=dataEmprendimiento,
+                    categorias=categorias,
                 )
 
             # Crear nuevo emprendimiento
@@ -212,6 +217,7 @@ def ProfileEmp():
                     data=data,
                     data2=data2,
                     dataEmprendimiento=dataEmprendimiento,
+                    categorias=categorias,
                 )
 
             # Sale del emprendimiento by IdEmprendimiento
@@ -230,6 +236,7 @@ def ProfileEmp():
                     data=data,
                     data2=data2,
                     dataEmprendimiento=dataEmprendimiento,
+                    categorias=categorias,
                 )
 
             # Va hacia el emprendimiento que se selecciona

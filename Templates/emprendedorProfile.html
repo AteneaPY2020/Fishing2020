@@ -31,7 +31,7 @@
             <div class="container">
             <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                 <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-                    <li class="nav-item"><a class="nav-link">FISHING | An ocean full of grear ideas</a></li>
+                    <li class="nav-item"><a class="nav-link">FISHING | An ocean full of great ideas</a></li>
                     <li class="nav-item"><a class="nav-link"></a></li>
                     <li class="nav-item"><a class="nav-link"></a></li>
                 </ul>
@@ -92,12 +92,166 @@
                             {% endfor %}
                         </table>
                         <!--Boton crear nuevo emprendimiento-->             
-                        <form action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-                            <br><td><button class="button button-postComment button--active" type="submit" value="insert"><i class="fa fa-thumbs-o-up"></i>Crear nuevo emprendimiento</button></td>
-                            <input type="hidden" name="formId" id="formId" value="3">
-                            <input type="hidden" name="id" id="id" value="{{id}}">
-                        </form>  
+                        <button class="button button-postComment button--active" type="button" data-toggle="modal" data-target="#crearEmprendimiento" ><i class="fa fa-paper-plane"></i>
+                        Crear nuevo emprendimiento
+                        </button>
+                        
                     </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="crearEmprendimiento" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modifica tu información</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    
+                    <div class="container">
+                            <form action="/emprendedorProfile" name="crear" id="crear" method="POST" enctype="multipart/form-data">
+        
+                                <div class="field">
+                                    <label class="" for="estado">Estado:</label>
+                                        <div class="control">
+                                        <select name="estado" id="estado">
+                                            <option value="Huevo">Huevo </option>
+                                            <option value="Pez Dorado">Pez dorado</option>
+                                            <option value="tiburon">Tiburón</option>
+                                        </select><br>
+                                </select><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="descripcion">Descripcion:</label>
+                                        <div class="control">
+                                            <br><textarea name="descripcion" cols="30" rows="10" id="descripcion"></textarea><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="historia">Historia:</label>
+                                        <div class="control">
+                                            <textarea name="historia" id="historia" cols="30" rows="10"></textarea><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="eslogan">Eslogan:</label>
+                                        <div class="control">
+                                            <input type="text" name="eslogan" id="eslogan"><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="inversion_inicial">Inversion inicial:</label>
+                                        <div class="control">
+                                            <input type="text" name="inversion_inicial" id="inversion_inicial"><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="fecha_fundacion">Fecha de fundacion:</label>
+                                        <div class="control">
+                                            <input type="date" name="fecha_fundacion" id="fecha_fundacion"><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="venta_año_anterior">Venta de año anterior</label>
+                                        <div class="control">
+                                            <input type="text" name="venta_año_anterior" id="venta_año_anterior"><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="oferta_porcentaje">Porcentaje a ofertar:</label>
+                                        <div class="control">
+                                            <input type="text" name="oferta_porcentaje" id="oferta_porcentaje"><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="nombre">Nombre del emprendimiento:</label>
+                                        <div class="control">
+                                            <input type="text" name="nombre" id="nombre"><br><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="email">Email:</label>
+                                        <div class="control">
+                                            <input type="text" name="email" id="email"><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="telefono">Telefono:</label>
+                                        <div class="control">
+                                            <input type="text" name="telefono" id="telefono"><br>
+                                        </div>
+                                </div>  
+
+                                <div class="field">
+                                    <label class="" for="telefono">Video:</label>
+                                        <div class="control">
+                                            <input type="url" name="video" id="video"><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="telefono">Facebook: </label>
+                                        <div class="control">
+                                            <input type="text" name="facebook" id="facebook"><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="telefono">Instagram:</label>
+                                        <div class="control">
+                                            <input type="text" name="instagram" id="instagram"><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="telefono">Youtube:</label>
+                                        <div class="control">
+                                            <input type="text" name="youtube" id="youtube"><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="telefono">Foto:</label>
+                                        <div class="control">
+                                            <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="" for="eslogan">Categorías:</label>
+                                        <div class="control">
+                                            {% for cat in categorias %}
+                                                <input type="checkbox" name="{{cat["id"]}}" value="{{cat["id"]}}">
+                                                <label for="{{cat["id"]}}">{{cat["categoria"]}}</label><br>
+                                            {% endfor %}
+                                        </div>
+                                </div>
+
+                                <!--Insertar emprendimiento-->
+                                <button type="submit" value="update" class="btn btn-primary">Crear emprendimiento</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="hidden" name="formId" id="formId" value="4">
+                            </form>
+                        
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
             </div>
             <div class="col-lg-4">
                 <div class="blog_right_sidebar">
@@ -114,45 +268,114 @@
                         </p>
                         <br>
                         <!--Boton Modificar la informacion general-->
-                        <form action="/emprendedorProfile" method="POST">
-                            <td><button type="submit" value="update" class="button button-postComment button--active" ><i class="fa fa-paper-plane"></i>Modificar informacion</button></td>
-                            
-                            <input type="hidden" name="formId" id="formId" value="1">
-                            <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
-                            <input type="hidden" name="nombre" id="nombre" value="{{data[0]["nombre"]}}">
-                            <input type="hidden" name="email" id="email" value="{{data[0]["email"]}}"> 
-                            <input type="hidden" name="telefono" id="telefono" value="{{data[0]["telefono"]}}">
-                            <input type="hidden" name="pais" id="pais" value="{{data[0]["pais"]}}">              
-                            <input type="hidden" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}">
-                            <input type="hidden" name="biografia" id="biografia" value="{{data[0]["biografia"]}}">
-                            
-                        </form>
+                        <button class="button button-postComment button--active" type="button" data-toggle="modal" data-target="#modificarInformacion" ><i class="fa fa-paper-plane"></i>
+                        Modificar Información
+                        </button>
+                        
                         <div class="br"></div>
                     </aside>
-                    <aside class="single_sidebar_widget popular_post_widget">
-                        <h3 class="widget_title">Notificaciones</h3>
-                        <div class="media post_item">
-                            <div class="">
-                                <table class="table">
-                                    <tr>
-                                        <th></th>
-                                        <th>Fecha</th>
-                                        <th>Hora</th>
-                                    </tr>     
-                                    {% for registro in data2 %}
-                                    <tr>
-                                    <td>{{registro["mensaje"]}}</td>
-                                    <td>{{registro["fecha"]}}</td>
-                                    <td>{{registro["hora"]}}</td>
-                                    {% endfor %}
-                                </table>
-                            </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modificarInformacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Modifica tu información</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                    </aside>
+                        <div class="modal-body">
+
+                            
+                            <div class="container">
+                
+                                    
+                                    <form NAME="formId" id="formId" action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
+
+                                        
+                                        <div class="field">
+                                            <label class="" for="email">Nombre</label>
+                                                <div class="control">
+                                                    <input class="input" type="text" name="nombre" id="nombre" value="{{data[0]["nombre"]}}"><br>
+                                                
+                                        </div>
+
+                                        <div class="field">
+                                            <label class="" for="email">Email</label>
+                                                <div class="control">
+                                                    <input type="text" name="email" id="email" value="{{data[0]["email"]}}"> <br>
+                                                </div>
+                                        </div>
+
+                                        <div class="field">
+                                            <label class="" for="telefono">Telefono</label>
+                                                <div class="control">
+                                                    <input type="text" name="telefono" id="telefono" value="{{data[0]["telefono"]}}"><br>
+                                                </div>
+                                        </div>
+
+                                        <div class="field">
+                                            <label class="" for="pais">País</label>
+                                                <div class="control">
+                                                    <input type="text" name="pais" id="pais" value="{{data[0]["pais"]}}"><br>
+                                                </div>
+                                        </div>
+
+                                        <div class="field">
+                                            <label class="" for="ciudad">Ciudad</label>
+                                                <div class="control">
+                                                    <input type="text" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}"><br>
+                                                </div>
+                                        </div>
+
+                                        <div class="field">
+                                            <label class="" for="biografia">Biografia</label>
+                                                <div class="control">
+                                                    <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{data[0]["biografia"]}}</textarea><br><br>
+                                                </div>
+                                        </div>
+                                        
+                                        Foto 
+                                        <br><input type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
+                                        
+                                        <!--Aplicar cambios-->
+                                        <button type="submit" value="update" class="btn btn-primary">Aplicar cambios</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <input type="hidden" name="formId" id="formId" value="2">
+                                        <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
+                                    </form>
+
+                            </div>
+                            
+                        </div>
+                        </div>
+                    </div>
+                    </div>
                     
                     <br><br>
                 </div>
             </div>
+                <aside class="single_sidebar_widget popular_post_widget">
+                    <h3 class="widget_title">Notificaciones</h3>
+                    <div class="media post_item">
+                        <div class="">
+                            <table class="table">
+                                <tr>
+                                    <th></th>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                </tr>     
+                                {% for registro in data2 %}
+                                <tr>
+                                <td>{{registro["mensaje"]}}</td>
+                                <td>{{registro["fecha"]}}</td>
+                                <td>{{registro["hora"]}}</td>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </aside>
         </div>
     </div>
     </section>
@@ -172,13 +395,6 @@
     </footer>
 
 
-
-
-            
-    
-    
-                                
-                
     <!-- Javascript -->          
     <script type="text/javascript" src="static/perfil/assets/plugins/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="static/perfil/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
@@ -198,204 +414,11 @@
     
     
 
-<!--======================================================================================================================-->   
-    <!--POPUP: Form Modificar la informacion general-->
+    <!--POPUP: bootstrap-->
+    <script type="text/javascript" src="static/perfil/assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 
-        {% if verdadero %}
-        <div class="container">
-            <p>Modificar datos personales</p>
-            <form NAME="formId" id="formId" action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-
-                
-                <div class="field">
-                    <label class="" for="email">Nombre</label>
-                        <div class="control">
-                            <input class="input" type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
-                        
-                </div>
-
-                <div class="field">
-                    <label class="" for="email">Email</label>
-                        <div class="control">
-                            <input type="text" name="email" id="email" value="{{email}}"> <br>
-                        </div>
-                </div>
-
-                <div class="field">
-                    <label class="" for="telefono">Telefono</label>
-                        <div class="control">
-                            <input type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
-                        </div>
-                </div>
-
-                <div class="field">
-                    <label class="" for="pais">País</label>
-                        <div class="control">
-                            <input type="text" name="pais" id="pais" value="{{pais}}"><br>
-                        </div>
-                </div>
-
-                <div class="field">
-                    <label class="" for="ciudad">Ciudad</label>
-                        <div class="control">
-                            <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
-                        </div>
-                </div>
-
-                <div class="field">
-                    <label class="" for="biografia">Biografia</label>
-                        <div class="control">
-                            <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{biografia}}</textarea><br><br>
-                        </div>
-                </div>
-                
-                Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                
-                <!--Aplicar cambios-->
-                <button type="submit" value="update">Aplicar cambios</button>
-                <input type="hidden" name="formId" id="formId" value="2">
-                <input type="hidden" name="id" id="id" value="{{id}}">
-            </form>
-        </div>
-        {% endif %}
-
-    <!--POPUP:Form crear nuevo emprendimiento-->
-    {% if verdaderoEmprendimiento %}
-    
-    <form action="/emprendedorProfile" name="crear" id="crear" method="POST" enctype="multipart/form-data">
-        
-        <div class="field">
-            <label class="" for="estado">Estado:</label>
-                <div class="control">
-                <select name="estado" id="estado">
-                    <option value="Huevo">Huevo </option>
-                    <option value="Pez Dorado">Pez dorado</option>
-                    <option value="tiburon">Tiburón</option>
-                </select><br>
-        </select><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="descripcion">Descripcion:</label>
-                <div class="control">
-                    <br><textarea name="descripcion" cols="30" rows="10" id="descripcion"></textarea><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="historia">Historia:</label>
-                <div class="control">
-                    <textarea name="historia" id="historia" cols="30" rows="10"></textarea><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="eslogan">Eslogan:</label>
-                <div class="control">
-                    <input type="text" name="eslogan" id="eslogan"><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="inversion_inicial">Inversion inicial:</label>
-                <div class="control">
-                    <input type="text" name="inversion_inicial" id="inversion_inicial"><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="fecha_fundacion">Fecha de fundacion:</label>
-                <div class="control">
-                    <input type="date" name="fecha_fundacion" id="fecha_fundacion"><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="venta_año_anterior">Venta de año anterior</label>
-                <div class="control">
-                    <input type="text" name="venta_año_anterior" id="venta_año_anterior"><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="oferta_porcentaje">Porcentaje a ofertar:</label>
-                <div class="control">
-                    <input type="text" name="oferta_porcentaje" id="oferta_porcentaje"><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="nombre">Nombre del emprendimiento:</label>
-                <div class="control">
-                    <input type="text" name="nombre" id="nombre"><br><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="email">Email:</label>
-                <div class="control">
-                    <input type="text" name="email" id="email"><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="telefono">Telefono:</label>
-                <div class="control">
-                    <input type="text" name="telefono" id="telefono"><br>
-                </div>
-        </div>  
-
-        <div class="field">
-            <label class="" for="telefono">Video:</label>
-                <div class="control">
-                    <input type="url" name="video" id="video"><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="telefono">Facebook: </label>
-                <div class="control">
-                    <input type="text" name="facebook" id="facebook"><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="telefono">Instagram:</label>
-                <div class="control">
-                    <input type="text" name="instagram" id="instagram"><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="telefono">Youtube:</label>
-                <div class="control">
-                    <input type="text" name="youtube" id="youtube"><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="telefono">Foto:</label>
-                <div class="control">
-                    <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
-                </div>
-        </div>
-
-        <div class="field">
-            <label class="" for="eslogan">Categorías:</label>
-                <div class="control">
-                    {% for cat in categorias %}
-                        <input type="checkbox" name="{{cat["id"]}}" value="{{cat["id"]}}">
-                        <label for="{{cat["id"]}}">{{cat["categoria"]}}</label><br>
-                    {% endfor %}
-                </div>
-        </div>
-
-        <!--Insertar emprendimiento-->
-        <button type="submit" value="update">Crear emprendimiento</button>
-        <input type="hidden" name="formId" id="formId" value="4">
-    </form>
-    {% endif %}
 {% endblock body %}
 
 </html>

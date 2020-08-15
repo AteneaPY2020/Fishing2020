@@ -89,13 +89,89 @@
                         </p>
                         <br>
                         <!--Boton Modificar la informacion general-->
-                        <form action="/perfilInversionista" method="POST" enctype="multipart/form-data">
-                            <td><button type="submit" value= "Update" class="button button-postComment button--active" ><i class="fa fa-paper-plane"></i>Modificar informacion</button></td>
-                            <input type="hidden" name="formId" id="formId" value="1">
-                        </form>
+                        <!-- Button trigger modal -->
+                        <button class="button button-postComment button--active" type="button" data-toggle="modal" data-target="#updateInformacionGeneral" ><i class="fa fa-paper-plane"></i>
+                        Modificar Informacion
+                        </button>
+
                         <div class="br"></div>
                     </aside>
                     
+                            <!-- Modal -->
+                            <div class="modal fade" id="updateInformacionGeneral" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Modifica tu información</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                <!--Boton Modificar la informacion general-->
+                                
+                                <!--POPUP: Form Modificar la informacion general-->
+                                    
+                                    <div class="container">
+                                            
+                                        <p>Modificar datos personales</p>
+                                            <form NAME="formIdInv" id="formIdInv" action="/perfilInversionista" method="POST" enctype="multipart/form-data">
+                                                <div class="field">
+                                                    <label class="" for="nombre">Nombre</label>
+                                                        <div class="control">
+                                                        <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
+                                                    </div>
+                                                </div>
+                                                <div class="field">
+                                                    <label class="" for="fileToUpload">Foto de perfil: </label>
+                                                        <div class="control">
+                                                        <input type="file" name="fileToUpload" id="fileToUpload "><br>
+                                                    </div>
+                                                </div>
+
+                                                <div class="field">
+                                                    <label class="" for="biografia">Biografia</label>
+                                                        <div class="control">
+                                                            <textarea type="textbox" name="biografia" id="biografia" cols="30" rows="10">{{biografia}}</textarea><br>
+                                                        </div>
+                                                </div>
+
+
+                                                <div class="field">
+                                                    <label class="" for="email">Email</label>
+                                                        <div class="control">
+                                                            <input type="text" name="email" id="email" value="{{email}}"><br>
+                                                        </div>
+                                                </div>
+
+                                                <div class="field">
+                                                    <label class="" for="pais">País</label>
+                                                        <div class="control">
+                                                            <input type="text" name="pais" id="pais" value="{{pais}}"><br>
+                                                        </div>
+                                                </div>
+
+                                                <div class="field">
+                                                    <label class="" for="ciudad">Ciudad</label>
+                                                        <div class="control">
+                                                            <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
+                                                        </div>
+                                                </div>
+                                                <!--Aplicar cambios-->
+                                            <td><button type="submit" value= "Update" class="btn btn-primary">Actualizar</button></td>
+                                            <input type="hidden" name="formId" id="formId" value="2">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </form>   
+                
+                                    </div>
+                                    
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
+
+
                     <aside class="single_sidebar_widget popular_post_widget">
                         <h3 class="widget_title">Intereses</h3>
                         <div class="media post_item">
@@ -120,14 +196,67 @@
                                 {% endfor %}
                                 <br>
                                 <p>{{message}}</p>
-                                <form action="/perfilInversionista" method="POST">
-                                    <button type="submit" value="delete" class="button button-postComment button--active">Agregar Interes</button>
-                                    <input type="hidden" name="formId" id="formId" value="4">
-                                </form>
+                                
+                                <button class="button button-postComment button--active" type="button" data-toggle="modal" data-target="#agregarInteres" ><i class="fa fa-paper-plane"></i>
+                                Agregar interes
+                                </button>
                             </div>
                         </div>
                     </aside>
                     <br><br>
+                            <!-- Modal -->
+                            <div class="modal fade" id="agregarInteres" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Modifica tu información</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                <!--Boton Modificar la informacion general-->
+                                
+                                <!--POPUP: Form Modificar la informacion general-->
+
+                                    
+                                    <div class="container">
+                                            <form action="/perfilInversionista" method="POST">
+                                                <input type="checkbox" id="Alimento" name="Alimento" value="Alimento">
+                                                <label for="Alimento">Alimento</label><br>
+                                                <input type="checkbox" id="Moda" name="Moda" value="Moda">
+                                                <label for="Moda">Moda</label><br>
+                                                <input type="checkbox" id="CyTec" name="CyTec" value="CyTec">
+                                                <label for="CyTec">Ciencia y Tecnología</label><br>
+                                                <input type="checkbox" id="Social" name="Social" value="Social">
+                                                <label for="Social">Social</label><br>
+                                                <input type="checkbox" id="Salud" name="Salud" value="Salud">
+                                                <label for="Salud">Salud</label><br>
+                                                <input type="checkbox" id="Academico" name="Academico" value="Academico">
+                                                <label for="Academico">Academico</label><br>
+                                                <input type="checkbox" id="Entretenimiento" name="Entretenimiento" value="Entretenimiento">
+                                                <label for="Entretenimiento">Entretenimiento</label><br>
+                                                <input type="checkbox" id="Infantil" name="Infantil" value="Infantil">
+                                                <label for="Infantil">Infantil</label><br>
+                                                <input type="checkbox" id="Belleza" name="Belleza" value="Belleza">
+                                                <label for="Belleza">Belleza</label><br>
+                                                <input type="checkbox" id="Ecologia" name="Ecologia" value="Ecologia">
+                                                <label for="Ecologia">Ecología</label><br>
+                                                <input type="checkbox" id="Otra" name="Otra" value="Otra">
+                                                <label for="Otra">Otra</label><br>
+                                                <input type="hidden" name="formId" id="formId" value="5">
+                                                <!--Aplicar cambios-->
+                                                <button type="submit" value="insert" class="btn btn-primary">Agregar</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </form>
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+
                 </div>
             </div>
         </div>
@@ -167,91 +296,10 @@
     <script src="static/perfil/assets/js/validation.js"></script>
 
 
-
-    <!--POPUP: Form Modificar la informacion general-->
-
-    {%if editar%}
-        <div class="container">
-            <p>Modificar datos personales</p>
-                <form NAME="formIdInv" id="formIdInv" action="/perfilInversionista" method="POST" enctype="multipart/form-data">
-                    <div class="field">
-                        <label class="" for="nombre">Nombre</label>
-                            <div class="control">
-                            <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <label class="" for="fileToUpload">Foto de perfil: </label>
-                            <div class="control">
-                            <input type="file" name="fileToUpload" id="fileToUpload "><br>
-                        </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="" for="biografia">Biografia</label>
-                            <div class="control">
-                                <textarea type="textbox" name="biografia" id="biografia" value="{{biografia}}"cols="30" rows="10"></textarea><br>
-                            </div>
-                    </div>
-
-
-                    <div class="field">
-                        <label class="" for="email">Email</label>
-                            <div class="control">
-                                <input type="text" name="email" id="email" value="{{email}}"><br>
-                            </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="" for="pais">País</label>
-                            <div class="control">
-                                <input type="text" name="pais" id="pais" value="{{pais}}"><br>
-                            </div>
-                    </div>
-
-                    <div class="field">
-                        <label class="" for="ciudad">Ciudad</label>
-                            <div class="control">
-                                <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br>
-                            </div>
-                    </div>
-                <td><button type="submit" value= "Update">Actualizar</button></td>
-                <input type="hidden" name="formId" id="formId" value="2">
-            </form>   
-        </div> 
-    {%endif%}
-
-
-    <!--POPUP: Agregar intereses-->
-    {%if  agregar%}
-        <form action="/perfilInversionista" method="POST">
-            <input type="checkbox" id="Alimento" name="Alimento" value="Alimento">
-            <label for="Alimento">Alimento</label><br>
-            <input type="checkbox" id="Moda" name="Moda" value="Moda">
-            <label for="Moda">Moda</label><br>
-            <input type="checkbox" id="CyTec" name="CyTec" value="CyTec">
-            <label for="CyTec">Ciencia y Tecnología</label><br>
-            <input type="checkbox" id="Social" name="Social" value="Social">
-            <label for="Social">Social</label><br>
-            <input type="checkbox" id="Salud" name="Salud" value="Salud">
-            <label for="Salud">Salud</label><br>
-            <input type="checkbox" id="Academico" name="Academico" value="Academico">
-            <label for="Academico">Academico</label><br>
-            <input type="checkbox" id="Entretenimiento" name="Entretenimiento" value="Entretenimiento">
-            <label for="Entretenimiento">Entretenimiento</label><br>
-            <input type="checkbox" id="Infantil" name="Infantil" value="Infantil">
-            <label for="Infantil">Infantil</label><br>
-            <input type="checkbox" id="Belleza" name="Belleza" value="Belleza">
-            <label for="Belleza">Belleza</label><br>
-            <input type="checkbox" id="Ecologia" name="Ecologia" value="Ecologia">
-            <label for="Ecologia">Ecología</label><br>
-            <input type="checkbox" id="Otra" name="Otra" value="Otra">
-            <label for="Otra">Otra</label><br>
-            <input type="hidden" name="formId" id="formId" value="5">
-            <button type="submit" value="insert">Agregar</button>
-        </form>
-    {%endif%}  
-
+        <!--POPUP: bootstrap-->
+        <script type="text/javascript" src="static/perfil/assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 

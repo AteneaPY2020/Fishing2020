@@ -20,7 +20,6 @@ class adminLogic(Logic):
             "inversion_inicial",
             "fecha_fundacion",
             "venta_año_anterior",
-            "oferta_porcentaje",
             "nombre",
             "nombre_foto",
             "foto",

@@ -15,7 +15,13 @@ admin = Blueprint(
 
 @admin.route("/Admin", methods=["GET", "POST"])
 def Admin():
-    return render_template("indexAdmin.html")
+    try:
+        user = session["user"]
+        return render_template("indexAdmin.html")
+    except KeyError:
+        return render_template(
+            "logInForm.html", messageSS="Su sesión ha expirado, ingrese nuevamente"
+        )
 
 
 # ----------------------------------------------------------------------------------------------------------

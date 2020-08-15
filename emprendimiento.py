@@ -372,13 +372,15 @@ def informacion():
         if formId == 8:
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
+            data3 = logic.getDatosGeneralesById(idEmprendimiento)
+            data4 = logic.getDescripcion(idEmprendimiento)
             id_historial = request.form["id_historial"]
             especificaciones = request.form["especificaciones"]
             oferta = float(request.form["oferta"])
             porcentaje = float(request.form["porcentaje"])
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
-            data3 = {
+            data5 = {
                 "id_historial": id_historial,
                 "especificaciones": especificaciones,
                 "oferta": oferta,
@@ -388,16 +390,20 @@ def informacion():
                 "informacion.html",
                 data=data,
                 data2=data2,
+                data3=data3,
+                data4=data4,
                 vistaEmprendedor=True,
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
                 ultima_oferta=ultima_oferta,
-                data3=data3,
+                data5=data5,
                 mostrar3=True,
             )
         if formId == 9:
             data = logic.getContactos(idEmprendimiento)
             data2 = logic.getInfoFinanciera(idEmprendimiento)
+            data3 = logic.getDatosGeneralesById(idEmprendimiento)
+            data4 = logic.getDescripcion(idEmprendimiento)
             id_historial = request.form["id_historial"]
             especificaciones = request.form["especificaciones"]
             oferta = float(request.form["oferta"])
@@ -411,6 +417,8 @@ def informacion():
                 "informacion.html",
                 data=data,
                 data2=data2,
+                data3=data3,
+                data4=data4,
                 vistaEmprendedor=True,
                 vistaEmprendimiento=True,
                 ofertas=ofertas,

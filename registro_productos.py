@@ -1,6 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, session
 from productoLogic import productoLogic
 from likeLogic import likeLogic
+from userLogic import UserLogic
+from userObj import UserObj
+from emprendedorLogic import emprendedorLogic
+from emprendedorObj import emprendedorObj
+from emprendimientoLogic import emprendimientoLogic
 
 registro_productos = Blueprint(
     "registro_productos", __name__, template_folder="Templates", static_folder="static"
@@ -10,10 +15,13 @@ registro_productos = Blueprint(
 @registro_productos.route("/registroProductosInv", methods=["GET", "POST"])
 def registroProductoInv():
     logicProducto = productoLogic()
+    logicEmprendimiento = emprendimientoLogic()
     logicLikes = likeLogic()
     id_emprendimiento = session["empId"]
     id_invrsionista = session["id_inv"]
     data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
+    data3 = logicEmprendimiento.getDatosGeneralesById(id_emprendimiento)
+    data2 = logicEmprendimiento.getDescripcion(id_emprendimiento)
     likes = logicLikes.getAllReaccionesByIdEmprendimiento(id_emprendimiento)
 
     for registro in data:
@@ -32,6 +40,8 @@ def registroProductoInv():
         data=data,
         vistaEmprendimiento=vistaEmprendimiento,
         likes=likes,
+        data3=data3,
+        data2=data2,
     )
 
 
@@ -42,15 +52,21 @@ def registroProducto():
     mostrar = False
     data2 = None
     data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
+    logicEmprendimiento = emprendimientoLogic()
     # Vista
     vistaEmprendimiento = True
 
     if request.method == "GET":
         # True para vista inversionista
         vistaEmprendimiento = False
-
+        data2 = logicEmprendimiento.getDescripcion(id_emprendimiento)
+        data3 = logicEmprendimiento.getDatosGeneralesById(id_emprendimiento)
         return render_template(
-            "registroProductos.html", data=data, vistaEmprendimiento=vistaEmprendimiento
+            "registroProductos.html",
+            data=data,
+            data2=data2,
+            data3=data3,
+            vistaEmprendimiento=vistaEmprendimiento,
         )
     elif request.method == "POST":
         formId = int(request.form["formId"])

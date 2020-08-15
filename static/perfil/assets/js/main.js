@@ -115,3 +115,9 @@ jQuery(document).ready(function ($) {
     });
 
 })(jQuery); // End of use strict
+<<<<<<< HEAD
+      
+
+});
+=======
+>>>>>>> Estilo1

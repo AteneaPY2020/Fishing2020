@@ -290,7 +290,7 @@
                             
                             <div class="container">
                 
-                                    <p>Modificar datos personales</p>
+                                    
                                     <form NAME="formId" id="formId" action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
 
                                         
@@ -336,7 +336,8 @@
                                                 </div>
                                         </div>
                                         
-                                        Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
+                                        Foto 
+                                        <br><input type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
                                         
                                         <!--Aplicar cambios-->
                                         <button type="submit" value="update" class="btn btn-primary">Aplicar cambios</button>
@@ -351,31 +352,30 @@
                         </div>
                     </div>
                     </div>
-
-                    <aside class="single_sidebar_widget popular_post_widget">
-                        <h3 class="widget_title">Notificaciones</h3>
-                        <div class="media post_item">
-                            <div class="">
-                                <table class="table">
-                                    <tr>
-                                        <th></th>
-                                        <th>Fecha</th>
-                                        <th>Hora</th>
-                                    </tr>     
-                                    {% for registro in data2 %}
-                                    <tr>
-                                    <td>{{registro["mensaje"]}}</td>
-                                    <td>{{registro["fecha"]}}</td>
-                                    <td>{{registro["hora"]}}</td>
-                                    {% endfor %}
-                                </table>
-                            </div>
-                        </div>
-                    </aside>
                     
                     <br><br>
                 </div>
             </div>
+                <aside class="single_sidebar_widget popular_post_widget">
+                    <h3 class="widget_title">Notificaciones</h3>
+                    <div class="media post_item">
+                        <div class="">
+                            <table class="table">
+                                <tr>
+                                    <th></th>
+                                    <th>Fecha</th>
+                                    <th>Hora</th>
+                                </tr>     
+                                {% for registro in data2 %}
+                                <tr>
+                                <td>{{registro["mensaje"]}}</td>
+                                <td>{{registro["fecha"]}}</td>
+                                <td>{{registro["hora"]}}</td>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </aside>
         </div>
     </div>
     </section>

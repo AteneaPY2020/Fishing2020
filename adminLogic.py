@@ -20,7 +20,6 @@ class adminLogic(Logic):
             "inversion_inicial",
             "fecha_fundacion",
             "venta_año_anterior",
-            "oferta_porcentaje",
             "nombre",
             "nombre_foto",
             "foto",
@@ -68,7 +67,6 @@ class adminLogic(Logic):
                 data_dic["inversion_inicial"],
                 data_dic["fecha_fundacion"],
                 data_dic["venta_año_anterior"],
-                data_dic["oferta_porcentaje"],
                 data_dic["nombre"],
                 data_dic["nombre_foto"],
                 data_dic["foto"],
@@ -171,4 +169,3 @@ class adminLogic(Logic):
         data = self.tupleToDictionaryList(data, ["id", "nombre"])
         return data
 
-    

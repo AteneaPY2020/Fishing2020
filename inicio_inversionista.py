@@ -146,9 +146,9 @@ def perfilInversionista():
                     )
                 else:
                     binary_foto = pic.read()
-                logicInv.updateInversionistaConFoto(
-                    id_inv, name, bio, mail, country, city, binary_foto, id_user
-                )
+                    logicInv.updateInversionistaConFoto(
+                        id_inv, name, bio, mail, country, city, binary_foto, id_user
+                    )
 
                 # Actualizar datos
                 datos = logicInv.getIdInversor(id_user)
@@ -291,7 +291,9 @@ def guardar():
     logic = guardadosLogic()
     id_inv = session["id_inv"]
     id_producto = int(request.form["id"])
-    logic.guardar(id_inv, id_producto)
+    existeGuardado = logic.checkGuardado(id_inv, id_producto)
+    if not existeGuardado:
+        logic.guardar(id_inv, id_producto)
     if request.method == "GET":
         return redirect("/registroProductosInv")
     elif request.method == "POST":
@@ -311,15 +313,11 @@ def guardadosInv():
         # Guardados
         logicSave = guardadosLogic()
         data = logicSave.getAllGuardados(id_inv)
-        print(data)
-
         if request.method == "GET":
             return render_template("guardadosInversionista.html", data=data, message="")
         elif request.method == "POST":
             formId = int(request.form["formId"])
-            print(formId)
             id_prod = request.form["id"]
-            print(id_prod)
             if formId == 2:
                 logicSave.deleteGuardado(id_inv, id_prod)
                 data = logicSave.getAllGuardados(id_inv)

@@ -18,9 +18,10 @@ def getInformacion():
     if session["empId"] == "":
         idEmprendimiento = int(request.form["empId"])
         session["empId"] = idEmprendimiento
-        print(idEmprendimiento)
+        print(session["empId"])
     else:
         idEmprendimiento = session["empId"]
+        print(session["empId"])
     logic = emprendimientoLogic()
     data = logic.getDatosGeneralesById(idEmprendimiento)
     if request.method == "GET":

@@ -138,7 +138,7 @@ class emprendedorLogic(Logic):
         return rows
 
     def updateEmprendedorbyIdUsuarioWithPhoto(
-        self, id, nombre, email, telefono, pais, ciudad, biografia, foto
+        self, id, nombre, email, telefono, pais, ciudad, biografia, nombre_foto, foto,
     ):
         database = self.get_databaseXObj()
         nombre_foto = str(self.getIdEmprendedorByIdUsuario(id)) + ".png"

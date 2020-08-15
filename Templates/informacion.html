@@ -467,12 +467,12 @@
     {%if mostrar3%}
         <p>Inserta una nueva oferta</p>
         <form action="/informacion" method="POST">
-            Especificaciones: <textarea  name="especificaciones" id="especificaciones" rows="10" cols="100" >{{data3["especificaciones"]}}</textarea>
-            Oferta: $<input type="text" id="oferta" name="oferta" value="{{data3["oferta"]}}"><br>
-            Porcentaje: <input type="text" id="porcentaje" name="porcentaje" value="{{data3["porcentaje"]}}">% <br>
+            Especificaciones: <textarea  name="especificaciones" id="especificaciones" rows="10" cols="100" >{{data5["especificaciones"]}}</textarea>
+            Oferta: $<input type="text" id="oferta" name="oferta" value="{{data5["oferta"]}}"><br>
+            Porcentaje: <input type="text" id="porcentaje" name="porcentaje" value="{{data5["porcentaje"]}}">% <br>
             <input type="submit" value="Agregar"><br>
             <input type="hidden" id="formId" name="formId" value="9"><br>
-            <input type="hidden" id="id_historial" name="id_historial" value="{{data3["id_historial"]}}"><br>
+            <input type="hidden" id="id_historial" name="id_historial" value="{{data5["id_historial"]}}"><br>
         </form>
     
     {%endif%}

@@ -1,6 +1,4 @@
 from flask import Flask, render_template, request, redirect, session, Blueprint
-import mysql.connector
-from mysql.connector import Error
 from userLogic import UserLogic
 from userObj import UserObj
 from inversorLogic import inversorLogic
@@ -11,6 +9,7 @@ from categoriaLogic import CategoriaLogic
 from productoObj import productoObj
 from productoLogic import productoLogic
 from adminLogic import adminLogic
+import pymysql.err
 
 admin = Blueprint(
     "admin", __name__, template_folder="Templates", static_folder="static"
@@ -64,7 +63,7 @@ def inversionista():
                 message = "Se ha insertado un nuevo inversionista"
                 data = logic.getAllInversionista()
 
-            except mysql.connector.Error as error:
+            except pymysql.err.MySQLError as error:
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 message = "No se puede insertar. No existe el id usuario"
                 data = logic.getAllInversionista()
@@ -82,7 +81,7 @@ def inversionista():
                 data = logic.getAllInversionista()
                 message = "Se ha eliminado un usuario de inversionista"
 
-            except mysql.connector.Error as error:
+            except pymysql.err.MySQLError as error:
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 message = (
                     "No se puede eliminar. Afecta la integridad de la base de datos"
@@ -136,7 +135,7 @@ def inversionista():
                 data = logic.getAllInversionista()
                 message = "Se ha modificado el inversionista"
 
-            except mysql.connector.Error as error:
+            except pymysql.err.MySQLError as error:
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 message = "No se puede modificar. No existe el id usuario"
                 data = logic.getAllInversionista()
@@ -186,7 +185,7 @@ def emprendedor():
                 data = logic.getAllEmprendedores()
                 message = "Se ha insertado un nuevo usuario"
 
-            except mysql.connector.Error as error:
+            except pymysql.err.MySQLError as error:
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 message = "No se puede insertar. No existe el id usuario"
                 data = logic.getAllEmprendedores()
@@ -202,7 +201,7 @@ def emprendedor():
                 data = logic.getAllEmprendedores()
                 message = "Se ha eliminado un usuario"
 
-            except mysql.connector.Error as error:
+            except pymysql.err.MySQLError as error:
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 message = "No se puede eliminar. Afecta la integridad de los datos"
                 data = logic.getAllEmprendedores()
@@ -252,7 +251,7 @@ def emprendedor():
                 data = logic.getAllEmprendedores()
                 message = "Se ha modificado con éxito"
 
-            except mysql.connector.Error as error:
+            except pymysql.err.MySQLError as error:
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 message = "No se puede modificar. No existe el id usuario"
                 data = logic.getAllEmprendedores()
@@ -545,6 +544,7 @@ def signUPEmprendimiento():
     logic = emprendimientoLogic()
     massage = ""
     verdadero = False
+    logicUser = UserLogic()
     if request.method == "GET":
         data = logic.getAllEmprendimientoLen()
         return render_template("emprendimientoAdmin.html", data=data, massage=massage)
@@ -560,8 +560,7 @@ def signUPEmprendimiento():
             inversion_inicial = request.form["inversion_inicial"]
             fecha_fundacion = request.form["fecha_fundacion"]
             venta_año_anterior = request.form["venta_año_anterior"]
-            oferta_porcentaje = request.form["oferta_porcentaje"]
-            id_emprendedor = request.form["id_emprendedor"]
+            user_emprendedor = request.form["user_emprendedor"]
             nombre = request.form["nombre"]
             foto = request.files["fileToUpload"]
             nombre_foto = foto.filename
@@ -572,76 +571,84 @@ def signUPEmprendimiento():
             instagram = request.form["instagram"]
             youtube = request.form["youtube"]
 
-            try:
-                if foto.filename == "":
-                    nombre_foto = "default.png"
+            if logicUser.checkUserInUsuario(user_emprendedor, 3):
+                id_emprendedor = logic.getIdEmprendedorByUser(user_emprendedor)
+                try:
+                    if foto.filename == "":
+                        nombre_foto = "default.png"
 
-                    logic.insertNewEmprendimientoWithoutPhoto(
-                        estado,
-                        descripcion,
-                        historia,
-                        eslogan,
-                        inversion_inicial,
-                        fecha_fundacion,
-                        venta_año_anterior,
-                        oferta_porcentaje,
-                        id_emprendedor,
-                        nombre,
-                        nombre_foto,
-                        video,
-                        email,
-                        telefono,
-                        facebook,
-                        instagram,
-                        youtube,
+                        logic.insertNewEmprendimientoWithoutPhoto(
+                            estado,
+                            descripcion,
+                            historia,
+                            eslogan,
+                            inversion_inicial,
+                            fecha_fundacion,
+                            venta_año_anterior,
+                            id_emprendedor,
+                            nombre,
+                            nombre_foto,
+                            video,
+                            email,
+                            telefono,
+                            facebook,
+                            instagram,
+                            youtube,
+                        )
+                    else:
+                        binary_foto = foto.read()
+                        logic.insertNewEmprendimiento(
+                            estado,
+                            descripcion,
+                            historia,
+                            eslogan,
+                            inversion_inicial,
+                            fecha_fundacion,
+                            venta_año_anterior,
+                            id_emprendedor,
+                            nombre,
+                            binary_foto,
+                            video,
+                            email,
+                            telefono,
+                            facebook,
+                            instagram,
+                            youtube,
+                        )
+                    message = "Se ha insertado un nuevo emprendimiento"
+                    data = logic.getAllEmprendimientoLen()
+
+                    return render_template(
+                        "emprendimientoAdmin.html", data=data, message=message,
                     )
-                else:
-                    binary_foto = foto.read()
-                    logic.insertNewEmprendimiento(
-                        estado,
-                        descripcion,
-                        historia,
-                        eslogan,
-                        inversion_inicial,
-                        fecha_fundacion,
-                        venta_año_anterior,
-                        oferta_porcentaje,
-                        id_emprendedor,
-                        nombre,
-                        binary_foto,
-                        video,
-                        email,
-                        telefono,
-                        facebook,
-                        instagram,
-                        youtube,
+
+                except pymysql.err.MySQLError as error:
+                    print(
+                        "Failed inserting BLOB data into MySQL table {}".format(error)
                     )
-                message = "Se ha insertado un nuevo emprendimiento"
-                data = logic.getAllEmprendimientoLen()
+                    massage = "No se puede insertar. No existe el id emprendedor"
+                    data = logic.getAllEmprendimientoLen()
 
                 return render_template(
-                    "emprendimientoAdmin.html", data=data, message=message,
+                    "emprendimientoAdmin.html", data=data, massage=massage
+                )
+            else:
+                massage = "No se puede insertar. No existe el usario ingersado o no es emprendedor"
+                data = logic.getAllEmprendimientoLen()
+                return render_template(
+                    "emprendimientoAdmin.html", data=data, massage=massage
                 )
 
-            except mysql.connector.Error as error:
-                print("Failed inserting BLOB data into MySQL table {}".format(error))
-                massage = "No se puede insertar. No existe el id emprendedor"
-                data = logic.getAllEmprendimientoLen()
-
-            return render_template(
-                "emprendimientoAdmin.html", data=data, massage=massage
-            )
-
-            # Elimina una categoria
+        # Elimina un emprendimiento
         elif formId == 2:
             id = int(request.form["id"])
 
             try:
                 logic.deleteEmprendimientoByIdEmprendimiento(id)
-                massage = "Se ha eliminado un usuario"
+                massage = "Se ha eliminado el emprendimiento"
                 data = logic.getAllEmprendimientoLen()
 
-            except mysql.connector.Error as error:
+            except pymysql.err.MySQLError as error:
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 massage = "No se puede eliminar. Afecta la integridad de los datos"
                 data = logic.getAllEmprendimientoLen()
@@ -659,7 +666,6 @@ def signUPEmprendimiento():
             inversion_inicial = request.form["inversion_inicial"]
             fecha_fundacion = request.form["fecha_fundacion"]
             venta_año_anterior = request.form["venta_año_anterior"]
-            oferta_porcentaje = request.form["oferta_porcentaje"]
             id_emprendedor = request.form["id_emprendedor"]
             nombre = request.form["nombre"]
             nombre_foto = request.form["nombre_foto"]
@@ -683,7 +689,6 @@ def signUPEmprendimiento():
                 inversion_inicial=inversion_inicial,
                 fecha_fundacion=fecha_fundacion,
                 venta_año_anterior=venta_año_anterior,
-                oferta_porcentaje=oferta_porcentaje,
                 id_emprendedor=id_emprendedor,
                 nombre=nombre,
                 nombre_foto=nombre_foto,
@@ -695,7 +700,7 @@ def signUPEmprendimiento():
                 youtube=youtube,
             )
 
-        # Modifica una categoria
+        # Modifica al emprendimiento
         else:
             id = int(request.form["id"])
             estado = str(request.form["estado"])
@@ -705,10 +710,8 @@ def signUPEmprendimiento():
             inversion_inicial = request.form["inversion_inicial"]
             fecha_fundacion = request.form["fecha_fundacion"]
             venta_año_anterior = request.form["venta_año_anterior"]
-            oferta_porcentaje = request.form["oferta_porcentaje"]
-            id_emprendedor = request.form["id_emprendedor"]
             nombre = request.form["nombre"]
-            nombre_foto = request.form["nombre_foto"]
+            foto = request.files["fileToUpload"]
             video = request.form["video"]
             email = request.form["email"]
             telefono = request.form["telefono"]
@@ -717,30 +720,49 @@ def signUPEmprendimiento():
             youtube = request.form["youtube"]
 
             try:
-                logic.updateEmprendimiento(
-                    id,
-                    estado,
-                    descripcion,
-                    historia,
-                    eslogan,
-                    inversion_inicial,
-                    fecha_fundacion,
-                    venta_año_anterior,
-                    oferta_porcentaje,
-                    id_emprendedor,
-                    nombre,
-                    nombre_foto,
-                    video,
-                    email,
-                    telefono,
-                    facebook,
-                    instagram,
-                    youtube,
-                )
+                if foto.filename == "":
+                    nombre_foto = "default.png"
+                    logic.updateEmprendimientoWitoutPhoto(
+                        id,
+                        estado,
+                        descripcion,
+                        historia,
+                        eslogan,
+                        inversion_inicial,
+                        fecha_fundacion,
+                        venta_año_anterior,
+                        nombre,
+                        video,
+                        email,
+                        telefono,
+                        facebook,
+                        instagram,
+                        youtube,
+                    )
+                else:
+                    binary_foto = foto.read()
+                    logic.updateEmprendimiento(
+                        id,
+                        estado,
+                        descripcion,
+                        historia,
+                        eslogan,
+                        inversion_inicial,
+                        fecha_fundacion,
+                        venta_año_anterior,
+                        nombre,
+                        binary_foto,
+                        video,
+                        email,
+                        telefono,
+                        facebook,
+                        instagram,
+                        youtube,
+                    )
                 data = logic.getAllEmprendimientoLen()
                 massage = "Se ha modificado el emprendimiento"
 
-            except mysql.connector.Error as error:
+            except pymysql.err.MySQLError as error:
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 massage = "No se puede modificar. No existe el id emprendedor"
                 data = logic.getAllEmprendimientoLen()
@@ -778,7 +800,7 @@ def categoria():
                 massage = "Se ha eliminado un usuario"
                 data = logic.getAllCategorias()
 
-            except mysql.connector.Error as error:
+            except pymysql.err.MySQLError as error:
                 print("Failed inserting BLOB data into MySQL table {}".format(error))
                 massage = "No se puede eliminar. Afecta la integridad de los datos"
                 data = logic.getAllCategorias()

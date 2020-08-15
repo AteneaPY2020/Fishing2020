@@ -12,17 +12,21 @@
 
 <br><br>
 <p>Inserte por favor un emprendimiento</p>
-<form action="/EmprendimientoAdmin" method="POST">
+<form action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
 
-    estado: <input type="text" name="estado" id="estado"><br><br>
+    Estado:
+    <select name="estado" id="estado">
+        <option value="Huevo">Huevo </option>
+        <option value="Pez Dorado">Pez dorado</option>
+        <option value="tiburon">Tiburón</option>
+    </select><br><br>
     descripcion: <input type="text" name="descripcion" id="descripcion"><br><br>
     historia: <input type="text" name="historia" id="historia"><br><br>
     eslogan: <input type="text" name="eslogan" id="eslogan"><br><br>
     inversion inicial: <input type="text" name="inversion_inicial" id="inversion_inicial"><br><br>
     fecha fundacion: <input type="date" name="fecha_fundacion" id="fecha_fundacion"><br><br>
     venta año anterior: <input type="text" name="venta_año_anterior" id="venta_año_anterior"><br><br>
-    oferta porcentaje: <input type="text" name="oferta_porcentaje" id="oferta_porcentaje"><br><br>
-    id emprendedor: <input type="text" name="id_emprendedor" id="id_emprendedor"><br><br>
+    usuario de emprendedor: <input type="text" name="user_emprendedor" id="user_emprendedor"><br><br>
     nombre: <input type="text" name="nombre" id="nombre"><br><br>
     Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
     video: <input type="url" name="video" id="video" value="{{video}}"><br>
@@ -47,8 +51,6 @@
         <th>inversion inicial</th>
         <th>fecha fundacion</th>
         <th>venta año anterior</th>
-        <th>oferta porcentaje</th>
-        <th>id emprendedor</th>
         <th>nombre</th>
         <th>Foto</th>
         <th>video</th>
@@ -71,10 +73,8 @@
         <td>{{registro["inversion_inicial"]}}</td>
         <td>{{registro["fecha_fundacion"]}}</td>
         <td>{{registro["venta_año_anterior"]}}</td>
-        <td>{{registro["oferta_porcentaje"]}}</td>
-        <td>{{registro["id_emprendedor"]}}</td>
         <td>{{registro["nombre"]}}</td>
-        <td>{{registro["nombre_foto"]}}</td>
+        <td><img src="/static/images/emprendimiento/{{registro["nombre_foto"]}}" width="125" alt=""></td>
         <td>{{registro["video"]}}</td>
         <td>{{registro["email"]}}</td>
         <td>{{registro["telefono"]}}</td>
@@ -101,7 +101,6 @@
                 <input type="hidden" name="inversion_inicial" id="inversion_inicial" value="{{registro["inversion_inicial"]}}">
                 <input type="hidden" name="fecha_fundacion" id="fecha_fundacion" value="{{registro["fecha_fundacion"]}}">
                 <input type="hidden" name="venta_año_anterior" id="venta_año_anterior" value="{{registro["venta_año_anterior"]}}">
-                <input type="hidden" name="oferta_porcentaje" id="oferta_porcentaje" value="{{registro["oferta_porcentaje"]}}">
                 <input type="hidden" name="id_emprendedor" id="id_emprendedor" value="{{registro["id_emprendedor"]}}">
                 <input type="hidden" name="nombre" id="nombre" value="{{registro["nombre"]}}">
                 <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{registro["nombre_foto"]}}">
@@ -121,7 +120,7 @@
 
 {% if verdadero %}
 <p>Modifica el emprendimiento</p>
-<form action="/Emprendimiento" method="POST">
+<form action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
     estado: 
     <select name="estado" id="estado">
         <option value="Huevo">Huevo </option>
@@ -134,8 +133,6 @@
     inversion_inicial: <input type="text" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"><br><br>
     fecha_fundacion: <input type="text" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}"><br><br>
     venta_año_anterior: <input type="text" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"><br><br>
-    oferta_porcentaje: <input type="text" name="oferta_porcentaje" id="oferta_porcentaje" value="{{oferta_porcentaje}}"><br><br>
-    id_emprendedor: <input type="text" name="id_emprendedor" id="id_emprendedor" value="{{id_emprendedor}}"><br><br>
     nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
     Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
     video: <input type="text" name="video" id="video" value="{{video}}"><br><br>

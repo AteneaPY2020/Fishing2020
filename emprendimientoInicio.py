@@ -48,7 +48,7 @@ def getInformacionGeneral():
     verdadero = False
     data = logic.getDatosGeneralesById(idEmprendimiento)
     logic.saveImagesEmprendimiento(idEmprendimiento)
-
+    video_vista = logic.checVideoExist(idEmprendimiento)
     # vista
     vistaEmprendimiento = True
 
@@ -60,6 +60,7 @@ def getInformacionGeneral():
             data=data,
             message=message,
             vistaEmprendimiento=vistaEmprendimiento,
+            video_vista=video_vista,
         )
 
     elif request.method == "POST":
@@ -99,7 +100,12 @@ def getInformacionGeneral():
                 )
             data = logic.getDatosGeneralesById(idEmprendimiento)
             logic.saveImagesEmprendimiento(idEmprendimiento)
+            video_vista = logic.checVideoExist(idEmprendimiento)
 
         return render_template(
-            "emprendimientoInicio.html", data=data, verdadero=verdadero, data2=data2
+            "emprendimientoInicio.html",
+            data=data,
+            verdadero=verdadero,
+            data2=data2,
+            video_vista=video_vista,
         )

@@ -112,18 +112,20 @@
         </div>
         </section>
         <!--================ Hero banner start =================-->
-        <br><br>
-        <br><br>
+        
         <!--================ Hero Carousel start =================-->
-
+        
+        <br><br><br>
         <section class="section-margin mt-0">
             <div style="text-align:center">
-                <iframe width="1250" height="650" src="{{registro["video"]}}" 
-                frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen></iframe>
+                {% if video_vista %}
+                    <iframe width="1250" height="650" src="{{registro["video"]}}" 
+                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen></iframe>
+                {%endif%}
             </div>     
         </section>
-
+        
         <!--================ Hero Carousel end =================-->
         <!-- ================ offer section start ================= --> 
         <section class="offer" id="parallax-1" data-anchor-target="#parallax-1" data-300-top="background-position: 20px 30px" data-top-bottom="background-position: 0 20px">

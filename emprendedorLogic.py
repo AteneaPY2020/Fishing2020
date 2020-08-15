@@ -194,7 +194,7 @@ class emprendedorLogic(Logic):
         database = self.get_databaseXObj()
         sql = (
             f"select notificaciones.mensaje, notificaciones.fecha, notificaciones.hora from fishingdb.notificaciones where id_emprendedor={idUsuario} "
-            + "Order by notificaciones.fecha, notificaciones.hora desc;"
+            + "and notificaciones.fecha>=current_date()-5 Order by notificaciones.fecha, notificaciones.hora desc;"
         )
         print(sql)
         data = database.executeQuery(sql)

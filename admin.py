@@ -382,6 +382,8 @@ def productos():
                     datosx=datos,
                     idEmpren=id_Empren,
                 )
+        if request.form.get("insert"):
+            formId = int(request.form["insert"])
             # Insertar
             if formId == 5:
                 nombre = request.form["nombre"]

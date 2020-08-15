@@ -101,5 +101,5 @@ def getInformacionGeneral():
             logic.saveImagesEmprendimiento(idEmprendimiento)
 
         return render_template(
-            "emprendimientoInicio.html", data=data, verdadero=verdadero, data2=data2
+            "emprendimientoInicio.html", data=data, verdadero=verdadero, data2=data2,
         )

@@ -316,20 +316,17 @@
                                 </ul>
                                 <h2>Reded sociales</h2>
                                 <ul class="list">
-                                    <li><a>
-                                            <h4>Facebook <span class="middle"></span> <span
-                                                    class="last">{{registro["facebook"]}}</span>
-                                                <h4>
+                                    <li><a href="{{registro["facebook"]}}" target="_blank">
+                                            <h4>Facebook <span class="middle"></span> 
+                                            </h4>
                                         </a></li>
-                                    <li><a>
-                                            <h4>Instagram <span class="middle"></span> <span
-                                                    class="last">{{registro["instagram"]}} </span>
-                                                <h4>
+                                    <li><a href="{{registro["instagram"]}}" target="_blank">
+                                            <h4>Instagram <span class="middle"></span> 
+                                            </h4>
                                         </a></li>
-                                    <li><a>
-                                            <h4>Youtube <span class="middle"></span> <span
-                                                    class="last">{{registro["youtube"]}}</span>
-                                                <h4>
+                                    <li><a href="{{registro["youtube"]}}" target="_blank">
+                                            <h4>Youtube <span class="middle"></span> 
+                                            </h4>
                                         </a></li>
                                     <br>
                                 </ul>
@@ -381,10 +378,10 @@
                         <div class="single-footer-widget tp_widgets">
                             <h4 class="footer_title">Redes sociales</h4>
                             <ul class="list">
-                                <li><a>Facebook: {{registro["facebook"]}}</a></li>
-                                <li><a>Instagram: {{registro["instagram"]}}</a></li>
-                                <li><a>Youtube: {{registro["youtube"]}}</a></li>
-                            </ul>
+                                <li><a href="{{registro["facebook"]}}" target="_blank">Facebook</a></li>
+                                <li><a href="{{registro["instagram"]}}" target="_blank">Instagram</a></li>
+                                <li><a href="{{registro["youtube"]}}" target="_blank">Youtube</a></li>
+                            </ul> 
                         </div>
                     </div>
                     <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
@@ -442,9 +439,9 @@
                 <tr>
                     <td><input type="text" id="emailUP" name="emailUP" value="{{emailUpx}}"></td>
                     <td><input type="text" id="telefonoUP" name="telefonoUP" value="{{telefonoUpx}}"></td>
-                    <td><input type="text" id="facebookUP" name="facebookUP" value="{{facebookUpx}}"></td>
-                    <td><input type="text" id="instagramUP" name="instagramUP" value="{{instagramUpx}}"></td>
-                    <td><input type="text" id="youtubeUP" name="youtubeUP" value="{{youtubeUpx}}"></td>
+                    <td><input type="url" id="facebookUP" name="facebookUP" value="{{facebookUpx}}"></td>
+                    <td><input type="url" id="instagramUP" name="instagramUP" value="{{instagramUpx}}"></td>
+                    <td><input type="url" id="youtubeUP" name="youtubeUP" value="{{youtubeUpx}}"></td>
                     <td><input type="submit" value="Aceptar Cambios"> </td>
                     <td><input type="submit" value="Aceptar Cambios"> </td>
                     <input type="hidden" id="formId" name="formId" value="4">

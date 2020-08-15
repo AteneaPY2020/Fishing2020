@@ -15,6 +15,7 @@ from productoObj import productoObj
 from busquedaLogic import busquedaLogic
 from likeLogic import likeLogic
 from ofertaLogic import ofertaLogic
+from categoriaLogic import CategoriaLogic
 
 # Envio correo
 import smtplib
@@ -118,6 +119,7 @@ def perfilInversionista():
                 ciudad = Inversor["ciudad"]
                 pais = Inversor["pais"]
                 email = Inversor["email"]
+                nombre_foto = Inversor["nombre_foto"]
                 interes = logicInv.getIntereses(id_inv)
                 return render_template(
                     "perfil_inversionista.html",
@@ -191,6 +193,7 @@ def perfilInversionista():
                 ciudad = Inversor["ciudad"]
                 pais = Inversor["pais"]
                 email = Inversor["email"]
+                nombre_foto = Inversor["nombre_foto"]
                 interes = logicInv.getIntereses(id_inv)
 
                 return render_template(
@@ -203,6 +206,7 @@ def perfilInversionista():
                     email=email,
                     message="Interes eliminado",
                     interes=interes,
+                    nombre_foto=nombre_foto,
                 )
             if formId == 4:
                 datos = logicInv.getIdInversor(id_user)
@@ -213,7 +217,9 @@ def perfilInversionista():
                 ciudad = Inversor["ciudad"]
                 pais = Inversor["pais"]
                 email = Inversor["email"]
+                nombre_foto = Inversor["nombre_foto"]
                 interes = logicInv.getIntereses(id_inv)
+                categorias = CategoriaLogic().getAllCategorias()
                 return render_template(
                     "perfil_inversionista.html",
                     nombre=nombre,
@@ -224,52 +230,32 @@ def perfilInversionista():
                     message="",
                     interes=interes,
                     agregar=True,
+                    categorias=categorias,
+                    nombre_foto=nombre_foto,
                 )
             if formId == 5:
                 datos = logicInv.getIdInversor(id_user)
                 Inversor = logicInv.createDictionary(datos)
                 id_inv = int(Inversor["id"])
-                # Estas son las categorias
-                i = 1
-                alimento = request.form.get("Alimento")
-                moda = request.form.get("Moda")
-                cYTec = request.form.get("CyTec")
-                ecologia = request.form.get("Ecologia")
-                academico = request.form.get("Academico")
-                social = request.form.get("Social")
-                salud = request.form.get("Salud")
-                belleza = request.form.get("Belleza")
-                entretenimiento = request.form.get("Entretenimiento")
-                infantil = request.form.get("Infantil")
-                otra = request.form.get("Otra")
-                # Fin de las categorias
                 user = session["user"]
                 id_user = int(user["id"])
                 # Insertando nuevos intereses
-                for checkbox in (
-                    alimento,
-                    moda,
-                    ecologia,
-                    cYTec,
-                    social,
-                    salud,
-                    academico,
-                    entretenimiento,
-                    infantil,
-                    belleza,
-                    otra,
-                ):
-                    AlreadyExist = logicInv.checkInteresAlradyAdded(id_inv, i)
-                    value = request.form.get(checkbox)
+                categorias = CategoriaLogic().getAllCategorias()
+                for checkbox in categorias:
+                    id_categoria = checkbox["id"]
+                    value = request.form.get(str(id_categoria))
+                    AlreadyExist = logicInv.checkInteresAlradyAdded(
+                        id_inv, id_categoria
+                    )
                     if value and AlreadyExist is False:
-                        logicInv.insertNewInteres(i, id_inv)
-                    i += 1
+                        logicInv.insertNewInteres(id_categoria, id_inv)
 
                 nombre = Inversor["nombre"]
                 biografia = Inversor["biografia"]
                 ciudad = Inversor["ciudad"]
                 pais = Inversor["pais"]
                 email = Inversor["email"]
+                nombre_foto = Inversor["nombre_foto"]
                 interes = logicInv.getIntereses(id_inv)
                 return render_template(
                     "perfil_inversionista.html",
@@ -280,6 +266,7 @@ def perfilInversionista():
                     email=email,
                     message="Interes agregado",
                     interes=interes,
+                    nombre_foto=nombre_foto,
                 )
     except KeyError:
         return render_template(

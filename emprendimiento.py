@@ -24,6 +24,20 @@ def quienesSomosInv():
         data3 = logic.getDatosGeneralesById(idEmprendimiento)
         data4 = logic.getDescripcion(idEmprendimiento)
         logic.saveImagesFundadores(idEmprendimiento)
+
+        if data3[0]["facebook"] == "":
+            facebook = None
+        else:
+            facebook = data3[0]["facebook"]
+        if data3[0]["instagram"] == "":
+            instagram = None
+        else:
+            instagram = data3[0]["instagram"]
+        if data3[0]["youtube"] == "":
+            youtube = None
+        else:
+            youtube = data3[0]["youtube"]
+
         return render_template(
             "quienes_somos.html",
             data=data,
@@ -32,6 +46,9 @@ def quienesSomosInv():
             data4=data4,
             message="",
             vistaEmprendimiento=True,
+            youtube=youtube,
+            facebook=facebook,
+            instagram=instagram,
         )
 
 
@@ -53,6 +70,20 @@ def quienesSomos():
         data3 = logic.getDatosGeneralesById(idEmprendimiento)
         data4 = logic.getDescripcion(idEmprendimiento)
         logic.saveImagesFundadores(idEmprendimiento)
+
+        if data3[0]["facebook"] == "":
+            facebook = None
+        else:
+            facebook = data3[0]["facebook"]
+        if data3[0]["instagram"] == "":
+            instagram = None
+        else:
+            instagram = data3[0]["instagram"]
+        if data3[0]["youtube"] == "":
+            youtube = None
+        else:
+            youtube = data3[0]["youtube"]
+
         return render_template(
             "quienes_somos.html",
             data=data,
@@ -61,6 +92,9 @@ def quienesSomos():
             data4=data4,
             message=message,
             vistaEmprendimiento=vistaEmprendimiento,
+            youtube=youtube,
+            facebook=facebook,
+            instagram=instagram,
         )
     elif request.method == "POST":
         formId = int(request.form["formId"])
@@ -83,6 +117,20 @@ def quienesSomos():
                     data3 = logic.getDatosGeneralesById(idEmprendimiento)
                     data4 = logic.getDescripcion(idEmprendimiento)
                     message = "Se ha agregado al fundador"
+
+                    if data3[0]["facebook"] == "":
+                        facebook = None
+                    else:
+                        facebook = data3[0]["facebook"]
+                    if data3[0]["instagram"] == "":
+                        instagram = None
+                    else:
+                        instagram = data3[0]["instagram"]
+                    if data3[0]["youtube"] == "":
+                        youtube = None
+                    else:
+                        youtube = data3[0]["youtube"]
+
                     return render_template(
                         "quienes_somos.html",
                         data=data,
@@ -90,6 +138,9 @@ def quienesSomos():
                         message=message,
                         data3=data3,
                         data4=data4,
+                        youtube=youtube,
+                        facebook=facebook,
+                        instagram=instagram,
                     )
                 else:
                     data = logic.getAllFundadores(idEmprendimiento)
@@ -99,6 +150,19 @@ def quienesSomos():
                     message = (
                         "El usuario ya se encuentra asignado a este emprendimiento."
                     )
+
+                    if data3[0]["facebook"] == "":
+                        facebook = None
+                    else:
+                        facebook = data3[0]["facebook"]
+                    if data3[0]["instagram"] == "":
+                        instagram = None
+                    else:
+                        instagram = data3[0]["instagram"]
+                    if data3[0]["youtube"] == "":
+                        youtube = None
+                    else:
+                        youtube = data3[0]["youtube"]
                     return render_template(
                         "quienes_somos.html",
                         data=data,
@@ -106,6 +170,9 @@ def quienesSomos():
                         message=message,
                         data3=data3,
                         data4=data4,
+                        youtube=youtube,
+                        facebook=facebook,
+                        instagram=instagram,
                     )
             else:
                 data = logic.getAllFundadores(idEmprendimiento)
@@ -113,6 +180,19 @@ def quienesSomos():
                 data3 = logic.getDatosGeneralesById(idEmprendimiento)
                 data4 = logic.getDescripcion(idEmprendimiento)
                 message = "El usuario o emprendimiento seleccionado no existe. Pruebe de nuevo"
+
+                if data3[0]["facebook"] == "":
+                    facebook = None
+                else:
+                    facebook = data3[0]["facebook"]
+                if data3[0]["instagram"] == "":
+                    instagram = None
+                else:
+                    instagram = data3[0]["instagram"]
+                if data3[0]["youtube"] == "":
+                    youtube = None
+                else:
+                    youtube = data3[0]["youtube"]
                 return render_template(
                     "quienes_somos.html",
                     data=data,
@@ -120,6 +200,9 @@ def quienesSomos():
                     message=message,
                     data3=data3,
                     data4=data4,
+                    youtube=youtube,
+                    facebook=facebook,
+                    instagram=instagram,
                 )
         # ELIMINAR
         elif formId == 2:
@@ -130,6 +213,19 @@ def quienesSomos():
             data2 = logic.getHistoria(idEmprendimiento)
             data3 = logic.getDatosGeneralesById(idEmprendimiento)
             data4 = logic.getDescripcion(idEmprendimiento)
+
+            if data3[0]["facebook"] == "":
+                facebook = None
+            else:
+                facebook = data3[0]["facebook"]
+            if data3[0]["instagram"] == "":
+                instagram = None
+            else:
+                instagram = data3[0]["instagram"]
+            if data3[0]["youtube"] == "":
+                youtube = None
+            else:
+                youtube = data3[0]["youtube"]
             return render_template(
                 "quienes_somos.html",
                 data=data,
@@ -137,6 +233,9 @@ def quienesSomos():
                 message=message,
                 data3=data3,
                 data4=data4,
+                youtube=youtube,
+                facebook=facebook,
+                instagram=instagram,
             )
         # MODIFICAR HISTORIA
         elif formId == 3:
@@ -146,6 +245,20 @@ def quienesSomos():
             data2 = logic.getHistoria(idEmprendimiento)
             data3 = logic.getDatosGeneralesById(idEmprendimiento)
             data4 = logic.getDescripcion(idEmprendimiento)
+
+            if data3[0]["facebook"] == "":
+                facebook = None
+            else:
+                facebook = data3[0]["facebook"]
+            if data3[0]["instagram"] == "":
+                instagram = None
+            else:
+                instagram = data3[0]["instagram"]
+            if data3[0]["youtube"] == "":
+                youtube = None
+            else:
+                youtube = data3[0]["youtube"]
+
             return render_template(
                 "quienes_somos.html",
                 data=data,
@@ -153,6 +266,9 @@ def quienesSomos():
                 message=message,
                 data3=data3,
                 data4=data4,
+                youtube=youtube,
+                facebook=facebook,
+                instagram=instagram,
             )
 
 
@@ -173,6 +289,18 @@ def informacion():
         ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
         ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
 
+        if data3[0]["facebook"] == "":
+            facebook = None
+        else:
+            facebook = data3[0]["facebook"]
+        if data3[0]["instagram"] == "":
+            instagram = None
+        else:
+            instagram = data3[0]["instagram"]
+        if data3[0]["youtube"] == "":
+            youtube = None
+        else:
+            youtube = data3[0]["youtube"]
         return render_template(
             "informacion.html",
             data=data,
@@ -184,6 +312,9 @@ def informacion():
             vistaEmprendimiento=True,
             ofertas=ofertas,
             ultima_oferta=ultima_oferta,
+            youtube=youtube,
+            facebook=facebook,
+            instagram=instagram,
         )
     elif request.method == "POST":
         vistaEmprendedor = True
@@ -194,6 +325,20 @@ def informacion():
         data4 = logic.getDescripcion(idEmprendimiento)
         ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
         ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+
+        if data3[0]["facebook"] == "":
+            facebook = None
+        else:
+            facebook = data3[0]["facebook"]
+        if data3[0]["instagram"] == "":
+            instagram = None
+        else:
+            instagram = data3[0]["instagram"]
+        if data3[0]["youtube"] == "":
+            youtube = None
+        else:
+            youtube = data3[0]["youtube"]
+
         # UPDATE INFO FINANCIERA
         if formId == 1:
             fecha_fundacionOld = request.form["fecha_fundacionx"]
@@ -201,6 +346,20 @@ def informacion():
             venta_año_anteriorOld = request.form["venta_año_anteriorx"]
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+
+            if data3[0]["facebook"] == "":
+                facebook = None
+            else:
+                facebook = data3[0]["facebook"]
+            if data3[0]["instagram"] == "":
+                instagram = None
+            else:
+                instagram = data3[0]["instagram"]
+            if data3[0]["youtube"] == "":
+                youtube = None
+            else:
+                youtube = data3[0]["youtube"]
+
             return render_template(
                 "informacion.html",
                 mostrar=True,
@@ -215,6 +374,9 @@ def informacion():
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
                 ultima_oferta=ultima_oferta,
+                youtube=youtube,
+                facebook=facebook,
+                instagram=instagram,
             )
         if formId == 2:
             fecha_fundacion = request.form["fecha_fundacionUP"]
@@ -232,6 +394,19 @@ def informacion():
             data4 = logic.getDescripcion(idEmprendimiento)
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+            if data3[0]["facebook"] == "":
+                facebook = None
+            else:
+                facebook = data3[0]["facebook"]
+            if data3[0]["instagram"] == "":
+                instagram = None
+            else:
+                instagram = data3[0]["instagram"]
+            if data3[0]["youtube"] == "":
+                youtube = None
+            else:
+                youtube = data3[0]["youtube"]
+
             return render_template(
                 "informacion.html",
                 data=data,
@@ -243,6 +418,9 @@ def informacion():
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
                 ultima_oferta=ultima_oferta,
+                youtube=youtube,
+                facebook=facebook,
+                instagram=instagram,
             )
         # UPDATE CONTACTOS
         if formId == 3:
@@ -257,6 +435,20 @@ def informacion():
             data4 = logic.getDescripcion(idEmprendimiento)
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+
+            if data3[0]["facebook"] == "":
+                facebook = None
+            else:
+                facebook = data3[0]["facebook"]
+            if data3[0]["instagram"] == "":
+                instagram = None
+            else:
+                instagram = data3[0]["instagram"]
+            if data3[0]["youtube"] == "":
+                youtube = None
+            else:
+                youtube = data3[0]["youtube"]
+
             return render_template(
                 "informacion.html",
                 mostrar1=True,
@@ -273,6 +465,9 @@ def informacion():
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
                 ultima_oferta=ultima_oferta,
+                youtube=youtube,
+                facebook=facebook,
+                instagram=instagram,
             )
         if formId == 4:
             email = request.form["emailUP"]
@@ -289,6 +484,19 @@ def informacion():
             data4 = logic.getDescripcion(idEmprendimiento)
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+
+            if data3[0]["facebook"] == "":
+                facebook = None
+            else:
+                facebook = data3[0]["facebook"]
+            if data3[0]["instagram"] == "":
+                instagram = None
+            else:
+                instagram = data3[0]["instagram"]
+            if data3[0]["youtube"] == "":
+                youtube = None
+            else:
+                youtube = data3[0]["youtube"]
             return render_template(
                 "informacion.html",
                 data=data,
@@ -300,6 +508,9 @@ def informacion():
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
                 ultima_oferta=ultima_oferta,
+                youtube=youtube,
+                facebook=facebook,
+                instagram=instagram,
             )
 
         # Agrega un registro al historial
@@ -310,6 +521,19 @@ def informacion():
             data4 = logic.getDescripcion(idEmprendimiento)
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+
+            if data3[0]["facebook"] == "":
+                facebook = None
+            else:
+                facebook = data3[0]["facebook"]
+            if data3[0]["instagram"] == "":
+                instagram = None
+            else:
+                instagram = data3[0]["instagram"]
+            if data3[0]["youtube"] == "":
+                youtube = None
+            else:
+                youtube = data3[0]["youtube"]
             return render_template(
                 "informacion.html",
                 data=data,
@@ -321,6 +545,9 @@ def informacion():
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
                 ultima_oferta=ultima_oferta,
+                youtube=youtube,
+                facebook=facebook,
+                instagram=instagram,
             )
         if formId == 6:
             data = logic.getContactos(idEmprendimiento)
@@ -335,6 +562,20 @@ def informacion():
             )
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+
+            if data3[0]["facebook"] == "":
+                facebook = None
+            else:
+                facebook = data3[0]["facebook"]
+            if data3[0]["instagram"] == "":
+                instagram = None
+            else:
+                instagram = data3[0]["instagram"]
+            if data3[0]["youtube"] == "":
+                youtube = None
+            else:
+                youtube = data3[0]["youtube"]
+
             return render_template(
                 "informacion.html",
                 data=data,
@@ -345,6 +586,9 @@ def informacion():
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
                 ultima_oferta=ultima_oferta,
+                youtube=youtube,
+                facebook=facebook,
+                instagram=instagram,
             )
         # Delete
         if formId == 7:
@@ -356,6 +600,19 @@ def informacion():
             logicOferta.deleteHistorial(id_historial)
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+
+            if data3[0]["facebook"] == "":
+                facebook = None
+            else:
+                facebook = data3[0]["facebook"]
+            if data3[0]["instagram"] == "":
+                instagram = None
+            else:
+                instagram = data3[0]["instagram"]
+            if data3[0]["youtube"] == "":
+                youtube = None
+            else:
+                youtube = data3[0]["youtube"]
             return render_template(
                 "informacion.html",
                 data=data,
@@ -366,6 +623,9 @@ def informacion():
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
                 ultima_oferta=ultima_oferta,
+                youtube=youtube,
+                facebook=facebook,
+                instagram=instagram,
             )
 
         # Update
@@ -380,6 +640,20 @@ def informacion():
             porcentaje = float(request.form["porcentaje"])
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+
+            if data3[0]["facebook"] == "":
+                facebook = None
+            else:
+                facebook = data3[0]["facebook"]
+            if data3[0]["instagram"] == "":
+                instagram = None
+            else:
+                instagram = data3[0]["instagram"]
+            if data3[0]["youtube"] == "":
+                youtube = None
+            else:
+                youtube = data3[0]["youtube"]
+
             data5 = {
                 "id_historial": id_historial,
                 "especificaciones": especificaciones,
@@ -398,6 +672,9 @@ def informacion():
                 ultima_oferta=ultima_oferta,
                 data5=data5,
                 mostrar3=True,
+                youtube=youtube,
+                facebook=facebook,
+                instagram=instagram,
             )
         if formId == 9:
             data = logic.getContactos(idEmprendimiento)
@@ -413,6 +690,20 @@ def informacion():
             )
             ofertas = logicOferta.getAllOfertasByIdEmprendimiento(idEmprendimiento)
             ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+
+            if data3[0]["facebook"] == "":
+                facebook = None
+            else:
+                facebook = data3[0]["facebook"]
+            if data3[0]["instagram"] == "":
+                instagram = None
+            else:
+                instagram = data3[0]["instagram"]
+            if data3[0]["youtube"] == "":
+                youtube = None
+            else:
+                youtube = data3[0]["youtube"]
+
             return render_template(
                 "informacion.html",
                 data=data,
@@ -423,5 +714,8 @@ def informacion():
                 vistaEmprendimiento=True,
                 ofertas=ofertas,
                 ultima_oferta=ultima_oferta,
+                youtube=youtube,
+                facebook=facebook,
+                instagram=instagram,
             )
 

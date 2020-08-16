@@ -15,6 +15,7 @@ emprendimientoInicio = Blueprint(
     "/emprendimientoInicioInversionista", methods=["GET", "POST"]
 )
 def getInformacion():
+
     if session["empId"] == "":
         idEmprendimiento = int(request.form["empId"])
         session["empId"] = idEmprendimiento
@@ -23,12 +24,36 @@ def getInformacion():
         idEmprendimiento = session["empId"]
     logic = emprendimientoLogic()
     data = logic.getDatosGeneralesById(idEmprendimiento)
+
+    if data[0]["facebook"] == "":
+        facebook = None
+    else:
+        facebook = data[0]["facebook"]
+    if data[0]["instagram"] == "":
+        instagram = None
+    else:
+        instagram = data[0]["instagram"]
+    if data[0]["youtube"] == "":
+        youtube = None
+    else:
+        youtube = data[0]["youtube"]
+
+    # Arreglo espacio de video
+    if data[0]["video"] == "":
+        video = None
+    else:
+        video = data[0]["video"]
+
     if request.method == "GET":
         return render_template(
             "emprendimientoInicio.html",
             data=data,
             message="",
             vistaEmprendimiento=True,
+            youtube=youtube,
+            facebook=facebook,
+            instagram=instagram,
+            video=video,
         )
     elif request.method == "POST":
         return render_template(
@@ -36,6 +61,10 @@ def getInformacion():
             data=data,
             message="",
             vistaEmprendimiento=True,
+            youtube=youtube,
+            facebook=facebook,
+            instagram=instagram,
+            video=video,
         )
 
 
@@ -48,6 +77,24 @@ def getInformacionGeneral():
     verdadero = False
     data = logic.getDatosGeneralesById(idEmprendimiento)
     logic.saveImagesEmprendimiento(idEmprendimiento)
+    if data[0]["facebook"] == "":
+        facebook = None
+    else:
+        facebook = data[0]["facebook"]
+    if data[0]["instagram"] == "":
+        instagram = None
+    else:
+        instagram = data[0]["instagram"]
+    if data[0]["youtube"] == "":
+        youtube = None
+    else:
+        youtube = data[0]["youtube"]
+
+    # Arreglo espacio de video
+    if data[0]["video"] == "":
+        video = None
+    else:
+        video = data[0]["video"]
 
     # vista
     vistaEmprendimiento = True
@@ -60,6 +107,10 @@ def getInformacionGeneral():
             data=data,
             message=message,
             vistaEmprendimiento=vistaEmprendimiento,
+            youtube=youtube,
+            facebook=facebook,
+            instagram=instagram,
+            video=video,
         )
 
     elif request.method == "POST":
@@ -98,8 +149,21 @@ def getInformacionGeneral():
                     idEmprendimiento, descripcion, eslogan, nombre, binary_foto, video,
                 )
             data = logic.getDatosGeneralesById(idEmprendimiento)
+            # Arreglo espacio de video
+            if data[0]["video"] == "":
+                video = None
+            else:
+                video = data[0]["video"]
+
             logic.saveImagesEmprendimiento(idEmprendimiento)
 
         return render_template(
-            "emprendimientoInicio.html", data=data, verdadero=verdadero, data2=data2,
+            "emprendimientoInicio.html",
+            data=data,
+            verdadero=verdadero,
+            data2=data2,
+            youtube=youtube,
+            facebook=facebook,
+            instagram=instagram,
+            video=video,
         )

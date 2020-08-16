@@ -24,6 +24,19 @@ def registroProductoInv():
     data2 = logicEmprendimiento.getDescripcion(id_emprendimiento)
     likes = logicLikes.getAllReaccionesByIdEmprendimiento(id_emprendimiento)
 
+    if data3[0]["facebook"] == "":
+        facebook = None
+    else:
+        facebook = data3[0]["facebook"]
+    if data3[0]["instagram"] == "":
+        instagram = None
+    else:
+        instagram = data3[0]["instagram"]
+    if data3[0]["youtube"] == "":
+        youtube = None
+    else:
+        youtube = data3[0]["youtube"]
+
     for registro in data:
         for fila in likes:
             registro["liked"] = False
@@ -42,6 +55,9 @@ def registroProductoInv():
         likes=likes,
         data3=data3,
         data2=data2,
+        youtube=youtube,
+        facebook=facebook,
+        instagram=instagram,
     )
 
 
@@ -61,14 +77,44 @@ def registroProducto():
         vistaEmprendimiento = False
         data2 = logicEmprendimiento.getDescripcion(id_emprendimiento)
         data3 = logicEmprendimiento.getDatosGeneralesById(id_emprendimiento)
+        if data3[0]["facebook"] == "":
+            facebook = None
+        else:
+            facebook = data3[0]["facebook"]
+        if data3[0]["instagram"] == "":
+            instagram = None
+        else:
+            instagram = data3[0]["instagram"]
+        if data3[0]["youtube"] == "":
+            youtube = None
+        else:
+            youtube = data3[0]["youtube"]
+
         return render_template(
             "registroProductos.html",
             data=data,
             data2=data2,
             data3=data3,
             vistaEmprendimiento=vistaEmprendimiento,
+            youtube=youtube,
+            facebook=facebook,
+            instagram=instagram,
         )
     elif request.method == "POST":
+        data3 = logicEmprendimiento.getDatosGeneralesById(id_emprendimiento)
+        if data3[0]["facebook"] == "":
+            facebook = None
+        else:
+            facebook = data3[0]["facebook"]
+        if data3[0]["instagram"] == "":
+            instagram = None
+        else:
+            instagram = data3[0]["instagram"]
+        if data3[0]["youtube"] == "":
+            youtube = None
+        else:
+            youtube = data3[0]["youtube"]
+            
         formId = int(request.form["formId"])
         if formId == 1:
             nombre = request.form["nombre"]
@@ -163,5 +209,11 @@ def registroProducto():
             data = logicProducto.getAllProductosByIdEmprendimiento(id_emprendimiento)
 
         return render_template(
-            "registroProductos.html", data=data, mostrar=mostrar, data2=data2
+            "registroProductos.html",
+            data=data,
+            mostrar=mostrar,
+            data2=data2,
+            youtube=youtube,
+            facebook=facebook,
+            instagram=instagram,
         )

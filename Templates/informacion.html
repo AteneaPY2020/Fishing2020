@@ -316,25 +316,31 @@
                                 </ul>
                                 <h2>Reded sociales</h2>
                                 <ul class="list">
+                                    {% if facebook != None %}
                                     <li><a href="{{registro["facebook"]}}" target="_blank">
                                             <h4>Facebook <span class="middle"></span> 
                                             </h4>
                                         </a></li>
+                                    {% endif %}
+                                    {% if instagram != None %}
                                     <li><a href="{{registro["instagram"]}}" target="_blank">
                                             <h4>Instagram <span class="middle"></span> 
                                             </h4>
                                         </a></li>
+                                    {% endif %}
+                                    {% if youtube != None %}
                                     <li><a href="{{registro["youtube"]}}" target="_blank">
                                             <h4>Youtube <span class="middle"></span> 
                                             </h4>
                                         </a></li>
+                                    {% endif %}
                                     <br>
                                 </ul>
                                 {%if vistaEmprendedor%}
                                 <form action="/informacion" method="POST">
                                     <button class="button button-paypal" type="submit" value="modificar"> Modificar
                                         contactos</button>
-                                    <input type="hidden" name="formId" id="formId" value="3">
+                                    <input type="hidden" name="formId" id="formId" value="3">           
                                     <input type="hidden" name="emailx" id="emailx" value="{{registro["email"]}}">
                                     <input type="hidden" name="telefonox" id="telefonox"
                                         value="{{registro["telefono"]}}">
@@ -378,9 +384,15 @@
                         <div class="single-footer-widget tp_widgets">
                             <h4 class="footer_title">Redes sociales</h4>
                             <ul class="list">
-                                <li><a href="{{registro["facebook"]}}" target="_blank">Facebook</a></li>
-                                <li><a href="{{registro["instagram"]}}" target="_blank">Instagram</a></li>
-                                <li><a href="{{registro["youtube"]}}" target="_blank">Youtube</a></li>
+                                {% if facebook != None %}
+                                    <li><a href="{{registro["facebook"]}}" target="_blank">Facebook</a></li>
+                                {% endif %}
+                                {% if instagram != None %}
+                                    <li><a href="{{registro["instagram"]}}" target="_blank">Instagram</a></li>
+                                {% endif %}
+                                {% if instagram != None %}
+                                    <li><a href="{{registro["youtube"]}}" target="_blank">Youtube</a></li>
+                                {% endif %}
                             </ul> 
                         </div>
                     </div>

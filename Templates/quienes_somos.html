@@ -279,9 +279,15 @@
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title">Redes sociales</h4>
 							<ul class="list">
-								<li><a href="{{registro["facebook"]}}" target="_blank">Facebook</a></li>
-								<li><a href="{{registro["instagram"]}}" target="_blank">Instagram</a></li>
-								<li><a href="{{registro["youtube"]}}" target="_blank">Youtube</a></li>
+								{% if facebook != None %}
+									<li><a href="{{registro["facebook"]}}" target="_blank">Facebook</a></li>
+								{% endif %}
+								{% if instagram != None %}
+									<li><a href="{{registro["instagram"]}}" target="_blank">Instagram</a></li>
+								{% endif %}
+								{% if instagram != None %}
+									<li><a href="{{registro["youtube"]}}" target="_blank">Youtube</a></li>
+								{% endif %}
 							</ul> 
 						</div>
 					</div>

@@ -99,17 +99,28 @@
             <div class="order_details_table">
                 <h2>Información financiera</h2>
                 <div class="table-responsive">
-                    
+                    <!--TABLA FINANCIERA-->
                     {% for registro in data2 %}    
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">Información</th>
                                     <th scope="col"></th>
-                                    <th scope="col">Monto</th>
+                                    <th scope="col">Dato</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>
+                                        <p>Fecha de fundación</p>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                        <p>{{registro["fecha_fundacion"]}}</p>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>
                                         <p>Inversión inicial</p>
@@ -146,23 +157,19 @@
                             </tbody>
                         </table>
                         <br>
+                        <!--BOTON MODIFICAR FINANCIERA-->
                         {%if vistaEmprendedor%}
-                        <form action="/informacion" method="POST">
-                            <button class="button button-paypal" type="submit" value="delete"> Modificar</button>
-                            <input type="hidden" name="formId" id="formId" value="1">
-                            <input type="hidden" name="fecha_fundacionx" id="fecha_fundacionx"
-                                value="{{registro["fecha_fundacion"]}}">
-                            <input type="hidden" name="inversion_inicialx" id="inversion_inicialx"
-                                value="{{registro["inversion_inicial"]}}">
-                            <input type="hidden" name="venta_año_anteriorx" id="venta_año_anteriorx"
-                                value="{{registro["venta_año_anterior"]}}">
-                        </form>
+                        <button class="button button-paypal button--active" type="submit" value="delete" data-toggle="modal" data-target="#modificarInfo" >
+                            Modificar Informacion
+                        </button>
                         {%endif%}
-                        {% endfor %}
-                        {%if vistaEmprendedor%}
+                    {% endfor %}
+                    
+                    {%if vistaEmprendedor%}
                         <br><br>
                         <h2>Historial de ofertas</h2>
-
+                        
+                        <!--TABLA OFERTAS-->
                         <table class="table">
                             <thead>
                                 <tr>
@@ -198,10 +205,12 @@
                             </tr>
                         </table>
                         <br><br>
-                        <form action="/informacion" method="POST">
-                            <button class="button button-paypal" type="submit" value="insert">Agregar</button>
-                            <input type="hidden" name="formId" id="formId" value="5">
-                        </form>
+
+                        <!--BOTON AGREGAR OFERTA-->
+                        <button class="button button-paypal button--active" type="submit" data-toggle="modal" value="insert" data-target="#agregar" >
+                            Agregar
+                        </button>>
+                        
                             {% if ultima_oferta != None %}
                             <br>
                             <form action="/informacion" method="POST">
@@ -210,14 +219,10 @@
                                 <input type="hidden" name="id_historial" id="id_historial" value="{{ultima_oferta["id"]}}">
                             </form>
                             <br>
-                            <form action="/informacion" method="POST">
-                                <button class="button button-paypal" type="submit" value="update">Modificar último registro</button>
-                                <input type="hidden" name="formId" id="formId" value="8">
-                                <input type="hidden" name="id_historial" id="id_historial" value="{{ultima_oferta["id"]}}">
-                                <input type="hidden" name="especificaciones" id="especificaciones" value="{{ultima_oferta["especificaciones"]}}">
-                                <input type="hidden" name="oferta" id="oferta" value="{{ultima_oferta["oferta"]}}">
-                                <input type="hidden" name="porcentaje" id="porcentaje" value="{{ultima_oferta["porcentaje"]}}">
-                            </form>
+                            <!--BOTON ACTUALIZAR OFERTA-->
+                            <button class="button button-paypal button--active" type="submit" data-toggle="modal" value="update" data-target="#modultregistro" >
+                                Modificar último registro
+                            </button>
                             {% endif %}
                         {%endif%}
 
@@ -336,20 +341,11 @@
                                     {% endif %}
                                     <br>
                                 </ul>
+                                <!--BOTON MODIFICAR CONTACTOS-->
                                 {%if vistaEmprendedor%}
-                                <form action="/informacion" method="POST">
-                                    <button class="button button-paypal" type="submit" value="modificar"> Modificar
-                                        contactos</button>
-                                    <input type="hidden" name="formId" id="formId" value="3">           
-                                    <input type="hidden" name="emailx" id="emailx" value="{{registro["email"]}}">
-                                    <input type="hidden" name="telefonox" id="telefonox"
-                                        value="{{registro["telefono"]}}">
-                                    <input type="hidden" name="facebookx" id="facebookx"
-                                        value="{{registro["facebook"]}}">
-                                    <input type="hidden" name="instagramx" id="instagramx"
-                                        value="{{registro["instagram"]}}">
-                                    <input type="hidden" name="youtubex" id="youtubex" value="{{registro["youtube"]}}">
-                                </form>
+                                    <button class="button button-paypal button--active" type="submit" value="modificar" data-toggle="modal" data-target="#modificarInfoContacto" >
+                                        Modificar Informacion
+                                    </button>
                                 {% endif %}
                                 {% endfor %}
                             </div>
@@ -358,15 +354,20 @@
                 </div>
         </section>
 
-        <!--================ Start footer Area  =================-->
-        <!-- Javascript control de errores --> 
+    <!--================ Start footer Area  =================-->
+    <!-- Javascript control de errores --> 
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
     <script src="static/perfil/assets/js/validation.js"></script>
+    <!--POPUP: bootstrap-->
+    <script type="text/javascript" src="static/perfil/assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+
 <!--================ Start footer Area  =================-->	
 {% for registro in data3 %}	
-    <footer class="footer">
+	<footer class="footer">
         <div class="footer-area">
             <div class="container">
                 <div class="row section_gap">
@@ -390,118 +391,214 @@
                                 {% if instagram != None %}
                                     <li><a href="{{registro["instagram"]}}" target="_blank">Instagram</a></li>
                                 {% endif %}
-                                {% if instagram != None %}
+                                {% if youtube != None %}
                                     <li><a href="{{registro["youtube"]}}" target="_blank">Youtube</a></li>
                                 {% endif %}
                             </ul> 
-                        </div>
-                    </div>
-                    <div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-footer-widget tp_widgets">
-                            <h4 class="footer_title">Contact Us</h4>
-                            <div class="ml-40">
-                                
-                                <p class="sm-head">
-                                    <span class="fa fa-phone"></span>
-                                    Numero de telefono
-                                </p>
-                                <p>
-                                    {{registro["telefono"]}}
-                                </p>
-    
-                                <p class="sm-head">
-                                    <span class="fa fa-envelope"></span>
-                                    Email
-                                </p>
-                                <p>
-                                    {{registro["email"]}}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+						</div>
+					</div>
+					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title">Contact Us</h4>
+							<div class="ml-40">
+								
+								<p class="sm-head">
+									<span class="fa fa-phone"></span>
+									Numero de telefono
+								</p>
+								<p>
+									{{registro["telefono"]}}
+								</p>
+	
+								<p class="sm-head">
+									<span class="fa fa-envelope"></span>
+									Email
+								</p>
+								<p>
+									{{registro["email"]}}
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-            <div class="footer-bottom">
-                <div class="container">
-                    <div class="row d-flex">
-                        <p class="col-lg-12 footer-text text-center">
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> Fishing 2020 | An ocean full of
-                            great ideas <i class="fa fa-heart" aria-hidden="true"></i> by <a>Fishing</a>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row d-flex">
+					<p class="col-lg-12 footer-text text-center">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Fishing 2020 | An ocean full of great ideas <i class="fa fa-heart" aria-hidden="true"></i> by <a>Fishing</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+				</div>
+			</div>
+		</div>
+	</footer>
 {% endfor %}
+<!--================ End footer Area  =================-->
 
-    <!--================ End footer Area  =================-->
 
 
     <!--POPUP: Modificar informacion de contacto-->
-    {%if mostrar1%}
-        <form action="/informacion" method="POST">
-            <br>
-            <p>Modifica el campo que necesites</p>
-            <table>
-                <tr>
-                    <td><input type="text" id="emailUP" name="emailUP" value="{{emailUpx}}"></td>
-                    <td><input type="text" id="telefonoUP" name="telefonoUP" value="{{telefonoUpx}}"></td>
-                    <td><input type="url" id="facebookUP" name="facebookUP" value="{{facebookUpx}}"></td>
-                    <td><input type="url" id="instagramUP" name="instagramUP" value="{{instagramUpx}}"></td>
-                    <td><input type="url" id="youtubeUP" name="youtubeUP" value="{{youtubeUpx}}"></td>
-                    <td><input type="submit" value="Aceptar Cambios"> </td>
-                    <td><input type="submit" value="Aceptar Cambios"> </td>
-                    <input type="hidden" id="formId" name="formId" value="4">
-                </tr>
-            </table>
-        </form>
-    {%endif%}
-    
-    {%if mostrar2%}
-        <p>Inserta una nueva oferta</p>
-        <form action="/informacion" method="POST">
-            Especificaciones: <textarea  name="especificaciones" id="especificaciones" rows="10" cols="100" ></textarea>
-            Oferta: $<input type="text" id="oferta" name="oferta"><br>
-            Porcentaje: <input type="text" id="porcentaje" name="porcentaje">% <br>
-            <input type="submit" value="Agregar"><br>
-            <input type="hidden" id="formId" name="formId" value="6"><br>
-        </form>
-    {%endif%}
-    
-    {%if mostrar3%}
-        <p>Inserta una nueva oferta</p>
-        <form action="/informacion" method="POST">
-            Especificaciones: <textarea  name="especificaciones" id="especificaciones" rows="10" cols="100" >{{data5["especificaciones"]}}</textarea>
-            Oferta: $<input type="text" id="oferta" name="oferta" value="{{data5["oferta"]}}"><br>
-            Porcentaje: <input type="text" id="porcentaje" name="porcentaje" value="{{data5["porcentaje"]}}">% <br>
-            <input type="submit" value="Agregar"><br>
-            <input type="hidden" id="formId" name="formId" value="9"><br>
-            <input type="hidden" id="id_historial" name="id_historial" value="{{data5["id_historial"]}}"><br>
-        </form>
-    
-    {%endif%}
+    <div class="modal fade" id="modificarInfoContacto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modifica tu información</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/informacion" method="POST">
+                        <div class="field">
+                            <label class="" for="emailUP">Email</label>
+                            <div class="control">
+                                <input type="text" id="emailUP" name="emailUP" value="{{data[0]["email"]}}">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="" for="telefonoUP">Teléfono</label>
+                            <div class="control">
+                                <input type="text" id="telefonoUP" name="telefonoUP" value="{{data[0]["telefono"]}}">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="" for="facebookUP">Facebook</label>
+                            <div class="control">
+                                <input type="text" id="facebookUP" name="facebookUP" value="{{data[0]["facebook"]}}">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="" for="instagramUP">Instagram</label>
+                            <div class="control">
+                                <input type="text" id="instagramUP" name="instagramUP" value="{{data[0]["instagram"]}}">
+                            </div>
+                        </div>
 
-    <!--POPUP: Modificar informacion -->
-    {%if mostrar%}
-        <form action="/informacion" method="POST">
-            <br>
-            <p>Modifica el campo que necesites</p>
-            <table>
-                <tr>
-                    <td><input type="text" id="fecha_fundacionUP" name="fecha_fundacionUP"
-                            value="{{fecha_fundacionUpx}}"></td>
-                    <td><input type="text" id="inversion_inicialUP" name="inversion_inicialUP"
-                            value="{{inversion_inicialUpx}}"></td>
-                    <td><input type="text" id="venta_año_anteriorUP" name="venta_año_anteriorUP"
-                            value="{{venta_año_anteriorUpx}}"></td>
-                    <td><input type="submit" value="Aceptar Cambios"> </td>
-                    <input type="hidden" id="formId" name="formId" value="2">
-                </tr>
-            </table>
-        </form>
-    {%endif%}
+                        <div class="field">
+                            <label class="" for="youtubeUP">Youtube</label>
+                            <div class="control">
+                                <input type="text" id="youtubeUP" name="youtubeUP" value="{{data[0]["youtube"]}}">
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" value="Aceptar Cambios" class="btn btn-primary">Aplicar cambios</button>
+                            <input type="hidden" id="formId" name="formId" value="4">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--POPUP: Insertar Oferta-->
+        <div class="modal fade" id="agregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <h4 class="modal-title" id="exampleModalLongTitle">Nueva oferta</h4>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container">
+                        <form action="/informacion" method="POST">
+                            Especificaciones: <br>
+                            <textarea  name="especificaciones" id="especificaciones" rows="10" cols="25" ></textarea><br>
+                            Oferta: <br>
+                            $ <input type="text" id="oferta" name="oferta"><br>
+                            Porcentaje: <br>
+                            <input type="text" id="porcentaje" name="porcentaje"> % <br><br>
+
+                            <button type="submit" value="Agregar" class="btn btn-primary">Agregar</button>
+                            <input type="hidden" id="formId" name="formId" value="6">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </form>   
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
+    
+
+    <!--Modificar oferta-->
+    <div class="modal fade" id="modultregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" >
+                    <h4 class="modal-title" id="exampleModalLongTitle">Modifica tu última oferta</h4>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form action="/informacion" method="POST">
+                            Especificaciones: <br>
+                            <textarea  name="especificaciones" id="especificaciones" rows="10" cols="30" >{{ultima_oferta["especificaciones"]}}</textarea> <br><br>
+                            Oferta: <br>
+                            $ <input type="text" id="oferta" name="oferta" value="{{ultima_oferta["oferta"]}}"><br><br>
+                            Porcentaje: <br>
+                            <input type="text" id="porcentaje" name="porcentaje" value="{{ultima_oferta["porcentaje"]}}"> % <br><br>
+                            
+                            <button type="submit" value="Agregar" class="btn btn-primary">Aplicar cambios</button>
+                            <input type="hidden" id="formId" name="formId" value="9">
+                            <input type="hidden" id="id_historial" name="id_historial" value="{{ultima_oferta["id"]}}">
+
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        </form>
+                    </div>
+                </div>   
+            </div>
+        </div>
+    </div>
+
+    <!--POPUP: Modificar informacion financiera -->
+        <div class="modal fade" id="modificarInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modifica tu información</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+                <form action="/informacion" method="POST">
+                    <div class="field">
+                        <label class="" for="fecha_fundacionUP">Fecha de fundación</label>
+                            <div class="control">
+                                <input type="date" id="fecha_fundacionUP" name="fecha_fundacionUP"
+                                value="{{data2[0]["fecha_fundacion"]}}"><br><br>
+                            </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="" for="email">Inversión inicial</label>
+                            <div class="control">
+                                <input type="text" id="inversion_inicialUP" name="inversion_inicialUP"
+                                value="{{data2[0]["inversion_inicial"]}}"><br><br>
+                            </div>
+                    </div>
+
+                    <div class="field">
+                        <label class="" for="email">Venta año anterior</label>
+                            <div class="control">
+                                <input type="text" id="venta_año_anteriorUP" name="venta_año_anteriorUP"
+                                value="{{data2[0]["venta_año_anterior"]}}"><br><br>
+                            </div>
+                    </div>
+                        <button type="submit" value="Agregar" class="btn btn-primary">Aplicar cambios</button>
+                        <input type="hidden" id="formId" name="formId" value="2">
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

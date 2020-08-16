@@ -156,6 +156,7 @@ def getInformacionGeneral():
                 video = data[0]["video"]
 
             logic.saveImagesEmprendimiento(idEmprendimiento)
+            video_vista = logic.checVideoExist(idEmprendimiento)
 
         return render_template(
             "emprendimientoInicio.html",

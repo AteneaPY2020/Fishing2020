@@ -358,7 +358,7 @@ class emprendimientoLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            f"UPDATE fishingdb.emprendimiento SET inversion_inicial = '{inversion_inicial}', fecha_fundacion = '{fecha_fundacion}', venta_anio_anterior = '{venta_año_anterior}', "
+            f"UPDATE fishingdb.emprendimiento SET inversion_inicial = '{inversion_inicial}', fecha_fundacion = '{fecha_fundacion}', venta_anio_anterior = '{venta_año_anterior}' "
             + f" WHERE id = {idEmprendimiento};"
         )
         print(sql)
@@ -542,3 +542,29 @@ class emprendimientoLogic(Logic):
         )
         rows = database.executeNonQueryRows(sql)
         return rows
+
+    def getVideoById(self, id):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            "SELECT video FROM fishingdb.emprendimiento "
+            + f"where emprendimiento.id = {id};"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        return data
+
+    def checVideoExist(self, idEmprendimiento):
+        dataBase = self.get_databaseXObj()
+        sql = (
+            f"SELECT video FROM fishingdb.emprendimiento where id = {idEmprendimiento};"
+        )
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        counter = 0
+        for item in data:
+            counter += 1
+
+        if counter > 0:
+            return True
+        else:
+            return False

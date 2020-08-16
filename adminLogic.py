@@ -117,25 +117,6 @@ class adminLogic(Logic):
         rows = database.executeNonQueryRows(sql)
         return rows
 
-    def updateFundador(self, id, user, name):
-
-        id_usuario = UserLogic()
-        usuario = id_usuario.getUserByUser(user)
-
-        infoEmprendedor = emprendedorLogic()
-        id_emprendedor = infoEmprendedor.getEmprendedorByUser(usuario.getId())
-
-        id_emprendimiento = self.getEmprendimientoByName(name)
-
-        database = self.get_databaseXObj()
-        sql = (
-            f"update fishingdb.fundador set fundador.id_emprendedor= {id_emprendedor.getId()}, "
-            + f"fundador.id_emprendimiento={id_emprendimiento.getId()} where fundador.id = '{id}';"
-        )
-        print(sql)
-        rows = database.executeNonQueryRows(sql)
-        return rows
-
     # Categorias-----------------------------------------------------------------------------------------------------------
     def getAllCategorias(self):
         dataBase = self.get_databaseXObj()

@@ -119,8 +119,8 @@ class emprendimientoLogic(Logic):
         database = self.get_databaseXObj()
         sql = (
             "INSERT INTO fishingdb.emprendimiento (id, estado, descripcion, historia, eslogan, inversion_inicial, fecha_fundacion, venta_anio_anterior, "
-            + "nombre, video, email, telefono, facebook, instagram, youtube) "
-            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+            + "nombre, video, email, telefono, facebook, instagram, youtube, nombre_foto) "
+            + "VALUES (0, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
         )
 
         data = (
@@ -138,6 +138,7 @@ class emprendimientoLogic(Logic):
             facebook,
             instagram,
             youtube,
+            nombre_foto,
         )
         rows = database.executeNonQueryRowsTuple(sql, data)
 
@@ -268,7 +269,7 @@ class emprendimientoLogic(Logic):
         database = self.get_databaseXObj()
         sql = (
             "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
-            + f"values (0, 'te han añadido al emprendimiento {id_emprendimiento.getNombre()}', {id_emprendedor.getId()}, current_date(), current_time());"
+            + f"values (0, 'Te han añadido al emprendimiento: {id_emprendimiento.getNombre()}', {id_emprendedor.getId()}, current_date(), current_time());"
         )
         print(sql)
         rows = database.executeNonQueryRows(sql)
@@ -516,7 +517,7 @@ class emprendimientoLogic(Logic):
         for registro in fundadores:
             sql2 = (
                 "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
-                + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje al emprendimiento {idEmprendimiento.getNombre()}', {registro[0]}, "
+                + f"values (0, 'El inversionista {id_inversor.getNombre()} te ha enviado un mensaje. Está interesado en el emprendimiento: {idEmprendimiento.getNombre()}', {registro[0]}, "
                 + "current_date(), current_time());"
             )
             print(sql2)

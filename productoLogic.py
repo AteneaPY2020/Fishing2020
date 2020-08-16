@@ -99,7 +99,7 @@ class productoLogic(Logic):
         for registro in data:
             foto = registro["foto"]
             nombre_foto = registro["nombre_foto"]
-            if nombre_foto != "products.jpg":
+            if nombre_foto != "products.png":
                 path = os.getcwd() + "\\static\\images\\productos\\" + nombre_foto
                 with open(path, "wb") as file:
                     file.write(foto)

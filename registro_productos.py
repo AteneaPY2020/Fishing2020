@@ -114,7 +114,7 @@ def registroProducto():
             youtube = None
         else:
             youtube = data3[0]["youtube"]
-            
+
         formId = int(request.form["formId"])
         if formId == 1:
             nombre = request.form["nombre"]
@@ -126,7 +126,7 @@ def registroProducto():
             nombre_foto = foto.filename
 
             if foto.filename == "":
-                nombre_foto = "products.jpg"
+                nombre_foto = "products.png"
                 logicProducto.insertNewProductoWithoutPhoto(
                     nombre,
                     nombre_foto,

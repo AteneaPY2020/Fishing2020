@@ -179,7 +179,7 @@ def quienesSomos():
                 data2 = logic.getHistoria(idEmprendimiento)
                 data3 = logic.getDatosGeneralesById(idEmprendimiento)
                 data4 = logic.getDescripcion(idEmprendimiento)
-                message = "El usuario o emprendimiento seleccionado no existe. Pruebe de nuevo"
+                message = "El usuario no existe, pruebe de nuevo."
 
                 if data3[0]["facebook"] == "":
                     facebook = None

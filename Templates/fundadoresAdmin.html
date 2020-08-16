@@ -35,7 +35,6 @@
             <th>Biografia</th>
             <th>Nombre emprendimiento</th>
             <th>Borrar</th>
-            <th>Modificar</th>
         </tr>
 
         {% for registro in data %}
@@ -51,30 +50,11 @@
                     <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                 </form>
             </td>
-            <td>
-                <form action="/fundadoresAdmin" method="POST">
-                    <button type="submit" value="update">Modificar</button>
-                    <input type="hidden" name="formId" id="formId" value="3">
-                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                </form>
-            </td>
         </tr>
         {% endfor %}
 
     </table>
     <br><br>
-
-    {% if verdadero %}
-    <p>Modifica fundador</p>
-    <form action="/fundadoresAdmin" method="POST">
-        Usuario: <input type="text" name="user" id="user" value="{{user}}">
-        emprendimiento: <input type="text" name="name" id="name" value="{{name}}">
-        <button type="submit" value="insert">Modificar</button>
-        <input type="hidden" name="formId" id="formId" value="4">
-        <input type="hidden" name="id" id="id" value="{{id}}">
-    </form>
-    <br><br>
-    {% endif %}
 
     <p>
         <a href="/Admin">Regresar</a>

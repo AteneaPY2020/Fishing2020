@@ -84,6 +84,7 @@ def perfilInversionista():
         user = session["user"]
         id_user = int(user["id"])
         logicInv = inversorLogic()
+        categorias = CategoriaLogic().getAllCategorias()
 
         if request.method == "GET":
             datos = logicInv.getIdInversor(id_user)
@@ -106,6 +107,7 @@ def perfilInversionista():
                 message="",
                 interes=interes,
                 nombre_foto=nombre_foto,
+                categorias=categorias,
             )
         elif request.method == "POST":
             formId = int(request.form["formId"])
@@ -131,6 +133,7 @@ def perfilInversionista():
                     email=email,
                     message="",
                     interes=interes,
+                    categorias=categorias,
                 )
             if formId == 2:
                 # Update
@@ -179,6 +182,7 @@ def perfilInversionista():
                     nombre_foto=nombre_foto,
                     message="",
                     interes=interes,
+                    categorias=categorias,
                 )
             if formId == 3:
                 # Borrar interes
@@ -207,6 +211,7 @@ def perfilInversionista():
                     message="Interes eliminado",
                     interes=interes,
                     nombre_foto=nombre_foto,
+                    categorias=categorias,
                 )
             if formId == 4:
                 datos = logicInv.getIdInversor(id_user)
@@ -219,7 +224,6 @@ def perfilInversionista():
                 email = Inversor["email"]
                 nombre_foto = Inversor["nombre_foto"]
                 interes = logicInv.getIntereses(id_inv)
-                categorias = CategoriaLogic().getAllCategorias()
                 return render_template(
                     "perfil_inversionista.html",
                     nombre=nombre,
@@ -267,6 +271,7 @@ def perfilInversionista():
                     message="Interes agregado",
                     interes=interes,
                     nombre_foto=nombre_foto,
+                    categorias=categorias,
                 )
     except KeyError:
         return render_template(

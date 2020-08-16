@@ -307,7 +307,6 @@ def emprendedor():
             email = request.form["email"]
             telefono = request.form["telefono"]
             userName = request.form["id_usuario"]
-            session["userNameEmp"] = userName
             pais = request.form["pais"]
             ciudad = request.form["ciudad"]
             biografia = request.form["biografia"]
@@ -323,7 +322,7 @@ def emprendedor():
                 nombre=nombre,
                 email=email,
                 telefono=telefono,
-                id_usuario=userName,
+                userName=userName,
                 pais=pais,
                 ciudad=ciudad,
                 biografia=biografia,
@@ -335,7 +334,7 @@ def emprendedor():
             nombre = request.form["nombre"]
             email = request.form["email"]
             telefono = request.form["telefono"]
-            userName = session["userNameEmp"]
+            userName = request.form["userName"]
             pais = request.form["pais"]
             ciudad = request.form["ciudad"]
             biografia = request.form["biografia"]
@@ -358,7 +357,6 @@ def emprendedor():
                     pais,
                     ciudad,
                     biografia,
-                    nombre_foto,
                     binary_foto,
                 )
             message = "Se ha modificado con éxito"
@@ -415,7 +413,7 @@ def productos():
                 logicProductos = productoLogic()
 
                 if foto.filename == "":
-                    nombre_foto = "products.jpg"
+                    nombre_foto = "products.png"
                     logicProductos.insertNewProductoWithoutPhoto(
                         nombre,
                         nombre_foto,
@@ -603,54 +601,6 @@ def fundadores():
             message = "Se ha eliminado un fundador"
             data = logic.getAllFundadores()
             return render_template("fundadoresAdmin.html", data=data, message=message)
-        # Va al form para dar update
-        elif formId == 3:
-            verdadero = True
-            id = int(request.form["id"])
-            data = logic.getAllFundadores()
-            return render_template(
-                "fundadoresAdmin.html", data=data, verdadero=verdadero, id=id,
-            )
-        # UPDATE
-        else:
-            id = int(request.form["id"])
-            user = request.form["user"]
-            emprendimiento = request.form["name"]
-            rol = 3
-            logicUsuario = UserLogic()
-            logicEmpre = adminLogic()
-            # Comprobando si existe
-            existeUsuario = logicUsuario.checkUserInUsuario(user, rol)
-            existeEmprendimiento = logicEmpre.checkEmprendimiento(emprendimiento)
-
-            if existeUsuario and existeEmprendimiento:
-                # Compruebo si no lo habian registrado antes en el mismo emprendimiento
-                logicRegist = emprendimientoLogic()
-                idEmprendimiento = logicEmpre.getEmprendimientoByName(emprendimiento)
-                AlreadyExist = logicRegist.checkUserAlredyExist(
-                    user, idEmprendimiento.getId()
-                )
-                if AlreadyExist is False:
-                    logic.updateFundador(id, user, emprendimiento)
-                    data = logic.getAllFundadores()
-                    massage = "Se ha modificado al fundador"
-                    return render_template(
-                        "fundadoresAdmin.html", data=data, massage=massage
-                    )
-                else:
-                    data = logic.getAllFundadores()
-                    message = (
-                        "El usuario ya se encuentra asignado a este emprendimiento."
-                    )
-                    return render_template(
-                        "fundadoresAdmin.html", data=data, massage=message
-                    )
-            else:
-                data = logic.getAllFundadores()
-                massage = "El usuario o emprendimiento seleccionado no existe. Preuebe de nuevo"
-                return render_template(
-                    "fundadoresAdmin.html", data=data, message=massage
-                )
 
 
 # ----------------------------------------------------------------------------------------------------------
@@ -940,7 +890,7 @@ def categoria():
             logic.updateCategoria(id, categoria)
             data = logic.getAllCategorias()
             massage = "Se ha modificado el usuario"
-            return render_template("categoria.html", data=data, massage=massage)
+            return render_template("categoriaAdmin.html", data=data, massage=massage)
 
 
 # ----------------------------------------------------------------------------------------------------------
@@ -1006,18 +956,7 @@ def agregarAdmin():
             password = request.form["password"]
             rol = 1
             logicUsuario = UserLogic()
-            # Comprobando si existe
-            existeUsuario = logicUsuario.checkUserInUsuario(usuario, rol)
-            if not existeUsuario:
-                logic.updateAdmin(id, usuario, password)
-                data = logic.getAllAdmin()
-                message2 = "Se ha modificado al administrador"
-                return render_template(
-                    "agregarAdmin.html", data=data, message2=message2
-                )
-            else:
-                data = logic.getAllAdmin()
-                message2 = "El usuario seleccionado ya existe. Pruebe de nuevo"
-                return render_template(
-                    "agregarAdmin.html", data=data, verdadero=False, message2=message2
-                )
+            logic.updateAdmin(id, usuario, password)
+            data = logic.getAllAdmin()
+            message2 = "Se ha modificado al administrador"
+            return render_template("agregarAdmin.html", data=data, message2=message2)

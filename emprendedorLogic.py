@@ -138,7 +138,7 @@ class emprendedorLogic(Logic):
         return rows
 
     def updateEmprendedorbyIdUsuarioWithPhoto(
-        self, id, nombre, email, telefono, pais, ciudad, biografia, nombre_foto, foto,
+        self, id, nombre, email, telefono, pais, ciudad, biografia, foto
     ):
         database = self.get_databaseXObj()
         nombre_foto = str(self.getIdEmprendedorByIdUsuario(id)) + ".png"
@@ -194,7 +194,7 @@ class emprendedorLogic(Logic):
         database = self.get_databaseXObj()
         sql = (
             f"select notificaciones.mensaje, notificaciones.fecha, notificaciones.hora from fishingdb.notificaciones where id_emprendedor={idUsuario} "
-            + "and notificaciones.fecha>=current_date()-5 Order by notificaciones.fecha, notificaciones.hora desc;"
+            + "Order by notificaciones.fecha desc, notificaciones.hora desc limit 5;"
         )
         print(sql)
         data = database.executeQuery(sql)

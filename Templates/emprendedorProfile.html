@@ -129,7 +129,7 @@
                                 <div class="field">
                                     <label class="" for="descripcion">Descripcion:</label>
                                         <div class="control">
-                                            <br><textarea name="descripcion" cols="30" rows="10" id="descripcion"></textarea><br>
+                                            <textarea name="descripcion" cols="30" rows="10" id="descripcion"></textarea><br>
                                         </div>
                                 </div>
 
@@ -240,7 +240,7 @@
                                             {% endfor %}
                                         </div>
                                 </div>
-
+                                <br>
                                 <!--Insertar emprendimiento-->
                                 <button type="submit" value="update" class="btn btn-primary">Crear emprendimiento</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -277,80 +277,80 @@
 
                     <!-- Modal -->
                     <div class="modal fade" id="modificarInformacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Modifica tu información</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Modifica tu información</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
 
                             
-                            <div class="container">
-                
-                                    
-                                    <form NAME="formId" id="formId" action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
-
+                                    <div class="container">
+                    
                                         
-                                        <div class="field">
-                                            <label class="" for="email">Nombre</label>
-                                                <div class="control">
-                                                    <input class="input" type="text" name="nombre" id="nombre" value="{{data[0]["nombre"]}}"><br>
-                                                
-                                        </div>
+                                        <form NAME="formId" id="formId" action="/emprendedorProfile" method="POST" enctype="multipart/form-data">
 
-                                        <div class="field">
-                                            <label class="" for="email">Email</label>
-                                                <div class="control">
-                                                    <input type="text" name="email" id="email" value="{{data[0]["email"]}}"> <br>
-                                                </div>
-                                        </div>
+                                            
+                                            <div class="field">
+                                                <label class="" for="email">Nombre</label>
+                                                    <div class="control">
+                                                        <input class="input" type="text" name="nombre" id="nombre" value="{{data[0]["nombre"]}}"><br>
+                                                    
+                                            </div>
 
-                                        <div class="field">
-                                            <label class="" for="telefono">Telefono</label>
-                                                <div class="control">
-                                                    <input type="text" name="telefono" id="telefono" value="{{data[0]["telefono"]}}"><br>
-                                                </div>
-                                        </div>
+                                            <div class="field">
+                                                <label class="" for="email">Email</label>
+                                                    <div class="control">
+                                                        <input type="text" name="email" id="email" value="{{data[0]["email"]}}"> <br>
+                                                    </div>
+                                            </div>
 
-                                        <div class="field">
-                                            <label class="" for="pais">País</label>
-                                                <div class="control">
-                                                    <input type="text" name="pais" id="pais" value="{{data[0]["pais"]}}"><br>
-                                                </div>
-                                        </div>
+                                            <div class="field">
+                                                <label class="" for="telefono">Telefono</label>
+                                                    <div class="control">
+                                                        <input type="text" name="telefono" id="telefono" value="{{data[0]["telefono"]}}"><br>
+                                                    </div>
+                                            </div>
 
-                                        <div class="field">
-                                            <label class="" for="ciudad">Ciudad</label>
-                                                <div class="control">
-                                                    <input type="text" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}"><br>
-                                                </div>
-                                        </div>
+                                            <div class="field">
+                                                <label class="" for="pais">País</label>
+                                                    <div class="control">
+                                                        <input type="text" name="pais" id="pais" value="{{data[0]["pais"]}}"><br>
+                                                    </div>
+                                            </div>
 
-                                        <div class="field">
-                                            <label class="" for="biografia">Biografia</label>
-                                                <div class="control">
-                                                    <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{data[0]["biografia"]}}</textarea><br><br>
-                                                </div>
-                                        </div>
-                                        
-                                        Foto 
-                                        <br><input type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
-                                        
-                                        <!--Aplicar cambios-->
-                                        <button type="submit" value="update" class="btn btn-primary">Aplicar cambios</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <input type="hidden" name="formId" id="formId" value="2">
-                                        <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
-                                    </form>
+                                            <div class="field">
+                                                <label class="" for="ciudad">Ciudad</label>
+                                                    <div class="control">
+                                                        <input type="text" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}"><br>
+                                                    </div>
+                                            </div>
 
+                                            <div class="field">
+                                                <label class="" for="biografia">Biografia</label>
+                                                    <div class="control">
+                                                        <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{data[0]["biografia"]}}</textarea><br><br>
+                                                    </div>
+                                            </div>
+                                            
+                                            Foto 
+                                            <br><input type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
+                                            
+                                            <!--Aplicar cambios-->
+                                            <button type="submit" value="update" class="btn btn-primary">Aplicar cambios</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <input type="hidden" name="formId" id="formId" value="2">
+                                            <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
+                                        </form>
+
+                                    </div>
+                            
+                                </div>
                             </div>
-                            
                         </div>
-                        </div>
-                    </div>
                     </div>
                     
                     <br><br>

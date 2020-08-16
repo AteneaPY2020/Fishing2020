@@ -308,8 +308,9 @@
                   </div>
           </div>
 
-          <input type="submit" value="RegistraRegistrar">
-          <input type="hidden" name="formId" id="formId" value="1">
+          <input type="submit" value="Modificar">
+          <input type="hidden" name="formId" id="formId" value="4">
+          <input type="hidden" name="id_producto" id="id_producto" value="{{data2["id_producto"]}}"><br>
   </form>   
 </div> 
     <form action="/registroProductos" method="GET">
@@ -339,10 +340,16 @@
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title">Redes sociales</h4>
 							<ul class="list">
-								<li><a>Facebook: {{registro["facebook"]}}</a></li>
-								<li><a>Instagram: {{registro["instagram"]}}</a></li>
-                                <li><a>Youtube: {{registro["youtube"]}}</a></li>
-							</ul>
+                  {% if facebook != None %}
+                      <li><a href="{{registro["facebook"]}}" target="_blank">Facebook</a></li>
+                  {% endif %}
+                  {% if instagram != None %}
+                      <li><a href="{{registro["instagram"]}}" target="_blank">Instagram</a></li>
+                  {% endif %}
+                  {% if instagram != None %}
+                      <li><a href="{{registro["youtube"]}}" target="_blank">Youtube</a></li>
+                  {% endif %}
+              </ul> 
 						</div>
 					</div>
 					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">

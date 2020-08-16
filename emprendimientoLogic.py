@@ -358,7 +358,7 @@ class emprendimientoLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            f"UPDATE fishingdb.emprendimiento SET inversion_inicial = '{inversion_inicial}', fecha_fundacion = '{fecha_fundacion}', venta_anio_anterior = '{venta_año_anterior}', "
+            f"UPDATE fishingdb.emprendimiento SET inversion_inicial = '{inversion_inicial}', fecha_fundacion = '{fecha_fundacion}', venta_anio_anterior = '{venta_año_anterior}' "
             + f" WHERE id = {idEmprendimiento};"
         )
         print(sql)

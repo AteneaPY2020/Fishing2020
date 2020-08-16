@@ -186,7 +186,7 @@
 									<img src="static/emprendimiento/img/blog/popular-post/post1.jpg" width="150" height="90" alt="post">
 									<div class="media-body">
 										<h3>Grace & Lace</h3>	
-										<a href="https://www.graceandlace.com/">
+										<a href="https://www.graceandlace.com/" target="_blank">
 											<p>Visita su página</p>	
 										</a>
 											
@@ -197,7 +197,7 @@
 								<img src="static/emprendimiento/img/blog/popular-post/post2.jpg" width="150" height="90" alt="post">
 								<div class="media-body">
 									<h3>Wicked Good Cupcakes</h3>	
-									<a href="https://www.wickedgoodcupcakes.com/">
+									<a href="https://www.wickedgoodcupcakes.com/" target="_blank">
 										<p>Visita su página</p>	
 									</a>
 										
@@ -208,7 +208,7 @@
 								<img src="static/emprendimiento/img/blog/popular-post/post3.jpg" width="150" height="90" alt="post">
 								<div class="media-body">
 									<h3>The Red Dress Boutique</h3>	
-									<a href="https://www.reddress.com/">
+									<a href="https://www.reddress.com/" target="_blank">
 										<p>Visita su página</p>	
 									</a>
 										
@@ -219,7 +219,7 @@
 								<img src="static/emprendimiento/img/blog/popular-post/post4.jpg" width="150" height="90" alt="post">
 								<div class="media-body">
 									<h3>Bombas</h3>	
-									<a href="https://bombas.com/">
+									<a href="https://bombas.com/" target="_blank">
 										<p>Visita su página</p>	
 									</a>
 										
@@ -230,7 +230,7 @@
 								<img src="static/emprendimiento/img/blog/popular-post/post5.jpg" width="150" height="90" alt="post">
 								<div class="media-body">
 									<h3>Simple Sugars</h3>	
-									<a href="https://www.simplesugarsskincare.com/">
+									<a href="https://www.simplesugarsskincare.com/" target="_blank">
 										<p>Visita su página</p>	
 									</a>
 										
@@ -241,7 +241,7 @@
 								<img src="static/emprendimiento/img/blog/popular-post/post6.png" width="150" height="90" alt="post">
 								<div class="media-body">
 									<h3>GrooveBook</h3>	
-									<a href="https://www.groovebook.com/">
+									<a href="https://www.groovebook.com/" target="_blank">
 										<p>Visita su página</p>	
 									</a>
 										
@@ -259,7 +259,7 @@
 
 <br><br><br><br>
 
-    <!--================ Start footer Area  =================-->	
+<!--================ Start footer Area  =================-->	
 {% for registro in data3 %}	
 	<footer class="footer">
 		<div class="footer-area">
@@ -279,10 +279,16 @@
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title">Redes sociales</h4>
 							<ul class="list">
-								<li><a>Facebook: {{registro["facebook"]}}</a></li>
-								<li><a>Instagram: {{registro["instagram"]}}</a></li>
-                                <li><a>Youtube: {{registro["youtube"]}}</a></li>
-							</ul>
+								{% if facebook != None %}
+									<li><a href="{{registro["facebook"]}}" target="_blank">Facebook</a></li>
+								{% endif %}
+								{% if instagram != None %}
+									<li><a href="{{registro["instagram"]}}" target="_blank">Instagram</a></li>
+								{% endif %}
+								{% if instagram != None %}
+									<li><a href="{{registro["youtube"]}}" target="_blank">Youtube</a></li>
+								{% endif %}
+							</ul> 
 						</div>
 					</div>
 					<div class="offset-lg-1 col-lg-3 col-md-6 col-sm-6">

@@ -38,3 +38,17 @@ class guardadosLogic(Logic):
         sql = f"delete from fishingdb.guardado where guardado.id_inversionista = {id_inversionista} and guardado.id_producto = {id_producto};"
         rows = database.executeNonQueryRows(sql)
         return rows
+
+    def checkGuardado(self, id_inversionista, id_producto):
+        database = self.get_databaseXObj()
+        sql = f"select * from fishingdb.guardado where guardado.id_inversionista = {id_inversionista} and guardado.id_producto = {id_producto};"
+        print(sql)
+        data = database.executeQuery(sql)
+        counter = 0
+        for item in data:
+            counter += 1
+
+        if counter > 0:
+            return True
+        else:
+            return False

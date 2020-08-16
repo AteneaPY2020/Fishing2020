@@ -61,7 +61,7 @@ class UserLogic(Logic):
         dataBase = self.get_databaseXObj()
         sql = (
             "SELECT usuario.usuario FROM fishingdb.usuario "
-            + f"where usuario.usuario = '{user}';"
+            + f"where usuario.usuario = '{user}' and usuario.rol = {rol};"
         )
         print(sql)
         data = dataBase.executeQuery(sql)
@@ -86,6 +86,24 @@ class UserLogic(Logic):
     def getUserByUser(self, user):
         dataBase = self.get_databaseXObj()
         sql = "SELECT * FROM fishingdb.usuario " + f"where usuario.usuario = '{user}';"
+        print(sql)
+        data = dataBase.executeQuery(sql)
+        data = self.tupleToDictionaryList(data, self.keys)
+        if len(data) > 0:
+            data_dic = data[0]
+            userObj = UserObj(
+                data_dic["id"],
+                data_dic["usuario"],
+                data_dic["password"],
+                data_dic["rol"],
+            )
+            return userObj
+        else:
+            return None
+
+    def getUserById(self, id):
+        dataBase = self.get_databaseXObj()
+        sql = "SELECT * FROM fishingdb.usuario " + f"where usuario.id = '{id}';"
         print(sql)
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)

@@ -6,6 +6,7 @@ from inversorObj import inversorObj
 from emprendedorLogic import emprendedorLogic
 from emprendedorObj import emprendedorObj
 from emprendimientoLogic import emprendimientoLogic
+from categoriaLogic import CategoriaLogic
 import os
 
 login_registro = Blueprint(
@@ -28,7 +29,7 @@ def logIn():
             if userData.rol == 1:
                 dataDic = logic.createDictionary(userData)
                 session["user"] = dataDic
-                return render_template("contacto.html")
+                return render_template("indexAdmin.html")
             if userData.rol == 2:
                 dataDic = logic.createDictionary(userData)
                 session["user"] = dataDic
@@ -46,25 +47,12 @@ def logIn():
 @login_registro.route("/signUpInversor", methods=["GET", "POST"])
 def signUpInversor():
     if request.method == "GET":
-        return render_template("registroInv.html", message="")
+        categorias = CategoriaLogic().getAllCategorias()
+        return render_template("registroInv.html", message="", categorias=categorias)
     elif request.method == "POST":  # "POST"
         name = request.form["nombre"]
         user = request.form["user"]
         rol = 2
-        # Estas son las categorias
-        i = 1
-        alimento = request.form.get("Alimento")
-        moda = request.form.get("Moda")
-        cYTec = request.form.get("CyTec")
-        ecologia = request.form.get("Ecologia")
-        academico = request.form.get("Academico")
-        social = request.form.get("Social")
-        salud = request.form.get("Salud")
-        belleza = request.form.get("Belleza")
-        entretenimiento = request.form.get("Entretenimiento")
-        infantil = request.form.get("Infantil")
-        otra = request.form.get("Otra")
-        # Fin de las categorias
         password = str(request.form["password"])
         email = str(request.form["email"])
         country = request.form["country"]
@@ -110,23 +98,13 @@ def signUpInversor():
                 ).getId()
             )
             # Insertando nuevos intereses
-            for checkbox in (
-                alimento,
-                moda,
-                ecologia,
-                cYTec,
-                social,
-                salud,
-                academico,
-                entretenimiento,
-                infantil,
-                belleza,
-                otra,
-            ):
-                value = request.form.get(checkbox)
+            categorias = CategoriaLogic().getAllCategorias()
+            for checkbox in categorias:
+                id_categoria = checkbox["id"]
+                value = request.form.get(str(id_categoria))
                 if value:
-                    logicInversor.insertNewInteres(i, idInversor)
-                i += 1
+                    logicInversor.insertNewInteres(id_categoria, idInversor)
+
             dataDic = logicUsuario.createDictionary(userData)
             session["user"] = dataDic
 

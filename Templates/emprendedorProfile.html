@@ -91,6 +91,7 @@
                             </td>
                             {% endfor %}
                         </table>
+                        
                         <!--Boton crear nuevo emprendimiento-->             
                         <button class="button button-postComment button--active" type="button" data-toggle="modal" data-target="#crearEmprendimiento" ><i class="fa fa-paper-plane"></i>
                         Crear nuevo emprendimiento
@@ -112,7 +113,7 @@
                 <div class="modal-body">
                     
                     <div class="container">
-                            <form action="/emprendedorProfile" name="crear" id="crear" method="POST" enctype="multipart/form-data">
+                            <form action="/emprendedorProfile" name="crearEmp" id="crearEmp" method="POST" enctype="multipart/form-data">
         
                                 <div class="field">
                                     <label class="" for="estado">Estado:</label>
@@ -129,70 +130,70 @@
                                 <div class="field">
                                     <label class="" for="descripcion">Descripcion:</label>
                                         <div class="control">
-                                            <textarea name="descripcion" cols="30" rows="10" id="descripcion"></textarea><br>
+                                            <textarea name="descripcion" required maxlength="500" cols="30" rows="10" id="descripcion"></textarea><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="" for="historia">Historia:</label>
                                         <div class="control">
-                                            <textarea name="historia" id="historia" cols="30" rows="10"></textarea><br>
+                                            <textarea name="historia" required maxlength="500" id="historia" cols="30" rows="10"></textarea><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="" for="eslogan">Eslogan:</label>
                                         <div class="control">
-                                            <input type="text" name="eslogan" id="eslogan"><br>
+                                            <input type="text" required name="eslogan" maxlength="500" id="eslogan"><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="" for="inversion_inicial">Inversion inicial:</label>
                                         <div class="control">
-                                            <input type="text" name="inversion_inicial" id="inversion_inicial"><br>
+                                            <input type="text" pattern="\d+(\.\d{2})?" required name="inversion_inicial" id="inversion_inicial"><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="" for="fecha_fundacion">Fecha de fundacion:</label>
                                         <div class="control">
-                                            <input type="date" name="fecha_fundacion" id="fecha_fundacion"><br>
+                                            <input type="date" required name="fecha_fundacion" id="fecha_fundacion"><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="" for="venta_año_anterior">Venta de año anterior</label>
                                         <div class="control">
-                                            <input type="text" name="venta_año_anterior" id="venta_año_anterior"><br>
+                                            <input type="text" pattern="\d+(\.\d{2})?" pattern="{0,100}" required name="venta_año_anterior" id="venta_año_anterior"><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="" for="oferta_porcentaje">Porcentaje a ofertar:</label>
                                         <div class="control">
-                                            <input type="text" name="oferta_porcentaje" id="oferta_porcentaje"><br>
+                                            <input type="number" required min="1" max="100" name="oferta_porcentaje" id="oferta_porcentaje"><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="" for="nombre">Nombre del emprendimiento:</label>
                                         <div class="control">
-                                            <input type="text" name="nombre" id="nombre"><br><br>
+                                            <input type="text"  required name="nombre" pattern="[A-Za-z\s]+" id="nombre" title="Por favor, utilice unicamente letras"><br><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="" for="email">Email:</label>
                                         <div class="control">
-                                            <input type="text" name="email" id="email"><br>
+                                            <input type="email" required name="email" id="email"><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
                                     <label class="" for="telefono">Telefono:</label>
                                         <div class="control">
-                                            <input type="text" name="telefono" id="telefono"><br>
+                                            <input type="text" required name="telefono" id="telefono"><br>
                                         </div>
                                 </div>  
 
@@ -204,30 +205,30 @@
                                 </div>
 
                                 <div class="field">
-                                    <label class="" for="telefono">Facebook: </label>
+                                    <label class="" for="facebook">Facebook: </label>
                                         <div class="control">
-                                            <input type="text" name="facebook" id="facebook"><br>
+                                            <input type="text" maxlength="900" name="facebook" id="facebook"><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
-                                    <label class="" for="telefono">Instagram:</label>
+                                    <label class="" for="instagram">Instagram:</label>
                                         <div class="control">
-                                            <input type="text" name="instagram" id="instagram"><br>
+                                            <input type="text" name="instagram" maxlength="900" id="instagram"><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
-                                    <label class="" for="telefono">Youtube:</label>
+                                    <label class="" for="youtube">Youtube:</label>
                                         <div class="control">
-                                            <input type="text" name="youtube" id="youtube"><br>
+                                            <input type="text" name="youtube" maxlength="900" id="youtube"><br>
                                         </div>
                                 </div>
 
                                 <div class="field">
-                                    <label class="" for="telefono">Foto:</label>
+                                    <label class="" for="fileToUpload">Foto:</label>
                                         <div class="control">
-                                            <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+                                            <input type="file" maxlength="900" name="fileToUpload" id="fileToUpload"><br><br>
                                         </div>
                                 </div>
 
@@ -281,7 +282,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLongTitle">Modifica tu información</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="Cerrar" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
@@ -295,44 +296,44 @@
 
                                             
                                             <div class="field">
-                                                <label class="" for="email">Nombre</label>
+                                                <label class="" for="nombre">Nombre</label>
                                                     <div class="control">
-                                                        <input class="input" type="text" name="nombre" id="nombre" value="{{data[0]["nombre"]}}"><br>
-                                                    
+                                                        <input class="input" type="text" required name="nombre" id="nombre" value="{{data[0]["nombre"]}}" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br>
+                                                    </div>
                                             </div>
 
                                             <div class="field">
                                                 <label class="" for="email">Email</label>
                                                     <div class="control">
-                                                        <input type="text" name="email" id="email" value="{{data[0]["email"]}}"> <br>
+                                                        <input type="email" name="email" required id="email" value="{{data[0]["email"]}}"> <br>
                                                     </div>
                                             </div>
 
                                             <div class="field">
                                                 <label class="" for="telefono">Telefono</label>
                                                     <div class="control">
-                                                        <input type="text" name="telefono" id="telefono" value="{{data[0]["telefono"]}}"><br>
+                                                        <input type="number" maxlength="25" required pattern="{0,24}"  required name="telefono" id="telefono" value="{{data[0]["telefono"]}}"><br>
                                                     </div>
                                             </div>
 
                                             <div class="field">
                                                 <label class="" for="pais">País</label>
                                                     <div class="control">
-                                                        <input type="text" name="pais" id="pais" value="{{data[0]["pais"]}}"><br>
+                                                        <input type="text" name="pais" pattern="[A-Za-z\s]+"  title="Por favor, utilice unicamente letras" id="pais" required value="{{data[0]["pais"]}}"><br>
                                                     </div>
                                             </div>
 
                                             <div class="field">
                                                 <label class="" for="ciudad">Ciudad</label>
                                                     <div class="control">
-                                                        <input type="text" name="ciudad" id="ciudad" value="{{data[0]["ciudad"]}}"><br>
+                                                        <input type="text" name="ciudad" pattern="[A-Za-z\s]+"  title="Por favor, utilice unicamente letras" id="ciudad" required value="{{data[0]["ciudad"]}}"><br>
                                                     </div>
                                             </div>
 
                                             <div class="field">
                                                 <label class="" for="biografia">Biografia</label>
                                                     <div class="control">
-                                                        <br><textarea name="biografia" cols="30" rows="10" id="biografia">{{data[0]["biografia"]}}</textarea><br><br>
+                                                        <br><textarea name="biografia" cols="30" required rows="10" id="biografia">{{data[0]["biografia"]}}</textarea><br><br>
                                                     </div>
                                             </div>
                                             
@@ -342,8 +343,8 @@
                                             <!--Aplicar cambios-->
                                             <button type="submit" value="update" class="btn btn-primary">Aplicar cambios</button>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <input type="hidden" name="formId" id="formId" value="2">
-                                            <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}">
+                                            <input type="hidden" name="formId" id="formId" value="2" formnovalidate >
+                                            <input type="hidden" name="id" id="id" value="{{data[0]["id"]}}" formnovalidate >
                                         </form>
 
                                     </div>
@@ -354,6 +355,7 @@
                     </div>
                     
                     <br><br>
+                    
                 </div>
             </div>
                 <aside class="single_sidebar_widget popular_post_widget">
@@ -410,10 +412,8 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
-    <script src="static/perfil/assets/js/validation.js"></script>
+    <script src="static/assets/js/validation.js"></script>
     
-    
-
     <!--POPUP: bootstrap-->
     <script type="text/javascript" src="static/perfil/assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

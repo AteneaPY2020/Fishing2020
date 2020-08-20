@@ -20,21 +20,21 @@
         <option value="Pez Dorado">Pez dorado</option>
         <option value="tiburon">Tiburón</option>
     </select><br><br>
-    descripcion: <input type="text" name="descripcion" id="descripcion"><br><br>
-    historia: <input type="text" name="historia" id="historia"><br><br>
-    eslogan: <input type="text" name="eslogan" id="eslogan"><br><br>
-    inversion inicial: <input type="text" name="inversion_inicial" id="inversion_inicial"><br><br>
-    fecha fundacion: <input type="date" name="fecha_fundacion" id="fecha_fundacion"><br><br>
-    venta año anterior: <input type="text" name="venta_año_anterior" id="venta_año_anterior"><br><br>
-    usuario de emprendedor: <input type="text" name="user_emprendedor" id="user_emprendedor"><br><br>
-    nombre: <input type="text" name="nombre" id="nombre"><br><br>
+    descripcion: <input type="text" name="descripcion" id="descripcion" required maxlength="500"><br><br>
+    historia: <input type="text" name="historia" id="historia" required maxlength="500"><br><br>
+    eslogan: <input type="text" name="eslogan" id="eslogan" required maxlength="500"><br><br>
+    inversion inicial: <input type="number" name="inversion_inicial" id="inversion_inicial" step="0.01"><br><br>
+    fecha fundacion: <input type="date" name="fecha_fundacion" id="fecha_fundacion" required><br><br>
+    venta año anterior: <input type="number" name="venta_año_anterior" id="venta_año_anterior" required step="0.01"><br><br>
+    usuario de emprendedor: <input type="text" name="user_emprendedor" id="user_emprendedor" maxlength="100" required><br><br>
+    nombre: <input type="text" name="nombre" id="nombre" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br><br>
     Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
-    video: <input type="url" name="video" id="video" value="{{video}}"><br>
-    email:<input type="text" name="email" id="email"><br><br>
-    telefono:<input type="text" name="telefono" id="telefono"><br><br>
-    facebook:<input type="text" name="facebook" id="facebook"><br><br>
-    instagram:<input type="text" name="instagram" id="instagram"><br><br>
-    youtube:<input type="text" name="youtube" id="youtube"><br><br>
+    video: <input type="url" name="video" id="video" value="{{video}}" maxlength="900"><br>
+    email:<input type="email" name="email" id="email" required maxlength="150"><br><br>
+    telefono:<input type="number" name="telefono" id="telefono" required maxlength="25"><br><br>
+    facebook:<input type="text" name="facebook" id="facebook" maxlength="25"><br><br>
+    instagram:<input type="text" name="instagram" id="instagram" maxlength="900"><br><br>
+    youtube:<input type="text" name="youtube" id="youtube" maxlength="900"><br><br>
 
     <button type="submit" value="insert">Insertar</button>
     <input type="hidden" name="formId" id="formId" value="1">
@@ -127,20 +127,20 @@
         <option value="Pez Dorado">Pez dorado</option>
         <option value="tiburon">Tiburón</option>
     </select>
-    descripcion: <input type="text" name="descripcion" id="descripcion" value="{{descripcion}}"><br><br>
-    historia: <input type="text" name="historia" id="historia" value="{{historia}}"><br><br>
-    eslogan: <input type="text" name="eslogan" id="eslogan" value="{{eslogan}}"><br><br>
-    inversion_inicial: <input type="text" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"><br><br>
-    fecha_fundacion: <input type="text" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}"><br><br>
-    venta_año_anterior: <input type="text" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"><br><br>
-    nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
+    descripcion: <input type="text" name="descripcion" id="descripcion" value="{{descripcion}}" required maxlength="500"><br><br>
+    historia: <input type="text" name="historia" id="historia" value="{{historia}}" required maxlength="500"><br><br>
+    eslogan: <input type="text" name="eslogan" id="eslogan" value="{{eslogan}}" required maxlength="500"><br><br>
+    inversion_inicial: <input type="number" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}" required step="0.01"><br><br>
+    fecha_fundacion: <input type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}" required><br><br>
+    venta_año_anterior: <input type="number" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}" required step="0.01"><br><br>
+    nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br><br>
     Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
-    video: <input type="text" name="video" id="video" value="{{video}}"><br><br>
-    email:<input type="text" name="email" id="email" value="{{email}}"><br><br>
-    telefono:<input type="text" name="telefono" id="telefono" value="{{telefono}}"><br><br>
-    facebook:<input type="text" name="facebook" id="facebook" value="{{facebook}}"><br><br>
-    instagram:<input type="text" name="instagram" id="instagram" value="{{instagram}}"><br><br>
-    youtube:<input type="text" name="youtube" id="youtube" value="{{youtube}}"><br><br>
+    video: <input type="text" name="video" id="video" value="{{video}}"  maxlength="900"><br><br>
+    email:<input type="email" name="email" id="email" value="{{email}}" required maxlength="150"><br><br>
+    telefono:<input type="number" name="telefono" id="telefono" value="{{telefono}}" maxlength="25"><br><br>
+    facebook:<input type="text" name="facebook" id="facebook" value="{{facebook}} maxlength="900""><br><br>
+    instagram:<input type="text" name="instagram" id="instagram" value="{{instagram}}" maxlength="900"><br><br>
+    youtube:<input type="text" name="youtube" id="youtube" value="{{youtube}}" maxlength="900"><br><br>
 
     <button type="submit" value="update">Modificar</button>
     <input type="hidden" name="formId" id="formId" value="4">

@@ -506,9 +506,9 @@
                     <div class="container">
                         <form action="/informacion" method="POST">
                             Especificaciones: <br>
-                            <textarea  name="especificaciones" required id="especificaciones" rows="10" cols="25" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" ></textarea><br>
+                            <textarea  name="especificaciones" required id="especificaciones" rows="10" cols="25" title="Por favor, utilice unicamente letras" maxlength="300" ></textarea><br>
                             Oferta: <br>
-                            $ <input type="text" required pattern="\d+(\.\d{2})?" title="Ejemplo: 10.50 ó 10.00" id="oferta" name="oferta"><br>
+                            $ <input type="number" step="0.01" required id="oferta" name="oferta"><br>
                             Porcentaje: <br>
                             <input type="number" required min="0" max="100" id="porcentaje" name="porcentaje"> % <br><br>
 
@@ -536,11 +536,11 @@
                     <div class="container">
                         <form action="/informacion" method="POST">
                             Especificaciones: <br>
-                            <textarea  name="especificaciones" required id="especificaciones" rows="10" cols="30" >{{ultima_oferta["especificaciones"]}}</textarea> <br><br>
+                            <textarea  name="especificaciones" required id="especificaciones" rows="10" cols="30" maxlength="300">{{ultima_oferta["especificaciones"]}}</textarea> <br><br>
                             Oferta: <br>
-                            $ <input type="text" pattern="\d+(\.\d{2})?" title="Ejemplo: 10.50 ó 10.00" id="oferta" required name="oferta" value="{{ultima_oferta["oferta"]}}"><br><br>
+                            $ <input type="number" step="0.01" required id="oferta" required name="oferta" value="{{ultima_oferta["oferta"]}}"><br><br>
                             Porcentaje: <br>
-                            <input type="text" id="porcentaje" min="0" max="100" required name="porcentaje" value="{{ultima_oferta["porcentaje"]}}"> % <br><br>
+                            <input type="number" id="porcentaje" min="0" max="100" required name="porcentaje" value="{{ultima_oferta["porcentaje"]}}"> % <br><br>
                             
                             <button type="submit" value="Agregar" class="btn btn-primary">Aplicar cambios</button>
                             <input type="hidden" id="formId" name="formId" value="9">
@@ -577,7 +577,7 @@
                     <div class="field">
                         <label class="" for="email">Inversión inicial</label>
                             <div class="control">
-                                <input type="text" pattern="\d+(\.\d{2})?" title="Ejemplo: 10.50 ó 10.00" required id="inversion_inicialUP" name="inversion_inicialUP"
+                                <input type="number" step="0.01" required  id="inversion_inicialUP" name="inversion_inicialUP"
                                 value="{{data2[0]["inversion_inicial"]}}"><br><br>
                             </div>
                     </div>
@@ -585,7 +585,7 @@
                     <div class="field">
                         <label class="" for="email">Venta año anterior</label>
                             <div class="control">
-                                <input type="text" type="text" pattern="\d+(\.\d{2})?" title="Ejemplo: 10.50" required id="venta_año_anteriorUP" name="venta_año_anteriorUP"
+                                <input type="number" step="0.01" required id="venta_año_anteriorUP" name="venta_año_anteriorUP"
                                 value="{{data2[0]["venta_año_anterior"]}}"><br><br>
                             </div>
                     </div>

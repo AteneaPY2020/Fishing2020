@@ -67,8 +67,8 @@
         Usuario: <input type="text" name="usuario" id="usuario" value="{{usuario}}">
         Contraseña: <input type="text" name="password" id="password" value="{{password}}">
         <button type="submit" value="insert">Modificar</button>
-        <input type="hidden" name="formId" id="formId" value="4">
-        <input type="hidden" name="id" id="id" value="{{id}}">
+        <input type="hidden" name="formId" id="formId" value="4" required>
+        <input type="hidden" name="id" id="id" value="{{id}}" required>
     </form>
     <br><br>
     {% endif %}

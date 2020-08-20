@@ -290,14 +290,14 @@
           <div class="field">
               <label class="" for="costoUnitario">Costo unitario:</label>
                   <div class="control">
-                      <input type="text" pattern="\d+(\.\d{2})?" title="Ejemplo: 10.50 ó 10.00" required name="costoUnitario" id="costoUnitario" value="{{data2["costo_unitario"]}}" step="0.01"><br>
+                      <input type="number" step="0.01" required title="Ejemplo: 10.50 ó 10.00" name="costoUnitario" id="costoUnitario" value="{{data2["costo_unitario"]}}" step="0.01"><br>
                   </div>
           </div>
 
           <div class="field">
               <label class="" for="precioVenta">Precio de venta: $</label>
                   <div class="control">
-                      <input type="text" pattern="\d+(\.\d{2})?" title="Ejemplo: 10.50 ó 10.00" required name="precioVenta" id="precioVenta" value="{{data2["precio_venta"]}}" step="0.01"><br>
+                      <input type="number" step="0.01" required name="precioVenta" id="precioVenta" value="{{data2["precio_venta"]}}" step="0.01"><br>
                   </div>
           </div>
 

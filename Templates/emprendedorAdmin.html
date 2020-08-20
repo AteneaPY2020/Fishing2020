@@ -30,14 +30,14 @@
         <td>Id</td>
         <form action="/emprendedorAdmin" method="POST" enctype="multipart/form-data">
         
-            <td><input type="text" name="nombre" id="nombre"></td>
-            <td><input type="text" name="email" id="email"></td>
-            <td><input type="text" name="telefono" id="telefono"></td>
-            <td><input type="text" name="userName" id="userName"></td>
-            <td><input type="password" name="password" id="password"></td>
-            <td><input type="text" name="pais" id="pais"></td>
-            <td><input type="text" name="ciudad" id="ciudad"></td>
-            <td><input type="text" name="biografia" id="biografia"></td>
+            <td><input type="text" name="nombre" id="nombre" maxlength="100"required name="nombre" value="{{data[0]["nombre"]}}" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" ></td>
+            <td><input type="email" name="email" id="email" required></td>
+            <td><input type="text" name="telefono" id="telefono" required maxlength="25"></td>
+            <td><input type="text" name="userName" id="userName" required></td>
+            <td><input type="password" name="password" id="password" required></td>
+            <td><input type="text" name="pais" id="pais" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"></td>
+            <td><input type="text" name="ciudad" id="ciudad" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"></td>
+            <td><input type="text" name="biografia" id="biografia" required maxlength="500"></td>
             <td><input type="file" name="fileToUpload" id="fileToUpload"></td>
             <td>
                 <button type="submit" value="insert">Insertar</button>
@@ -122,12 +122,12 @@
         <td>Id</td>
         <form action="/emprendedorAdmin" method="POST" enctype="multipart/form-data">
     
-            <td><input type="text" name="nombre" id="nombre" value="{{nombre}}"></td>
-            <td><input type="text" name="email" id="email" value="{{email}}"></td>
-            <td><input type="text" name="telefono" id="telefono" value="{{telefono}}"></td>
-            <td><input type="text" name="pais" id="pais" value="{{pais}}"></td>
-            <td><input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"></td>
-            <td><input type="text" name="biografia" id="biografia" value="{{biografia}}"></td>
+            <td><input type="text" name="nombre" value="{{data[0]["nombre"]}}" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" name="nombre" id="nombre" value="{{nombre}}"></td>
+            <td><input type="email" required maxlength="150" name="email" id="email" value="{{email}}"></td>
+            <td><input type="number" required maxlength="25" name="telefono" id="telefono" value="{{telefono}}"></td>
+            <td><input type="text" name="pais" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" id="pais" value="{{pais}}"></td>
+            <td><input type="text" name="ciudad" id="ciudad" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" value="{{ciudad}}"></td>
+            <td><input type="text" name="biografia" required maxlength="500" name="email" id="biografia" value="{{biografia}}"></td>
             <td><input type="file" name="fileToUpload" id="fileToUpload" value="{{nombre_foto}}"></td>
 
             <td>

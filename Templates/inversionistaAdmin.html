@@ -14,20 +14,20 @@
 <p>Inserta una inversionista</p>
 
 <form action="/inversionistaAdmin" method="POST" enctype="multipart/form-data">
-    Nombre: <input type="text" name="nombre" id="nombre">
+    Nombre: <input type="text" name="nombre" id="nombre" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" name="nombre" value="{{data[0]["nombre"]}}" >
     <br>
-    E-mail: <input type="text" name="email" id="email">
+    E-mail: <input type="email" required name="email" id="email">
     <br>
-    Usuario: <input type="text" name="name_usuario" id="name_usuario">
+    Usuario: <input type="text" required maxlength="100" name="name_usuario" id="name_usuario">
     <br>
-    Contraseña: <input type="password" name="password" id="password">
+    Contraseña: <input type="password" required maxlength="100" name="password" id="password">
     <br>
-    Pais: <input type="text" name="pais" id="pais">
+    Pais: <input type="text" name="pais" required pattern="[A-Za-z\s]+" maxlength="100" id="pais">
     <br>
-    Ciudad: <input type="text" name="ciudad" id="ciudad">
+    Ciudad: <input type="text" name="ciudad" required pattern="[A-Za-z\s]+" maxlength="100" id="ciudad">
     <br>
     Biografia: <br>
-    <input type="text" name="biografia" id="biografia">
+    <input type="text" name="biografia" required maxlength="200" id="biografia">
     Foto: <br>
     <input type="file" name="fileToUpload" id="fileToUpload">
     <button type="submit" value="insert">Insertar</button>
@@ -99,11 +99,11 @@
 {% if verdadero %}
 <p>Modifica datos del inversionista</p>
 <form action="/inversionistaAdmin" method="POST" enctype="multipart/form-data">
-    Nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
-    Biografia: <input type="text" name="biografia" id="biografia" value="{{biografia}}"><br><br>
-    Email: <input type="text" name="email" id="email" value="{{email}}"> <br><br>
-    Pais: <input type="text" name="pais" id="pais" value="{{pais}}"><br><br>
-    Ciudad: <input type="text" name="ciudad" id="ciudad" value="{{ciudad}}"><br><br>
+    Nombre: <input type="text" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" name="nombre" id="nombre" value="{{nombre}}"><br><br>
+    Biografia: <input type="text" required maxlength="200" name="biografia" id="biografia" value="{{biografia}}"><br><br>
+    Email: <input type="email" required name="email" id="email" value="{{email}}"> <br><br>
+    Pais: <input type="text" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" name="pais" id="pais" value="{{pais}}"><br><br>
+    Ciudad: <input type="text" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" name="ciudad" id="ciudad" value="{{ciudad}}"><br><br>
     Foto: <input type="file" name="fileToUpload" id="fileToUpload" value="{{nombre_foto}}">
     
     

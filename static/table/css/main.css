@@ -14,6 +14,42 @@
   src: url('../fonts/Lato/Lato-Bold.ttf'); 
 }
 
+*  {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.three-columns {
+  
+  -webkit-column-count: 3; /* Chrome, Safari, Opera */
+  -moz-column-count: 3; /* Firefox */
+  column-count: 3;
+  
+  -webkit-column-gap: 20px; /* Chrome, Safari, Opera */
+  -moz-column-gap: 20px; /* Firefox */
+  column-gap: 20px;
+  
+  -webkit-column-gap: 2rem; /* Chrome, Safari, Opera */
+  -moz-column-gap: 2rem; /* Firefox */
+  column-gap: 2rem;
+  
+}
+
+.button1 {
+  background-color: #6c7ae0; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 12px;
+}
+
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 * {
@@ -58,17 +94,15 @@ ul, li {
 /* ------------------------------------ */
 input {
   display: block;
-	outline: none;
-	border: none !important;
+	
 }
 
 textarea {
   display: block;
-  outline: none;
 }
 
 textarea:focus, input:focus {
-  border-color: transparent !important;
+  border-color: black;
 }
 
 /* ------------------------------------ */
@@ -157,13 +191,13 @@ iframe {
 }
 
 .wrap-table100 {
-  width: 1170px;
+  width: 10000px;
 }
 
 /*//////////////////////////////////////////////////////////////////
 [ Table ]*/
 .table100 {
-  background-color: #fff;
+  background-color: rgb(220, 233, 240);
 }
 
 table {
@@ -176,24 +210,73 @@ th, td {
 }
 
 .column1 {
-  width: 33%;
-  padding-left: 40px;
+  width: 5%;
+  padding-left: 20px;
 }
 
 .column2 {
-  width: 13%;
+  width: 5%;
 }
 
 .column3 {
-  width: 22%;
-}
-
-.column4 {
-  width: 19%;
+  width: 5%;
 }
 
 .column5 {
-  width: 13%;
+  width: 5%;
+}
+
+.column6 {
+  width: 5%;
+}
+
+.column7 {
+  width: 5%;
+}
+
+.column8 {
+  width: 5%;
+}
+
+.column9 {
+  width: 5%;
+}
+
+.column10 {
+  width: 5%;
+}
+
+.column11 {
+  width: 15%;
+}
+
+.column12 {
+  width: 5%;
+}
+
+.column13 {
+  width: 5%;
+}
+
+.column14 {
+  width: 5%;
+}
+
+.column15 {
+  width: 5%;
+}
+
+.column16 {
+  width: 5%;
+}
+
+.column17 {
+  width: 5%;
+}
+
+.column18 {
+  width: 5%;
+  padding-right: 20px;
 }
 
 .table100-head th {
@@ -202,15 +285,15 @@ th, td {
 }
 
 .table100-body td {
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: 18px;
+  padding-bottom: 18px;
 }
 
 /*==================================================================
 [ Fix header ]*/
 .table100 {
   position: relative;
-  padding-top: 60px;
+  padding-top: 110px;
 }
 
 .table100-head {
@@ -246,7 +329,7 @@ th, td {
 }
 
 .table100.ver1 .table100-body tr:nth-child(even) {
-  background-color: #f8f6ff;
+  background-color: #f7f7f8;
 }
 
 /*---------------------------------------------*/

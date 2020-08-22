@@ -69,25 +69,25 @@
                                                 <option value="Pez Dorado">Pez dorado</option>
                                                 <option value="tiburon">Tiburón</option>
                                             </select><br>
-                                            Descripcion: <textarea class="form-control mb-1" type="text" name="descripcion" id="descripcion" value="{{descripcion}}"></textarea><br>
-                                            Historia: <textarea class="form-control mb-1" type="text" name="historia" id="historia" value="{{historia}}"></textarea><br>
-                                            Eslogan: <input class="form-control mb-1" type="text" name="eslogan" id="eslogan" value="{{eslogan}}"><br>
-                                            Inversion_inicial: <input class="form-control mb-1" type="text" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"><br>
-                                            Fecha_fundacion: <input class="form-control mb-1" type="text" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}"><br>
-                                            Venta_año_anterior: <input class="form-control mb-1" type="text" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"><br>
-                                            Nombre: <input class="form-control mb-1" type="text" name="nombre" id="nombre" value="{{nombre}}"><br>
+                                            Descripcion: <textarea class="form-control mb-1" type="text" name="descripcion" id="descripcion" value="{{descripcion}}"required maxlength="500"></textarea><br>
+                                            Historia: <textarea class="form-control mb-1" type="text" name="historia" id="historia" value="{{historia}}" required maxlength="500"></textarea><br>
+                                            Eslogan: <input class="form-control mb-1" type="text" name="eslogan" id="eslogan" value="{{eslogan}}"required maxlength="500"><br>
+                                            Inversion_inicial: <input class="form-control mb-1" type="number" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"required step="0.01"><br>
+                                            Fecha fundacion: <input class="form-control mb-1" type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}" required><br>
+                                            Venta año anterior: <input class="form-control mb-1" type="number" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"required step="0.01"><br>
+                                            Nombre: <input class="form-control mb-1" type="text" name="nombre" id="nombre" value="{{nombre}}" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br>
                                         </div>
                                     </div>
                                 
                                 <div class="col-lg-7">
                                     <div class="field">
                                         Foto:<br> <input class="form-control mb-1" type="file" name="fileToUpload" id="fileToUpload"><br>
-                                        Video:<br> <input class="form-control mb-1" type="text" name="video" id="video" value="{{video}}"><br>
-                                        Email:<br><input class="form-control mb-1" type="text" name="email" id="email" value="{{email}}"><br>
-                                        Telefono:<br><input class="form-control mb-1" type="text" name="telefono" id="telefono" value="{{telefono}}"><br>
-                                        Facebook:<br><input class="form-control mb-1" type="text" name="facebook" id="facebook" value="{{facebook}}"><br>
-                                        Instagram:<br><input class="form-control mb-1" type="text" name="instagram" id="instagram" value="{{instagram}}"><br>
-                                        Youtube:<br><input class="form-control mb-1" type="text" name="youtube" id="youtube" value="{{youtube}}"><br><br>
+                                        Video:<br> <input class="form-control mb-1" type="text" name="video" id="video" value="{{video}}"maxlength="900"><br>
+                                        Email:<br><input class="form-control mb-1" type="email" name="email" id="email" value="{{email}}" required maxlength="150"><br>
+                                        Telefono:<br><input class="form-control mb-1" type="number" name="telefono" id="telefono" value="{{telefono}}" required maxlength="25"><br>
+                                        Facebook:<br><input class="form-control mb-1" type="text" name="facebook" id="facebook" value="{{facebook}}" maxlength="900"><br>
+                                        Instagram:<br><input class="form-control mb-1" type="text" name="instagram" id="instagram" value="{{instagram}}" maxlength="900"><br>
+                                        Youtube:<br><input class="form-control mb-1" type="text" name="youtube" id="youtube" value="{{youtube}}"maxlength="900"><br><br>
                                         <!--Aplicar cambios-->
                                         <button type="submit" value="update" class="btn btn-primary">Aplicar cambios</button>
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -127,25 +127,25 @@
                                                 <option value="Pez Dorado">Pez dorado</option>
                                                 <option value="tiburon">Tiburón</option>
                                             </select>
-                                            <input placeholder="Descripcion" class="form-control mb-1" type="text" name="descripcion" id="descripcion">
-                                            <input placeholder="Historia" class="form-control mb-1" type="text" name="historia" id="historia">
-                                            <input placeholder="Eslogan" class="form-control mb-1" type="text" name="eslogan" id="eslogan">
-                                            <input placeholder="Inversion inicial" class="form-control mb-1" type="text" name="inversion_inicial" id="inversion_inicial">
-                                            <input placeholder="Fecha fundacion" class="form-control mb-1" type="date" name="fecha_fundacion" id="fecha_fundacion">
-                                            <input placeholder="Venta año anterior" class="form-control mb-1" type="text" name="venta_año_anterior" id="venta_año_anterior">
-                                            <input placeholder="Usuario de emprendedor"  class="form-control mb-1" type="text" name="user_emprendedor" id="user_emprendedor">
+                                            <input placeholder="Descripcion" class="form-control mb-1" type="text" name="descripcion" id="descripcion" required maxlength="500">
+                                            <input placeholder="Historia" class="form-control mb-1" type="text" name="historia" id="historia" required maxlength="500">
+                                            <input placeholder="Eslogan" class="form-control mb-1" type="text" name="eslogan" id="eslogan" required maxlength="500">
+                                            <input placeholder="Inversion inicial" class="form-control mb-1" type="number" name="inversion_inicial" id="inversion_inicial" required step="0.01">
+                                            <input placeholder="Fecha fundacion" class="form-control mb-1" type="number" name="fecha_fundacion" id="fecha_fundacion"required step="0.01">
+                                            <input placeholder="Venta año anterior" class="form-control mb-1" type="number" name="venta_año_anterior" id="venta_año_anterior"required step="0.01" >
+                                            <input placeholder="Usuario de emprendedor"  class="form-control mb-1" type="text" name="user_emprendedor" id="user_emprendedor"required maxlength="100">
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="field">
-                                            <br><input placeholder="Nombre" class="form-control mb-1" type="text" name="nombre" id="nombre">
-                                            <input placeholder="Foto" class="form-control mb-1" type="file" name="fileToUpload" id="fileToUpload">
-                                            <input placeholder="Video" class="form-control mb-1" type="url" name="video" id="video" value="{{video}}">
-                                            <input placeholder="Email" class="form-control mb-1" type="text" name="email" id="email">
-                                            <input placeholder="Telefono" class="form-control mb-1" type="text" name="telefono" id="telefono">
-                                            <input placeholder="Facebook" class="form-control mb-1" type="text" name="facebook" id="facebook">
-                                            <input placeholder="Instagram" class="form-control mb-1" type="text" name="instagram" id="instagram">
-                                            <input placeholder="Youtube" class="form-control mb-1" type="text" name="youtube" id="youtube">
+                                            <br><input placeholder="Nombre" class="form-control mb-1" type="text" name="nombre" id="nombre" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" maxlength="100">
+                                            <input placeholder="Foto" class="form-control mb-1" type="file" name="fileToUpload" id="fileToUpload" >
+                                            <input placeholder="Video" class="form-control mb-1" type="url" name="video" id="video" value="{{video}}" maxlength="900">
+                                            <input placeholder="Email" class="form-control mb-1" type="text" name="email" id="email" required maxlength="150">
+                                            <input placeholder="Telefono" class="form-control mb-1" type="number" name="telefono" id="telefono" required maxlength="25">
+                                            <input placeholder="Facebook" class="form-control mb-1" type="text" name="facebook" id="facebook" maxlength="900">
+                                            <input placeholder="Instagram" class="form-control mb-1" type="text" name="instagram" id="instagram"maxlength="900">
+                                            <input placeholder="Youtube" class="form-control mb-1" type="text" name="youtube" id="youtube"maxlength="900">
                                             
                                             <button class="button button-header button--active pull-right" type="submit" value="insert">Insertar</button>
                                             <input type="hidden" name="formId" id="formId" value="1">

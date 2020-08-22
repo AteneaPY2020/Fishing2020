@@ -55,6 +55,9 @@
                     <div align="center">          
                         <div class="col-md-2 col-lg-10">
                             <form action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="field">
                                 estado: 
                                 <select name="estado" id="estado">
                                     <option value="Huevo">Huevo </option>
@@ -214,12 +217,24 @@
                                         <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                     </form>
                                 </td>
-                                <td class="cell100 column1">
-                                    <button class="button button-postComment button--active" type="button" data-toggle="modal" data-target="#modificarInformacionAdmin">
-                                        Modificar
+                                <td class="cell100 column11">
+                                <form action="/emprendedorAdmin" id="formModificar" method="POST">
+                                    <input type="hidden" name="formId" id="formId" value="3">
+                                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                    <input type="hidden" name="nombre" id="nombre" value="{{registro["nombre"]}}">
+                                    <input type="hidden" name="email" id="email" value="{{registro["email"]}}">
+                                    <input type="hidden" name="telefono" id="telefono" value="{{registro["telefono"]}}">
+                                    <input type="hidden" name="id_usuario" id="id_usuario" value="{{registro["id_usuario"]}}">
+                                    <input type="hidden" name="pais" id="pais" value="{{registro["pais"]}}">
+                                    <input type="hidden" name="ciudad" id="ciudad" value="{{registro["ciudad"]}}">
+                                    <input type="hidden" name="biografia" id="biografia" value="{{registro["biografia"]}}">
+                                    <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{registro["nombre_foto"]}}">
+                                    <button class="button button-header button--active" type="submit"></i>
+                                    Modificar
                                     </button>
+                                </form>
                                 </td>
-                                </tr>
+                            </tr>
                             {% endfor %}
                         </tbody>
                     </table>

@@ -20,7 +20,8 @@ admin = Blueprint(
 def Admin():
     try:
         user = session["user"]
-        return render_template("indexAdmin.html")
+        usuario = user["usuario"]
+        return render_template("indexAdmin.html", usuario=usuario)
     except KeyError:
         return render_template(
             "logInForm.html", messageSS="Su sesión ha expirado, ingrese nuevamente"

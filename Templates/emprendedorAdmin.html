@@ -209,49 +209,6 @@
     </div>
 </section>
 <br><br><br><br>
-
-<div class="modal fade" id="modificarInformacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modifica una Emprendedor</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <form class="form-contact contact_form" action="/emprendedorAdmin" method="POST" enctype="multipart/form-data">
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <div class="field">
-                                <input class="form-control mb-1" placeholder="{{nombre}}" type="text" name="nombre" id="nombre">
-                                <input class="form-control mb-1" placeholder="{{email}}" name="email" id="email">
-                                <input class="form-control mb-1" placeholder="{{telefono}}" type="number" name="telefono" id="telefono">
-                                <input class="form-control mb-1" placeholder="{{pais}}" type="text" name="pais" id="pais">
-                                <input class="form-control mb-1" placeholder="{{ciudad}}" type="text" name="ciudad" id="ciudad">
-                                <br>
-                                <input type="file" name="fileToUpload" id="fileToUpload">
-                                </div>
-                            </div>
-                            <div class="col-lg-7">
-                                <div class="field">
-                                    <textarea class="form-control different-control w-100" name="biografia" placeholder="{{biografia}}" id="biografia" cols="30" rows="10"></textarea>       
-                                </div>
-                            </div>
-                        </div>
-                        <!--Aplicar cambios-->
-                        <button type="submit" value="update" class="btn btn-primary">Aplicar cambios</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="hidden" name="formId" id="formId" value="4">
-                        <input type="hidden" name="id" id="id" value="{{id}}">
-                        <input type="hidden" name="userName" id="userName" value="{{userName}}">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <p>
     <a href="/Admin">Regresar</a>
 </p>

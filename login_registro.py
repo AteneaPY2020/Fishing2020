@@ -29,7 +29,8 @@ def logIn():
             if userData.rol == 1:
                 dataDic = logic.createDictionary(userData)
                 session["user"] = dataDic
-                return render_template("indexAdmin.html")
+                usuario = dataDic["usuario"]
+                return render_template("indexAdmin.html", usuario=usuario)
             if userData.rol == 2:
                 dataDic = logic.createDictionary(userData)
                 session["user"] = dataDic

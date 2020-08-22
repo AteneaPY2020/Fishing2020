@@ -5,80 +5,165 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emprendimientos</title>
-<!--================================TAbla===static/table/=============================-->	
-	<link rel="icon" type="image/png" href="static/table/images/icons/favicon.ico"/>
-	<link rel="stylesheet" type="text/css" href="static/table/vendor/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="static/table/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="static/table/vendor/animate/animate.css">
-	<link rel="stylesheet" type="text/css" href="static/table/vendor/select2/select2.min.css">
-	<link rel="stylesheet" type="text/css" href="static/table/vendor/perfect-scrollbar/perfect-scrollbar.css">
-	<link rel="stylesheet" type="text/css" href="static/table/css/util.css">
-	<link rel="stylesheet" type="text/css" href="static/table/css/main.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<!--===============================Pop up=============================-->	
-    <script type="text/javascript" src="static/perfil/assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<!--==========================Tabla==============================================================-->
+<link rel="icon" type="image/png" href="table/images/icons/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="static/table/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="static/table/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="static/table/vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="static/table/vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css" href="static/table/css/util.css">
+<link rel="stylesheet" type="text/css" href="static/table/css/main.css">
+<!--==========================Estilo en general==============================================================-->
+<link rel="stylesheet" href="static/emprendimiento/vendors/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/linericon/style.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.theme.default.min.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet" href="static/emprendimiento/css/style.css">
+<!--==========================Icono de barra==============================================================-->
+	<link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" href="static/t2/assets/ico/apple-touch-icon.png" />
+<!--==========================Icono de barra==============================================================-->
 {% endblock head %}
-
 {% block body %}
-    <h1>Emprendimientos</h1>
-    <p>
-        <a  href="/Admin" class="pull-left">Regresar</a>
-    </p>
+<div class="container h-1">
     <br><br>
-    <h5>Inserta un emprendimiento</h5>
+    <div class="blog-banner">
+        <div class="text-center">
+            <h1>Emprendimiento</h1>
+        </div>
+    </div>
+</div>
 
-    <table align="upper">
-        <form action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
-            <td></td><td></td><td></td>
-                <td class="first">
-                    Estado:<br>
-                    <select class="w3-input w3-border w3-round-large" name="estado" id="estado" required>
-                        <option value="Huevo">Huevo </option>
-                        <option value="Pez Dorado">Pez dorado</option>
-                        <option value="tiburon">Tiburón</option>
-                    </select><br>
-                    descripcion:<br><textarea class="w3-input w3-border w3-round-large" type="text" name="descripcion" id="descripcion" required maxlength="500"></textarea><br>
-                    historia: <br><textarea class="w3-input w3-border w3-round-large" type="text" name="historia" id="historia" required maxlength="500"></textarea><br>
-                    eslogan: <br><input class="w3-input w3-border w3-round-large" type="text" name="eslogan" id="eslogan" required maxlength="500"><br><br>
-                    inversion inicial: <br><input class="w3-input w3-border w3-round-large" type="number" name="inversion_inicial" id="inversion_inicial" step="0.01" required><br>
-                    
-                </td>
+<p>
+    <a  href="/Admin" class="pull-left">Regresar</a>
+</p>
+<h5>Inserta un emprendimiento</h5>
 
-                <td class="second">
-                    fecha fundacion: <br><input class="w3-input w3-border w3-round-large" type="date" name="fecha_fundacion" id="fecha_fundacion" required><br>
-                    venta año anterior:<input  class="w3-input w3-border w3-round-large" type="number" name="venta_año_anterior" id="venta_año_anterior" required step="0.01"><br>
-                    usuario de emprendedor: <br><input class="w3-input w3-border w3-round-large" type="text" name="user_emprendedor" id="user_emprendedor" maxlength="100" required><br>
-                    nombre: <input class="w3-input w3-border w3-round-large" type="text" name="nombre" id="nombre" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br>
-                    Foto: <input class="w3-input w3-border w3-round-large" type="file" name="fileToUpload" id="fileToUpload"><br>
-                    video: <input class="w3-input w3-border w3-round-large" type="url" name="video" id="video" value="{{video}}" maxlength="900">
-                </td>
+{% if verdadero%}
+    <section class="subscribe-position">
+    <div class="container">
+        <div class="subscribe text-center">
+            <h4>Modifica el emprendedor</h4>
+            <br>
+            <div id="mc_embed_signup">
+                <div class="container">  
+                    <div align="center">          
+                        <div class="col-md-2 col-lg-10">
+                            <form action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
+                                estado: 
+                                <select name="estado" id="estado">
+                                    <option value="Huevo">Huevo </option>
+                                    <option value="Pez Dorado">Pez dorado</option>
+                                    <option value="tiburon">Tiburón</option>
+                                </select>
+                                descripcion: <input type="text" name="descripcion" id="descripcion" value="{{data[0]["descripcion"]}}" required maxlength="500"><br><br>
+                                historia: <input type="text" name="historia" id="historia" value="{{data[0]["historia"]}}" required maxlength="500"><br><br>
+                                eslogan: <input type="text" name="eslogan" id="eslogan" value="{{data[0]["eslogan"]}}" required maxlength="500"><br><br>
+                                inversion_inicial: <input type="number" name="inversion_inicial" id="inversion_inicial" value="{{data[0]["inversion_inicial"]}}" required step="0.01"><br><br>
+                                fecha_fundacion: <input type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{data[0]["fecha_fundacion"]}}" required><br><br>
+                                venta_año_anterior: <input type="number" name="venta_año_anterior" id="venta_año_anterior" value="{{data[0]["venta_año_anterior"]}}" required step="0.01"><br><br>
+                                nombre: <input type="text" name="nombre" id="nombre" value="{{data[0]["nombre"]}}" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br><br>
+                                Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
+                                video: <input type="text" name="video" id="video" value="{{data[0]["video"]}}"  maxlength="900"><br><br>
+                                email:<input type="email" name="email" id="email" value="{{data[0]["email"]}}" required maxlength="150"><br><br>
+                                telefono:<input type="number" name="telefono" id="telefono" value="{{data[0]["telefono"]}}" maxlength="25"><br><br>
+                                facebook:<input type="text" name="facebook" id="facebook" value="{{data[0]["facebook"]}}" maxlength="900"><br><br>
+                                instagram:<input type="text" name="instagram" id="instagram" value="{{data[0]["instagram"]}}" maxlength="900"><br><br>
+                                youtube:<input type="text" name="youtube" id="youtube" value="{{data[0]["youtube"]}}" maxlength="900"><br><br>
 
-                <td class="third">
-                    email:<input class="w3-input w3-border w3-round-large" type="email" name="email" id="email" required maxlength="150"><br>
-                    telefono:<input class="w3-input w3-border w3-round-large" type="number" name="telefono" id="telefono" required maxlength="25"><br>
-                    facebook:<input class="w3-input w3-border w3-round-large" type="text" name="facebook" id="facebook" maxlength="25"><br>
-                    instagram:<input class="w3-input w3-border w3-round-large" type="text" name="instagram" id="instagram" maxlength="900"><br>
-                    youtube:<input class="w3-input w3-border w3-round-large" type="text" name="youtube" id="youtube" maxlength="900">
-                    <br>
-                    <button class="button1 " type="submit" value="insert">Insertar</button>
-                    <input type="hidden" name="formId" id="formId" value="1">
-                </td>
-            </tr>
-        </form>
-    </table>
+                                <button type="submit" value="update">Modificar</button>
+                                <input type="hidden" name="formId" id="formId" value="4">
+                                <input type="hidden" name="id" id="id" value="{{id}}">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{%endif%}
 
-    <br><br>
+{% if not verdadero%}
+<!--Insertar emprendimiento-->
+<section class="subscribe-position">
+    <div class="container">
+        <div class="subscribe text-center">
+            <h4>Inserta un emprendedor</h4>
+            <br>
+            <div id="mc_embed_signup">
+                <div class="container">  
+                    <div align="center">          
+                        <div class="col-md-2 col-lg-10">
+                            <table align="upper">
+                                <form action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
+                                    <td></td><td></td><td></td>
+                                        <td class="first">
+                                            Estado:<br>
+                                            <select class="form-control different-control w-100" name="estado" id="estado" required>
+                                                <option value="Huevo">Huevo </option>
+                                                <option value="Pez Dorado">Pez dorado</option>
+                                                <option value="tiburon">Tiburón</option>
+                                            </select><br>
+                                            descripcion:<br><textarea class="form-control different-control w-100" type="text" name="descripcion" id="descripcion" required maxlength="500"></textarea><br>
+                                            historia: <br><textarea class="form-control different-control w-100" type="text" name="historia" id="historia" required maxlength="500"></textarea><br>
+                                            eslogan: <br><input class="form-control different-control w-100" type="text" name="eslogan" id="eslogan" required maxlength="500"><br><br>
+                                            inversion inicial: <br><input class="form-control different-control w-100" type="number" name="inversion_inicial" id="inversion_inicial" step="0.01" required><br>
+                                            
+                                        </td>
+
+                                        <td class="second">
+                                            fecha fundacion: <br><input class="form-control different-control w-100" type="date" name="fecha_fundacion" id="fecha_fundacion" required><br>
+                                            venta año anterior:<input  class="form-control different-control w-100" type="number" name="venta_año_anterior" id="venta_año_anterior" required step="0.01"><br>
+                                            usuario de emprendedor: <br><input class="form-control different-control w-100" type="text" name="user_emprendedor" id="user_emprendedor" maxlength="100" required><br>
+                                            nombre: <input class="form-control different-control w-100" type="text" name="nombre" id="nombre" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br>
+                                            Foto: <input class="form-control different-control w-100" type="file" name="fileToUpload" id="fileToUpload"><br>
+                                            video: <input class="form-control different-control w-100" type="url" name="video" id="video" value="{{video}}" maxlength="900">
+                                        </td>
+
+                                        <td class="third">
+                                            email:<input class="form-control different-control w-100" type="email" name="email" id="email" required maxlength="150"><br>
+                                            telefono:<input class="form-control different-control w-100" type="number" name="telefono" id="telefono" required maxlength="25"><br>
+                                            facebook:<input class="form-control different-control w-100" type="text" name="facebook" id="facebook" maxlength="25"><br>
+                                            instagram:<input class="form-control different-control w-100" type="text" name="instagram" id="instagram" maxlength="900"><br>
+                                            youtube:<input class="form-control different-control w-100" type="text" name="youtube" id="youtube" maxlength="900">
+                                            <br>
+                                            <button class="button1 " type="submit" value="insert">Insertar</button>
+                                            <input type="hidden" name="formId" id="formId" value="1">
+                                        </td>
+                                    </tr>
+                                </form>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{%endif%}
+
+
+    
+
+    <br><br><br><br>
     <p>{{massage}}</p>
-    <div class="limiter">
-        <div class="container-table100">
-            <div class="wrap-table100">
-                <div class="table100 ver5 m-b-110">
-					<div class="table100-head">
-						<table>
-							<thead>
-                                <tr class="row100 head">
+
+<section class="subscribe-position">
+    <div class="container">
+        <div class="subscribe text-center">
+            <p style="color:red">{{message}}</p>
+            <br>
+            <div class="table100 ver5 m-b-110">
+                <div class="table100-head">
+                    <table>
+                        <thead>
+                            <tr class="row100 head">
                                     <th class="cell100 column1">Id</th>
                                     <th class="cell100 column1">Estado</th>
                                     <th class="cell100 column1">Descripcion</th>
@@ -101,86 +186,89 @@
                         </thead>
                     </table>
                 </div>
-
-                {% for registro in data %}
-                    <div class="table100-body js-pscroll">
-						<table>
-							<tbody>
-                                <tr class="row100 body">
-                                    <td class="cell100 column1">{{registro["id"]}}</td>
-                                    <td class="cell100 column1">{{registro["estado"]}}</td>
-                                    <td class="cell100 column1">{{registro["descripcion"]}}</td>
-                                    <td class="cell100 column1">{{registro["historia"]}}</td>
-                                    <td class="cell100 column1">{{registro["eslogan"]}}</td>
-                                    <td class="cell100 column1">{{registro["inversion_inicial"]}}</td>
-                                    <td class="cell100 column1">{{registro["fecha_fundacion"]}}</td>
-                                    <td class="cell100 column1">{{registro["venta_año_anterior"]}}</td>
-                                    <td class="cell100 column1">{{registro["nombre"]}}</td>
-                                    <td class="cell100 column1"><img src="/static/images/emprendimiento/{{registro["nombre_foto"]}}" width="125" alt=""></td>
-                                    <td class="cell100 column1">{{registro["video"]}}</td>
-                                    <td class="cell100 column1">{{registro["email"]}}</td>
-                                    <td class="cell100 column1">{{registro["telefono"]}}</td>
-                                    <td class="cell100 column1">{{registro["facebook"]}}</td>
-                                    <td class="cell100 column1">{{registro["instagram"]}}</td>
-                                    <td class="cell100 column1">{{registro["youtube"]}}</td>
-                                    <td class="cell100 column1">
-                                        <form action="/EmprendimientoAdmin" method="POST">
-                                            <button type="submit" value="delete">Borrar</button>
-                                            <input type="hidden" name="formId" id="formId" value="2">
-                                            <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                                        </form>
-                                    </td>
-                                    <td class="cell100 column1">
-                                        <button class="button button-postComment button--active" type="button" data-toggle="modal" data-target="#modificarInformacionAdmin">
-                                            Modificar
-                                        </button>
-                                    </td>
+                <div class="table100-body js-pscroll">
+                    <table>
+                        <tbody>
+                            {% for registro in data %}
+                            <tr class="row100 body">
+                                <td class="cell100 column1">{{registro["id"]}}</td>
+                                <td class="cell100 column1">{{registro["estado"]}}</td>
+                                <td class="cell100 column1">{{registro["descripcion"]}}</td>
+                                <td class="cell100 column1">{{registro["historia"]}}</td>
+                                <td class="cell100 column1">{{registro["eslogan"]}}</td>
+                                <td class="cell100 column1">{{registro["inversion_inicial"]}}</td>
+                                <td class="cell100 column1">{{registro["fecha_fundacion"]}}</td>
+                                <td class="cell100 column1">{{registro["venta_año_anterior"]}}</td>
+                                <td class="cell100 column1">{{registro["nombre"]}}</td>
+                                <td class="cell100 column1"><img src="/static/images/emprendimiento/{{registro["nombre_foto"]}}" width="125" alt=""></td>
+                                <td class="cell100 column1">{{registro["video"]}}</td>
+                                <td class="cell100 column1">{{registro["email"]}}</td>
+                                <td class="cell100 column1">{{registro["telefono"]}}</td>
+                                <td class="cell100 column1">{{registro["facebook"]}}</td>
+                                <td class="cell100 column1">{{registro["instagram"]}}</td>
+                                <td class="cell100 column1">{{registro["youtube"]}}</td>
+                                <td class="cell100 column1">
+                                    <form action="/EmprendimientoAdmin" method="POST">
+                                        <button type="submit" value="delete">Borrar</button>
+                                        <input type="hidden" name="formId" id="formId" value="2">
+                                        <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                    </form>
+                                </td>
+                                <td class="cell100 column1">
+                                    <button class="button button-postComment button--active" type="button" data-toggle="modal" data-target="#modificarInformacionAdmin">
+                                        Modificar
+                                    </button>
+                                </td>
                                 </tr>
-                            </tbody>
-                {% endfor %}
-                        </table>
-                    </div>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    <br><br>
+</section>
 
-
-    <div class="modal fade" id="modificarInformacionAdmin" tabindex="-1" role="dialog" aria-labelledby="modificarInformacion" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modifica tu información</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                
-                <div class="modal-body">
-                    <p>Modifica el emprendimiento</p>
-                    <form action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
-                        estado: 
-                        <select name="estado" id="estado">
-                            <option value="Huevo">Huevo </option>
-                            <option value="Pez Dorado">Pez dorado</option>
-                            <option value="tiburon">Tiburón</option>
-                        </select>
-                        descripcion: <input type="text" name="descripcion" id="descripcion" value="{{data[0]["descripcion"]}}" required maxlength="500"><br><br>
-                        historia: <input type="text" name="historia" id="historia" value="{{data[0]["historia"]}}" required maxlength="500"><br><br>
-                        eslogan: <input type="text" name="eslogan" id="eslogan" value="{{data[0]["eslogan"]}}" required maxlength="500"><br><br>
-                        inversion_inicial: <input type="number" name="inversion_inicial" id="inversion_inicial" value="{{data[0]["inversion_inicial"]}}" required step="0.01"><br><br>
-                        fecha_fundacion: <input type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{data[0]["fecha_fundacion"]}}" required><br><br>
-                        venta_año_anterior: <input type="number" name="venta_año_anterior" id="venta_año_anterior" value="{{data[0]["venta_año_anterior"]}}" required step="0.01"><br><br>
-                        nombre: <input type="text" name="nombre" id="nombre" value="{{data[0]["nombre"]}}" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br><br>
-                        Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
-                        video: <input type="text" name="video" id="video" value="{{data[0]["video"]}}"  maxlength="900"><br><br>
-                        email:<input type="email" name="email" id="email" value="{{data[0]["email"]}}" required maxlength="150"><br><br>
-                        telefono:<input type="number" name="telefono" id="telefono" value="{{data[0]["telefono"]}}" maxlength="25"><br><br>
-                        facebook:<input type="text" name="facebook" id="facebook" value="{{data[0]["facebook"]}}" maxlength="900"><br><br>
-                        instagram:<input type="text" name="instagram" id="instagram" value="{{data[0]["instagram"]}}" maxlength="900"><br><br>
-                        youtube:<input type="text" name="youtube" id="youtube" value="{{data[0]["youtube"]}}" maxlength="900"><br><br>
-
-                        <button type="submit" value="update">Modificar</button>
+<div class="modal fade" id="modificarInformacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modifica una Emprendiminto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <form class="form-contact contact_form" action="/emprendedorAdmin" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="field">
+                                descripcion: <input type="text" name="descripcion" id="descripcion" value="{{descripcion}}" required maxlength="500"><br><br>
+                                historia: <input type="text" name="historia" id="historia" value="{{historia}}" required maxlength="500"><br><br>
+                                eslogan: <input type="text" name="eslogan" id="eslogan" value="{{eslogan}}" required maxlength="500"><br><br>
+                                inversion_inicial: <input type="number" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}" required step="0.01"><br><br>
+                                fecha_fundacion: <input type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}" required><br><br>
+                                venta_año_anterior: <input type="number" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}" required step="0.01"><br><br>
+                                nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br><br>
+                                
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="field">
+                                    Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
+                                video: <input type="text" name="video" id="video" value="{{video}}"  maxlength="900"><br><br>
+                                email:<input type="email" name="email" id="email" value="{{email}}" required maxlength="150"><br><br>
+                                telefono:<input type="number" name="telefono" id="telefono" value="{{telefono}}" maxlength="25"><br><br>
+                                facebook:<input type="text" name="facebook" id="facebook" value="{{facebook}} maxlength="900""><br><br>
+                                instagram:<input type="text" name="instagram" id="instagram" value="{{instagram}}" maxlength="900"><br><br>
+                                youtube:<input type="text" name="youtube" id="youtube" value="{{youtube}}" maxlength="900"><br><br>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Aplicar cambios-->
+                        <button type="submit" value="update" class="btn btn-primary">Aplicar cambios</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <input type="hidden" name="formId" id="formId" value="4">
                         <input type="hidden" name="id" id="id" value="{{id}}">
                     </form>
@@ -188,9 +276,40 @@
             </div>
         </div>
     </div>
+</div>
 
-
+<footer class="footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row d-flex">
+                    <p class="col-lg-12 footer-text text-center">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Fishing 2020 | An ocean full of great ideas <i class="fa fa-heart" aria-hidden="true"></i> by <a>Fishing</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+            </div>
+        </div>
+    </footer><!--//footer-->
+<!--POPUP: bootstrap-->
+    <script type="text/javascript" src="static/perfil/assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+<!--Tabla Scroll-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+			$(window).on('resize', function(){
+				ps.update();
+			})
+		});
+	</script>
+    
+	<script src="js/main.js"></script>
 {% endblock body %}
-
 
 </html>

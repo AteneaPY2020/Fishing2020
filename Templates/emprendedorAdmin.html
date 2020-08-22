@@ -146,16 +146,17 @@
                     <table>
                         <thead>
                             <tr class="row100 head">
-                                <th class="cell100 column1">Id</th>
-                                <th class="cell100 column2">Nombre</th>
-                                <th class="cell100 column3">E-mail</th>
-                                <th class="cell100 column4">Telefono</th>
-                                <th class="cell100 column5">Id usuario</th>
-                                <th class="cell100 column6">Pais</th>
-                                <th class="cell100 column7">Ciudad</th>
-                                <th class="cell100 column8">Biografia</th>
-                                <th class="cell100 column9">Foto</th>
-                                <th class="cell100 column10">Borrar</th>
+                                <th >Id</th>
+                                <th >Nombre</th>
+                                <th>E-mail</th>
+                                <th>Telefono</th>
+                                <th>Id usuario</thclass=>
+                                <th>Pais</th>
+                                <th>Ciudad</thclass=>
+                                <th>Biografia</thclass=>
+                                <th>Foto</thclass=>
+                                <th>Borrar</thclass=>
+                                <th>Modificar</thclass=>
                             </tr>
                         </thead>
                     </table>
@@ -165,23 +166,23 @@
                         <tbody>
                             {% for registro in data %}
                             <tr class="row100 body">
-                                <td class="cell100 column1">{{registro["id"]}}</td>
-                                <td class="cell100 column2">{{registro["nombre"]}}</td>
-                                <td class="cell100 column3">{{registro["email"]}}</td>
-                                <td class="cell100 column4">{{registro["telefono"]}}</td>
-                                <td class="cell100 column5">{{registro["id_usuario"]}}</td>
-                                <td class="cell100 column6">{{registro["pais"]}}</td>
-                                <td class="cell100 column7">{{registro["ciudad"]}}</td>
-                                <td class="cell100 column8">{{registro["biografia"]}}</td>
-                                <td class="cell100 column9"><img src="static/images/emprendedor/{{registro["nombre_foto"]}}" height="50"/></td>
-                                <td class="cell100 column10">
+                                <td >{{registro["id"]}}</td>
+                                <td >{{registro["nombre"]}}</td>
+                                <td >{{registro["email"]}}</td>
+                                <td >{{registro["telefono"]}}</td>
+                                <td >{{registro["id_usuario"]}}</td>
+                                <td >{{registro["pais"]}}</td>
+                                <td >{{registro["ciudad"]}}</td>
+                                <td >{{registro["biografia"]}}</td>
+                                <td ><img src="static/images/emprendedor/{{registro["nombre_foto"]}}" height="50"/></td>
+                                <td >
                                     <form action="/emprendedorAdmin" method="POST">
                                         <button type="submit" value="delete">Borrar</button>
                                         <input type="hidden" name="formId" id="formId" value="2">
                                         <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                     </form>
                                 </td>
-                                <td class="cell100 column11">
+                                <td >
                                 <form action="/emprendedorAdmin" id="formModificar" method="POST">
                                     <input type="hidden" name="formId" id="formId" value="3">
                                     <input type="hidden" name="id" id="id" value="{{registro["id"]}}">

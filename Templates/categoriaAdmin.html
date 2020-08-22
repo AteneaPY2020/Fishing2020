@@ -112,9 +112,10 @@
                     <table>
                         <thead>
                             <tr class="row100 head">
-                                <th class="cell100 column1">Id</th>
-                                <th class="cell100 column2">Categoría</th>
-                                <th class="cell100 column3">Borrar</th>
+                                <th>Id</th>
+                                <th>Categoría</th>
+                                <th>Borrar</th>
+                                <th>Modificar</th>
                             </tr>
                         </thead>
                     </table>
@@ -124,9 +125,9 @@
                         <tbody>
                             {% for registro in data %}
                             <tr class="row100 body">
-                                <td class="cell100 column1">{{registro["id"]}}</td>
-                                <td class="cell100 column2">{{registro["categoria"]}}</td>
-                                <td class="cell100 column3">
+                                <td >{{registro["id"]}}</td>
+                                <td >{{registro["categoria"]}}</td>
+                                <td >
                                     <form action="/categoriaAdmin" method="POST">
                                         <button class="button button-header " type="submit" value="delete"><i class="far fa-trash-alt"></i>
                                             Borrar
@@ -135,7 +136,7 @@
                                         <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                     </form>
                                 </td>
-                                <td class="cell100 column4">
+                                <td >
                                     <form action="/categoriaAdmin" method="POST">
                                         <button class="button button-header button--active" type="submit" value="Modificar">
                                             Modificar

@@ -851,7 +851,7 @@ def categoria():
         if formId == 1:
             categoria = request.form["categoria"]
             logic.insertCategoria(categoria)
-            massage = "Se ha insertado un nuevo usuario"
+            massage = "Se ha insertado una nueva categoría"
             data = logic.getAllCategorias()
             return render_template("categoriaAdmin.html", data=data, massage=massage)
         # Elimina una categoria
@@ -859,7 +859,7 @@ def categoria():
             id = int(request.form["id"])
             try:
                 logic.deleteCategoria(id)
-                massage = "Se ha eliminado un usuario"
+                massage = "Se ha eliminado una categoría"
                 data = logic.getAllCategorias()
 
             except pymysql.err.MySQLError as error:
@@ -887,7 +887,7 @@ def categoria():
             categoria = request.form["categoria"]
             logic.updateCategoria(id, categoria)
             data = logic.getAllCategorias()
-            massage = "Se ha modificado el usuario"
+            massage = "Se ha modificado la categoría"
             return render_template(
                 "categoriaAdmin.html", data=data, verdadero=False, massage=massage
             )

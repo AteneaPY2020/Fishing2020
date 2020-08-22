@@ -48,12 +48,12 @@
                         <h4>Ingresa otro producto</h4>
                         <p>Llena todos los campos</p>
                         <form action="/productosAdmin" method="POST" enctype="multipart/form-data">
-                            Nombre: <input type="text" id="nombre" name="nombre"><br>
+                            Nombre: <input type="text" id="nombre" name="nombre" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br>
                             Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br>
-                            Descripción: <br><textarea name="descripcion" id="descripcion" cols="30" rows="10"></textarea><br>
-                            Costo unitatio: $<input type="number" name="costoUnitario" id="costoUnitario" step="0.01"><br>
+                            Descripción: <br><textarea name="descripcion" id="descripcion" cols="30" rows="10" required maxlength="300"></textarea><br>
+                            Costo unitatio: $<input type="number" name="costoUnitario" id="costoUnitario" step="0.01" ><br>
                             Precio de venta: $<input type="number" name="precioVenta" id="precioVenta" step="0.01"><br>
-                            No. Patente: <input type="number" name="patente" id="patente"><br>
+                            No. Patente: <input type="number" name="patente" id="patente"required><br>
                             <button type="submit" value="insert">Insertar</button>
                             <input type="hidden" name="formId" id="formId" value="2">
                             <input type="hidden" name="idEmpren" id="idEmpren" value="{{idEmpren}}">

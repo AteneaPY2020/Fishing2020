@@ -310,14 +310,11 @@ def emprendedor():
             pais = request.form["pais"]
             ciudad = request.form["ciudad"]
             biografia = request.form["biografia"]
-            nombre_foto = request.form["nombre_foto"]
-            verdadero = True
-
             return render_template(
                 "emprendedorAdmin.html",
                 data=data,
                 message=message,
-                verdadero=verdadero,
+                verdadero=True,
                 id=id,
                 nombre=nombre,
                 email=email,
@@ -325,8 +322,6 @@ def emprendedor():
                 userName=userName,
                 pais=pais,
                 ciudad=ciudad,
-                biografia=biografia,
-                nombre_foto=nombre_foto,
             )
         # Modifica una categoria
         else:
@@ -370,7 +365,9 @@ def emprendedor():
             #   print("Failed inserting BLOB data into MySQL table {}".format(error))
             #  message = "No se puede modificar. No existe el usuario"
 
-            return render_template("emprendedorAdmin.html", data=data, message=message)
+            return render_template(
+                "emprendedorAdmin.html", verdadero=False, data=data, message=message
+            )
 
 
 # ----------------------------------------------------------------------------------------------------------
@@ -890,7 +887,9 @@ def categoria():
             logic.updateCategoria(id, categoria)
             data = logic.getAllCategorias()
             massage = "Se ha modificado el usuario"
-            return render_template("categoriaAdmin.html", data=data, massage=massage)
+            return render_template(
+                "categoriaAdmin.html", data=data, verdadero=False, massage=massage
+            )
 
 
 # ----------------------------------------------------------------------------------------------------------

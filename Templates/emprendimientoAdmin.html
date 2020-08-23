@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 
 <head>
     <meta charset="UTF-8">
@@ -59,45 +59,49 @@
                 <div class="container">  
                     <div align="center">          
                         <div class="col-md-2 col-lg-10">
-                            <form action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
+                            <form class="form-contact contact_form" action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-lg-5">
                                         <div class="field">
-                                            Estado:<br>
                                             <select class="form-control mb-1" name="estado" id="estado">
                                                 <option value="Huevo">Huevo </option>
                                                 <option value="Pez Dorado">Pez dorado</option>
                                                 <option value="tiburon">Tiburón</option>
-                                            </select><br>
-                                            Descripcion: <textarea class="form-control mb-1" type="text" name="descripcion" id="descripcion" value="{{descripcion}}"required maxlength="500"></textarea><br>
-                                            Historia: <textarea class="form-control mb-1" type="text" name="historia" id="historia" value="{{historia}}" required maxlength="500"></textarea><br>
-                                            Eslogan: <input class="form-control mb-1" type="text" name="eslogan" id="eslogan" value="{{eslogan}}"required maxlength="500"><br>
-                                            Inversion_inicial: <input class="form-control mb-1" type="number" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"required step="0.01"><br>
-                                            Fecha fundacion: <input class="form-control mb-1" type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}" required><br>
-                                            Venta año anterior: <input class="form-control mb-1" type="number" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"required step="0.01"><br>
-                                            Nombre: <input class="form-control mb-1" type="text" name="nombre" id="nombre" value="{{nombre}}" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br>
+                                            </select>
+                                            <textarea placeholder="Descripcion"class="form-control mb-1" type="text" name="descripcion" id="descripcion" value="{{descripcion}}"required maxlength="500"></textarea>
+                                            <textarea placeholder="Historia" class="form-control mb-1" type="text" name="historia" id="historia" value="{{historia}}" required maxlength="500"></textarea>
+                                            <input placeholder="Eslogan" class="form-control mb-1" type="text" name="eslogan" id="eslogan" value="{{eslogan}}"required maxlength="500">
+                                            <input placeholder="Inversión Inicial" class="form-control mb-1" type="number" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"required step="0.01">
+                                            <input placeholder="Fecha de fundación" class="form-control mb-1" type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}" required>
+                                            <input placeholder="Venta del año anterior" class="form-control mb-1" type="number" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"required step="0.01">
+                                            <input placeholder="Nombre" class="form-control mb-1" type="text" name="nombre" id="nombre" value="{{nombre}}" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
+                                            <br>
+                                            <input type="file" name="fileToUpload" id="fileToUpload">
                                         </div>
                                     </div>
                                 
-                                <div class="col-lg-7">
-                                    <div class="field">
-                                        Foto:<br> <input class="form-control mb-1" type="file" name="fileToUpload" id="fileToUpload"><br>
-                                        Video:<br> <input class="form-control mb-1" type="text" name="video" id="video" value="{{video}}"maxlength="900"><br>
-                                        Email:<br><input class="form-control mb-1" type="email" name="email" id="email" value="{{email}}" required maxlength="150"><br>
-                                        Telefono:<br><input class="form-control mb-1" type="number" name="telefono" id="telefono" value="{{telefono}}" required maxlength="25"><br>
-                                        Facebook:<br><input class="form-control mb-1" type="text" name="facebook" id="facebook" value="{{facebook}}" maxlength="900"><br>
-                                        Instagram:<br><input class="form-control mb-1" type="text" name="instagram" id="instagram" value="{{instagram}}" maxlength="900"><br>
-                                        Youtube:<br><input class="form-control mb-1" type="text" name="youtube" id="youtube" value="{{youtube}}"maxlength="900"><br><br>
-                                        <!--Aplicar cambios-->
-                                        <button type="submit" value="update" class="btn btn-primary">Aplicar cambios</button>
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <input type="hidden" name="formId" id="formId" value="4">
-                                        <input type="hidden" name="id" id="id" value="{{id}}">
-                                        <input type="hidden" name="userName" id="userName" value="{{userName}}">
+                                
+                                    <div class="col-lg-7">
+                                        <div class="field">
+                                            <input placeholder="Video" class="form-control mb-1" type="text" name="video" id="video" value="{{video}}"maxlength="900">
+                                            <input placeholder="Correo electrónico" class="form-control mb-1" type="email" name="email" id="email" value="{{email}}" required maxlength="150">
+                                            <input placeholder="Teléfono" class="form-control mb-1" type="number" name="telefono" id="telefono" value="{{telefono}}" required maxlength="25">
+                                            <input placeholder="Facebook" class="form-control mb-1" type="text" name="facebook" id="facebook" value="{{facebook}}" maxlength="900">
+                                            <input placeholder="Instagram" class="form-control mb-1" type="text" name="instagram" id="instagram" value="{{instagram}}" maxlength="900">
+                                            <input placeholder="Youtube" class="form-control mb-1" type="text" name="youtube" id="youtube" value="{{youtube}}"maxlength="900"><br><br>
+                                            <!--Aplicar cambios-->
+                                            <button type="submit" value="update" class="btn btn-primary">Aplicar cambios</button>
+                                            <input type="hidden" name="formId" id="formId" value="4">
+                                            <input type="hidden" name="id" id="id" value="{{id}}">
+                                            <input type="hidden" name="userName" id="userName" value="{{userName}}">
+                                        </form>
+                                        <br><br>
+                                        <form action="/EmprendimientoAdmin">
+                                            <button type="submit" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                        </form>
+                                        </div>
                                     </div>
                                 </div>
-                                
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -117,23 +121,24 @@
                 <div class="container">  
                     <div align="center">          
                         <div class="col-md-2 col-lg-10">
-                            <form action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
+                            <form class="form-contact contact_form" action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-lg-5">
                                         <div class="field">
                                             Estado:<br>
-                                            <select  class="form-control mb-1" name="estado" id="estado">
+                                            <select class="form-control mb-1" name="estado" id="estado">
                                                 <option value="Huevo">Huevo </option>
                                                 <option value="Pez Dorado">Pez dorado</option>
                                                 <option value="tiburon">Tiburón</option>
                                             </select>
-                                            <input placeholder="Descripcion" class="form-control mb-1" type="text" name="descripcion" id="descripcion" required maxlength="500">
-                                            <input placeholder="Historia" class="form-control mb-1" type="text" name="historia" id="historia" required maxlength="500">
-                                            <input placeholder="Eslogan" class="form-control mb-1" type="text" name="eslogan" id="eslogan" required maxlength="500">
-                                            <input placeholder="Inversion inicial" class="form-control mb-1" type="number" name="inversion_inicial" id="inversion_inicial" required step="0.01">
-                                            <input placeholder="Fecha fundacion" class="form-control mb-1" type="number" name="fecha_fundacion" id="fecha_fundacion"required step="0.01">
-                                            <input placeholder="Venta año anterior" class="form-control mb-1" type="number" name="venta_año_anterior" id="venta_año_anterior"required step="0.01" >
-                                            <input placeholder="Usuario de emprendedor"  class="form-control mb-1" type="text" name="user_emprendedor" id="user_emprendedor"required maxlength="100">
+                                            
+                                            <input class="form-control mb-1" placeholder="Descripcion"  type="text" name="descripcion" id="descripcion" required maxlength="500">
+                                            <input class="form-control mb-1" placeholder="Historia" type="text" name="historia" id="historia" required maxlength="500">
+                                            <input class="form-control mb-1" placeholder="Eslogan" type="text" name="eslogan" id="eslogan" required maxlength="500">
+                                            <input class="form-control mb-1" placeholder="Inversion inicial" type="number" name="inversion_inicial" id="inversion_inicial" required step="0.01">
+                                            <input class="form-control mb-1" placeholder="Fecha fundacion" type="date" name="fecha_fundacion" id="fecha_fundacion"required step="0.01">
+                                            <input class="form-control mb-1" placeholder="Venta año anterior" type="number" name="venta_año_anterior" id="venta_año_anterior"required step="0.01" >
+                                            <input class="form-control mb-1" placeholder="Usuario de emprendedor"  type="text" name="user_emprendedor" id="user_emprendedor"required maxlength="100">
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
@@ -157,77 +162,68 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
     </div>
 </section>
 {%endif%}
+<br><br><br><br><br>
+<p style="color:red">{{message}}</p>
 
-
-<br><br>
 <section class="subscribe-position">
     <div class="container">
         <div class="subscribe text-center">
-            <p style="color:red">{{message}}</p>
-            <br>
             <div class="table100 ver5 m-b-110">
-                <div class="table100-head">
-                    <table>
-                        <thead>
-                            <tr class="row100 head">
-                                <th class="cell100 column1">Estado</th>
-                                <th class="cell100 column1">Descripcion</th>
-                                <th class="cell100 column1">Historia</th>
-                                <th class="cell100 column1">Eslogan</th>
-                                <th class="cell100 column1">Inversion inicial</th>
-                                <th class="cell100 column1">Fecha fundacion</th>
-                                <th class="cell100 column1">Venta año anterior</th>
-                                <th class="cell100 column1">Nombre</th>
-                                <th class="cell100 column1">Foto</th>
-                                <th class="cell100 column1">Video</th>
-                                <th class="cell100 column1">Email</th>
-                                <th class="cell100 column1">Teléfono</th>
-                                <th class="cell100 column1">Facebook</th>
-                                <th class="cell100 column1">Instagram</th>
-                                <th class="cell100 column1">Youtube</th>
-                                <th class="cell100 column1">Borrar</th>
-                                <th class="cell100 column1">Modificar</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
                 <div class="table100-body js-pscroll">
                     <table>
                         <tbody>
+                        <tr>
+                                <th>Id</th>
+                                <th>Estado</th>
+                                <th>Descripcion</th>
+                                <th>Historia</th>
+                                <th>Eslogan</th>
+                                <th>Inversion inicial</th>
+                                <th>Fecha fundacion</th>
+                                <th>Venta año anterior</th>
+                                <th>Nombre</th>
+                                <th>Foto</th>
+                                <th>Video</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                <th>Facebook</th>
+                                <th>Instagram</th>
+                                <th>Youtube</th>
+                                <th>Borrar</th>
+                                <th>Modificar</th>
+                            </tr> 
                             {% for registro in data %}
-                            <tr class="row100 body">
-                                <td class="cell100 column1">{{registro["id"]}}</td>
-                                <td class="cell100 column1">{{registro["estado"]}}</td>
-                                <td class="cell100 column1">{{registro["descripcion"]}}</td>
-                                <td class="cell100 column1">{{registro["historia"]}}</td>
-                                <td class="cell100 column1">{{registro["eslogan"]}}</td>
-                                <td class="cell100 column1">{{registro["inversion_inicial"]}}</td>
-                                <td class="cell100 column1">{{registro["fecha_fundacion"]}}</td>
-                                <td class="cell100 column1">{{registro["venta_año_anterior"]}}</td>
-                                <td class="cell100 column1">{{registro["nombre"]}}</td>
-                                <td class="cell100 column1"><img src="/static/images/emprendimiento/{{registro["nombre_foto"]}}" width="125" alt=""></td>
-                                <td class="cell100 column1">{{registro["video"]}}</td>
-                                <td class="cell100 column1">{{registro["email"]}}</td>
-                                <td class="cell100 column1">{{registro["telefono"]}}</td>
-                                <td class="cell100 column1">{{registro["facebook"]}}</td>
-                                <td class="cell100 column1">{{registro["instagram"]}}</td>
-                                <td class="cell100 column1">{{registro["youtube"]}}</td>
-
+                            
+                            <tr class="row100 head">
+                                <td>{{registro["id"]}}</td>
+                                <td>{{registro["estado"]}}</td>
+                                <td>{{registro["descripcion"]}}</td>
+                                <td>{{registro["historia"]}}</td>
+                                <td>{{registro["eslogan"]}}</td>
+                                <td>{{registro["inversion_inicial"]}}</td>
+                                <td>{{registro["fecha_fundacion"]}}</td>
+                                <td>{{registro["venta_año_anterior"]}}</td>
+                                <td>{{registro["nombre"]}}</td>
+                                <td><img src="/static/images/emprendimiento/{{registro["nombre_foto"]}}" width="50" alt=""></td>
+                                <td>{{registro["video"]}}</td>
+                                <td>{{registro["email"]}}</td>
+                                <td>{{registro["telefono"]}}</td>
+                                <td>{{registro["facebook"]}}</td>
+                                <td>{{registro["instagram"]}}</td>
+                                <td>{{registro["youtube"]}}</td>
                                 <td>
-                                    <form class="cell100 column1" action="/EmprendimientoAdmin" method="POST">
+                                    <form action="/EmprendimientoAdmin" method="POST">
                                         <button type="submit" value="delete">Borrar</button>
                                         <input type="hidden" name="formId" id="formId" value="2">
                                         <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                     </form>
                                 </td>
-
-                                <td class="cell100 column11">
+                                <td>
                                     <form action="/EmprendimientoAdmin" method="POST">
-                                        <button type="submit" value="update">Modificar</button>
                                         <input type="hidden" name="formId" id="formId" value="3">
                                         <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                         <input type="hidden" name="estado" id="estado" value="{{registro["estado"]}}">
@@ -247,9 +243,9 @@
                                         <input type="hidden" name="instagram" id="instagram" value="{{registro["instagram"]}}">
                                         <input type="hidden" name="youtube" id="youtube" value="{{registro["youtube"]}}">
                                         
-                                        <button class="button button-header button--active" type="submit"></i>
-                                    Modificar
-                                    </button>
+                                        <button class="button button-header button--active" type="submit">
+                                            Modificar
+                                        </button>
                                     </form>
                                 </td>
                             </tr>
@@ -261,7 +257,7 @@
         </div>
     </div>
 </section>
-<br><br><br><br>
+<br><br><br><br><br>
 
 
 <div class="modal fade" id="modificarInformacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -282,20 +278,20 @@
                             <option value="Pez Dorado">Pez dorado</option>
                             <option value="tiburon">Tiburón</option>
                         </select>
-                        descripcion: <input type="text" name="descripcion" id="descripcion" value="{{descripcion}}"><br><br>
-                        historia: <input type="text" name="historia" id="historia" value="{{historia}}"><br><br>
-                        eslogan: <input type="text" name="eslogan" id="eslogan" value="{{eslogan}}"><br><br>
-                        inversion_inicial: <input type="text" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"><br><br>
-                        fecha_fundacion: <input type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}"><br><br>
-                        venta_año_anterior: <input type="text" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"><br><br>
-                        nombre: <input type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
-                        Foto: <input type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
-                        video: <input type="text" name="video" id="video" value="{{video}}"><br><br>
-                        email:<input type="text" name="email" id="email" value="{{email}}"><br><br>
-                        telefono:<input type="text" name="telefono" id="telefono" value="{{telefono}}"><br><br>
-                        facebook:<input type="text" name="facebook" id="facebook" value="{{facebook}}"><br><br>
-                        instagram:<input type="text" name="instagram" id="instagram" value="{{instagram}}"><br><br>
-                        youtube:<input type="text" name="youtube" id="youtube" value="{{youtube}}"><br><br>
+                        descripcion: <input class="form-control mb-1" type="text" name="descripcion" id="descripcion" value="{{descripcion}}"><br><br>
+                        historia: <input class="form-control mb-1" type="text" name="historia" id="historia" value="{{historia}}"><br><br>
+                        eslogan: <input class="form-control mb-1" type="text" name="eslogan" id="eslogan" value="{{eslogan}}"><br><br>
+                        inversion_inicial: <input class="form-control mb-1" type="text" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"><br><br>
+                        fecha_fundacion: <input class="form-control mb-1" type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}"><br><br>
+                        venta_año_anterior: <input class="form-control mb-1" type="text" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"><br><br>
+                        nombre: <input class="form-control mb-1" type="text" name="nombre" id="nombre" value="{{nombre}}"><br><br>
+                        Foto: <input class="form-control mb-1" type="file" name="fileToUpload" id="fileToUpload"><br><br><br>
+                        video: <input class="form-control mb-1" type="text" name="video" id="video" value="{{video}}"><br><br>
+                        email:<input class="form-control mb-1" type="text" name="email" id="email" value="{{email}}"><br><br>
+                        telefono:<input class="form-control mb-1" type="text" name="telefono" id="telefono" value="{{telefono}}"><br><br>
+                        facebook:<input class="form-control mb-1" type="text" name="facebook" id="facebook" value="{{facebook}}"><br><br>
+                        instagram:<input class="form-control mb-1" type="text" name="instagram" id="instagram" value="{{instagram}}"><br><br>
+                        youtube:<input class="form-control mb-1" type="text" name="youtube" id="youtube" value="{{youtube}}"><br><br>
 
                         
 
@@ -310,7 +306,6 @@
         </div>
     </div>
 </div>
-
 <footer class="footer">
         <div class="footer-bottom">
             <div class="container">

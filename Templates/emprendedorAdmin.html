@@ -60,28 +60,32 @@
                                 <div class="row">
                                     <div class="col-lg-5">
                                         <div class="field">
-                                        <input class="form-control mb-1" placeholder="{{nombre}}" value="{{nombre}}" type="text" name="nombre" id="nombre" maxlength="100" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
-                                        <input class="form-control mb-1" placeholder="{{email}}" value="{{email}}" name="email" id="email" type="email" required maxlength="150">
-                                        <input class="form-control mb-1" placeholder="{{telefono}}" value="{{telefono}}" type="number" name="telefono" id="telefono" required maxlength="25">
-                                        <input class="form-control mb-1" placeholder="{{pais}}" value="{{pais}}" type="text" name="pais" id="pais" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
-                                        <input class="form-control mb-1" placeholder="{{ciudad}}" value="{{ciudad}}" type="text" name="ciudad" id="ciudad" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
+                                        <input class="form-control mb-1" placeholder="Nombre" value="{{nombre}}" type="text" name="nombre" id="nombre" maxlength="100" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
+                                        <input class="form-control mb-1" placeholder="Correo Electrónico" value="{{email}}" name="email" id="email" type="email" required maxlength="150">
+                                        <input class="form-control mb-1" placeholder="Teléfono" value="{{telefono}}" type="number" name="telefono" id="telefono" required maxlength="25">
+                                        <input class="form-control mb-1" placeholder="País" value="{{pais}}" type="text" name="pais" id="pais" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
+                                        <input class="form-control mb-1" placeholder="Ciudad" value="{{ciudad}}" type="text" name="ciudad" id="ciudad" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
                                         <br>
                                         <input type="file" name="fileToUpload" id="fileToUpload">
                                         </div>
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="field">
-                                            <textarea class="form-control different-control w-100" name="biografia" placeholder="{{biografia}}" value="{{biografia}}" id="biografia" cols="30" rows="10" required maxlength="500"></textarea>       
+                                            <textarea class="form-control different-control w-100" name="biografia" placeholder="Biografia" value="{{biografia}}" id="biografia" cols="30" rows="10" required maxlength="500"></textarea>       
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group text-center text-md-right mt-3">
-                                    <input class="button button--active button-contactForm" type="submit" value="Modificar">
+                                    <input class="button button-header button--active" type="submit" value="Modificar">
                                     <input type="hidden" name="formId" id="formId" value="4">
                                     <input type="hidden" name="id" id="id" value="{{id}}">
                                     <input type="hidden" name="userName" id="userName" value="{{userName}}">
+                                    </form>
+                                    <br><br>
+                                    <form action="/emprendedorAdmin">
+                                        <input class="button button-header button--active" type="submit" value="Cancelar">
+                                    </form>
                                 </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -123,7 +127,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group text-center text-md-right mt-3">
-                                    <input class="button button--active button-contactForm" type="submit" value="Insertar">
+                                    <input class="button button-header button--active" type="submit" value="Insertar">
                                     <input type="hidden" name="formId" id="formId" value="1">
                                 </div>
                             </form>

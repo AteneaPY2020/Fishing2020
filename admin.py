@@ -665,17 +665,18 @@ def fundadores():
 def signUPEmprendimiento():
     try:
         logic = emprendimientoLogic()
-        massage = ""
+        message = ""
         verdadero = False
         logicUser = UserLogic()
         if request.method == "GET":
             data = logic.getAllEmprendimientoLen()
             return render_template(
-                "emprendimientoAdmin.html", data=data, massage=massage
+                "emprendimientoAdmin.html", data=data, message=message
             )
 
         elif request.method == "POST":  # "POST"
             formId = int(request.form["formId"])
+            message = ""
             # Inserta una emprendimiento
             if formId == 1:
                 estado = str(request.form["estado"])
@@ -753,17 +754,17 @@ def signUPEmprendimiento():
                                 error
                             )
                         )
-                        massage = "No se puede insertar. No existe el id emprendedor"
+                        message = "No se puede insertar. No existe el id emprendedor"
                         data = logic.getAllEmprendimientoLen()
 
                     return render_template(
-                        "emprendimientoAdmin.html", data=data, massage=massage
+                        "emprendimientoAdmin.html", data=data, message=message
                     )
                 else:
-                    massage = "No se puede insertar. No existe el usario ingersado o no es emprendedor"
+                    message = "No se puede insertar. No existe el usario ingersado o no es emprendedor"
                     data = logic.getAllEmprendimientoLen()
                     return render_template(
-                        "emprendimientoAdmin.html", data=data, massage=massage
+                        "emprendimientoAdmin.html", data=data, message=message
                     )
 
             # Elimina un emprendimiento
@@ -772,17 +773,17 @@ def signUPEmprendimiento():
 
                 try:
                     logic.deleteEmprendimientoByIdEmprendimiento(id)
-                    massage = "Se ha eliminado el emprendimiento"
+                    message = "Se ha eliminado el emprendimiento"
                     data = logic.getAllEmprendimientoLen()
 
                 except pymysql.err.MySQLError as error:
                     print(
                         "Failed inserting BLOB data into MySQL table {}".format(error)
                     )
-                    massage = "No se puede eliminar. Afecta la integridad de los datos"
+                    message = "No se puede eliminar. Afecta la integridad de los datos"
                     data = logic.getAllEmprendimientoLen()
                 return render_template(
-                    "emprendimientoAdmin.html", data=data, massage=massage
+                    "emprendimientoAdmin.html", data=data, message=message
                 )
             # Va al form para dar update
             elif formId == 3:
@@ -888,17 +889,17 @@ def signUPEmprendimiento():
                             youtube,
                         )
                     data = logic.getAllEmprendimientoLen()
-                    massage = "Se ha modificado el emprendimiento"
+                    message = "Se ha modificado el emprendimiento"
 
                 except pymysql.err.MySQLError as error:
                     print(
                         "Failed inserting BLOB data into MySQL table {}".format(error)
                     )
-                    massage = "No se puede modificar. No existe el id emprendedor"
+                    message = "No se puede modificar. No existe el id emprendedor"
                     data = logic.getAllEmprendimientoLen()
 
                 return render_template(
-                    "emprendimientoAdmin.html", data=data, massage=massage
+                    "emprendimientoAdmin.html", data=data, message=message
                 )
     except KeyError:
         return render_template(

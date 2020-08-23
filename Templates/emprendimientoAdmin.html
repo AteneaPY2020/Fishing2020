@@ -173,10 +173,10 @@
     <div class="container">
         <div class="subscribe text-center">
             <div class="table100 ver5 m-b-110">
-                <div class="table100-head">
+                <div class="table100-body js-pscroll">
                     <table>
-                        <thead>
-                            <tr>
+                        <tbody>
+                        <tr>
                                 <th>Id</th>
                                 <th>Estado</th>
                                 <th>Descripcion</th>
@@ -185,7 +185,7 @@
                                 <th>Inversion inicial</th>
                                 <th>Fecha fundacion</th>
                                 <th>Venta año anterior</th>
-                                <th>    Nombre</th>
+                                <th>Nombre</th>
                                 <th>Foto</th>
                                 <th>Video</th>
                                 <th>Email</th>
@@ -196,14 +196,8 @@
                                 <th>Borrar</th>
                                 <th>Modificar</th>
                             </tr> 
-                        </thead>
-                    </table>
-                    <br><br>
-                </div>
-                <div class="table100-body js-pscroll">
-                    <table>
-                        <tbody>
                             {% for registro in data %}
+                            
                             <tr class="row100 head">
                                 <td>{{registro["id"]}}</td>
                                 <td>{{registro["estado"]}}</td>

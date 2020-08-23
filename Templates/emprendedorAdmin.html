@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="field">
-                                            <textarea class="form-control different-control w-100" name="biografia" placeholder="Biografia" value="{{biografia}}" id="biografia" cols="30" rows="10" required maxlength="500"></textarea>       
+                                            <textarea class="form-control different-control w-100"  placeholder="Biografia" value="{{biografia}}" required maxlength="500" name="biografia" id="biografia" cols="30" rows="10">{{biografia}}</textarea>       
                                         </div>
                                     </div>
                                 </div>
@@ -213,9 +213,12 @@
     </div>
 </section>
 <br><br><br><br>
-<p>
-    <a href="/Admin">Regresar</a>
-</p>
+<form action="/Admin" id="formRegresar" method="POST">
+    <button class="button button-header button--active" type="submit"></i>
+    Regresar
+    </button>
+<br><br>
+</form>
 <footer class="footer">
         <div class="footer-bottom">
             <div class="container">

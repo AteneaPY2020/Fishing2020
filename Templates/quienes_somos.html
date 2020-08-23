@@ -165,12 +165,14 @@
 								<div class="reply-btn">
 
 									{% if not vistaEmprendimiento %}
-									<form action="/quienes_somos" method="POST">
-										<button type="submit" value="delete"
-											class="button button-postComment button--active"> Borrar</button>
-										<input type="hidden" name="formId" id="formId" value="2">
-										<input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-									</form>
+										{% if not registro["borrar"] %}
+											<form action="/quienes_somos" method="POST">
+												<button type="submit" value="delete"
+													class="button button-postComment button--active"> Borrar</button>
+												<input type="hidden" name="formId" id="formId" value="2">
+												<input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+											</form>
+										{% endif %}
 									{% endif %}
 
 								</div>

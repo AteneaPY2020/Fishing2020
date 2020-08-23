@@ -39,7 +39,11 @@ def InicioInv():
         Inversor = logicInv.createDictionary(datos)
         id_inv = int(Inversor["id"])
         session["id_inv"] = id_inv
-        data = logicInt.getAllInteresByIdInv(id_inv)
+        intereses = logicInt.getAllInteresByIdInv(id_inv)
+        data = []
+        for registro in intereses:
+            if registro not in data:
+                data.append(registro)
 
         if request.method == "GET":
             return render_template("inicioInversionista.html", data=data, message="")
@@ -323,87 +327,92 @@ def guardadosInv():
 
 @inicio_inversionista.route("/infoEmprendimiento", methods=["GET", "POST"])
 def correo():
-    logic = emprendimientoLogic()
-    message = ""
-    idEmprendimiento = session["empId"]
-    logicOferta = ofertaLogic()
-    if request.method == "GET":
-        data = logic.getContactos(idEmprendimiento)
-        data2 = logic.getInfoFinanciera(idEmprendimiento)
-        data3 = logic.getDatosGeneralesById(idEmprendimiento)
-        data4 = logic.getDescripcion(idEmprendimiento)
-        ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
-        return render_template(
-            "informacion.html",
-            data=data,
-            data2=data2,
-            data3=data3,
-            data4=data4,
-            message=message,
-            vistaInversor=True,
-            ultima_oferta=ultima_oferta,
-        )
-    elif request.method == "POST":
-        # Datos de sesion
-        user = session["user"]
-        id_user = int(user["id"])
-        usuario = user["usuario"]
-        logicInv = inversorLogic()
-        datos = logicInv.getIdInversor(id_user)
-
+    try:
+        logic = emprendimientoLogic()
+        message = ""
         idEmprendimiento = session["empId"]
-        logicEmpr = emprendimientoLogic()
-        infoEmpren = logicEmpr.getIdEmprendimiento(idEmprendimiento)
-        logicEmpr.FundadoresByEmprendimientoCorreo(usuario, idEmprendimiento)
-        ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
-        message = request.form["message"]
-        user = "fishing.corporation2020@gmail.com"
-        password = "ilovefishing123"
+        logicOferta = ofertaLogic()
+        if request.method == "GET":
+            data = logic.getContactos(idEmprendimiento)
+            data2 = logic.getInfoFinanciera(idEmprendimiento)
+            data3 = logic.getDatosGeneralesById(idEmprendimiento)
+            data4 = logic.getDescripcion(idEmprendimiento)
+            ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+            return render_template(
+                "informacion.html",
+                data=data,
+                data2=data2,
+                data3=data3,
+                data4=data4,
+                message=message,
+                vistaInversor=True,
+                ultima_oferta=ultima_oferta,
+            )
+        elif request.method == "POST":
+            # Datos de sesion
+            user = session["user"]
+            id_user = int(user["id"])
+            usuario = user["usuario"]
+            logicInv = inversorLogic()
+            datos = logicInv.getIdInversor(id_user)
 
-        # Host y puerto SMTP de Gmail
-        gmail = smtplib.SMTP("smtp.gmail.com", 587)
+            idEmprendimiento = session["empId"]
+            logicEmpr = emprendimientoLogic()
+            infoEmpren = logicEmpr.getIdEmprendimiento(idEmprendimiento)
+            logicEmpr.FundadoresByEmprendimientoCorreo(usuario, idEmprendimiento)
+            ultima_oferta = logicOferta.getLastOferta(idEmprendimiento)
+            message = request.form["message"]
+            user = "fishing.corporation2020@gmail.com"
+            password = "ilovefishing123"
 
-        # protocolo de cifrado de datos
-        gmail.starttls()
+            # Host y puerto SMTP de Gmail
+            gmail = smtplib.SMTP("smtp.gmail.com", 587)
 
-        # Credenciales
-        gmail.login(user, password)
+            # protocolo de cifrado de datos
+            gmail.starttls()
 
-        # muestra de la depuracion de la operacion de envio 1=True
-        gmail.set_debuglevel(1)
+            # Credenciales
+            gmail.login(user, password)
 
-        header = MIMEMultipart()
-        header["Subject"] = "¡Alguien está interesado en tu emprendimiento!"
-        header["From"] = "fishing.corporation2020@gmail.com"
-        header["To"] = f"{infoEmpren.getEmail()}"
-        Intro = f"{datos.getNombre()} {datos.getEmail()} está interesado en tu emprendimiento.\nSu mensaje es el siguiente: "
-        mensaje = Intro + message
+            # muestra de la depuracion de la operacion de envio 1=True
+            gmail.set_debuglevel(1)
 
-        mensaje = MIMEText(mensaje, "html")  # Content-type:text/html
-        header.attach(mensaje)
+            header = MIMEMultipart()
+            header["Subject"] = "¡Alguien está interesado en tu emprendimiento!"
+            header["From"] = "fishing.corporation2020@gmail.com"
+            header["To"] = f"{infoEmpren.getEmail()}"
+            Intro = f"{datos.getNombre()} {datos.getEmail()} está interesado en tu emprendimiento.\nSu mensaje es el siguiente: "
+            mensaje = Intro + message
 
-        # Enviar email: remitentente, destinatario, mensaje
-        gmail.sendmail(
-            "fishing.corporation2020@gmail.com",
-            f"{infoEmpren.getEmail()}",
-            header.as_string(),
-        )
+            mensaje = MIMEText(mensaje, "html")  # Content-type:text/html
+            header.attach(mensaje)
 
-        # Cerrar la conexion SMTP
-        gmail.quit()
-        print("Correo enviado exitosamente")
+            # Enviar email: remitentente, destinatario, mensaje
+            gmail.sendmail(
+                "fishing.corporation2020@gmail.com",
+                f"{infoEmpren.getEmail()}",
+                header.as_string(),
+            )
 
-        message1 = "Correo enviado exitosamente"
-        data = logic.getContactos(idEmprendimiento)
-        data2 = logic.getInfoFinanciera(idEmprendimiento)
-        # logicEmpr.FundadoresByEmprendimientoCorreo(id_user, idEmprendimiento)
+            # Cerrar la conexion SMTP
+            gmail.quit()
+            print("Correo enviado exitosamente")
+
+            message1 = "Correo enviado exitosamente"
+            data = logic.getContactos(idEmprendimiento)
+            data2 = logic.getInfoFinanciera(idEmprendimiento)
+            # logicEmpr.FundadoresByEmprendimientoCorreo(id_user, idEmprendimiento)
+            return render_template(
+                "informacion.html",
+                data=data,
+                data2=data2,
+                message1=message1,
+                vistaInversor=True,
+                ultima_oferta=ultima_oferta,
+            )
+    except KeyError:
         return render_template(
-            "informacion.html",
-            data=data,
-            data2=data2,
-            message1=message1,
-            vistaInversor=True,
-            ultima_oferta=ultima_oferta,
+            "logInForm.html", messageSS="Su sesión ha expirado, ingrese nuevamente"
         )
 
 

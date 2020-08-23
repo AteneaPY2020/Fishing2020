@@ -1,47 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    
-    <title>Productos</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--==========================Tabla==============================================================-->
+<link rel="icon" type="image/png" href="table/images/icons/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="static/table/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="static/table/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="static/table/vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="static/table/vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css" href="static/table/css/util.css">
+<link rel="stylesheet" type="text/css" href="static/table/css/main.css">
+<!--==========================Estilo en general==============================================================-->
+<link rel="stylesheet" href="static/emprendimiento/vendors/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/linericon/style.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.theme.default.min.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet" href="static/emprendimiento/css/style.css">
+<!--==========================Icono de barra==============================================================-->
+<link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144x144.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" href="static/t2/assets/ico/apple-touch-icon.png" />
+<!--==========================Icono de barra==============================================================-->
+<!-- Javascript control de errores --> 
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+<script src="static/perfil/assets/js/validation.js"></script>
+
+<title>Productos</title>
+
 </head>
 <body>
-    <h2>Productos de cada Emprendimiento</h2>
-    <p>{{message}}</p>
-      <div class="row">
-            <div class="col-xs-6">
-                <div id="rhs2">
-                <br><br>
-                    <table border="1">
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre del emprendimento</th> 
-                            <th></th>
-                        </tr>
-                        {% for registro in datosx: %}
-                            <tr>
-                                <td>{{registro["id"]}}</td>
-                                <td>{{registro["nombre"]}}</td>
-                                <td>
-                                    <form action="/productosAdmin" method="POST">
-                                        <button type="submit" value="delete">Mostrar sus productos</button>
-                                        <input type="hidden" name="formId" id="formId" value="1">
-                                        <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                                        <input type="hidden" name="name" id="name" value="{{registro["nombre"]}}">
-                                    </form>
-                                </td>
-                                
-                            </tr>            
-                        {%endfor%}
-                    </table>
+
+<section class="blog-banner-area" id="category">
+        <div class="blog-banner">
+            <div class="text-center">
+                <h1>Productos de cada Emprendimiento</h1>
+            </div>
+        </div>
+</section>
+
+
+
+        <section class="subscribe-position">
+            <div class="container">
+                <div class="subscribe text-center">
+                    <p style="color:red">{{message}}</p>
+                    <div class="table100 ver5 m-b-110">
+                        <div class="table100-head">
+                            <table>
+                                <thead>
+                                    <tr class="row100 head">
+                                        <th>Id</th>
+                                        <th>Nombre del emprendimento</th> 
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="table100-body js-pscroll">
+                            <table>
+                                <tbody>
+
+                                    {% for registro in datosx: %}
+                                    <tr>
+                                        <td>{{registro["id"]}}</td>
+                                        <td>{{registro["nombre"]}}</td>
+                                        <td>
+                                            <form action="/productosAdmin" method="POST">
+                                                <button class="button button-hero" type="submit" value="delete">Mostrar sus productos</button>
+                                                <input type="hidden" name="formId" id="formId" value="1">
+                                                <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                                <input type="hidden" name="name" id="name" value="{{registro["nombre"]}}">
+                                            </form>
+                                        </td>
+                                        
+                                    </tr>            
+                                {%endfor%}
+
+                                    {% for registro in data %}
+                                    <tr class="row100 body">
+                                        <td>{{registro["id"]}}</td>
+                                        <td>{{registro["nombre"]}}</td>
+                                        <td>
+                                            <form action="/productosAdmin" method="POST">
+                                                <button class="button button-hero" type="submit" value="delete">Mostrar sus productos</button>
+                                                <input type="hidden" name="formId" id="formId" value="1">
+                                                <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                                <input type="hidden" name="name" id="name" value="{{registro["nombre"]}}">
+                                            </form>
+                                        </td>
+
+
+                                        
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-xs-6">
-                <div id="lhs">
+        </section>        
+
+
+
+            
+
+
+
+
+
                     {%if prductos%}
                         <h3>Productos de {{name}}</h3>
                         <br>
@@ -54,63 +128,90 @@
                             Costo unitatio: $<input type="number" name="costoUnitario" id="costoUnitario" step="0.01" ><br>
                             Precio de venta: $<input type="number" name="precioVenta" id="precioVenta" step="0.01"><br>
                             No. Patente: <input type="number" name="patente" id="patente"required><br>
-                            <button type="submit" value="insert">Insertar</button>
+                            <button class="button button-hero" type="submit" value="insert">Insertar</button>
                             <input type="hidden" name="formId" id="formId" value="2">
                             <input type="hidden" name="idEmpren" id="idEmpren" value="{{idEmpren}}">
                             <input type="hidden" name="name" id="name" value="{{name}}">
                         </form>
                         <br>
                         <br>
-                        <table border = "1">
-                            <tr>
-                                <th>Id</th>
-                                <th>Nombre</th>
-                                <th>Foto</th>
-                                <th>Descripcion</th>
-                                <th>Costo unitario</th>
-                                <th>Precio de venta</th>
-                                <th>No. Patente</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                            {% for producto in datos: %}
-                                <tr>
-                                    <td>{{producto["id"]}}</td>
-                                    <td>{{producto["nombre"]}}</td>
-                                    <td><img src="/static/images/productos/{{producto["nombre_foto"]}}" width="125" alt=""></td>
-                                    <td>{{producto["descripcion"]}}</td>
-                                    <td>{{producto["costo_unitario"]}}</td>
-                                    <td>{{producto["precio_venta"]}}</td>
-                                    <td>{{producto["patente"]}}</td>
-                                    <td>
-                                        <form action="/productosAdmin" method="POST">
-                                            <button type="submit" value="delete">Borrar</button>
-                                            <input type="hidden" name="formId" id="formId" value="3">
-                                            <input type="hidden" name="id" id="id" value="{{producto["id"]}}">
-                                            <input type="hidden" name="idEmpren" id="idEmpren" value="{{idEmpren}}">
-                                            <input type="hidden" name="name" id="name" value="{{name}}">
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="/productosAdmin" method="POST">
-                                            <button type="submit" value="update">Modificar</button>
-                                            <input type="hidden" name="formId" id="formId" value="4">
-                                            <input type="hidden" name="id" id="id" value="{{producto["id"]}}">
-                                            <input type="hidden" name="idEmpren" id="idEmpren" value="{{idEmpren}}">
-                                            <input type="hidden" name="name" id="name" value="{{name}}">
 
-                                            <input type="hidden" name="id_producto" id="id_producto" value="{{producto["id"]}}">
-                                            <input type="hidden" id="nombre" name="nombre" value="{{producto["nombre"]}}">
-                                            <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{producto["nombre_foto"]}}">
-                                            <input type="hidden" name="descripcion" id="descripcion" value="{{producto["descripcion"]}}">
-                                            <input type="hidden" name="costoUnitario" id="costoUnitario" value="{{producto["costo_unitario"]}}">
-                                            <input type="hidden" name="precioVenta" id="precioVenta" value="{{producto["precio_venta"]}}">
-                                            <input type="hidden" name="patente" id="patente" value="{{producto["patente"]}}">
-                                        </form>
-                                    </td>
-                                </tr>
-                            {%endfor%}
-                        </table>
+
+                        <!--======================================TABLE===================================================-->
+                        <section class="subscribe-position">
+                            <div class="container">
+                                <div class="subscribe text-center">
+                                    <p style="color:red">{{message}}</p>
+                                    <div class="table100 ver5 m-b-110">
+                                        <div class="table100-head">
+                                            <table>
+                                                <thead>
+                                                    <tr class="row100 head">
+                                                        <th>Id</th>
+                                                        <th>Nombre</th>
+                                                        <th>Foto</th>
+                                                        <th>Descripcion</th>
+                                                        <th>Costo unitario</th>
+                                                        <th>Precio de venta</th>
+                                                        <th>No. Patente</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div class="table100-body js-pscroll">
+                                            <table>
+                                                <tbody>
+                                                    {% for producto in datos: %}
+                                                    <tr>
+                                                        <td>{{producto["id"]}}</td>
+                                                        <td>{{producto["nombre"]}}</td>
+                                                        <td><img src="/static/images/productos/{{producto["nombre_foto"]}}" width="125" alt=""></td>
+                                                        <td>{{producto["descripcion"]}}</td>
+                                                        <td>{{producto["costo_unitario"]}}</td>
+                                                        <td>{{producto["precio_venta"]}}</td>
+                                                        <td>{{producto["patente"]}}</td>
+                                                        <td>
+                                                            <form action="/productosAdmin" method="POST">
+                                                                <button class="button button-hero" type="submit" value="delete">Borrar</button>
+                                                                <input type="hidden" name="formId" id="formId" value="3">
+                                                                <input type="hidden" name="id" id="id" value="{{producto["id"]}}">
+                                                                <input type="hidden" name="idEmpren" id="idEmpren" value="{{idEmpren}}">
+                                                                <input type="hidden" name="name" id="name" value="{{name}}">
+                                                            </form>
+                                                        </td>
+                                                        <td>
+                                                            <form action="/productosAdmin" method="POST">
+                                                                <button class="button button-hero" type="submit" value="update">Modificar</button>
+                                                                <input type="hidden" name="formId" id="formId" value="4">
+                                                                <input type="hidden" name="id" id="id" value="{{producto["id"]}}">
+                                                                <input type="hidden" name="idEmpren" id="idEmpren" value="{{idEmpren}}">
+                                                                <input type="hidden" name="name" id="name" value="{{name}}">
+
+                                                                <input type="hidden" name="id_producto" id="id_producto" value="{{producto["id"]}}">
+                                                                <input type="hidden" id="nombre" name="nombre" value="{{producto["nombre"]}}">
+                                                                <input type="hidden" name="nombre_foto" id="nombre_foto" value="{{producto["nombre_foto"]}}">
+                                                                <input type="hidden" name="descripcion" id="descripcion" value="{{producto["descripcion"]}}">
+                                                                <input type="hidden" name="costoUnitario" id="costoUnitario" value="{{producto["costo_unitario"]}}">
+                                                                <input type="hidden" name="precioVenta" id="precioVenta" value="{{producto["precio_venta"]}}">
+                                                                <input type="hidden" name="patente" id="patente" value="{{producto["patente"]}}">
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    {%endfor%}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>  
+                        <!--======================================TABLE===================================================-->
+                        
+
+
+
                     {%endif%}
                     <br><br>
                     {% if mostrar %}
@@ -129,12 +230,11 @@
                             <input type="hidden" name="name" id="name" value="{{name}}">
                         </form>
                         <form action="/productosAdmin" method="GET">
-                            <button type="submit" value="Cancelar">Cancelar</button>
+                            <button class="button button-hero" type="submit" value="Cancelar">Cancelar</button>
                         </form>
                     {% endif %}
                 </div>
-            </div>
-      </div>
+
     
     
         

@@ -2,10 +2,9 @@
 <html lang="en"> 
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emprendedor</title>
-    <!--==========================Tabla==============================================================-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--==========================Tabla==============================================================-->
 <link rel="icon" type="image/png" href="table/images/icons/favicon.ico"/>
 <link rel="stylesheet" type="text/css" href="static/table/vendor/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="static/table/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -33,14 +32,15 @@
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
     <script src="static/perfil/assets/js/validation.js"></script>
-    
+
+
 </head>
 {% block body %}
 <div class="container h-1">
     <br><br>
     <div class="blog-banner">
         <div class="text-center">
-            <h1>Emprendimientos</h1>
+            <h1>Emprendimientos{{message}}</h1>
         </div>
     </div>
 </div>
@@ -68,8 +68,8 @@
                                                 <option value="Pez Dorado">Pez dorado</option>
                                                 <option value="tiburon">Tiburón</option>
                                             </select>
-                                            <textarea placeholder="Descripcion"class="form-control mb-1" type="text" name="descripcion" id="descripcion" value="{{descripcion}}"required maxlength="500"></textarea>
-                                            <textarea placeholder="Historia" class="form-control mb-1" type="text" name="historia" id="historia" value="{{historia}}" required maxlength="500"></textarea>
+                                            <input placeholder="Descripcion"class="form-control mb-1" type="text" name="descripcion" id="descripcion" value="{{descripcion}}"required maxlength="500">
+                                            <input placeholder="Historia" class="form-control mb-1" type="text" name="historia" id="historia" value="{{historia}}" required maxlength="500">
                                             <input placeholder="Eslogan" class="form-control mb-1" type="text" name="eslogan" id="eslogan" value="{{eslogan}}"required maxlength="500">
                                             <input placeholder="Inversión Inicial" class="form-control mb-1" type="number" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"required step="0.01">
                                             <input placeholder="Fecha de fundación" class="form-control mb-1" type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}" required>
@@ -167,13 +167,14 @@
 </section>
 {%endif%}
 <br><br><br><br><br>
-<p style="color:red">{{message}}</p>
+
 
 <section class="subscribe-position">
     <div class="container">
         <div class="subscribe text-center">
             <div class="table100 ver5 m-b-110">
                 <div class="table100-body js-pscroll">
+                    <p style="color:red">{{massage}}</p>
                     <table>
                         <tbody>
                         <tr>
@@ -217,7 +218,9 @@
                                 <td>{{registro["youtube"]}}</td>
                                 <td>
                                     <form action="/EmprendimientoAdmin" method="POST">
-                                        <button type="submit" value="delete">Borrar</button>
+                                        <button class="button button-header" type="submit" value="delete"><i class="far fa-trash-alt"></i>
+                                            Borrar
+                                        </button>
                                         <input type="hidden" name="formId" id="formId" value="2">
                                         <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                     </form>

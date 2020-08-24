@@ -10145,8 +10145,8 @@ h1 {
   overflow: hidden;
   outline: none;
   margin: 0.3rem;
-  width: 95px;
-  height: 95px;
+  width: 1000000000px;
+  height: 100px;
   box-sizing: content-box;
   -webkit-transition: all 600ms;
   transition: all 600ms;

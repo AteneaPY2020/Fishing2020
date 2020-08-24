@@ -177,7 +177,9 @@
                                 <td ><img src="static/images/emprendedor/{{registro["nombre_foto"]}}" height="50"/></td>
                                 <td >
                                     <form action="/emprendedorAdmin" method="POST">
-                                        <button type="submit" value="delete">Borrar</button>
+                                        <button class="button button-header" type="submit" value="delete"><i class="far fa-trash-alt"></i>
+                                            Borrar
+                                        </button>
                                         <input type="hidden" name="formId" id="formId" value="2">
                                         <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
                                     </form>

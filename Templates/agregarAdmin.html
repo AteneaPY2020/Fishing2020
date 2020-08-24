@@ -5,61 +5,183 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administradores</title>
+<!--==========================Tabla==============================================================-->
+<link rel="icon" type="image/png" href="table/images/icons/favicon.ico"/>
+<link rel="stylesheet" type="text/css" href="static/table/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="static/table/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="static/table/vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css" href="static/table/vendor/select2/select2.min.css">
+<link rel="stylesheet" type="text/css" href="static/table/css/util.css">
+<link rel="stylesheet" type="text/css" href="static/table/css/main.css">
+<!--==========================Estilo en general==============================================================-->
+<link rel="stylesheet" href="static/emprendimiento/vendors/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/themify-icons/themify-icons.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/linericon/style.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.theme.default.min.css">
+<link rel="stylesheet" href="static/emprendimiento/vendors/owl-carousel/owl.carousel.min.css">
+<link rel="stylesheet" href="static/emprendimiento/css/style.css">
+<!--==========================Icono de barra==============================================================-->
+	<link rel="shortcut icon" href="static/t2/assets/ico/favicon.ico" type="image/x-icon" />
+	<link rel="apple-touch-icon" sizes="114x114" href="static/t2/assets/ico/apple-touch-icon-114x114.png" />
+	<link rel="apple-touch-icon" sizes="144x144" href="static/t2/assets/ico/apple-touch-icon-144x144.png" />
+	<link rel="apple-touch-icon" sizes="72x72" href="static/t2/assets/ico/apple-touch-icon-72x72.png" />
+	<link rel="apple-touch-icon" href="static/t2/assets/ico/apple-touch-icon.png" />
+<!--==========================Icono de barra==============================================================-->
+<!-- Javascript control de errores --> 
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/additional-methods.min.js"></script>
+    <script src="static/perfil/assets/js/validation.js"></script>
+
 </head>
 
-<body>
-    <h1>Administradores</h1>
-    <br>
-    <p>Para insertar un nuevo administrador ingrese su usuario y su contraseña</p>
+{% block body %}
+<div class="container h-1">
+    <br><br>
+    <div class="blog-banner">
+        <div class="text-center">
+            <h1>Administradores</h1>
+        </div>
+    </div>
+</div>
 
-    {% if message %}
-    <p style="color: red;">{{message}}</p>
-    <br>
-    {% endif %}
-    <br>
-    <form action="/agregarAdmin" method="POST">
-        <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="usuario"><br><br>
-
-        <label for="password">Contraseña:</label>
-        <input type="text" id="password" name="password"><br><br>
-        <input type="submit" value="Insertar">
-        <input type="hidden" name="formId" id="formId" value="1">
-    </form>
+<br><br>
+{% if not verdadero%}
+<section class="subscribe-position">
+    <div class="container">
+        <div class="subscribe text-center">
+            <h4>Para insertar un nuevo administrador ingrese su usuario y su contraseña</h4>
+            <br>
+            <div id="mc_embed_signup">
+                <div class="container">  
+                    <div align="center">          
+                        <div class="col-md-2 col-lg-10">
+                            <form action="/agregarAdmin" method="POST" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                    {% if message %}
+                                        <p style="color: red;">{{message}}</p>
+                                        <br>
+                                    {% endif %}
+                                        <div class="field">
+                                        <input class="form-control mb-1" placeholder="Usuario"  type="text" name="usuario" id="usuario" maxlength="100">
+                                        <input class="form-control mb-1" placeholder="Contraseña" name="password" id="password">
+                                        <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group text-center text-md-right mt-3">
+                                    <input class="button button--active button-contactForm" type="submit" value="Insertar">
+                                    <input type="hidden" name="formId" id="formId" value="1">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{%endif%}
+{% if verdadero%}
     <br><br>
     <p style="color: red;">{{message2}}</p>
-    <table border="1">
-        <tr>
-            <th>Id</th>
-            <th>Usuario</th>
-        </tr>
+<section class="subscribe-position">
+    <div class="container">
+        <div class="subscribe text-center">
+            <h4>Modifica el usuario Administrador</h4>
+            <br>
+            <div id="mc_embed_signup">
+                <div class="container">  
+                    <div align="center">          
+                        <div class="col-md-2 col-lg-10">
+                            <form action="/agregarAdmin" method="POST" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="field">
+                                        <input class="form-control mb-1" placeholder="Usuario"  type="text" name="usuario" id="usuario" maxlength="100" value="{{usuario}}">
+                                        <input class="form-control mb-1" placeholder="Contraseña" name="password" id="password" value="{{password}}">
+                                        <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group text-center text-md-right mt-3">
+                                    <input class="button button--active button-contactForm" type="submit" value="Modificar">
+                                    <input type="hidden" name="formId" id="formId" value="4" required>
+                                    <input type="hidden" name="id" id="id" value="{{id}}" required>
+                                    <form action="/agregarAdmin" method="GET">
+                                    <input class="button button--active button-contactForm" type="submit" value="Cancelar">
+                                    </form>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{%endif%}
 
-        {% for registro in data %}
-        <tr>
-            <td>{{registro["id"]}}</td>
-            <td>{{registro["usuario"]}}</td>
-            <td>
+<section class="subscribe-position">
+    <div class="container">
+        <div class="subscribe text-center">
+            <p style="color:red">{{massage}}</p>
+            <div class="table100 ver5 m-b-110">
+                <div class="table100-head">
+                    <table>
+                        <thead>
+                            <tr class="row100 head">
+                                <th>Id</th>
+                                <th>Usuario</th>
+                                <th>Borrar</th>
+                                <th>Modificar</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div class="table100-body js-pscroll">
+                    <table>
+                        <tbody>
+                            {% for registro in data %}
+                            <tr class="row100 body">
+                                <td >{{registro["id"]}}</td>
+                                <td >{{registro["usuario"]}}</td>
+                                <td >
+                                    <form action="/agregarAdmin" method="POST">
+                                        <button class="button button-header " type="submit" value="delete"><i class="far fa-trash-alt"></i>
+                                            Borrar
+                                        </button>
+                                        <input type="hidden" name="formId" id="formId" value="2">
+                                        <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                    </form>
+                                </td>
+                                <td >
+                                    <form action="/agregarAdmin" method="POST">
+                                        <button class="button button-header button--active" type="submit" value="update">
+                                            Modificar
+                                        </button>
+                                        <input type="hidden" name="formId" id="formId" value="3">
+                                        <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                        <input type="hidden" name="usuario" id="usuario" value="{{registro["usuario"]}}">
+                                        <input type="hidden" name="password" id="password" value="{{registro["password"]}}">
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>        
+<br><br>
+<br><br>
 
-                <form action="/agregarAdmin" method="POST">
-                    <button type="submit" value="delete">Borrar</button>
-                    <input type="hidden" name="formId" id="formId" value="2">
-                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                </form>
-            </td>
-            <td>
-                <form action="/agregarAdmin" method="POST">
-                    <button type="submit" value="update">Modificar</button>
-                    <input type="hidden" name="formId" id="formId" value="3">
-                    <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                    <input type="hidden" name="usuario" id="usuario" value="{{registro["usuario"]}}">
-                    <input type="hidden" name="password" id="password" value="{{registro["password"]}}">
-                </form>
-            </td>
-        </tr>
-        {% endfor %}
 
-    </table>
-    <br><br>
+
 
     {% if verdadero %}
     <p>Modifica el usuario Administrador</p>
@@ -76,6 +198,6 @@
     <p>
         <a href="/Admin">Regresar</a>
     </p>
-</body>
+{% endblock body %}
 
 </html>

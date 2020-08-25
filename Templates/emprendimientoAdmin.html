@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 
 <head>
     <meta charset="UTF-8">
@@ -91,8 +91,8 @@
                                                 <option value="Pez Dorado">Pez dorado</option>
                                                 <option value="tiburon">Tiburón</option>
                                             </select>
-                                            <input placeholder="Descripcion"class="form-control mb-1" type="text" name="descripcion" id="descripcion" value="{{descripcion}}"required maxlength="500">
-                                            <input placeholder="Historia" class="form-control mb-1" type="text" name="historia" id="historia" value="{{historia}}" required maxlength="500">
+                                            <textarea placeholder="Descripcion"class="form-control mb-1" type="text" name="descripcion" id="descripcion" required maxlength="500">{{descripcion}}</textarea>
+                                            <textarea placeholder="Historia" class="form-control mb-1" type="text" name="historia" id="historia" required maxlength="500">{{historia}}</textarea>
                                             <input placeholder="Eslogan" class="form-control mb-1" type="text" name="eslogan" id="eslogan" value="{{eslogan}}"required maxlength="500">
                                             <input placeholder="Inversión Inicial" class="form-control mb-1" type="number" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"required step="0.01">
                                             <input placeholder="Fecha de fundación" class="form-control mb-1" type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}" required>
@@ -190,7 +190,7 @@
 </section>
 {%endif%}
 <br><br><br><br><br>
-
+<p style="color:red">{{message}}</p>
 
 <section class="subscribe-position">
     <div class="container">

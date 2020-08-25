@@ -21,6 +21,7 @@ def ProfileEmp():
         data = logic.getDatosGeneralesById(idUsuario)
         idEmprendedor = data[0]["id"]
         categorias = CategoriaLogic().getAllCategorias()
+        session["id_emprendedor"] = idEmprendedor
 
         if request.method == "GET":
             # Datillos

@@ -197,7 +197,8 @@ class emprendimientoLogic(Logic):
     def getAllFundadores(self, idEmprendimiento):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select fishingdb.fundador.id, fishingdb.emprendedor.nombre_foto, fishingdb.emprendedor.foto, fishingdb.emprendedor.nombre, fishingdb.emprendedor.biografia "
+            "select fishingdb.fundador.id, fishingdb.emprendedor.nombre_foto, fishingdb.emprendedor.foto, fishingdb.emprendedor.nombre, fishingdb.emprendedor.biografia, "
+            + "fishingdb.fundador.id_emprendedor "
             + "from fishingdb.fundador "
             + "inner join fishingdb.emprendedor  on fishingdb.fundador.id_emprendedor = fishingdb.emprendedor.id "
             + "inner join fishingdb.emprendimiento on fishingdb.fundador.id_emprendimiento = fishingdb.emprendimiento.id "
@@ -206,7 +207,7 @@ class emprendimientoLogic(Logic):
         print(sql)
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(
-            data, ["id", "nombre_foto", "foto", "nombre", "biografia"]
+            data, ["id", "nombre_foto", "foto", "nombre", "biografia", "id_emprendedor"]
         )
         return data
 
@@ -517,7 +518,8 @@ class emprendimientoLogic(Logic):
         for registro in fundadores:
             sql2 = (
                 "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
-                + f"values (0, 'El inversionista {id_inversor.getNombre()} te ha enviado un mensaje. Está interesado en el emprendimiento: {idEmprendimiento.getNombre()}', {registro[0]}, "
+                + f"values (0, 'El inversionista {id_inversor.getNombre()} te ha enviado un mensaje. "
+                + f"Está interesado en el emprendimiento: {idEmprendimiento.getNombre()}', {registro[0]}, "
                 + "current_date(), current_time());"
             )
             print(sql2)

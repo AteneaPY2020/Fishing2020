@@ -55,20 +55,7 @@ ul, li {
 
 
 /* ------------------------------------ */
-input {
-  display: block;
-	outline: none;
-	border: none !important;
-}
 
-textarea {
-  display: block;
-  outline: none;
-}
-
-textarea:focus, input:focus {
-  border-color: transparent !important;
-}
 
 /* ------------------------------------ */
 button {
@@ -194,6 +181,7 @@ th, td {
 .column5 {
   width: 13%;
 }
+
 
 .table100-head th {
   padding-top: 18px;

@@ -910,6 +910,7 @@ def agregarAdmin():
             usuario = request.form["usuario"]
             password = request.form["password"]
             rol = 1
+            verdadero = False
             logicUsuario = UserLogic()
             logic = adminLogic()
             # Comprobando si existe
@@ -919,11 +920,15 @@ def agregarAdmin():
                 rows = logic.insertAdmin(usuario, password)
                 data = logic.getAllAdmin()
                 message = "Se ha agregado un nuevo administrador"
-                return render_template("agregarAdmin.html", data=data, message=message)
+                return render_template(
+                    "agregarAdmin.html", data=data, message=message, verdadero=verdadero
+                )
             else:
                 data = logic.getAllAdmin()
                 message = "El usuario ya existe, pruebe otro"
-                return render_template("agregarAdmin.html", data=data, message=message)
+                return render_template(
+                    "agregarAdmin.html", data=data, message=message, verdadero=verdadero
+                )
         # ELIMINAR
         elif formId == 2:
             id = int(request.form["id"])

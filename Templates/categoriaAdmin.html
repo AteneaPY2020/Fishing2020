@@ -39,14 +39,14 @@
         <div class="container">
         <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-
-                <li class="nav-item"><a class="nav-link" href="/inversionistaAdmin">Inversionista</a></li>
-                <li class="nav-item"><a class="nav-link" href="/emprendedorAdmin">Emprendedor</a></li>
-                <li class="nav-item"><a class="nav-link" href="/productosAdmin">Producto</a></li>
-                <li class="nav-item"><a class="nav-link" href="/fundadoresAdmin">Fundador</a></li>
-                <li class="nav-item"><a class="nav-link" href="/EmprendimientoAdmin">Emprendimiento</a></li>
-                <li class="nav-item"><a class="nav-link" href="/categoriaAdmin">Categoría</a></li>
-                <li class="nav-item"><a class="nav-link" href="/agregarAdmin">Administrador</a></li>
+                <li class="nav-item"><a class="nav-link" href="/Admin"><font size="2.5">Inicio</font></a></li>
+                <li class="nav-item"><a class="nav-link" href="/inversionistaAdmin"><font size="2.5">Inversionista</font></a></li>
+                <li class="nav-item"><a class="nav-link" href="/emprendedorAdmin"><font size="2.5">Emprendedor</font></a></li>
+                <li class="nav-item"><a class="nav-link" href="/productosAdmin"><font size="2.5">Produto</font></a></li>
+                <li class="nav-item"><a class="nav-link" href="/fundadoresAdmin"><font size="2.5">Fundador</font></a></li>
+                <li class="nav-item"><a class="nav-link" href="/EmprendimientoAdmin"><font size="2.5">Emprendimiento</font></a></li>
+                <li class="nav-item"><a class="nav-link" href="/categoriaAdmin"><font size="2.5">Categoría</font></a></li>
+                <li class="nav-item"><a class="nav-link" href="/agregarAdmin"><font size="2.5">Administrador</font></a></li>
             </ul>
             <ul class="nav-shop">
             <li class="nav-item"><a class="button button-header" href="/cerrarSesion">Cerrar sesión</a></li>
@@ -84,7 +84,7 @@
                                 <div class="field">
                                     Nueva Categoría
                                     <input class="form-control mb-1" type="text" name="categoria" id="categoria" required style="margin: 5px"><br>
-                                    <button class="button button-header button--active" type="submit" value="insert">Insertar</button>
+                                    <button class="button button-header button--active pull-right" type="submit" value="insert">Insertar</button>
                                     <input type="hidden" name="formId" id="formId" value="1">
                                 </div>
                             </form>
@@ -111,14 +111,13 @@
                                 <div class="field">
                                     Nombre de categoría
                                     <input class="form-control mb-1" type="text" name="categoria" id="categoria" value={{categoria}} required style="margin: 5px"><br>
-                                    <button class="button button-header button--active" type="submit" value="insert">Modificar</button>
+                                    <button class="button button-header button--active pull-right" type="submit" value="insert">Modificar</button>
                                     <input type="hidden" name="formId" id="formId" value="4">
                                     <input type="hidden" name="id" id="id" value="{{id}}">
+                                    <form action="/categoriaAdmin" method="GET">
+                                        <input class="button button-header button--active pull-right" type="submit" value="Cancelar">
+                                    </form>
                                 </div>
-                            </form>
-                            <br><br>
-                            <form action="/categoriaAdmin">
-                                <input class="button button-header button--active" type="submit" value="Cancelar">
                             </form>
                         </div>
                     </div>
@@ -183,12 +182,6 @@
 </section>        
 <br><br>
 <br><br>
-<form action="/Admin" id="formRegresar" method="POST">
-    <button class="button button-header button--active" type="submit"></i>
-    Regresar
-    </button>
-<br><br>
-</form>
 <footer class="footer">
         <div class="footer-bottom">
             <div class="container">

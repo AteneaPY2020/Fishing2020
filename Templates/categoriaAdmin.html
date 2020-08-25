@@ -133,7 +133,8 @@
         <div class="subscribe text-center">
             <p style="color:red">{{massage}}</p>
             <div class="table100 ver5 m-b-110">
-                <div class="table100-head">
+                
+                <div class="table100-body js-pscroll">
                     <table>
                         <thead>
                             <tr class="row100 head">
@@ -143,10 +144,6 @@
                                 <th>Modificar</th>
                             </tr>
                         </thead>
-                    </table>
-                </div>
-                <div class="table100-body js-pscroll">
-                    <table>
                         <tbody>
                             {% for registro in data %}
                             <tr class="row100 body">

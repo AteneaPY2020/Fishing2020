@@ -109,8 +109,10 @@
                     <p style="color: red;">{{message}}</p>
                     <br>
                     {% endif %}
-                    <table >
-                        <thead>
+                </div>
+                <div class="table100-body js-pscroll">
+                    <table>
+                        <tbody>
                             <tr class="row100 head">
                                 <th>Id</th>
                                 <th>Nombre de fundador</th>
@@ -118,15 +120,9 @@
                                 <th>Nombre emprendimiento</th>
                                 <th>Borrar</th>
                             </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="table100-body js-pscroll">
-                    <table>
-                        <tbody>
                             <!-- Tabla con registros --> 
                             {% for registro in data %}
-               
+
                             <tr class="row100 body">
                                 <td>{{registro["id"]}}</td>
                                 <td>{{registro["nombre"]}}</td>

@@ -88,8 +88,8 @@
                                     <br>
                                 {% endif %}
                                     <div class="field">
-                                        <input class="form-control mb-1" placeholder="Usuario"  type="text" name="usuario" id="usuario" maxlength="100">
-                                        <input class="form-control mb-1" placeholder="Contraseña" name="password" id="password">
+                                        <input class="form-control mb-1" placeholder="Usuario"  type="text" name="usuario" id="usuario" maxlength="100" required>
+                                        <input class="form-control mb-1" placeholder="Contraseña" name="password" id="password" required>
                                     <br>
                                     </div>
                                 <div class="form-group text-center text-md-right mt-3">
@@ -119,8 +119,8 @@
                         <div class="col-md-2 col-lg-10">
                             <form action="/agregarAdmin" class="form-contact contact_form" method="POST" enctype="multipart/form-data">
                                 <div class="field">
-                                    <input class="form-control mb-1" placeholder="Usuario"  type="text" name="usuario" id="usuario" maxlength="100" value="{{usuario}}">
-                                    <input class="form-control mb-1" placeholder="Contraseña" name="password" id="password" value="{{password}}">
+                                    <input class="form-control mb-1" placeholder="Usuario"  type="text" name="usuario" id="usuario" maxlength="100" value="{{usuario}}" required>
+                                    <input class="form-control mb-1" placeholder="Contraseña" name="password" id="password" value="{{password}}" required>
                                     <br>
                                 </div>
                                 <div class="form-group text-center text-md-right mt-3">
@@ -160,13 +160,15 @@
                                 <td >{{registro["id"]}}</td>
                                 <td >{{registro["usuario"]}}</td>
                                 <td >
-                                    <form action="/agregarAdmin" method="POST">
-                                        <button class="button button-header " type="submit" value="delete"><i class="far fa-trash-alt"></i>
-                                            Borrar
-                                        </button>
-                                        <input type="hidden" name="formId" id="formId" value="2">
-                                        <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
-                                    </form>
+                                    {% if not registro["borrar"] %}
+                                        <form action="/agregarAdmin" method="POST">
+                                            <button class="button button-header " type="submit" value="delete"><i class="far fa-trash-alt"></i>
+                                                Borrar
+                                            </button>
+                                            <input type="hidden" name="formId" id="formId" value="2">
+                                            <input type="hidden" name="id" id="id" value="{{registro["id"]}}">
+                                        </form>
+                                    {% endif %}
                                 </td>
                                 <td >
                                     <form action="/agregarAdmin" method="POST">

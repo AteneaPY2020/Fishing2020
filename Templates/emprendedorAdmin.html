@@ -73,6 +73,7 @@
     <div class="container">
         <div class="subscribe text-center">
             <h4>Modifica el emprendedor</h4>
+            <p>Llena todos los campos e ingrese una fotografía del emprendedor</p>
             <br>
             <div id="mc_embed_signup">
                 <div class="container">  
@@ -93,7 +94,7 @@
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="field">
-                                            <textarea class="form-control different-control w-100"  placeholder="Biografia" value="{{biografia}}" required maxlength="500" name="biografia" id="biografia" cols="30" rows="10">{{biografia}}</textarea>       
+                                            <textarea class="form-control different-control w-100"  placeholder="Biografia" required maxlength="500" name="biografia" id="biografia" cols="30" rows="10">{{biografia}}</textarea>       
                                         </div>
                                     </div>
                                 </div>
@@ -122,6 +123,7 @@
     <div class="container">
         <div class="subscribe text-center">
             <h4>Inserta un emprendedor</h4>
+            <p>Llena todos los campos e ingrese una fotografía del emprendedor</p>
             <br>
             <div id="mc_embed_signup">
                 <div class="container">  
@@ -168,9 +170,9 @@
             <p style="color:red">{{message}}</p>
             <br>
             <div class="table100 ver5 m-b-110">
-                <div class="table100-head">
+                <div class="table100-body js-pscroll">
                     <table>
-                        <thead>
+                        <tbody>
                             <tr class="row100 head">
                                 <th >Id</th>
                                 <th >Nombre</th>
@@ -184,12 +186,6 @@
                                 <th>Borrar</thclass=>
                                 <th>Modificar</thclass=>
                             </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="table100-body js-pscroll">
-                    <table>
-                        <tbody>
                             {% for registro in data %}
                             <tr class="row100 body">
                                 <td >{{registro["id"]}}</td>

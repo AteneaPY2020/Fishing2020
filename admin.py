@@ -33,6 +33,7 @@ def Admin():
 @admin.route("/inversionistaAdmin", methods=["GET", "POST"])
 def inversionista():
     try:
+        user = session["user"]
         logic = inversorLogic()
         uLogic = UserLogic()
         message = ""
@@ -229,6 +230,7 @@ def inversionista():
 @admin.route("/emprendedorAdmin", methods=["GET", "POST"])
 def emprendedor():
     try:
+        user = session["user"]
         logic = emprendedorLogic()
         uLogic = UserLogic()
         message = ""
@@ -353,6 +355,7 @@ def emprendedor():
                     userName=userName,
                     pais=pais,
                     ciudad=ciudad,
+                    biografia=biografia,
                 )
             # Modifica una categoria
             else:
@@ -410,6 +413,7 @@ def emprendedor():
 @admin.route("/productosAdmin", methods=["POST", "GET"])
 def productos():
     try:
+        user = session["user"]
         logic = adminLogic()
         datos = logic.getAllEmprendimientoID()
         if request.method == "GET":
@@ -481,6 +485,7 @@ def productos():
                         name=Empren_Name,
                         datosx=datos,
                         idEmpren=id_Empren,
+                        message="Se ha insertado el producto",
                     )
 
                 # Delete
@@ -502,6 +507,7 @@ def productos():
                         name=Empren_Name,
                         datosx=datos,
                         idEmpren=id_Empren,
+                        message="Se ha eliminado el producto",
                     )
                 # Mando al form de modificacion
                 if formId == 4:
@@ -582,6 +588,7 @@ def productos():
                         name=Empren_Name,
                         datosx=datos,
                         idEmpren=id_Empren,
+                        message="Se ha modificado el producto",
                     )
     except KeyError:
         return render_template(
@@ -594,6 +601,7 @@ def productos():
 @admin.route("/fundadoresAdmin", methods=["GET", "POST"])
 def fundadores():
     try:
+        user = session["user"]
         logic = adminLogic()
         verdadero = False
         if request.method == "GET":
@@ -664,6 +672,7 @@ def fundadores():
 @admin.route("/EmprendimientoAdmin", methods=["GET", "POST"])
 def signUPEmprendimiento():
     try:
+        user = session["user"]
         logic = emprendimientoLogic()
         message = ""
         verdadero = False
@@ -912,6 +921,7 @@ def signUPEmprendimiento():
 @admin.route("/categoriaAdmin", methods=["GET", "POST"])
 def categoria():
     try:
+        user = session["user"]
         logic = adminLogic()
         massage = ""
         verdadero = False
@@ -951,6 +961,7 @@ def categoria():
             elif formId == 3:
                 id = int(request.form["id"])
                 categoria = request.form["categoria"]
+                print(categoria)
                 verdadero = True
                 data = logic.getAllCategorias()
                 return render_template(
@@ -981,13 +992,32 @@ def categoria():
 @admin.route("/agregarAdmin", methods=["GET", "POST"])
 def agregarAdmin():
     try:
+        user = session["user"]
+        admin_user = user["usuario"]
         logic = adminLogic()
         message = ""
         verdadero = False
+        data = logic.getAllAdmin()
+        for registro in data:
+            registro["borrar"] = False
+            if registro["usuario"] == admin_user:
+                registro["borrar"] = True
+                break
         if request.method == "GET":
             data = logic.getAllAdmin()
+            for registro in data:
+                registro["borrar"] = False
+                if registro["usuario"] == admin_user:
+                    registro["borrar"] = True
+                    break
             return render_template("agregarAdmin.html", data=data, message=message)
         elif request.method == "POST":
+            data = logic.getAllAdmin()
+            for registro in data:
+                registro["borrar"] = False
+                if registro["usuario"] == admin_user:
+                    registro["borrar"] = True
+                    break
             formId = int(request.form["formId"])
             # INSERTAR
             if formId == 1:
@@ -1002,8 +1032,13 @@ def agregarAdmin():
 
                 if not existeUsuario:
                     rows = logic.insertAdmin(usuario, password)
-                    data = logic.getAllAdmin()
                     message = "Se ha agregado un nuevo administrador"
+                    data = logic.getAllAdmin()
+                    for registro in data:
+                        registro["borrar"] = False
+                        if registro["usuario"] == admin_user:
+                            registro["borrar"] = True
+                            break
                     return render_template(
                         "agregarAdmin.html",
                         data=data,
@@ -1011,8 +1046,13 @@ def agregarAdmin():
                         verdadero=verdadero,
                     )
                 else:
-                    data = logic.getAllAdmin()
                     message = "El usuario ya existe, pruebe otro"
+                    data = logic.getAllAdmin()
+                    for registro in data:
+                        registro["borrar"] = False
+                        if registro["usuario"] == admin_user:
+                            registro["borrar"] = True
+                            break
                     return render_template(
                         "agregarAdmin.html",
                         data=data,
@@ -1026,6 +1066,11 @@ def agregarAdmin():
                 logicDelete.deleteAdmin(id)
                 message2 = "Se ha eliminado un administrador"
                 data = logic.getAllAdmin()
+                for registro in data:
+                    registro["borrar"] = False
+                    if registro["usuario"] == admin_user:
+                        registro["borrar"] = True
+                        break
                 return render_template(
                     "agregarAdmin.html", data=data, message2=message2
                 )
@@ -1037,6 +1082,11 @@ def agregarAdmin():
                 usuario = request.form["usuario"]
                 password = request.form["password"]
                 data = logic.getAllAdmin()
+                for registro in data:
+                    registro["borrar"] = False
+                    if registro["usuario"] == admin_user:
+                        registro["borrar"] = True
+                        break
                 return render_template(
                     "agregarAdmin.html",
                     usuario=usuario,
@@ -1054,8 +1104,13 @@ def agregarAdmin():
                 rol = 1
                 logicUsuario = UserLogic()
                 logic.updateAdmin(id, usuario, password)
-                data = logic.getAllAdmin()
                 message2 = "Se ha modificado al administrador"
+                data = logic.getAllAdmin()
+                for registro in data:
+                    registro["borrar"] = False
+                    if registro["usuario"] == admin_user:
+                        registro["borrar"] = True
+                        break
                 return render_template(
                     "agregarAdmin.html", data=data, message2=message2
                 )

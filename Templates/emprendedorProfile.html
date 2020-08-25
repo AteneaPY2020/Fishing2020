@@ -45,7 +45,7 @@
     </header>
     <!--================ End Header Menu Area =================-->
 
-    <section class="blog_area single-post-area py-80px section-margin--small">
+<section class="blog_area single-post-area py-80px section-margin--small">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 posts-list">
@@ -98,6 +98,30 @@
                         </button>
                         
                     </div>
+                    
+                    <div class="comment-form blog_right_sidebar">
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h4>Notificaciones</h4>
+                        <div class="media post_item">
+                            <div class="">
+                                <table class="table">
+                                    <tr>
+                                        <th></th>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                    </tr>     
+                                    {% for registro in data2 %}
+                                    <tr>
+                                    <td>{{registro["mensaje"]}}</td>
+                                    <td>{{registro["fecha"]}}</td>
+                                    <td>{{registro["hora"]}}</td>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>         
+                    </aside>
+                    <br><br>
+                </div>
             </div>
 
             <div class="col-lg-4">
@@ -119,33 +143,14 @@
                         Modificar Información
                         </button>
                     </aside>
+                    
                 </div>
-
-                
-                <div class="comment-form blog_right_sidebar">
-                    <aside class="single_sidebar_widget popular_post_widget">
-                        <h3 class="widget_title">Notificaciones</h3>
-                        <div class="media post_item">
-                            <div class="">
-                                <table class="table">
-                                    <tr>
-                                        <th></th>
-                                        <th>Fecha</th>
-                                        <th>Hora</th>
-                                    </tr>     
-                                    {% for registro in data2 %}
-                                    <tr>
-                                    <td>{{registro["mensaje"]}}</td>
-                                    <td>{{registro["fecha"]}}</td>
-                                    <td>{{registro["hora"]}}</td>
-                                    {% endfor %}
-                                </table>
-                            </div>
-                        </div>         
+                <br>
+                <div>
+                    <aside>
+                        <img class="card-img" src="static/emprendimiento/img/gallery/FishingPublicidad__1.png" width="700" alt="">
                     </aside>
-                    <br><br>
                 </div>
-
             </div>
         </div>
     </section>
@@ -196,7 +201,7 @@
                             <div class="field">
                                 <label class="" for="telefono">Telefono</label>
                                     <div class="control">
-                                        <input type="number" maxlength="25" required pattern="{0,24}"  required name="telefono" id="telefono" value="{{data[0]["telefono"]}}"><br>
+                                        <input type="number" maxlength="25" required  required name="telefono" id="telefono" value="{{data[0]["telefono"]}}"><br>
                                     </div>
                             </div>
 
@@ -316,7 +321,7 @@
                         <div class="field">
                             <label class="" for="nombre">Nombre del emprendimiento:</label>
                                 <div class="control">
-                                    <input type="text"  required maxlength="100" name="nombre"  id="nombre" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras"><br><br>
+                                    <input type="text" required maxlength="100" name="nombre"  id="nombre"><br><br>
                                 </div>
                         </div>
 
@@ -330,12 +335,12 @@
                         <div class="field">
                             <label class="" for="telefono">Telefono:</label>
                                 <div class="control">
-                                    <input type="text" required name="telefono" id="telefono"><br>
+                                    <input type="number" required name="telefono" id="telefono"><br>
                                 </div>
                         </div>  
 
                         <div class="field">
-                            <label class="" for="telefono">Video:</label>
+                            <label class="" for="video">Video:</label>
                                 <div class="control">
                                     <input type="url" name="video" id="video"><br>
                                 </div>

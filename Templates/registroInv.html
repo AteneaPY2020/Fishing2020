@@ -132,38 +132,35 @@
                                     <label class="sr-only" for="f1-first-name">Nombre</label>
                                     Nombre:<br>
                                     <input type="text" name="nombre" 
-                                        class="f1-first-name form-control" id="nombre" value={{namex}}>
+                                        class="f1-first-name form-control" id="nombre" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
                                 </div>
                                 <div class="form-group">
                                     Seleccione una foto de perfil:
-                                    <input type="file" name="fileToUpload" id="fileToUpload">
-                                    <br>
-                                    <button type="submit" class="btn btn-next" value="Upload Image" name="imageInv"
-                                        id="imageInv">Subir</button>
+                                    <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*">
                                 </div>
                                 <div class="form-group">
                                     Email: <br>
                                     <label class="sr-only" for="f1-email">Email</label>
                                     <input type="email" name="email" class="f1-email form-control"
-                                        id="email" value={{emailx}}>
+                                        id="email" required maxlength="150">
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-last-name">Pais</label>
                                     País: <br>
                                     <input type="text" name="country" class="f1-last-name form-control"
-                                        id="country" value={{countryx}}>
+                                        id="country" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" maxlength="100">
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-last-name">Ciudad</label>
                                     Ciudad: <br>
                                     <input type="text" name="city" class="f1-last-name form-control"
-                                        id="city" value={{cityx}}>
+                                        id="city" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" maxlength="100">
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="f1-about-yourself">Biografia</label>
                                     Biografía: <br>
                                     <textarea name="bio" placeholder="Cuéntanos un poco sobre ti" class="f1-about-yourself form-control"
-                                        id="bio" value={{biox}}></textarea>
+                                        id="bio" required maxlength="200"></textarea>
                                 </div>
 
                                 <div class="f1-buttons">

@@ -45,7 +45,7 @@
                     <li class="nav-item"><a class="nav-link" href="/Admin"><font size="2.5">Inicio</font></a></li>
                     <li class="nav-item"><a class="nav-link" href="/inversionistaAdmin"><font size="2.5">Inversionista</font></a></li>
                     <li class="nav-item"><a class="nav-link" href="/emprendedorAdmin"><font size="2.5">Emprendedor</font></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/productosAdmin"><font size="2.5">Produto</font></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/productosAdmin"><font size="2.5">Producto</font></a></li>
                     <li class="nav-item"><a class="nav-link" href="/fundadoresAdmin"><font size="2.5">Fundador</font></a></li>
                     <li class="nav-item"><a class="nav-link" href="/EmprendimientoAdmin"><font size="2.5">Emprendimiento</font></a></li>
                     <li class="nav-item"><a class="nav-link" href="/categoriaAdmin"><font size="2.5">Categoría</font></a></li>
@@ -167,7 +167,7 @@
                                         </div>
                                         </div>
                                         <div class="form-group text-center text-md-right mt-3">
-                                            <button class="button button--active button-contactForm" type="submit" value="insert">Insertar</button>
+                                            <button class="button button-header button--active pull-right" type="submit" value="insert">Insertar</button>
                                             <input type="hidden" name="formId" id="formId" value="2">
                                             <input type="hidden" name="idEmpren" id="idEmpren" value="{{idEmpren}}">
                                             <input type="hidden" name="name" id="name" value="{{name}}">
@@ -216,18 +216,20 @@
                                         </div>
                                         
                                         <div class="form-group text-center text-md-right mt-3">
-                                            <input class="button button--active button-contactForm" type="submit" value="Modificar">
+                                            <input class="button button-header button--active pull-right" type="submit" value="Modificar">
                                             <input type="hidden" name="formId" id="formId" value="5">
                                             <input type="hidden" name="id_producto" id="id_producto" value="{{data2["id_producto"]}}">
                                             <input type="hidden" name="idEmpren" id="idEmpren" value="{{idEmpren}}">
                                             <input type="hidden" name="name" id="name" value="{{name}}">
                                         
-                                            <form action="/productosAdmin" method="GET">
-                                                <button class="button button--active button-contactForm" type="submit" value="Cancelar">Cancelar</button>
-                                            </form>
+                                            
                                             
                                         </div>
 
+                                    </form>
+                                    <br><br>
+                                    <form action="/productosAdmin" method="GET">
+                                        <button class="button button-header button--active pull-right" type="submit" value="Cancelar">Cancelar</button>
                                     </form>
                                 </div> 
                             </div>

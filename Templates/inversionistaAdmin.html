@@ -45,7 +45,7 @@
                         <li class="nav-item"><a class="nav-link" href="/Admin"><font size="2.5">Inicio</font></a></li>
                         <li class="nav-item"><a class="nav-link" href="/inversionistaAdmin"><font size="2.5">Inversionista</font></a></li>
                         <li class="nav-item"><a class="nav-link" href="/emprendedorAdmin"><font size="2.5">Emprendedor</font></a></li>
-                        <li class="nav-item"><a class="nav-link" href="/productosAdmin"><font size="2.5">Produto</font></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/productosAdmin"><font size="2.5">Producto</font></a></li>
                         <li class="nav-item"><a class="nav-link" href="/fundadoresAdmin"><font size="2.5">Fundador</font></a></li>
                         <li class="nav-item"><a class="nav-link" href="/EmprendimientoAdmin"><font size="2.5">Emprendimiento</font></a></li>
                         <li class="nav-item"><a class="nav-link" href="/categoriaAdmin"><font size="2.5">Categoría</font></a></li>
@@ -103,11 +103,11 @@
                                             <input type="hidden" name="id" id="id" value="{{id}}">
                                             <input type="hidden" name="userName" id="userName" value="{{userName}}">
                                             </form>
-                                            <br><br>
-                                            <form action="/inversionistaAdmin">
-                                                <input class="button button-header button--active" type="submit" value="Cancelar">
-                                            </form>
                                         </div>
+                                    </form>
+                                    <form action="/inversionistaAdmin">
+                                        <input class="button button-header button--active pull-right" type="submit" value="Cancelar">
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -148,7 +148,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group text-center text-md-right mt-3">
-                                            <input class="button button--active button-contactForm" type="submit" value="Insertar">
+                                            <input class="button button-header button--active pull-right" type="submit" value="Insertar">
                                             <input type="hidden" name="formId" id="formId" value="1">
                                         </div>
                                     </form>

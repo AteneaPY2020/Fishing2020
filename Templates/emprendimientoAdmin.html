@@ -81,34 +81,36 @@
                         <div class="col-md-2 col-lg-10">
                             <form class="form-contact contact_form" action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-lg-5">
+
+                                    <div class="col-lg-6">
                                         <div class="field">
-                                            <select class="form-control mb-1" name="estado" id="estado">
+                                            <br>
+                                            <select placeholder="Estado" class="form-control mb-1" name="estado" id="estado">
                                                 <option value="Huevo">Huevo </option>
                                                 <option value="Pez Dorado">Pez dorado</option>
                                                 <option value="tiburon">Tiburón</option>
                                             </select>
-                                            <textarea placeholder="Descripcion"class="form-control mb-1" type="text" name="descripcion" id="descripcion" required maxlength="500">{{descripcion}}</textarea>
-                                            <textarea placeholder="Historia" class="form-control mb-1" type="text" name="historia" id="historia" required maxlength="500">{{historia}}</textarea>
-                                            <input placeholder="Eslogan" class="form-control mb-1" type="text" name="eslogan" id="eslogan" value="{{eslogan}}"required maxlength="500">
-                                            <input placeholder="Inversión Inicial" class="form-control mb-1" type="number" name="inversion_inicial" id="inversion_inicial" value="{{inversion_inicial}}"required step="0.01">
-                                            <input placeholder="Fecha de fundación" class="form-control mb-1" type="date" name="fecha_fundacion" id="fecha_fundacion" value="{{fecha_fundacion}}" required>
-                                            <input placeholder="Venta del año anterior" class="form-control mb-1" type="number" name="venta_año_anterior" id="venta_año_anterior" value="{{venta_año_anterior}}"required step="0.01">
-                                            <input placeholder="Nombre" class="form-control mb-1" type="text" name="nombre" id="nombre" value="{{nombre}}" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
-                                            <br>
-                                            <input type="file" name="fileToUpload" id="fileToUpload">
+                                            <textarea class="form-control different-control w-100" required name="descripcion" maxlength="300" placeholder="Descripción" id="descripcion" cols="30" rows="10">{{descripcion}}</textarea>
+                                            <br><textarea class="form-control different-control w-100" required maxlength="300" placeholder="Historia" type="text" name="historia" id="historia" required maxlength="500"cols="30" rows="10">{{historia}}</textarea>   
+                                            
                                         </div>
                                     </div>
-                                
-                                
-                                    <div class="col-lg-7">
+
+                                    <div class="col-lg-6">
                                         <div class="field">
-                                            <input placeholder="Video" class="form-control mb-1" type="text" name="video" id="video" value="{{video}}"maxlength="900">
-                                            <input placeholder="Correo electrónico" class="form-control mb-1" type="email" name="email" id="email" value="{{email}}" required maxlength="150">
-                                            <input placeholder="Teléfono" class="form-control mb-1" type="number" name="telefono" id="telefono" value="{{telefono}}" required maxlength="25">
-                                            <input placeholder="Facebook" class="form-control mb-1" type="text" name="facebook" id="facebook" value="{{facebook}}" maxlength="900">
-                                            <input placeholder="Instagram" class="form-control mb-1" type="text" name="instagram" id="instagram" value="{{instagram}}" maxlength="900">
-                                            <input placeholder="Youtube" class="form-control mb-1" type="text" name="youtube" id="youtube" value="{{youtube}}"maxlength="900"><br><br>
+                                            <br><input placeholder="Nombre" class="form-control mb-1" type="text" name="nombre" value="{{nombre}}" id="nombre" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" maxlength="100">
+                                            <input class="form-control mb-1" placeholder="Eslogan" type="text" name="eslogan" value="{{eslogan}}" id="eslogan" required maxlength="500">
+                                            <input class="form-control mb-1" placeholder="Inversion inicial" type="number" value="{{inversion_inicial}}" name="inversion_inicial" id="inversion_inicial" required step="0.01">
+                                            <input class="form-control mb-1" placeholder="Fecha fundacion" type="date" value="{{fecha_fundacion}}" name="fecha_fundacion" id="fecha_fundacion"required step="0.01">
+                                            <input placeholder="Video" class="form-control mb-1" type="url" name="video" id="video" value="{{video}}" maxlength="900">
+                                            <input placeholder="Email" class="form-control mb-1" type="text" name="email" value="{{email}}" id="email" required maxlength="150">
+                                            <input placeholder="Telefono" class="form-control mb-1" type="number" name="telefono" id="telefono" value="{{telefono}}" required maxlength="25">
+                                            <input placeholder="Facebook" class="form-control mb-1" type="text" name="facebook" value="{{facebook}}" id="facebook" maxlength="900">
+                                            <input placeholder="Instagram" class="form-control mb-1" type="text" name="instagram" value="{{instagram}}" id="instagram"maxlength="900">
+                                            <input placeholder="Youtube" class="form-control mb-1" type="text" name="youtube" value="{{youtube}}" id="youtube"maxlength="900">
+                                            <input class="form-control mb-1" placeholder="Venta año anterior" type="number" name="venta_año_anterior" value="{{venta_año_anterior}}"  id="venta_año_anterior"required step="0.01" >
+                                            <input class="form-control mb-1" placeholder="Usuario de emprendedor"  type="text" name="user_emprendedor" value="{{user_emprendedor}}" id="user_emprendedor"required maxlength="100"><br>
+                                            <input type="file" name="fileToUpload" id="fileToUpload" ><br>
                                             <!--Aplicar cambios-->
                                             <button type="submit" value="update" class="button button-header button--active pull-right">Modificar</button>
                                             <input type="hidden" name="formId" id="formId" value="4">
@@ -143,35 +145,34 @@
                         <div class="col-md-2 col-lg-10">
                             <form class="form-contact contact_form" action="/EmprendimientoAdmin" method="POST" enctype="multipart/form-data">
                                 <div class="row">
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-6">
                                         <div class="field">
-                                            Estado:<br>
-                                            <select class="form-control mb-1" name="estado" id="estado">
+                                            <br>
+                                            <select placeholder="Estado" class="form-control mb-1" name="estado" id="estado">
                                                 <option value="Huevo">Huevo </option>
                                                 <option value="Pez Dorado">Pez dorado</option>
                                                 <option value="tiburon">Tiburón</option>
                                             </select>
+                                            <textarea class="form-control different-control w-100" required name="descripcion" maxlength="300" placeholder="Descripción" id="descripcion" cols="30" rows="10"></textarea>
+                                            <br><textarea class="form-control different-control w-100" required maxlength="300" placeholder="Historia" type="text" name="historia" id="historia" required maxlength="500"cols="30" rows="10"></textarea>   
                                             
-                                            <input class="form-control mb-1" placeholder="Descripcion"  type="text" name="descripcion" id="descripcion" required maxlength="500">
-                                            <input class="form-control mb-1" placeholder="Historia" type="text" name="historia" id="historia" required maxlength="500">
+                                            </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="field">
+                                            <br><input placeholder="Nombre" class="form-control mb-1" type="text" name="nombre" id="nombre" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" maxlength="100">
                                             <input class="form-control mb-1" placeholder="Eslogan" type="text" name="eslogan" id="eslogan" required maxlength="500">
                                             <input class="form-control mb-1" placeholder="Inversion inicial" type="number" name="inversion_inicial" id="inversion_inicial" required step="0.01">
                                             <input class="form-control mb-1" placeholder="Fecha fundacion" type="date" name="fecha_fundacion" id="fecha_fundacion"required step="0.01">
-                                            <input class="form-control mb-1" placeholder="Venta año anterior" type="number" name="venta_año_anterior" id="venta_año_anterior"required step="0.01" >
-                                            <input class="form-control mb-1" placeholder="Usuario de emprendedor"  type="text" name="user_emprendedor" id="user_emprendedor"required maxlength="100">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7">
-                                        <div class="field">
-                                            <br><input placeholder="Nombre" class="form-control mb-1" type="text" name="nombre" id="nombre" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" maxlength="100">
-                                            <input placeholder="Foto" class="form-control mb-1" type="file" name="fileToUpload" id="fileToUpload" >
                                             <input placeholder="Video" class="form-control mb-1" type="url" name="video" id="video" value="{{video}}" maxlength="900">
                                             <input placeholder="Email" class="form-control mb-1" type="text" name="email" id="email" required maxlength="150">
                                             <input placeholder="Telefono" class="form-control mb-1" type="number" name="telefono" id="telefono" required maxlength="25">
                                             <input placeholder="Facebook" class="form-control mb-1" type="text" name="facebook" id="facebook" maxlength="900">
                                             <input placeholder="Instagram" class="form-control mb-1" type="text" name="instagram" id="instagram"maxlength="900">
                                             <input placeholder="Youtube" class="form-control mb-1" type="text" name="youtube" id="youtube"maxlength="900">
-                                            
+                                            <input class="form-control mb-1" placeholder="Venta año anterior" type="number" name="venta_año_anterior" id="venta_año_anterior"required step="0.01" >
+                                            <input class="form-control mb-1" placeholder="Usuario de emprendedor"  type="text" name="user_emprendedor" id="user_emprendedor"required maxlength="100"><br>
+                                            <input type="file" name="fileToUpload" id="fileToUpload" ><br>
                                             <button class="button button-header button--active pull-right" type="submit" value="insert">Insertar</button>
                                             <input type="hidden" name="formId" id="formId" value="1">
                                         </div>

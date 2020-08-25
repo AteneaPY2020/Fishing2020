@@ -126,20 +126,18 @@
                                     <div class="form-group">
                                         <label class="sr-only" for="f1-first-name">Nombre</label>
                                         Nombre:<br>
-                                        <input type="text" class="f1-last-name form-control" name="nombre" id="nombre" value={{namex}} >
+                                        <input type="text" class="f1-last-name form-control" name="nombre" id="nombre" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
                                     </div>
 
                                     <div class="form-group">
                                     Seleccione una foto de perfil:
-                                        <input type="file" name="fileToUpload" id="fileToUpload">
-                                        <br>
-                                        <button type="submit" class="btn btn-next" value="Upload Image" name="imageInv" id="imageInv">Subir</button>
+                                        <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*">
                                     </div>
-                                  
+                                
                                     <div class="form-group">
                                         <label class="sr-only" for="f1-about-yourself">Biografia</label>
                                         Biografía:<br>
-                                        <textarea name="bio" placeholder="Cuéntanos un poco sobre ti" class="f1-about-yourself form-control" id="bio" value={{biox}}></textarea>
+                                        <textarea name="bio" placeholder="Cuéntanos un poco sobre ti" class="f1-about-yourself form-control" id="bio" required maxlength="500"></textarea>
                                     </div>
 
                                     <div class="f1-buttons">
@@ -155,24 +153,24 @@
                                     <div class="form-group">
                                         <label class="sr-only" for="f1-first-name">Email</label>
                                         Email:<br>
-                                        <input type="email" class="f1-last-name form-control"   name="email" id="email" value={{emailx}} >
+                                        <input type="email" class="f1-last-name form-control"   name="email" id="email" required maxlength="150">
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="f1-last-name">Pais</label>
                                         País:<br>
-                                        <input type="text" class="f1-last-name form-control" name="country" id="country" value={{countryx}} >
+                                        <input type="text" class="f1-last-name form-control" name="country" id="country" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
                                     </div>
 
                                     <div class="form-group">
                                         <label class="sr-only" for="f1-last-name">Ciudad</label>
                                         Ciudad:<br>
-                                        <input type="text" class="f1-last-name form-control" name="city" id="city" value={{cityx}} >
+                                        <input type="text" class="f1-last-name form-control" name="city" id="city" required maxlength="100" pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras">
                                     </div>
                                     
                                     <div class="form-group">
                                         <label class="sr-only" for="f1-about-yourself">Teléfono</label>
                                         Teléfono:<br>
-                                        <input type="text" class="f1-last-name form-control" name="phone" id="phone" value={{phonex}} >
+                                        <input type="number" class="f1-last-name form-control" name="phone" id="phone" required maxlength="25">
                                     </div>
 
                                     <div class="f1-buttons">

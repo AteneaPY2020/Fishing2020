@@ -1062,8 +1062,7 @@ def agregarAdmin():
             # ELIMINAR
             elif formId == 2:
                 id = int(request.form["id"])
-                logicDelete = adminLogic()
-                logicDelete.deleteAdmin(id)
+                logic.deleteAdmin(id)
                 message2 = "Se ha eliminado un administrador"
                 data = logic.getAllAdmin()
                 for registro in data:

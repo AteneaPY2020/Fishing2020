@@ -14,7 +14,7 @@ class guardadosLogic(Logic):
     def guardar(self, id_inversionista, id_producto):
         dataBase = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.guardado (id, id_inversionista, id_producto) "
+            "insert into heroku_fe83e9a14fd6a07.guardado (id, id_inversionista, id_producto) "
             + "values (0, %s, %s);"
         )
         data = (id_inversionista, id_producto)
@@ -35,13 +35,13 @@ class guardadosLogic(Logic):
 
     def deleteGuardado(self, id_inversionista, id_producto):
         database = self.get_databaseXObj()
-        sql = f"delete from fishingdb.guardado where guardado.id_inversionista = {id_inversionista} and guardado.id_producto = {id_producto};"
+        sql = f"delete from heroku_fe83e9a14fd6a07.guardado where guardado.id_inversionista = {id_inversionista} and guardado.id_producto = {id_producto};"
         rows = database.executeNonQueryRows(sql)
         return rows
 
     def checkGuardado(self, id_inversionista, id_producto):
         database = self.get_databaseXObj()
-        sql = f"select * from fishingdb.guardado where guardado.id_inversionista = {id_inversionista} and guardado.id_producto = {id_producto};"
+        sql = f"select * from heroku_fe83e9a14fd6a07.guardado where guardado.id_inversionista = {id_inversionista} and guardado.id_producto = {id_producto};"
         print(sql)
         data = database.executeQuery(sql)
         counter = 0

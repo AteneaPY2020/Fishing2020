@@ -35,10 +35,10 @@ class adminLogic(Logic):
     def getAllFundadores(self):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select fishingdb.fundador.id, fishingdb.emprendedor.nombre, fishingdb.emprendedor.biografia, fishingdb.emprendimiento.nombre, "
-            + "fishingdb.emprendedor.id, fishingdb.emprendimiento.id from fishingdb.fundador "
-            + "inner join fishingdb.emprendedor  on fishingdb.fundador.id_emprendedor = fishingdb.emprendedor.id "
-            + "inner join fishingdb.emprendimiento on fishingdb.fundador.id_emprendimiento = fishingdb.emprendimiento.id;"
+            "select heroku_fe83e9a14fd6a07.fundador.id, heroku_fe83e9a14fd6a07.emprendedor.nombre, heroku_fe83e9a14fd6a07.emprendedor.biografia, heroku_fe83e9a14fd6a07.emprendimiento.nombre, "
+            + "heroku_fe83e9a14fd6a07.emprendedor.id, heroku_fe83e9a14fd6a07.emprendimiento.id from heroku_fe83e9a14fd6a07.fundador "
+            + "inner join heroku_fe83e9a14fd6a07.emprendedor  on heroku_fe83e9a14fd6a07.fundador.id_emprendedor = heroku_fe83e9a14fd6a07.emprendedor.id "
+            + "inner join heroku_fe83e9a14fd6a07.emprendimiento on heroku_fe83e9a14fd6a07.fundador.id_emprendimiento = heroku_fe83e9a14fd6a07.emprendimiento.id;"
         )
         print(sql)
         data = dataBase.executeQuery(sql)
@@ -50,7 +50,7 @@ class adminLogic(Logic):
     def getEmprendimientoByName(self, name):
         dataBase = self.get_databaseXObj()
         sql = (
-            "SELECT * FROM fishingdb.emprendimiento "
+            "SELECT * FROM heroku_fe83e9a14fd6a07.emprendimiento "
             + f"where emprendimiento.nombre = '{name}';"
         )
         print(sql)
@@ -84,7 +84,7 @@ class adminLogic(Logic):
     def checkEmprendimiento(self, name):
         dataBase = self.get_databaseXObj()
         sql = (
-            "SELECT emprendimiento.nombre FROM fishingdb.emprendimiento "
+            "SELECT emprendimiento.nombre FROM heroku_fe83e9a14fd6a07.emprendimiento "
             + f"where emprendimiento.nombre = '{name}';"
         )
         print(sql)
@@ -110,7 +110,7 @@ class adminLogic(Logic):
 
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.fundador (id, id_emprendedor, id_emprendimiento) "
+            "insert into heroku_fe83e9a14fd6a07.fundador (id, id_emprendedor, id_emprendimiento) "
             + f"values (0, {id_emprendedor.getId()}, {id_emprendimiento.getId()});"
         )
         print(sql)
@@ -120,39 +120,39 @@ class adminLogic(Logic):
     # Categorias-----------------------------------------------------------------------------------------------------------
     def getAllCategorias(self):
         dataBase = self.get_databaseXObj()
-        sql = "SELECT * FROM fishingdb.categoria;"
+        sql = "SELECT * FROM heroku_fe83e9a14fd6a07.categoria;"
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, ["id", "categoria"])
         return data
 
     def insertCategoria(self, categoria):
         database = self.get_databaseXObj()
-        sql = f"insert into fishingdb.categoria (categoria) values ('{categoria}');"
+        sql = f"insert into heroku_fe83e9a14fd6a07.categoria (categoria) values ('{categoria}');"
         rows = database.executeNonQueryRows(sql)
         return rows
 
     def deleteCategoria(self, id):
         database = self.get_databaseXObj()
-        sql = f"delete from fishingdb.categoria where categoria.id = '{id}';"
+        sql = f"delete from heroku_fe83e9a14fd6a07.categoria where categoria.id = '{id}';"
         rows = database.executeNonQueryRows(sql)
         return rows
 
     def updateCategoria(self, id, categoria):
         database = self.get_databaseXObj()
-        sql = f"update fishingdb.categoria set categoria.categoria= '{categoria}' where categoria.id = '{id}';"
+        sql = f"update heroku_fe83e9a14fd6a07.categoria set categoria.categoria= '{categoria}' where categoria.id = '{id}';"
         rows = database.executeNonQueryRows(sql)
         return rows
 
     def getAllEmprendimientoID(self):
         database = self.get_databaseXObj()
-        sql = "SELECT id, nombre FROM fishingdb.emprendimiento;"
+        sql = "SELECT id, nombre FROM heroku_fe83e9a14fd6a07.emprendimiento;"
         data = database.executeQuery(sql)
         data = self.tupleToDictionaryList(data, ["id", "nombre"])
         return data
 
     def getAllAdmin(self):
         database = self.get_databaseXObj()
-        sql = "SELECT usuario.id, usuario.usuario, usuario.password FROM fishingdb.usuario where rol = 1;"
+        sql = "SELECT usuario.id, usuario.usuario, usuario.password FROM heroku_fe83e9a14fd6a07.usuario where rol = 1;"
         print(sql)
         data = database.executeQuery(sql)
         data = self.tupleToDictionaryList(data, ["id", "usuario", "password"])
@@ -168,7 +168,7 @@ class adminLogic(Logic):
 
     def getAdminById(self, id):
         database = self.get_databaseXObj()
-        sql = "SELECT usuario.id, usuario.usuario, usuario.password FROM fishingdb.usuario where usuario.id ='{id}';"
+        sql = "SELECT usuario.id, usuario.usuario, usuario.password FROM heroku_fe83e9a14fd6a07.usuario where usuario.id ='{id}';"
         print(sql)
         data = database.executeQuery(sql)
         data = self.tupleToDictionaryList(data, ["id", "usuario", "password"])
@@ -177,7 +177,7 @@ class adminLogic(Logic):
     def insertAdmin(self, usuario, password):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.usuario (id, usuario, password, rol) "
+            "insert into heroku_fe83e9a14fd6a07.usuario (id, usuario, password, rol) "
             + f"values (0, '{usuario}','{password}',1);"
         )
         print(sql)
@@ -186,7 +186,7 @@ class adminLogic(Logic):
 
     def deleteAdmin(self, id):
         database = self.get_databaseXObj()
-        sql = f"delete from fishingdb.usuario where usuario.id = '{id}';"
+        sql = f"delete from heroku_fe83e9a14fd6a07.usuario where usuario.id = '{id}';"
         print(sql)
         rows = database.executeNonQueryRows(sql)
         return rows
@@ -194,7 +194,7 @@ class adminLogic(Logic):
     def updateAdmin(self, id, usuario, password):
         database = self.get_databaseXObj()
         sql = (
-            f"update fishingdb.usuario set usuario.usuario= '{usuario}', "
+            f"update heroku_fe83e9a14fd6a07.usuario set usuario.usuario= '{usuario}', "
             + f"usuario.password='{password}' where usuario.id = '{id}';"
         )
         print(sql)

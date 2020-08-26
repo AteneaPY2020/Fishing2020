@@ -22,7 +22,7 @@ class inversorLogic(Logic):
     def insertNewInversor(self, name, bio, email, id_user, country, city, foto):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.inversionista (id, nombre, biografia, email, id_usuario, pais, ciudad) "
+            "insert into heroku_fe83e9a14fd6a07.inversionista (id, nombre, biografia, email, id_usuario, pais, ciudad) "
             + "values (0, %s, %s, %s, %s, %s, %s);"
         )
         data = (name, bio, email, id_user, country, city)
@@ -32,7 +32,7 @@ class inversorLogic(Logic):
         nombre_foto = str(id_inversionista) + ".png"
 
         sql2 = (
-            "update fishingdb.inversionista "
+            "update heroku_fe83e9a14fd6a07.inversionista "
             + "set inversionista.nombre_foto = %s, inversionista.foto = %s "
             + "where inversionista.id = %s;"
         )
@@ -48,7 +48,7 @@ class inversorLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.inversionista (id, nombre, biografia, email, id_usuario, pais, ciudad, nombre_foto) "
+            "insert into heroku_fe83e9a14fd6a07.inversionista (id, nombre, biografia, email, id_usuario, pais, ciudad, nombre_foto) "
             + "values (0, %s, %s, %s, %s, %s, %s, %s);"
         )
         data = (name, bio, email, id_user, country, city, nombre_foto)
@@ -58,7 +58,7 @@ class inversorLogic(Logic):
     def getNewInversor(self, name, bio, email, id_user, country, city):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select * from fishingdb.inversionista " + f"where id_usuario = {id_user};"
+            "select * from heroku_fe83e9a14fd6a07.inversionista " + f"where id_usuario = {id_user};"
         )
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
@@ -82,7 +82,7 @@ class inversorLogic(Logic):
     def getIdInversor(self, id_user):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select * from fishingdb.inversionista " + f"where id_usuario = {id_user};"
+            "select * from heroku_fe83e9a14fd6a07.inversionista " + f"where id_usuario = {id_user};"
         )
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
@@ -121,7 +121,7 @@ class inversorLogic(Logic):
 
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.interes (id, id_inversionista, id_categoria) "
+            "insert into heroku_fe83e9a14fd6a07.interes (id, id_inversionista, id_categoria) "
             + f"values (0, {idInversor}, {interes});"
         )
         rows = database.executeNonQueryRows(sql)
@@ -131,7 +131,7 @@ class inversorLogic(Logic):
 
         database = self.get_databaseXObj()
         sql = (
-            "select id_categoria from fishingdb.interes "
+            "select id_categoria from heroku_fe83e9a14fd6a07.interes "
             + f"where id_inversionista = {idInversor};"
         )
         data = database.executeQuery(sql)
@@ -144,7 +144,7 @@ class inversorLogic(Logic):
     def updateInversionista(self, id, name, bio, email, id_user, country, city):
         database = self.get_databaseXObj()
         sql = (
-            f"update fishingdb.inversionista set inversionista.nombre= '{name}', inversionista.biografia= '{bio}', inversionista.email= '{email}', "
+            f"update heroku_fe83e9a14fd6a07.inversionista set inversionista.nombre= '{name}', inversionista.biografia= '{bio}', inversionista.email= '{email}', "
             + f"inversionista.id_usuario= '{id_user}', inversionista.pais= '{country}', inversionista.ciudad= '{city}' where inversionista.id = '{id}';"
         )
         row = database.executeNonQueryRows(sql)
@@ -155,7 +155,7 @@ class inversorLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "update fishingdb.inversionista"
+            "update heroku_fe83e9a14fd6a07.inversionista"
             + " set nombre = %s, biografia = %s, email = %s, pais = %s, ciudad = %s, foto = %s, nombre_foto = %s"
             + " where id = %s;"
         )
@@ -177,7 +177,7 @@ class inversorLogic(Logic):
     def getIdInversionistaByIdUsuario(self, id_usuario):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select inversionista.id from fishingdb.inversionista inner join fishingdb.usuario "
+            "select inversionista.id from heroku_fe83e9a14fd6a07.inversionista inner join heroku_fe83e9a14fd6a07.usuario "
             + "on inversionista.id_usuario = usuario.id "
             + f"where usuario.id like '{id_usuario}';"
         )
@@ -192,7 +192,7 @@ class inversorLogic(Logic):
         id_inversor = Inversor.getIdInversor(usuario.getId())
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
+            "insert into heroku_fe83e9a14fd6a07.notificaciones (idnotificaciones, mensaje, id_emprendedor, fecha, hora) "
             + f"values (0, 'El inversor {id_inversor.getNombre()} le ha enviado un mensaje', {id_emprendedor}, current_date(), current_time());"
         )
         print(sql)
@@ -202,9 +202,9 @@ class inversorLogic(Logic):
     def getIntereses(self, id_Inversionista):
         dataBase = self.get_databaseXObj()
         sql = (
-            "SELECT fishingdb.interes.id, fishingdb.categoria.categoria FROM fishingdb.interes "
-            + "inner join fishingdb.categoria on fishingdb.interes.id_categoria = fishingdb.categoria.id "
-            + f"where fishingdb.interes.id_inversionista = {id_Inversionista};"
+            "SELECT heroku_fe83e9a14fd6a07.interes.id, heroku_fe83e9a14fd6a07.categoria.categoria FROM heroku_fe83e9a14fd6a07.interes "
+            + "inner join heroku_fe83e9a14fd6a07.categoria on heroku_fe83e9a14fd6a07.interes.id_categoria = heroku_fe83e9a14fd6a07.categoria.id "
+            + f"where heroku_fe83e9a14fd6a07.interes.id_inversionista = {id_Inversionista};"
         )
         print(sql)
         data = dataBase.executeQuery(sql)
@@ -213,14 +213,14 @@ class inversorLogic(Logic):
 
     def deleteInteres(self, id):
         database = self.get_databaseXObj()
-        sql = f"DELETE FROM fishingdb.interes WHERE (id = '{id}');"
+        sql = f"DELETE FROM heroku_fe83e9a14fd6a07.interes WHERE (id = '{id}');"
         rows = database.executeNonQueryRows(sql)
         return rows
 
     def checkInteresAlradyAdded(self, id_Inversionista, id_Categoria):
         dataBase = self.get_databaseXObj()
         sql = (
-            "SELECT interes.id FROM fishingdb.interes "
+            "SELECT interes.id FROM heroku_fe83e9a14fd6a07.interes "
             + f"where interes.id_inversionista = {id_Inversionista} and interes.id_categoria = {id_Categoria};"
         )
         print(sql)
@@ -236,13 +236,13 @@ class inversorLogic(Logic):
 
     def deleteInversionista(self, id):
         database = self.get_databaseXObj()
-        sql = f"delete from fishingdb.inversionista where inversionista.id = '{id}';"
+        sql = f"delete from heroku_fe83e9a14fd6a07.inversionista where inversionista.id = '{id}';"
         row = database.executeNonQueryRows(sql)
         return row
 
     def getAllInversionista(self):
         dataBase = self.get_databaseXObj()
-        sql = "SELECT * FROM fishingdb.inversionista;"
+        sql = "SELECT * FROM heroku_fe83e9a14fd6a07.inversionista;"
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
         return data

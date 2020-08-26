@@ -25,7 +25,7 @@ class emprendedorLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.emprendedor (id, nombre, email, telefono, id_usuario, pais, ciudad, biografia) "
+            "insert into heroku_fe83e9a14fd6a07.emprendedor (id, nombre, email, telefono, id_usuario, pais, ciudad, biografia) "
             + "values (0, %s, %s, %s, %s, %s, %s, %s);"
         )
         data = (
@@ -43,7 +43,7 @@ class emprendedorLogic(Logic):
         nombre_foto = str(id_emprendedor) + ".png"
 
         sql2 = (
-            "update fishingdb.emprendedor "
+            "update heroku_fe83e9a14fd6a07.emprendedor "
             + "set emprendedor.nombre_foto = %s, emprendedor.foto = %s "
             + "where emprendedor.id = %s;"
         )
@@ -59,7 +59,7 @@ class emprendedorLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "insert into fishingdb.emprendedor (id, nombre, email, telefono, id_usuario, pais, ciudad, biografia, nombre_foto) "
+            "insert into heroku_fe83e9a14fd6a07.emprendedor (id, nombre, email, telefono, id_usuario, pais, ciudad, biografia, nombre_foto) "
             + "values (0, %s, %s, %s, %s, %s, %s, %s, %s);"
         )
         data = (
@@ -79,7 +79,7 @@ class emprendedorLogic(Logic):
         self, name, email, phone, id_user, country, city,
     ):
         dataBase = self.get_databaseXObj()
-        sql = "select * from fishingdb.emprendedor " + f"where id_usuario = {id_user};"
+        sql = "select * from heroku_fe83e9a14fd6a07.emprendedor " + f"where id_usuario = {id_user};"
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
         if len(data) > 0:
@@ -102,7 +102,7 @@ class emprendedorLogic(Logic):
 
     def getEmprendedorByUser(self, id_user):
         dataBase = self.get_databaseXObj()
-        sql = "select * from fishingdb.emprendedor " + f"where id_usuario = {id_user};"
+        sql = "select * from heroku_fe83e9a14fd6a07.emprendedor " + f"where id_usuario = {id_user};"
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
         if len(data) > 0:
@@ -129,7 +129,7 @@ class emprendedorLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "update fishingdb.emprendedor "
+            "update heroku_fe83e9a14fd6a07.emprendedor "
             + f"set emprendedor.nombre = '{nombre}', emprendedor.email = '{email}', emprendedor.telefono = '{telefono}',  "
             + f"emprendedor.pais = '{pais}', emprendedor.ciudad = '{ciudad}', emprendedor.biografia = '{biografia}' "
             + f"where emprendedor.id_usuario = '{id}';"
@@ -143,7 +143,7 @@ class emprendedorLogic(Logic):
         database = self.get_databaseXObj()
         nombre_foto = str(self.getIdEmprendedorByIdUsuario(id)) + ".png"
         sql = (
-            "update fishingdb.emprendedor "
+            "update heroku_fe83e9a14fd6a07.emprendedor "
             + "set emprendedor.nombre = %s, emprendedor.email = %s, emprendedor.telefono = %s, "
             + "emprendedor.pais = %s, emprendedor.ciudad = %s, emprendedor.biografia = %s, "
             + "emprendedor.nombre_foto = %s, emprendedor.foto = %s "
@@ -159,7 +159,7 @@ class emprendedorLogic(Logic):
         dataBase = self.get_databaseXObj()
 
         sql = (
-            "select * from fishingdb.emprendedor inner join fishingdb.usuario "
+            "select * from heroku_fe83e9a14fd6a07.emprendedor inner join heroku_fe83e9a14fd6a07.usuario "
             + "on emprendedor.id_usuario = usuario.id "
             + f"where usuario.id like '{idUsuario}';"
         )
@@ -182,7 +182,7 @@ class emprendedorLogic(Logic):
     def getIdEmprendedorByIdUsuario(self, id_usuario):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select emprendedor.id from fishingdb.emprendedor inner join fishingdb.usuario "
+            "select emprendedor.id from heroku_fe83e9a14fd6a07.emprendedor inner join heroku_fe83e9a14fd6a07.usuario "
             + "on emprendedor.id_usuario = usuario.id "
             + f"where usuario.id like '{id_usuario}';"
         )
@@ -193,7 +193,7 @@ class emprendedorLogic(Logic):
     def getNotification(self, idUsuario):
         database = self.get_databaseXObj()
         sql = (
-            f"select notificaciones.mensaje, notificaciones.fecha, notificaciones.hora from fishingdb.notificaciones where id_emprendedor={idUsuario} "
+            f"select notificaciones.mensaje, notificaciones.fecha, notificaciones.hora from heroku_fe83e9a14fd6a07.notificaciones where id_emprendedor={idUsuario} "
             + "Order by notificaciones.fecha desc, notificaciones.hora desc limit 5;"
         )
         print(sql)
@@ -203,13 +203,13 @@ class emprendedorLogic(Logic):
 
     def getAllEmprendedores(self):
         dataBase = self.get_databaseXObj()
-        sql = "select * from fishingdb.emprendedor;"
+        sql = "select * from heroku_fe83e9a14fd6a07.emprendedor;"
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
         return data
 
     def deleteEmprendedor(self, id):
         database = self.get_databaseXObj()
-        sql = f"delete from fishingdb.emprendedor where emprendedor.id = '{id}';"
+        sql = f"delete from heroku_fe83e9a14fd6a07.emprendedor where emprendedor.id = '{id}';"
         rows = database.executeNonQueryRows(sql)
         return rows

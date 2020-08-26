@@ -3,10 +3,10 @@ import pymysql.cursors
 
 class DatabaseX:
     def __init__(self):
-        self.__host = "localhost"
-        self.__user = "root"
-        self.__passwd = "12345"
-        self.__database = "fishingdb"
+        self.__host = "us-cdbr-east-02.cleardb.com"
+        self.__user = "bb10d595488ae5"
+        self.__passwd = "41213530"
+        self.__database = "heroku_fe83e9a14fd6a07"
         self.__connection = self.createConnection()
         self.__cursor = self.createCursor()
 

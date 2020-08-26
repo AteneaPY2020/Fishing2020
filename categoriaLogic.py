@@ -12,25 +12,25 @@ class CategoriaLogic(Logic):
 
     def getAllCategorias(self):
         dataBase = self.get_databaseXObj()
-        sql = "SELECT * FROM fishingdb.categoria;"
+        sql = "SELECT * FROM heroku_fe83e9a14fd6a07.categoria;"
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
         return data
 
     def insertCategoria(self, categoria):
         database = self.get_databaseXObj()
-        sql = f"insert into fishingdb.categoria (categoria) values ('{categoria}');"
+        sql = f"insert into heroku_fe83e9a14fd6a07.categoria (categoria) values ('{categoria}');"
         rows = database.executeNonQueryRows(sql)
         return rows
 
     def deleteCategoria(self, id):
         database = self.get_databaseXObj()
-        sql = f"delete from fishingdb.categoria where categoria.id = '{id}';"
+        sql = f"delete from heroku_fe83e9a14fd6a07.categoria where categoria.id = '{id}';"
         rows = database.executeNonQueryRows(sql)
         return rows
 
     def updateCategoria(self, id, categoria):
         database = self.get_databaseXObj()
-        sql = f"update fishingdb.categoria set categoria.categoria= '{categoria}' where categoria.id = '{id}';"
+        sql = f"update heroku_fe83e9a14fd6a07.categoria set categoria.categoria= '{categoria}' where categoria.id = '{id}';"
         rows = database.executeNonQueryRows(sql)
         return rows

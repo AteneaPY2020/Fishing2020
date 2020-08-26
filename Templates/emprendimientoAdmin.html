@@ -149,42 +149,45 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="field">
-                                            <br>
+                                            <br><br><input placeholder="Nombre" class="form-control mb-1" type="text" name="nombre" id="nombre" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" maxlength="100">
+                                            <input class="form-control mb-1" placeholder="Eslogan" type="text" name="eslogan" id="eslogan" required maxlength="500">
                                             <select placeholder="Estado" class="form-control mb-1" name="estado" id="estado">
                                                 <option value="Huevo">Huevo </option>
                                                 <option value="Pez Dorado">Pez dorado</option>
                                                 <option value="tiburon">Tiburón</option>
                                             </select>
-                                            <textarea class="form-control different-control w-100" required name="descripcion" maxlength="300" placeholder="Descripción" id="descripcion" cols="30" rows="10"></textarea>
-                                            <br><textarea class="form-control different-control w-100" required maxlength="300" placeholder="Historia" type="text" name="historia" id="historia" required maxlength="500"cols="30" rows="10"></textarea><br>  
-                                            <div align="left">
-                                                <div class="field">
-                                                    <label class="" for="eslogan">Categorías:</label>
-                                                        <div class="control">
-                                                            {% for cat in categorias %}
-                                                                <input type="checkbox" name="{{cat["id"]}}" value="{{cat["id"]}}">
-                                                                <label for="{{cat["id"]}}">{{cat["categoria"]}}</label><br>
-                                                            {% endfor %}
-                                                        </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="field">
-                                            <br><input placeholder="Nombre" class="form-control mb-1" type="text" name="nombre" id="nombre" required pattern="[A-Za-z\s]+" title="Por favor, utilice unicamente letras" maxlength="100">
-                                            <input class="form-control mb-1" placeholder="Eslogan" type="text" name="eslogan" id="eslogan" required maxlength="500">
-                                            <input class="form-control mb-1" placeholder="Inversion inicial" type="number" name="inversion_inicial" id="inversion_inicial" required step="0.01">
-                                            <input class="form-control mb-1" placeholder="Fecha fundacion" type="date" name="fecha_fundacion" id="fecha_fundacion"required step="0.01">
                                             <input placeholder="Video" class="form-control mb-1" type="url" name="video" id="video" value="{{video}}" maxlength="900">
                                             <input placeholder="Email" class="form-control mb-1" type="text" name="email" id="email" required maxlength="150">
                                             <input placeholder="Telefono" class="form-control mb-1" type="number" name="telefono" id="telefono" required maxlength="25">
                                             <input placeholder="Facebook" class="form-control mb-1" type="text" name="facebook" id="facebook" maxlength="900">
                                             <input placeholder="Instagram" class="form-control mb-1" type="text" name="instagram" id="instagram"maxlength="900">
                                             <input placeholder="Youtube" class="form-control mb-1" type="text" name="youtube" id="youtube"maxlength="900">
+                                            <input class="form-control mb-1" placeholder="Inversion inicial" type="number" name="inversion_inicial" id="inversion_inicial" required step="0.01">
+                                            <input class="form-control mb-1" placeholder="Fecha fundacion" type="date" name="fecha_fundacion" id="fecha_fundacion"required step="0.01">
                                             <input class="form-control mb-1" placeholder="Venta año anterior" type="number" name="venta_año_anterior" id="venta_año_anterior"required step="0.01" >
-                                            <input class="form-control mb-1" placeholder="Usuario de emprendedor"  type="text" name="user_emprendedor" id="user_emprendedor"required maxlength="100"><br>
+                                            <input class="form-control mb-1" placeholder="Usuario de emprendedor"  type="text" name="user_emprendedor" id="user_emprendedor"required maxlength="100">
+                                            
+                                            <textarea class="form-control different-control w-100" required name="descripcion" maxlength="300" placeholder="Descripción" id="descripcion" cols="30" rows="7"></textarea>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="field">
+                                            
+                                            <div class="comments-area" align="left">
+                                                <div class="control">
+                                                    Categoria: <br>
+                                                    {% for cat in categorias %}
+                                                        <input type="checkbox" name="{{cat["id"]}}" value="{{cat["id"]}}">
+                                                        <label for="{{cat["id"]}}">{{cat["categoria"]}}</label><br>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <textarea class="form-control different-control w-100" required maxlength="300" placeholder="Historia" type="text" name="historia" id="historia" required maxlength="500"cols="30" rows="7"></textarea><br>  
+                                            
                                             <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*"><br>
+                                            
                                             <br><br>
                                             <button class="button button-header button--active pull-right" type="submit" value="insert">Insertar</button>
                                             <input type="hidden" name="formId" id="formId" value="1">

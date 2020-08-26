@@ -156,9 +156,19 @@
                                                 <option value="tiburon">Tiburón</option>
                                             </select>
                                             <textarea class="form-control different-control w-100" required name="descripcion" maxlength="300" placeholder="Descripción" id="descripcion" cols="30" rows="10"></textarea>
-                                            <br><textarea class="form-control different-control w-100" required maxlength="300" placeholder="Historia" type="text" name="historia" id="historia" required maxlength="500"cols="30" rows="10"></textarea>   
-                                            
+                                            <br><textarea class="form-control different-control w-100" required maxlength="300" placeholder="Historia" type="text" name="historia" id="historia" required maxlength="500"cols="30" rows="10"></textarea><br>  
+                                            <div align="left">
+                                                <div class="field">
+                                                    <label class="" for="eslogan">Categorías:</label>
+                                                        <div class="control">
+                                                            {% for cat in categorias %}
+                                                                <input type="checkbox" name="{{cat["id"]}}" value="{{cat["id"]}}">
+                                                                <label for="{{cat["id"]}}">{{cat["categoria"]}}</label><br>
+                                                            {% endfor %}
+                                                        </div>
+                                                </div>
                                             </div>
+                                        </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="field">

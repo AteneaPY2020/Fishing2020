@@ -677,10 +677,14 @@ def signUPEmprendimiento():
         message = ""
         verdadero = False
         logicUser = UserLogic()
+        categorias = CategoriaLogic().getAllCategorias()
         if request.method == "GET":
             data = logic.getAllEmprendimientoLen()
             return render_template(
-                "emprendimientoAdmin.html", data=data, message=message
+                "emprendimientoAdmin.html",
+                data=data,
+                message=message,
+                categorias=categorias,
             )
 
         elif request.method == "POST":  # "POST"
@@ -751,10 +755,26 @@ def signUPEmprendimiento():
                                 youtube,
                             )
                         message = "Se ha insertado un nuevo emprendimiento"
+
+                        id_emprendimiento = logic.getNewIdEmprendimiento(
+                            nombre, eslogan, fecha_fundacion
+                        )
+
+                        for checkbox in categorias:
+                            id_categoria = checkbox["id"]
+                            value = request.form.get(str(id_categoria))
+                            if value:
+                                logic.insertEspecialidad(
+                                    id_emprendimiento, id_categoria
+                                )
+
                         data = logic.getAllEmprendimientoLen()
 
                         return render_template(
-                            "emprendimientoAdmin.html", data=data, message=message,
+                            "emprendimientoAdmin.html",
+                            data=data,
+                            message=message,
+                            categorias=categorias,
                         )
 
                     except pymysql.err.MySQLError as error:
@@ -767,13 +787,19 @@ def signUPEmprendimiento():
                         data = logic.getAllEmprendimientoLen()
 
                     return render_template(
-                        "emprendimientoAdmin.html", data=data, message=message
+                        "emprendimientoAdmin.html",
+                        data=data,
+                        message=message,
+                        categorias=categorias,
                     )
                 else:
                     message = "No se puede insertar. No existe el usario ingersado o no es emprendedor"
                     data = logic.getAllEmprendimientoLen()
                     return render_template(
-                        "emprendimientoAdmin.html", data=data, message=message
+                        "emprendimientoAdmin.html",
+                        data=data,
+                        message=message,
+                        categorias=categorias,
                     )
 
             # Elimina un emprendimiento
@@ -792,7 +818,10 @@ def signUPEmprendimiento():
                     message = "No se puede eliminar. Afecta la integridad de los datos"
                     data = logic.getAllEmprendimientoLen()
                 return render_template(
-                    "emprendimientoAdmin.html", data=data, message=message
+                    "emprendimientoAdmin.html",
+                    data=data,
+                    message=message,
+                    categorias=categorias,
                 )
             # Va al form para dar update
             elif formId == 3:
@@ -836,6 +865,7 @@ def signUPEmprendimiento():
                     facebook=facebook,
                     instagram=instagram,
                     youtube=youtube,
+                    categorias=categorias,
                 )
 
             # Modifica al emprendimiento
@@ -908,11 +938,16 @@ def signUPEmprendimiento():
                     data = logic.getAllEmprendimientoLen()
 
                 return render_template(
-                    "emprendimientoAdmin.html", data=data, message=message
+                    "emprendimientoAdmin.html",
+                    data=data,
+                    message=message,
+                    categorias=categorias,
                 )
     except KeyError:
         return render_template(
-            "logInForm.html", messageSS="Su sesión ha expirado, ingrese nuevamente"
+            "logInForm.html",
+            messageSS="Su sesión ha expirado, ingrese nuevamente",
+            categorias=categorias,
         )
 
 

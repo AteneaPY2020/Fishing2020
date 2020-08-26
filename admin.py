@@ -968,8 +968,12 @@ def categoria():
             # Inserta una categoría
             if formId == 1:
                 categoria = request.form["categoria"]
-                logic.insertCategoria(categoria)
-                massage = "Se ha insertado una nueva categoría"
+                existe = logic.checkCategoria(categoria)
+                if existe:
+                    massage = "La categoría ya existe. Inserte de nuevo"
+                else:
+                    logic.insertCategoria(categoria)
+                    massage = "Se ha insertado una nueva categoría"
                 data = logic.getAllCategorias()
                 return render_template(
                     "categoriaAdmin.html", data=data, massage=massage

@@ -158,6 +158,14 @@ class adminLogic(Logic):
         data = self.tupleToDictionaryList(data, ["id", "usuario", "password"])
         return data
 
+    def checkCategoria(self, categoria):
+        all_categorias = self.getAllCategorias()
+        existe = False
+        for registro in all_categorias:
+            if registro["categoria"] == categoria:
+                existe = True
+        return existe
+
     def getAdminById(self, id):
         database = self.get_databaseXObj()
         sql = "SELECT usuario.id, usuario.usuario, usuario.password FROM fishingdb.usuario where usuario.id ='{id}';"

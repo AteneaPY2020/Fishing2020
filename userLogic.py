@@ -10,7 +10,7 @@ class UserLogic(Logic):
     def getUser(self, user, password):
         dataBase = self.get_databaseXObj()
         sql = (
-            "SELECT * FROM heroku_fe83e9a14fd6a07.usuario "
+            "SELECT * FROM heroku_c9cfc4eae6e8f6a.usuario "
             + f"where usuario.usuario = '{user}' and usuario.password = '{password}';"
         )
         print(sql)
@@ -31,7 +31,7 @@ class UserLogic(Logic):
     def insertNewUser(self, user, password, rol):
         database = self.get_databaseXObj()
         sql = (
-            "insert into heroku_fe83e9a14fd6a07.usuario (id, usuario, password, rol) "
+            "insert into heroku_c9cfc4eae6e8f6a.usuario (id, usuario, password, rol) "
             + f"values (0, '{user}', '{password}', {rol});"
         )
         rows = database.executeNonQueryRows(sql)
@@ -40,7 +40,7 @@ class UserLogic(Logic):
     def getNewUser(self, user, password, rol):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select * from heroku_fe83e9a14fd6a07.usuario "
+            "select * from heroku_c9cfc4eae6e8f6a.usuario "
             + f"where usuario = '{user}' and password = '{password}';"
         )
         data = dataBase.executeQuery(sql)
@@ -60,7 +60,7 @@ class UserLogic(Logic):
     def checkUserInUsuario(self, user, rol):
         dataBase = self.get_databaseXObj()
         sql = (
-            "SELECT usuario.usuario FROM heroku_fe83e9a14fd6a07.usuario "
+            "SELECT usuario.usuario FROM heroku_c9cfc4eae6e8f6a.usuario "
             + f"where usuario.usuario = '{user}' and usuario.rol = {rol};"
         )
         print(sql)
@@ -85,7 +85,10 @@ class UserLogic(Logic):
 
     def getUserByUser(self, user):
         dataBase = self.get_databaseXObj()
-        sql = "SELECT * FROM heroku_fe83e9a14fd6a07.usuario " + f"where usuario.usuario = '{user}';"
+        sql = (
+            "SELECT * FROM heroku_c9cfc4eae6e8f6a.usuario "
+            + f"where usuario.usuario = '{user}';"
+        )
         print(sql)
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
@@ -103,7 +106,10 @@ class UserLogic(Logic):
 
     def getUserById(self, id):
         dataBase = self.get_databaseXObj()
-        sql = "SELECT * FROM heroku_fe83e9a14fd6a07.usuario " + f"where usuario.id = '{id}';"
+        sql = (
+            "SELECT * FROM heroku_c9cfc4eae6e8f6a.usuario "
+            + f"where usuario.id = '{id}';"
+        )
         print(sql)
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)

@@ -31,7 +31,7 @@ class productoLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "insert into heroku_fe83e9a14fd6a07.productos (id, nombre, descripcion, costo_unitario, precio_venta, patente, id_emprendimiento) "
+            "insert into heroku_c9cfc4eae6e8f6a.productos (id, nombre, descripcion, costo_unitario, precio_venta, patente, id_emprendimiento) "
             + "values (0, %s, %s, %s, %s, %s, %s);"
         )
         data = (
@@ -50,7 +50,7 @@ class productoLogic(Logic):
         nombre_foto = str(id_producto) + ".png"
 
         sql2 = (
-            "update heroku_fe83e9a14fd6a07.productos "
+            "update heroku_c9cfc4eae6e8f6a.productos "
             + "set productos.nombre_foto = %s, productos.foto = %s "
             + "where productos.id = %s;"
         )
@@ -72,7 +72,7 @@ class productoLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "insert into heroku_fe83e9a14fd6a07.productos (id, nombre, nombre_foto, descripcion, costo_unitario, precio_venta, patente, id_emprendimiento) "
+            "insert into heroku_c9cfc4eae6e8f6a.productos (id, nombre, nombre_foto, descripcion, costo_unitario, precio_venta, patente, id_emprendimiento) "
             + "values (0, %s, %s, %s, %s, %s, %s, %s);"
         )
         data = (
@@ -89,7 +89,7 @@ class productoLogic(Logic):
 
     def getAllProductosByIdEmprendimiento(self, id_emprendimiento):
         dataBase = self.get_databaseXObj()
-        sql = f"select * from heroku_fe83e9a14fd6a07.productos where id_emprendimiento = {id_emprendimiento};"
+        sql = f"select * from heroku_c9cfc4eae6e8f6a.productos where id_emprendimiento = {id_emprendimiento};"
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
         return data
@@ -106,7 +106,10 @@ class productoLogic(Logic):
 
     def deleteProducto(self, id_producto):
         database = self.get_databaseXObj()
-        sql = "delete from heroku_fe83e9a14fd6a07.productos " + f"where id = {id_producto};"
+        sql = (
+            "delete from heroku_c9cfc4eae6e8f6a.productos "
+            + f"where id = {id_producto};"
+        )
         rows = database.executeNonQueryRows(sql)
         return rows
 
@@ -115,7 +118,7 @@ class productoLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "update heroku_fe83e9a14fd6a07.productos"
+            "update heroku_c9cfc4eae6e8f6a.productos"
             + f" set nombre ='{name}', descripcion='{descripcion}', costo_unitario={costo_unitario}, precio_venta={precio_venta}, patente='{patente}'"
             + f" where id = {id_producto};"
         )
@@ -134,7 +137,7 @@ class productoLogic(Logic):
     ):
         database = self.get_databaseXObj()
         sql = (
-            "update heroku_fe83e9a14fd6a07.productos"
+            "update heroku_c9cfc4eae6e8f6a.productos"
             + " set nombre = %s, foto = %s, descripcion = %s, costo_unitario = %s, precio_venta = %s, patente = %s, nombre_foto = %s"
             + " where id = %s;"
         )
@@ -154,7 +157,10 @@ class productoLogic(Logic):
 
     def getProductoById(self, id):
         dataBase = self.get_databaseXObj()
-        sql = "SELECT * FROM heroku_fe83e9a14fd6a07.productos " + f"where productos.id = {id};"
+        sql = (
+            "SELECT * FROM heroku_c9cfc4eae6e8f6a.productos "
+            + f"where productos.id = {id};"
+        )
         print(sql)
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)
@@ -178,7 +184,7 @@ class productoLogic(Logic):
     def getIdProductoByIdEmprendimiento(self, id_emprendimiento, descripcion):
         dataBase = self.get_databaseXObj()
         sql = (
-            "SELECT productos.id FROM heroku_fe83e9a14fd6a07.productos "
+            "SELECT productos.id FROM heroku_c9cfc4eae6e8f6a.productos "
             + f"where productos.id_emprendimiento = {id_emprendimiento} and productos.descripcion = '{descripcion}';"
         )
         data = dataBase.executeQuery(sql)
@@ -187,7 +193,10 @@ class productoLogic(Logic):
 
     def getProductoByIdDiccionary(self, id):
         dataBase = self.get_databaseXObj()
-        sql = "SELECT * FROM heroku_fe83e9a14fd6a07.productos " + f"where productos.id = {id};"
+        sql = (
+            "SELECT * FROM heroku_c9cfc4eae6e8f6a.productos "
+            + f"where productos.id = {id};"
+        )
         print(sql)
         data = dataBase.executeQuery(sql)
         data = self.tupleToDictionaryList(data, self.keys)

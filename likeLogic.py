@@ -13,7 +13,7 @@ class likeLogic(Logic):
     def like(self, id_inversionista, id_producto):
         dataBase = self.get_databaseXObj()
         sql = (
-            "insert into heroku_fe83e9a14fd6a07.reaccion (id, id_inversionista, id_producto) "
+            "insert into heroku_c9cfc4eae6e8f6a.reaccion (id, id_inversionista, id_producto) "
             + "values (0, %s, %s);"
         )
         data = (id_inversionista, id_producto)
@@ -21,7 +21,7 @@ class likeLogic(Logic):
 
         contador = self.getNumLikes(id_producto)
         sql2 = (
-            "update heroku_fe83e9a14fd6a07.productos"
+            "update heroku_c9cfc4eae6e8f6a.productos"
             + f" set likes ={contador + 1}"
             + f" where id = {id_producto};"
         )
@@ -31,7 +31,7 @@ class likeLogic(Logic):
     def getNumLikes(self, id_producto):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select productos.likes from heroku_fe83e9a14fd6a07.productos "
+            "select productos.likes from heroku_c9cfc4eae6e8f6a.productos "
             + f"where productos.id = {id_producto};"
         )
         data = dataBase.executeQuery(sql)
@@ -40,14 +40,14 @@ class likeLogic(Logic):
     def unLike(self, id_inversionista, id_producto):
         dataBase = self.get_databaseXObj()
         sql = (
-            "delete from heroku_fe83e9a14fd6a07.reaccion "
+            "delete from heroku_c9cfc4eae6e8f6a.reaccion "
             + f"where id_inversionista = {id_inversionista} and id_producto = {id_producto};"
         )
         rows = dataBase.executeNonQueryRows(sql)
 
         contador = self.getNumLikes(id_producto)
         sql2 = (
-            "update heroku_fe83e9a14fd6a07.productos"
+            "update heroku_c9cfc4eae6e8f6a.productos"
             + f" set likes ={contador - 1}"
             + f" where id = {id_producto};"
         )
@@ -57,7 +57,7 @@ class likeLogic(Logic):
     def getAllReaccionesByIdEmprendimiento(self, id_emprendimiento):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select reaccion.* from heroku_fe83e9a14fd6a07.productos inner join heroku_fe83e9a14fd6a07.reaccion "
+            "select reaccion.* from heroku_c9cfc4eae6e8f6a.productos inner join heroku_c9cfc4eae6e8f6a.reaccion "
             + "on productos.id = reaccion.id_producto "
             + f"where productos.id_emprendimiento = {id_emprendimiento};"
         )

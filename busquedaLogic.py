@@ -10,7 +10,7 @@ class busquedaLogic(Logic):
     def buscarEmprendimiento(self, busqueda):
         dataBase = self.get_databaseXObj()
         sql = (
-            "select id from heroku_fe83e9a14fd6a07.emprendimiento "
+            "select id from heroku_c9cfc4eae6e8f6a.emprendimiento "
             + f"where nombre LIKE '%{busqueda}%';"
         )
         data = dataBase.executeQuery(sql)
